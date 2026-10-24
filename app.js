@@ -337,7 +337,7 @@ const TIMELINE_DATA = [
     step: 1,
     tag: 'MADRUGADA DEL 15 DE MAYO DE 2000',
     geoPoint: 'simijaca',
-    geoLabel: '📍 Finca rural en Simijaca',
+    geoLabel: 'Finca rural en Simijaca',
     title: 'Invasión armada e intimidación en vivienda rural',
     desc: 'Hombres armados irrumpen por la fuerza en la vivienda rural de Ana Elvia Cortés de Pachón y su esposo en Simijaca, Cundinamarca. Intimidan violentamente a la pareja exigiendo 15 millones de pesos en efectivo, amenazando con segarles la vida.',
     source: 'Corte Suprema de Justicia, Sala de Casación Penal (Proceso 21285 · 2005)'
@@ -346,7 +346,7 @@ const TIMELINE_DATA = [
     step: 2,
     tag: 'MAÑANA DEL 15 DE MAYO DE 2000',
     geoPoint: 'simijaca',
-    geoLabel: '📍 Finca rural en Simijaca',
+    geoLabel: 'Finca rural en Simijaca',
     title: 'Fijación coactiva del artefacto explosivo cervical',
     desc: 'Los asaltantes aseguran tres segmentos curvos de tubo PVC con carga de dinamita e indugel alrededor del cuello de Ana Elvia Cortés. Conectan un reloj despertador calibrado a las 15:00 h y un candado posterior, advirtiendo que detonará si no pagan.',
     source: 'Archivo periodístico El Tiempo — «Collar de dinamita» (Juanita León, 2000)'
@@ -355,7 +355,7 @@ const TIMELINE_DATA = [
     step: 3,
     tag: 'MEDIODÍA · OPERATIVO POLICIAL DE RESCATE',
     geoPoint: 'chiquinquira',
-    geoLabel: '📍 Corredor Chiquinquirá – Simijaca',
+    geoLabel: 'Corredor Chiquinquirá – Simijaca',
     title: 'Intervención heroica del Subintendente Jairo H. López',
     desc: 'El esposo da aviso en Chiquinquirá. El técnico antiexplosivos Jairo Hernando López arriba con traje EOD de protección. Conociendo el riesgo del lazo trampa anti-corte, asume la maniobra directa cuerpo a cuerpo junto a doña Ana Elvia para salvarle la vida.',
     source: 'Crónica El Espectador (Carranza Muñoz, 2016) · Policía Nacional'
@@ -364,7 +364,7 @@ const TIMELINE_DATA = [
     step: 4,
     tag: '12:45 P. M. – 1:30 P. M. · DETONACIÓN TRÁGICA',
     geoPoint: 'bogota',
-    geoLabel: '📍 Evacuación aérea hacia Bogotá D.C.',
+    geoLabel: 'Evacuación aérea hacia Bogotá D.C.',
     title: 'La explosión cobra la vida de Ana Elvia y hiere de muerte a López',
     desc: 'El mecanismo de alivio de tensión se activa durante la intervención. Ana Elvia Cortés fallece de forma instantánea. El subintendente López queda herido críticamente y fallece valerosamente durante su evacuación en helicóptero hacia Bogotá.',
     source: 'Providencia CSJ, Sala Penal (Proceso 21285 · 2005)'
@@ -373,7 +373,7 @@ const TIMELINE_DATA = [
     step: 5,
     tag: '2001 – 2005 – REVISIONES ACTUALES',
     geoPoint: 'simijaca',
-    geoLabel: '📍 Tribunales y Corte Suprema de Justicia',
+    geoLabel: 'Tribunales y Corte Suprema de Justicia',
     title: 'Condena judicial por delincuencia común y verdad histórica',
     desc: 'La justicia descarta la autoría de las FARC y condena a José Miguel Suárez a 32 años de prisión por delincuencia común extorsiva. La Corte Suprema ratifica en casación la sentencia. Verificadores confirman que atribuir el collar a la guerrilla es una falsedad electoral.',
     source: 'CSJ Proceso 21285 · ColombiaCheck · La Silla Vacía · AFP Factual'
@@ -552,7 +552,7 @@ function initSynchronizedTimelineAndMap() {
       setTimeout(() => {
         if (tagEl) tagEl.textContent = data.tag;
         if (numEl) numEl.textContent = `PASO ${data.step} DE ${TIMELINE_DATA.length}`;
-        if (geoLinkEl) geoLinkEl.textContent = data.geoLabel;
+        if (geoLinkEl) geoLinkEl.innerHTML = `<svg class="step-geo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> ${data.geoLabel}`;
         if (titleEl) titleEl.textContent = data.title;
         if (descEl) descEl.textContent = data.desc;
         if (sourceEl) sourceEl.textContent = `Fuente: ${data.source}`;
