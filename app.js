@@ -83,97 +83,63 @@ function initPremiumParticles() {
   let H = canvas.height = window.innerHeight;
   let animRunning = true;
 
-  const resizeObserver = new ResizeObserver(() => {
+  const handleResize = () => {
     W = canvas.width = window.innerWidth;
     H = canvas.height = window.innerHeight;
-  });
-  resizeObserver.observe(document.body);
+  };
+  window.addEventListener('resize', handleResize, { passive: true });
 
-  // Pool de partículas con diferentes tipos
+  // Pool de partículas de alto rendimiento (ascuas solemnes)
   const particles = [];
-  const MAX_AMBIENT = 40;
+  const MAX_AMBIENT = 14; // Reducido para máxima fluidez y evitar saturación visual
 
   class Ember {
     constructor(options = {}) {
       this.burst = options.burst || false;
       this.x = options.x !== undefined ? options.x : Math.random() * W;
-      this.y = options.y !== undefined ? options.y : H + 20 + Math.random() * 100;
-      this.size = this.burst ? Math.random() * 3 + 1.5 : Math.random() * 2 + 0.8;
-      this.speedY = this.burst ? -(Math.random() * 5 + 3) : -(Math.random() * 0.9 + 0.3);
-      this.speedX = (Math.random() - 0.5) * (this.burst ? 4 : 0.8);
-      this.alpha = this.burst ? 1 : Math.random() * 0.5 + 0.15;
-      this.maxAlpha = this.alpha;
-      this.decay = this.burst ? Math.random() * 0.018 + 0.01 : 0.0025;
-      this.hue = Math.random() * 30 + 30; // 30-60: dorados/ambar
-      this.wobble = Math.random() * Math.PI * 2;
-      this.wobbleSpeed = Math.random() * 0.04 + 0.01;
-      this.type = Math.random() > 0.7 ? 'star' : 'circle';
+      this.y = options.y !== undefined ? options.y : H + 10 + Math.random() * 60;
+      this.size = this.burst ? Math.random() * 2.5 + 1.2 : Math.random() * 1.6 + 0.8;
+      this.speedY = this.burst ? -(Math.random() * 4 + 2) : -(Math.random() * 0.5 + 0.25);
+      this.speedX = this.burst ? (Math.random() - 0.5) * 3 : (Math.random() - 0.5) * 0.15; // Trayectoria recta suave sin oscilación lateral
+      this.alpha = this.burst ? 1 : Math.random() * 0.35 + 0.1;
+      this.decay = this.burst ? Math.random() * 0.02 + 0.012 : 0.0018;
+      this.hue = Math.random() * 20 + 35; // 35-55: tonos dorados sobrios
     }
 
     update() {
       this.y += this.speedY;
-      this.x += this.speedX + Math.sin(this.wobble) * 0.5;
-      this.wobble += this.wobbleSpeed;
+      this.x += this.speedX; // Movimiento vertical sutil, cero oscilación de lado a lado
       this.alpha -= this.decay;
-
-      if (this.alpha <= 0 || this.y < -20) {
-        return false; // marcar para eliminar
-      }
-      return true;
+      return (this.alpha > 0 && this.y >= -15);
     }
 
     draw() {
       ctx.save();
-      ctx.globalAlpha = Math.max(0, this.alpha);
-      const color = `hsl(${this.hue}, 90%, 60%)`;
-      const glowColor = `hsl(${this.hue}, 100%, 50%)`;
+      const isLight = document.body.classList.contains('theme-light');
+      const currentAlpha = Math.max(0, this.alpha * (isLight ? 0.2 : 0.7));
+      ctx.globalAlpha = currentAlpha;
+      ctx.fillStyle = isLight ? `hsl(${this.hue}, 65%, 45%)` : `hsl(${this.hue}, 85%, 65%)`;
 
-      if (this.type === 'star') {
-        drawStar(ctx, this.x, this.y, this.size * 2, 4, color, glowColor);
-      } else {
-        ctx.fillStyle = color;
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = glowColor;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fill();
 
-        // Halo exterior sutil
-        ctx.globalAlpha = Math.max(0, this.alpha * 0.3);
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size * 2.5, 0, Math.PI * 2);
-        ctx.fill();
-      }
+      // Halo sutil sin usar ctx.shadowBlur (GPU friendly)
+      ctx.globalAlpha = currentAlpha * 0.3;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size * 2, 0, Math.PI * 2);
+      ctx.fill();
+
       ctx.restore();
     }
   }
 
-  function drawStar(ctx, x, y, radius, spikes, fill, glow) {
-    let rot = (Math.PI / 2) * 3;
-    const step = Math.PI / spikes;
-    ctx.fillStyle = fill;
-    ctx.shadowBlur = 12;
-    ctx.shadowColor = glow;
-    ctx.beginPath();
-    ctx.moveTo(x, y - radius);
-    for (let i = 0; i < spikes; i++) {
-      ctx.lineTo(x + Math.cos(rot) * radius, y + Math.sin(rot) * radius);
-      rot += step;
-      ctx.lineTo(x + Math.cos(rot) * (radius * 0.4), y + Math.sin(rot) * (radius * 0.4));
-      rot += step;
-    }
-    ctx.lineTo(x, y - radius);
-    ctx.closePath();
-    ctx.fill();
-  }
-
-  // Partículas iniciales
+  // Partículas iniciales distribuidas
   for (let i = 0; i < MAX_AMBIENT; i++) {
-    const p = new Ember({ x: Math.random() * W, y: Math.random() * H });
-    particles.push(p);
+    particles.push(new Ember({ x: Math.random() * W, y: Math.random() * H }));
   }
 
-  triggerEmberBurst = (originX, originY, count = 35) => {
+  triggerEmberBurst = (originX, originY, count = 24) => {
     for (let i = 0; i < count; i++) {
       particles.push(new Ember({ x: originX, y: originY, burst: true }));
     }
@@ -186,19 +152,16 @@ function initPremiumParticles() {
     if (!animRunning) return;
     ctx.clearRect(0, 0, W, H);
 
-    // Actualizar y dibujar partículas (recorrido inverso para splice seguro)
     for (let i = particles.length - 1; i >= 0; i--) {
-      const alive = particles[i].update();
-      if (alive) {
+      if (particles[i].update()) {
         particles[i].draw();
       } else {
         particles.splice(i, 1);
       }
     }
 
-    // Reponer partículas ambientales
     frameCount++;
-    if (particles.length < MAX_AMBIENT && frameCount % 4 === 0) {
+    if (particles.length < MAX_AMBIENT && frameCount % 8 === 0) {
       particles.push(new Ember());
     }
 
