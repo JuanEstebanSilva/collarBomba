@@ -414,8 +414,7 @@ function initSynchronizedTimelineAndMap() {
   const btnNext = document.getElementById('btn-t-next');
   const dynamicCard = document.getElementById('timeline-dynamic-display');
 
-  // Mapa
-  const mapNodes = document.querySelectorAll('.interactive-map-node');
+  // Panel del mapa (sincronización)
   const geoPills = document.querySelectorAll('.geo-nav-pills .geo-pill-btn');
   const geoBadge = document.getElementById('geo-badge-tag');
   const geoDesc = document.getElementById('geo-desc-text');
@@ -424,12 +423,106 @@ function initSynchronizedTimelineAndMap() {
 
   let currentStepIdx = 0;
 
+  // ----------------------------------------------------------------
+  // LEAFLET MAP — Coordenadas reales Colombia (CartoDB Dark Matter)
+  // ----------------------------------------------------------------
+  const LEAFLET_WAYPOINTS = {
+    simijaca:    { lat: 5.5330, lng: -73.9167, label: '1. Finca Simijaca', color: '#dc2626', num: '1' },
+    chiquinquira:{ lat: 5.6150, lng: -73.8190, label: '2. Chiquinquirá',   color: '#d4a820', num: '2' },
+    limite:      { lat: 5.5750, lng: -73.8700, label: '3. Límite Veredal', color: '#a855f7', num: '3' },
+    bogota:      { lat: 4.6097, lng: -74.0817, label: '4. Bogotá D.C.',    color: '#2563eb', num: '4' }
+  };
+
+  let leafletMap = null;
+  let leafletMarkers = {};
+  let currentActiveKey = 'simijaca';
+
+  function initLeafletMap() {
+    const mapEl = document.getElementById('leaflet-map-main');
+    if (!mapEl || typeof L === 'undefined') return;
+
+    // Inicializa mapa centrado en el corredor Boyacá-Cundinamarca
+    leafletMap = L.map('leaflet-map-main', {
+      center: [5.25, -73.90],
+      zoom: 9,
+      zoomControl: true,
+      scrollWheelZoom: false,
+      attributionControl: true
+    });
+
+    // Tile layer: CartoDB Dark Matter — estilo conmemorativo oscuro
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors © <a href="https://carto.com/">CARTO</a>',
+      subdomains: 'abcd',
+      maxZoom: 16
+    }).addTo(leafletMap);
+
+    // Ruta histórica (polilínea entre los 4 puntos)
+    const routeCoords = [
+      [LEAFLET_WAYPOINTS.simijaca.lat,    LEAFLET_WAYPOINTS.simijaca.lng],
+      [LEAFLET_WAYPOINTS.limite.lat,      LEAFLET_WAYPOINTS.limite.lng],
+      [LEAFLET_WAYPOINTS.chiquinquira.lat,LEAFLET_WAYPOINTS.chiquinquira.lng],
+      [LEAFLET_WAYPOINTS.bogota.lat,      LEAFLET_WAYPOINTS.bogota.lng]
+    ];
+    L.polyline(routeCoords, {
+      color: '#f59e0b',
+      weight: 2.5,
+      opacity: 0.8,
+      dashArray: '6, 5'
+    }).addTo(leafletMap);
+
+    // Crear marcadores personalizados
+    Object.entries(LEAFLET_WAYPOINTS).forEach(([key, wp]) => {
+      const icon = L.divIcon({
+        className: 'lf-marker-icon',
+        html: `<div class="lf-marker-pin" style="background:${wp.color}; transform:rotate(-45deg);">
+                 <span style="transform:rotate(45deg);color:#fff;font-size:10px;font-weight:800;">${wp.num}</span>
+               </div>`,
+        iconSize: [28, 28],
+        iconAnchor: [14, 28],
+        popupAnchor: [0, -30]
+      });
+
+      const geoData = GEO_WAYPOINTS[key];
+      const popupContent = `<h4>${geoData.badge}</h4><p>${geoData.desc}</p><p style="margin-top:6px;font-size:10px;color:#64748b;">${geoData.source}</p>`;
+
+      const marker = L.marker([wp.lat, wp.lng], { icon, title: wp.label })
+        .addTo(leafletMap)
+        .bindPopup(popupContent, { maxWidth: 240, closeOnClick: true });
+
+      marker.on('click', () => highlightMapWaypoint(key, true));
+      leafletMarkers[key] = marker;
+    });
+
+    // Mostrar popup del punto inicial
+    setTimeout(() => {
+      leafletMarkers['simijaca']?.openPopup();
+    }, 800);
+  }
+
+  function highlightLeafletMarker(key) {
+    // Cierra todos los popups primero
+    Object.entries(leafletMarkers).forEach(([k, m]) => {
+      const el = m.getElement();
+      if (el) {
+        const pin = el.querySelector('.lf-marker-pin');
+        if (pin) pin.style.boxShadow = k === key ? `0 0 14px 4px ${LEAFLET_WAYPOINTS[k]?.color || '#d4a820'}, 0 3px 8px rgba(0,0,0,0.5)` : '0 3px 12px rgba(0,0,0,0.5)';
+      }
+    });
+    if (leafletMarkers[key] && leafletMap) {
+      const wp = LEAFLET_WAYPOINTS[key];
+      if (wp) {
+        leafletMap.flyTo([wp.lat, wp.lng], key === 'bogota' ? 9 : 11, { duration: 1.2, easeLinearity: 0.25 });
+      }
+      leafletMarkers[key].openPopup();
+    }
+  }
+
   function setStep(idx, dir = 1) {
     if (idx < 0 || idx >= TIMELINE_DATA.length) return;
     currentStepIdx = idx;
     const data = TIMELINE_DATA[idx];
 
-    // Animación de tarjeta
     if (dynamicCard) {
       dynamicCard.style.opacity = '0';
       dynamicCard.style.transform = `translateX(${dir * 18}px)`;
@@ -455,20 +548,13 @@ function initSynchronizedTimelineAndMap() {
     if (btnPrev) btnPrev.disabled = (idx === 0);
     if (btnNext) btnNext.disabled = (idx === TIMELINE_DATA.length - 1);
 
-    // Sincronizar con el Mapa Cartográfico
     highlightMapWaypoint(data.geoPoint, false);
   }
 
   function highlightMapWaypoint(pointKey, syncTimeline = true) {
     const data = GEO_WAYPOINTS[pointKey];
     if (!data) return;
-
-    // Actualizar nodos SVG
-    mapNodes.forEach(node => {
-      const p = node.getAttribute('data-point');
-      const active = (p === pointKey);
-      node.classList.toggle('active', active);
-    });
+    currentActiveKey = pointKey;
 
     // Actualizar píldoras del mapa
     geoPills.forEach(pill => {
@@ -478,7 +564,7 @@ function initSynchronizedTimelineAndMap() {
       pill.setAttribute('aria-selected', active.toString());
     });
 
-    // Actualizar panel contextual del mapa
+    // Actualizar panel contextual
     if (geoBadge) geoBadge.textContent = data.badge;
     if (geoDesc) geoDesc.textContent = data.desc;
     if (geoSource) geoSource.textContent = `Fuente: ${data.source}`;
@@ -487,6 +573,9 @@ function initSynchronizedTimelineAndMap() {
       btnSyncToTimeline.querySelector('span').textContent = `Ver en Cronología (Paso ${data.stepNum})`;
       btnSyncToTimeline.setAttribute('data-target-step', data.stepNum.toString());
     }
+
+    // Mover cámara Leaflet al punto
+    highlightLeafletMarker(pointKey);
 
     if (syncTimeline && data.stepNum !== (currentStepIdx + 1)) {
       setStep(data.stepNum - 1, 1);
@@ -501,20 +590,7 @@ function initSynchronizedTimelineAndMap() {
   if (btnPrev) btnPrev.addEventListener('click', () => setStep(currentStepIdx - 1, -1));
   if (btnNext) btnNext.addEventListener('click', () => setStep(currentStepIdx + 1, 1));
 
-  // Event Listeners Mapa
-  mapNodes.forEach(node => {
-    node.addEventListener('click', () => {
-      const point = node.getAttribute('data-point');
-      highlightMapWaypoint(point, true);
-    });
-    node.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        highlightMapWaypoint(node.getAttribute('data-point'), true);
-      }
-    });
-  });
-
+  // Event Listeners Mapa (píldoras)
   geoPills.forEach(pill => {
     pill.addEventListener('click', () => {
       highlightMapWaypoint(pill.getAttribute('data-point'), true);
@@ -530,7 +606,8 @@ function initSynchronizedTimelineAndMap() {
     });
   }
 
-  // Estado inicial
+  // Iniciar
+  initLeafletMap();
   setStep(0, 1);
 }
 

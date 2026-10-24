@@ -24,6 +24,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
+
+  <!-- Leaflet.js — Mapa interactivo con tiles reales -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 </head>
 <body class="theme-dark">
   <!-- Enlace accesible de salto al contenido -->
@@ -510,100 +514,12 @@
               <button class="geo-pill-btn" data-point="bogota" role="tab" aria-selected="false" id="g-tab-4">4. Evacuación Bogotá</button>
             </div>
 
-            <div class="interactive-map-visual">
-              <!-- SVG EDITORIAL: LÍMITES DEPARTAMENTALES, CORREDOR VIAL 45A, CERO RADARES MILITARES -->
-              <svg viewBox="0 0 520 340" class="colombia-svg-map" id="colombia-route-svg" role="img" aria-label="Mapa cartográfico editorial del corredor Boyacá - Cundinamarca">
-                <defs>
-                  <linearGradient id="mapBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#070c18"/>
-                    <stop offset="100%" stop-color="#0c162c"/>
-                  </linearGradient>
-                  <linearGradient id="boyacaTerritory" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="rgba(212, 168, 32, 0.18)"/>
-                    <stop offset="100%" stop-color="rgba(180, 83, 9, 0.28)"/>
-                  </linearGradient>
-                  <linearGradient id="cundiTerritory" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="rgba(14, 165, 233, 0.16)"/>
-                    <stop offset="100%" stop-color="rgba(30, 58, 138, 0.26)"/>
-                  </linearGradient>
-                </defs>
-
-                <!-- Fondo Cartográfico Sobrio -->
-                <rect width="520" height="340" fill="url(#mapBgGrad)" rx="10"/>
-
-                <!-- Curvas de nivel topográficas suaves (Cordillera Oriental) -->
-                <path d="M 30,80 Q 140,50 250,65 T 490,50" fill="none" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1.2"/>
-                <path d="M 20,140 Q 160,110 270,130 T 500,110" fill="none" stroke="rgba(255, 255, 255, 0.06)" stroke-width="1.2"/>
-                <path d="M 40,200 Q 180,180 280,195 T 480,180" fill="none" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1.2"/>
-                <path d="M 60,260 Q 200,240 290,255 T 470,240" fill="none" stroke="rgba(255, 255, 255, 0.04)" stroke-width="1.2"/>
-
-                <!-- Polígono Departamental BOYACÁ (Provincia de Occidente - Noreste) -->
-                <path d="M 230,35 L 380,45 L 475,100 L 440,175 L 350,180 L 270,140 L 230,75 Z" fill="url(#boyacaTerritory)" stroke="rgba(212, 168, 32, 0.7)" stroke-width="1.8"/>
-                <text x="385" y="88" class="dept-label dept-boyaca" fill="rgba(212, 168, 32, 0.95)" font-size="12.5" font-weight="800" font-family="'JetBrains Mono', monospace" letter-spacing="1.5">BOYACÁ</text>
-                <text x="385" y="102" class="dept-sublabel" fill="rgba(212, 168, 32, 0.7)" font-size="8.5" font-family="'JetBrains Mono', monospace">PROV. OCCIDENTE</text>
-
-                <!-- Polígono Departamental CUNDINAMARCA (Valle de Ubaté - Suroeste) -->
-                <path d="M 125,100 L 230,75 L 270,140 L 280,230 L 260,305 L 155,300 L 115,190 Z" fill="url(#cundiTerritory)" stroke="rgba(14, 165, 233, 0.7)" stroke-width="1.8"/>
-                <text x="150" y="200" class="dept-label dept-cundi" fill="rgba(56, 189, 248, 0.95)" font-size="12.5" font-weight="800" font-family="'JetBrains Mono', monospace" letter-spacing="1.5">CUNDINAMARCA</text>
-                <text x="150" y="214" class="dept-sublabel" fill="rgba(56, 189, 248, 0.7)" font-size="8.5" font-family="'JetBrains Mono', monospace">VALLE DE UBATÉ</text>
-
-                <!-- Límite Departamental Veredal (Línea punteada) -->
-                <path d="M 230,75 L 270,140 L 295,155" fill="none" stroke="#fbbf24" stroke-width="1.8" stroke-dasharray="4,4"/>
-
-                <!-- Corredor Vial Nacional 45A (Carretera Central del Norte) -->
-                <path id="route-path" d="M 205,300 L 225,230 L 238,145 L 285,105" fill="none" stroke="rgba(245, 158, 11, 0.9)" stroke-width="3.5" stroke-dasharray="6,4" class="animated-route-line"/>
-                <text x="210" y="190" fill="#f59e0b" font-size="8" font-family="'JetBrains Mono', monospace" font-weight="700">RUTA 45A</text>
-
-                <!-- Línea de Evacuación Aérea hacia Bogotá D.C. -->
-                <path d="M 238,145 Q 175,220 205,300" fill="none" stroke="rgba(59, 130, 246, 0.8)" stroke-width="2.2" stroke-dasharray="4,4"/>
-
-                <!-- WAYPOINT 1: Finca La Esperanza / El Manantial (Simijaca, Cundinamarca) -->
-                <g class="interactive-map-node active" id="node-simijaca" data-point="simijaca" transform="translate(238, 145)" tabindex="0" role="button" aria-label="Punto 1: Finca rural en Simijaca">
-                  <circle r="26" fill="transparent" class="node-hit-area"/>
-                  <circle r="12" class="node-pulse" fill="rgba(220, 38, 38, 0.25)"/>
-                  <circle r="6.5" class="node-pin pin-red" fill="#dc2626" stroke="#ffffff" stroke-width="2"/>
-                  <text x="-16" y="-12" text-anchor="end" class="node-label-strong node-label-red" fill="#f87171" font-weight="700" font-size="11">1. Finca (Simijaca)</text>
-                  <text x="-16" y="2" text-anchor="end" class="node-sublabel" fill="#cbd5e1" font-size="8.5">Epicentro Judicial · 2.559 m</text>
-                </g>
-
-                <!-- WAYPOINT 2: Chiquinquirá (Boyacá - 15.2 km al norte) -->
-                <g class="interactive-map-node" id="node-chiquinquira" data-point="chiquinquira" transform="translate(285, 105)" tabindex="0" role="button" aria-label="Punto 2: Chiquinquirá, Boyacá">
-                  <circle r="26" fill="transparent" class="node-hit-area"/>
-                  <circle r="12" class="node-pulse" fill="rgba(212, 168, 32, 0.25)"/>
-                  <circle r="6.5" class="node-pin pin-gold" fill="#d4a820" stroke="#ffffff" stroke-width="2"/>
-                  <text x="16" y="-10" class="node-label-strong node-label-gold" fill="#fbbf24" font-weight="700" font-size="11">2. Chiquinquirá (Boyacá)</text>
-                  <text x="16" y="4" class="node-sublabel" fill="#cbd5e1" font-size="8.5">Prensa y Rescate (+15.2 km)</text>
-                </g>
-
-                <!-- WAYPOINT 3: Vereda Palestina / Límite Departamental -->
-                <g class="interactive-map-node" id="node-limite" data-point="limite" transform="translate(262, 130)" tabindex="0" role="button" aria-label="Punto 3: Vereda Palestina, límite territorial">
-                  <circle r="22" fill="transparent" class="node-hit-area"/>
-                  <circle r="10" class="node-pulse" fill="rgba(168, 85, 247, 0.25)"/>
-                  <circle r="5.5" class="node-pin pin-purple" fill="#a855f7" stroke="#ffffff" stroke-width="1.8"/>
-                  <text x="14" y="16" class="node-label-strong node-label-purple" fill="#c084fc" font-weight="700" font-size="10">3. Vereda Palestina</text>
-                  <text x="14" y="28" class="node-sublabel" fill="#94a3b8" font-size="8">Límite Territorial</text>
-                </g>
-
-                <!-- WAYPOINT 4: Evacuación hacia Bogotá D.C. -->
-                <g class="interactive-map-node" id="node-bogota" data-point="bogota" transform="translate(205, 300)" tabindex="0" role="button" aria-label="Punto 4: Traslado de emergencia hacia Bogotá">
-                  <circle r="26" fill="transparent" class="node-hit-area"/>
-                  <circle r="12" class="node-pulse" fill="rgba(37, 99, 235, 0.25)"/>
-                  <circle r="6.5" class="node-pin pin-blue" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
-                  <text x="16" y="2" class="node-label-strong node-label-blue" fill="#60a5fa" font-weight="700" font-size="11">4. Traslado Bogotá (128 km)</text>
-                  <text x="16" y="15" class="node-sublabel" fill="#94a3b8" font-size="8.5">Hospital Central Policía</text>
-                </g>
-
-                <!-- Rosa de los vientos sobria y elegante -->
-                <g transform="translate(465, 280)">
-                  <circle r="16" fill="rgba(15, 23, 42, 0.7)" stroke="rgba(212, 168, 32, 0.5)" stroke-width="1"/>
-                  <polygon points="0,-12 3.5,-3 0,0" fill="#f59e0b"/>
-                  <polygon points="0,-12 -3.5,-3 0,0" fill="#d97706"/>
-                  <polygon points="0,12 3.5,3 0,0" fill="#64748b"/>
-                  <polygon points="0,12 -3.5,3 0,0" fill="#475569"/>
-                  <text x="0" y="-15" text-anchor="middle" fill="#f59e0b" font-size="8" font-weight="800">N</text>
-                </g>
-              </svg>
+            <div class="interactive-map-visual" id="leaflet-map-wrapper">
+              <!-- Mapa real Leaflet.js — tiles OpenStreetMap CartoDB -->
+              <div id="leaflet-map-main" class="leaflet-map-container" role="img" aria-label="Mapa interactivo del corredor Boyacá – Cundinamarca, caso del collar bomba, 2000"></div>
             </div>
+
+
 
             <!-- Explicación dinámica de la ruta seleccionada con enlace de sincronización -->
             <div class="geo-tab-explanation" id="geo-info-box" aria-live="polite">
@@ -969,24 +885,24 @@
             <!-- COMPARADOR VISUAL DESLIZANTE INTERACTIVO -->
             <div class="pvc1-visual-col">
               <div class="split-slider-container" id="pvc1-slider-container">
-                <!-- Capa 1: Ficción (Fondo) -->
+                <!-- Capa 1: Ficción (Fondo) — Fotograma de la película PVC-1 (2007) -->
                 <div class="slider-layer-under">
-                  <img src="images/pvc1-pelicula-ficcion.jpg" alt="Fotograma de ficción con actriz Mérida Urquía en PVC-1" class="slider-img">
-                  <div class="slider-label-under">FOTOGRAMA DE FICCIÓN (PVC-1, 2007)</div>
+                  <img src="images/pvc1-captura-pelicula.jpg" alt="Fotograma de ficción con actriz Mérida Urquía en PVC-1 (2007)" class="slider-img">
+                  <div class="slider-label-under">FOTOGRAMA DE FICCIÓN — PVC-1 (película, 2007)</div>
                 </div>
 
-                <!-- Capa 2: Desmentido (Capa Superior Recortada) -->
+                <!-- Capa 2: Realidad / Desmentido (Capa Superior Recortada) -->
                 <div class="slider-layer-over" id="slider-layer-over" style="width: 50%;">
-                  <img src="images/pvc1-pelicula-ficcion.jpg" alt="Desmentido pericial sobre fotograma de ficción" class="slider-img filter-debunk">
-                  <div class="slider-label-over">CHEQUEO FACT-CHECK: NO ES LA VÍCTIMA REAL</div>
+                  <img src="images/ana-elvia-realidad-archivo.jpg" alt="Fotografía de archivo documental — contexto judicial real del caso (Simijaca, 2000)" class="slider-img filter-debunk">
+                  <div class="slider-label-over">FOTOGRAFÍA DE ARCHIVO DOCUMENTAL — Contexto judicial real</div>
                   <div class="debunk-watermark-stamp">
-                    <span class="stamp-title">RECREACIÓN DRAMÁTICA</span>
-                    <span class="stamp-sub">Actriz Mérida Urquía · Archivo cinematográfico</span>
+                    <span class="stamp-title">CHEQUEO FACT-CHECK</span>
+                    <span class="stamp-sub">La imagen viral NO es Ana Elvia Cortés · AFP Factual, 2026</span>
                   </div>
                 </div>
 
                 <!-- Barra Deslizadora Táctil / Teclado -->
-                <div class="slider-handle" id="slider-handle" style="left: 50%;" tabindex="0" role="slider" aria-label="Deslizador de comparación entre ficción y desmentido" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                <div class="slider-handle" id="slider-handle" style="left: 50%;" tabindex="0" role="slider" aria-label="Deslizador de comparación entre ficción y realidad documental" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
                   <div class="handle-line"></div>
                   <div class="handle-knob">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
@@ -994,7 +910,7 @@
                   </div>
                 </div>
               </div>
-              <p class="slider-hint-text">Arrastra el control para contrastar la imagen de ficción con el sello pericial de verificación.</p>
+              <p class="slider-hint-text">Arrastra el control para contrastar la imagen de ficción (izq.) con la fotografía documental real (der.).</p>
             </div>
           </div>
         </div>
