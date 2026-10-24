@@ -18,10 +18,10 @@
   <!-- Favicon SVG con símbolo de memoria / llama conmemorativa -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23d4a820'><path d='M12 2c-.5 2-2 3.5-2 5.5 0 1.5 1 2.5 2 2.5s2-1 2-2.5c0-2-1.5-3.5-2-5.5zm-5 9v11h10V11H7zm2 2h6v7H9v-7z'/></svg>">
 
-  <!-- Google Fonts: Cinzel, Playfair Display, Plus Jakarta Sans, JetBrains Mono -->
+  <!-- Google Fonts: Cinzel, Playfair Display, Newsreader, Plus Jakarta Sans, JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
 
@@ -29,7 +29,7 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 </head>
-<body class="theme-dark">
+<body class="theme-light">
   <!-- Enlace accesible de salto al contenido -->
   <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
 
@@ -146,19 +146,43 @@
       </div>
 
       <div class="content-wrapper hero-inner">
-        <!-- Badge y Título Principal -->
-        <div class="hero-header-badge">
-          <span class="dot-live" aria-hidden="true"></span>
-          <span>RECONSTRUCCIÓN DOCUMENTAL HISTÓRICA</span>
+        <!-- CABECERA HISTÓRICA PERIODÍSTICA / MASTHEAD -->
+        <div class="newspaper-masthead">
+          <div class="masthead-top-folio">
+            <span class="folio-dateline">LUNES, 15 DE MAYO DE 2000 · EDICIÓN EXTRAORDINARIA</span>
+            <span class="folio-institution">REPÚBLICA DE COLOMBIA · INVESTIGACIÓN DE ARCHIVO</span>
+            <span class="folio-dossier">EXPEDIENTE PENAL CSJ N.º 21285</span>
+          </div>
+
+          <div class="masthead-main-row">
+            <div class="masthead-side-ear ear-left">
+              <span class="ear-label">JURISDICCIÓN PROBADA</span>
+              <p class="ear-text">Simijaca (Cundinamarca) límite con Boyacá · Corredor 45A</p>
+            </div>
+
+            <div class="masthead-center-title">
+              <div class="hero-header-badge newspaper-badge">
+                <span class="dot-live" aria-hidden="true"></span>
+                <span>EDICIÓN HISTÓRICA ESPECIAL</span>
+              </div>
+              <h1 id="hero-title" class="hero-main-title newspaper-headline-title">
+                El caso del collar bomba: <span class="gold-gradient-text">memoria, verdad y dignidad</span>
+              </h1>
+              <div class="masthead-motto">CRÓNICA DOCUMENTAL · INVESTIGACIÓN FORENSE · VERDAD JUDICIAL</div>
+            </div>
+
+            <div class="masthead-side-ear ear-right">
+              <span class="ear-label">SALA DE CASACIÓN PENAL</span>
+              <p class="ear-text">Corte Suprema de Justicia · Sentencia en firme (32 años)</p>
+            </div>
+          </div>
+
+          <div class="masthead-divider-double"></div>
+
+          <p class="hero-subtitle newspaper-subdeck">
+            Una investigación documental rigurosa sobre el crimen ocurrido en Colombia el 15 de mayo de 2000, la reivindicación de las víctimas, la verdad procesal judicial y la pedagogía contra la desinformación.
+          </p>
         </div>
-
-        <h1 id="hero-title" class="hero-main-title">
-          El caso del collar bomba: <span class="gold-gradient-text">memoria, verdad y dignidad</span>
-        </h1>
-
-        <p class="hero-subtitle">
-          Una investigación documental rigurosa sobre el crimen ocurrido en Colombia el 15 de mayo de 2000, la reivindicación de las víctimas, la verdad procesal judicial y la pedagogía contra la desinformación.
-        </p>
 
         <!-- Cinta de Métricas Clave (Resumen visual sin sobrecarga) -->
         <div class="hero-stats-ribbon">

@@ -58,7 +58,7 @@ function initThemeToggle() {
   const moonIcon = btnTheme.querySelector('.icon-moon');
   const themeText = btnTheme.querySelector('.btn-theme-text');
 
-  const savedTheme = localStorage.getItem('cb_theme') || 'dark';
+  const savedTheme = localStorage.getItem('cb_theme') || 'light';
   applyTheme(savedTheme, false);
 
   btnTheme.addEventListener('click', () => {
@@ -76,8 +76,8 @@ function initThemeToggle() {
       document.documentElement.classList.add('theme-light');
       if (sunIcon) sunIcon.style.display = 'none';
       if (moonIcon) moonIcon.style.display = 'inline';
-      if (themeText) themeText.textContent = 'Claro';
-      if (notify) showToast('Modo de lectura claro activado');
+      if (themeText) themeText.textContent = 'Prensa';
+      if (notify) showToast('Edición de prensa histórica activada');
     } else {
       document.body.classList.remove('theme-light');
       document.body.classList.add('theme-dark');
@@ -85,8 +85,8 @@ function initThemeToggle() {
       document.documentElement.classList.add('theme-dark');
       if (sunIcon) sunIcon.style.display = 'inline';
       if (moonIcon) moonIcon.style.display = 'none';
-      if (themeText) themeText.textContent = 'Oscuro';
-      if (notify) showToast('Modo ceremonial oscuro activado');
+      if (themeText) themeText.textContent = 'Microfilm';
+      if (notify) showToast('Modo archivo nocturno (microfilm) activado');
     }
   }
 }
