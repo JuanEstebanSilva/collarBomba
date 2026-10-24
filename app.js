@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initAcademicBibliography();
   initMediaModal();
   initRippleEffect();
-  initCardTiltEffect();
   initToastSystem();
 });
 
@@ -542,7 +541,7 @@ function initSynchronizedTimelineAndMap() {
       dashArray: '6, 5'
     }).addTo(leafletMap);
 
-    // Crear marcadores personalizados
+    // Crear marcadores personalizados con popup de diseño editorial histórico
     Object.entries(LEAFLET_WAYPOINTS).forEach(([key, wp]) => {
       const icon = L.divIcon({
         className: 'lf-marker-icon',
@@ -551,20 +550,26 @@ function initSynchronizedTimelineAndMap() {
                </div>`,
         iconSize: [28, 28],
         iconAnchor: [14, 28],
-        popupAnchor: [0, -30]
+        popupAnchor: [0, -18]
       });
 
       const geoData = GEO_WAYPOINTS[key];
-      const popupContent = `<h4>${geoData.badge}</h4><p>${geoData.desc}</p><p style="margin-top:6px;font-size:10px;color:#94a3b8;">${geoData.source}</p>`;
+      const popupContent = `
+        <div class="vintage-popup-body">
+          <h4>${geoData.badge}</h4>
+          <p>${geoData.desc}</p>
+          <div class="popup-source">${geoData.source}</div>
+        </div>
+      `;
 
       const popupOptions = {
-        maxWidth: 280,
-        minWidth: 200,
-        autoPan: true,
-        autoPanPaddingTopLeft: L.point(20, 80),
-        autoPanPaddingBottomRight: L.point(20, 30),
-        offset: [0, -14],
-        closeOnClick: true
+        maxWidth: 320,
+        minWidth: 260,
+        autoPan: false, // Evita conflictos con flyTo y garantiza el centrado exacto
+        closeButton: true,
+        closeOnClick: false,
+        offset: [0, -18],
+        className: 'leaflet-vintage-popup'
       };
 
       const marker = L.marker([wp.lat, wp.lng], { icon, title: wp.label })
@@ -575,31 +580,53 @@ function initSynchronizedTimelineAndMap() {
       leafletMarkers[key] = marker;
     });
 
-    // Mostrar popup del punto inicial
+    // Mostrar popup del punto inicial centrado
     setTimeout(() => {
       highlightLeafletMarker('simijaca');
-    }, 800);
+    }, 500);
+  }
+
+  // Calcula las coordenadas del mapa para que el CUERPO DEL TEXTO DEL POPUP
+  // quede ubicado exactamente en el centro visual del contenedor del mapa
+  function getPopupCenterLatLng(wpLatLng, zoom, popupPixelOffsetY = 100) {
+    if (!leafletMap) return wpLatLng;
+    const pt = leafletMap.project(wpLatLng, zoom);
+    // En el plano de píxeles, restar a Y traslada el centro hacia el norte,
+    // posicionando el centro del mapa en la mitad exacta del cuadro del popup
+    const centeredPt = L.point(pt.x, pt.y - popupPixelOffsetY);
+    return leafletMap.unproject(centeredPt, zoom);
   }
 
   function highlightLeafletMarker(key) {
-    // Cierra todos los popups primero
+    // Resalta el marcador seleccionado y atenúa los demás
     Object.entries(leafletMarkers).forEach(([k, m]) => {
       const el = m.getElement();
       if (el) {
         const pin = el.querySelector('.lf-marker-pin');
-        if (pin) pin.style.boxShadow = k === key ? `0 0 14px 4px ${LEAFLET_WAYPOINTS[k]?.color || '#d4a820'}, 0 3px 8px rgba(0,0,0,0.5)` : '0 3px 12px rgba(0,0,0,0.5)';
+        if (pin) {
+          pin.style.boxShadow = (k === key)
+            ? `0 0 16px 5px ${LEAFLET_WAYPOINTS[k]?.color || '#d4a820'}, 0 3px 8px rgba(0,0,0,0.6)`
+            : '0 3px 10px rgba(0,0,0,0.4)';
+        }
       }
     });
+
     if (leafletMarkers[key] && leafletMap) {
       const wp = LEAFLET_WAYPOINTS[key];
       if (wp) {
-        // Desplazamiento leve hacia el norte para garantizar que el popup tenga espacio superior holgado
-        const offsetLat = key === 'bogota' ? 0.08 : 0.038;
-        leafletMap.flyTo([wp.lat + offsetLat, wp.lng], key === 'bogota' ? 9 : 11, { duration: 1.0, easeLinearity: 0.25 });
+        const targetZoom = (key === 'bogota') ? 10 : 11;
+        const targetCenter = getPopupCenterLatLng([wp.lat, wp.lng], targetZoom, 100);
+
+        leafletMap.flyTo(targetCenter, targetZoom, {
+          duration: 0.75,
+          easeLinearity: 0.25
+        });
+
+        // Abre el popup una vez orientado el visor
+        setTimeout(() => {
+          leafletMarkers[key]?.openPopup();
+        }, 180);
       }
-      setTimeout(() => {
-        leafletMarkers[key]?.openPopup();
-      }, 350);
     }
   }
 
@@ -1658,27 +1685,8 @@ function initRippleEffect() {
 }
 
 /* ========================================================================
-   20. EFECTO 3D TILT SUTIL EN TARJETAS DESTACADAS
+   20. EFECTO 3D TILT DESACTIVADO POR PREFERENCIA EDITORIAL
    ======================================================================== */
 function initCardTiltEffect() {
-  if (window.matchMedia('(pointer: coarse)').matches) return;
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-  const cards = document.querySelectorAll('.modern-card.card-3d');
-  cards.forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const rotateX = ((y - rect.height / 2) / (rect.height / 2)) * -4;
-      const rotateY = ((x - rect.width / 2) / (rect.width / 2)) * 4;
-      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-3px)`;
-    });
-
-    card.addEventListener('mouseleave', () => {
-      card.style.transition = 'transform 0.4s ease';
-      card.style.transform = '';
-      setTimeout(() => { card.style.transition = ''; }, 400);
-    });
-  });
+  // Desactivado: las tarjetas se mantienen firmes y planas como pliego de prensa histórica sin balanceo hacia atrás
 }

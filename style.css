@@ -2025,17 +2025,23 @@ body.font-large .bio-body p {
   border-radius: var(--r-sm);
   padding: 0;
   border: 2px solid var(--ink-rule);
-  margin-bottom: 16px;
+  margin-bottom: 0;
   overflow: hidden;
   box-shadow: var(--shadow-sm);
 }
 
-/* Leaflet map container — altura fija obligatoria para que el mapa se renderice */
+/* Leaflet map container — altura generosa ampliada para visualización completa y despejada */
 .leaflet-map-container {
   width: 100%;
-  height: 380px;
+  height: 480px;
   border-radius: var(--r-sm);
   z-index: 0;
+}
+
+@media (max-width: 768px) {
+  .leaflet-map-container {
+    height: 420px;
+  }
 }
 
 /* OpenStreetMap tiles con estilo de grabado cartográfico histórico sobre papel kraft */
@@ -2065,6 +2071,7 @@ body.font-large .bio-body p {
   font-size: 12px;
   font-weight: 700;
   box-shadow: 0 3px 10px rgba(0,0,0,0.4);
+  transition: box-shadow 0.3s ease;
 }
 .lf-marker-pin.pin-red   { background: var(--red-primary); }
 .lf-marker-pin.pin-gold  { background: var(--gold-primary); }
@@ -2074,19 +2081,20 @@ body.font-large .bio-body p {
 .leaflet-popup-content-wrapper {
   background: var(--bg-card) !important;
   color: var(--text-primary) !important;
-  border: 1px solid var(--ink-rule) !important;
+  border: 1.5px solid var(--ink-rule) !important;
   border-radius: var(--r-sm) !important;
-  box-shadow: 0 4px 16px rgba(27, 23, 20, 0.25) !important;
+  box-shadow: 0 8px 24px rgba(27, 23, 20, 0.35) !important;
   font-family: var(--font-serif) !important;
   font-size: 13px;
-  max-width: 290px;
+  max-width: 320px;
+  min-width: 260px;
   padding: 4px 6px;
 }
 .leaflet-popup-tip-container { display: none; }
 .leaflet-popup-content {
-  margin: 10px 12px !important;
-  line-height: 1.45;
-  max-height: 220px;
+  margin: 12px 14px !important;
+  line-height: 1.5;
+  max-height: 260px;
   overflow-y: auto;
 }
 .leaflet-popup-content h4 {
@@ -2094,18 +2102,31 @@ body.font-large .bio-body p {
   font-family: var(--font-headline);
   font-size: 14px;
   font-weight: 700;
-  margin: 0 0 6px;
+  margin: 0 0 8px;
+  padding-right: 18px;
+  line-height: 1.35;
 }
 .leaflet-popup-content p {
-  margin: 0;
-  color: var(--text-secondary);
+  margin: 0 0 8px;
+  color: var(--text-primary);
+  font-family: var(--font-serif);
   font-size: 12.5px;
-  line-height: 1.5;
+  line-height: 1.55;
+}
+.leaflet-popup-content .popup-source {
+  margin-top: 8px;
+  padding-top: 6px;
+  border-top: 1px dashed rgba(140, 115, 85, 0.35);
+  font-size: 11px;
+  color: #2b5c87 !important;
+  font-style: italic;
+  font-family: var(--font-serif);
 }
 .leaflet-popup-close-button {
   color: var(--text-dim) !important;
   top: 8px !important;
-  right: 8px !important;
+  right: 10px !important;
+  font-size: 18px !important;
 }
 .leaflet-control-attribution { font-size: 9px; background: rgba(220, 198, 164, 0.88) !important; color: var(--text-dim) !important; }
 .leaflet-control-attribution a { color: var(--text-secondary) !important; }
