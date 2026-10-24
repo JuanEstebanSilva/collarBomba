@@ -746,29 +746,33 @@ body.font-large .bio-body p {
   box-shadow: var(--shadow-md);
 }
 
-/* Banners Destacados Editoriales */
+/* Banners Destacados Editoriales (Impresos directamente sobre el papel kraft) */
 .highlight-banner {
   display: flex;
   align-items: flex-start;
   gap: 16px;
-  padding: 20px 24px;
-  border-radius: var(--r-sm);
-  margin: 32px 0 40px;
-  background: var(--bg-elevated);
-  border-left: 4px solid var(--gold-primary);
-  border-top: 1px solid var(--border-subtle);
-  border-right: 1px solid var(--border-subtle);
-  border-bottom: 1px solid var(--border-subtle);
+  padding: 12px 0 12px 20px;
+  border-radius: 0;
+  margin: 24px 0 32px;
+  background: transparent;
+  border: none;
+  border-left: 3.5px solid var(--red-primary);
+  box-shadow: none;
 }
 
 .highlight-banner.crimson-banner {
   border-left-color: var(--red-primary);
-  background: rgba(143, 30, 30, 0.05);
+  background: transparent;
 }
 
 .highlight-banner.blue-banner {
   border-left-color: var(--blue-primary);
-  background: rgba(29, 69, 114, 0.05);
+  background: transparent;
+}
+
+.highlight-banner.gold-banner {
+  border-left-color: #8c281f;
+  background: transparent;
 }
 
 .banner-icon {
@@ -840,8 +844,7 @@ body.font-large .bio-body p {
 .newspaper-masthead {
   text-align: center;
   margin-bottom: 32px;
-  padding: 16px 0 10px;
-  border-top: 1px solid var(--ink-rule);
+  padding: 8px 0 10px;
 }
 
 .masthead-top-folio {
@@ -850,89 +853,54 @@ body.font-large .bio-body p {
   align-items: center;
   flex-wrap: wrap;
   gap: 12px;
-  padding: 7px 4px;
-  border-top: 1px solid var(--ink-rule);
+  padding: 8px 6px;
+  border-top: 2px solid var(--ink-rule);
   border-bottom: 1px solid var(--ink-rule);
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-family: var(--font-headline), Georgia, serif;
+  font-size: 0.78rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
-  color: var(--text-dim);
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
   text-transform: uppercase;
-  margin-bottom: 22px;
+  margin-bottom: 24px;
+}
+
+.folio-bullet {
+  color: var(--ink-rule);
+  font-size: 0.65rem;
+  opacity: 0.6;
+  user-select: none;
 }
 
 .masthead-main-row {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 18px;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  margin-bottom: 14px;
-}
-
-@media (min-width: 900px) {
-  .masthead-main-row {
-    grid-template-columns: 210px 1fr 210px;
-    gap: 24px;
-  }
-}
-
-.masthead-side-ear {
-  display: none;
-  padding: 12px 14px;
-  border: 1px solid var(--border-card);
-  background: var(--bg-card);
   text-align: center;
-  border-radius: var(--r-sm);
-  box-shadow: 0 1px 3px rgba(27, 23, 20, 0.06);
-}
-
-@media (min-width: 900px) {
-  .masthead-side-ear {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-}
-
-.ear-label {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  font-weight: 700;
-  color: var(--red-primary);
-  letter-spacing: 0.12em;
-  margin-bottom: 4px;
-  text-transform: uppercase;
-}
-
-.ear-text {
-  font-family: var(--font-serif);
-  font-size: 0.82rem;
-  line-height: 1.4;
-  color: var(--text-muted);
-  margin: 0;
+  width: 100%;
+  margin-bottom: 14px;
 }
 
 .masthead-center-title {
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 960px;
+  width: 100%;
+  margin: 0 auto;
 }
 
-.newspaper-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 4px 12px;
-  background: var(--bg-elevated);
-  border: 1px solid var(--ink-rule);
+.newspaper-kicker-title {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
   color: var(--red-primary);
-  margin-bottom: 14px;
-  border-radius: var(--r-sm);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  background: transparent;
+  border: none;
+  padding: 0;
 }
 
 .newspaper-headline-title {
@@ -1027,26 +995,43 @@ body.font-large .bio-body p {
   margin: 0 auto 28px;
 }
 
-/* Sumario de la Edición (Stats Ribbon) */
+/* Sumario de la Edición (Stats Ribbon Broadsheet sin fondo de tarjeta) */
 .hero-stats-ribbon {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
   margin-bottom: 32px;
-  padding: 12px 16px;
-  background: var(--bg-surface);
-  border-top: 1px solid var(--ink-rule);
-  border-bottom: 1px solid var(--ink-rule);
+  padding: 12px 6px;
+  background: transparent;
+  border-top: 1.5px solid var(--ink-rule);
+  border-bottom: 1.5px solid var(--ink-rule);
+  border-left: none;
+  border-right: none;
+  box-shadow: none;
+}
+
+@media (max-width: 900px) {
+  .hero-stats-ribbon {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px 0;
+  }
+}
+
+@media (max-width: 580px) {
+  .hero-stats-ribbon {
+    grid-template-columns: 1fr;
+    gap: 10px 0;
+  }
 }
 
 .stat-pill {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 10px 14px;
+  padding: 6px 14px;
   background: transparent;
   border: none;
-  border-right: 1px solid var(--border-subtle);
+  border-right: 1px solid rgba(44, 34, 25, 0.25);
   border-radius: 0;
 }
 
@@ -1054,8 +1039,32 @@ body.font-large .bio-body p {
   border-right: none;
 }
 
+@media (max-width: 900px) {
+  .stat-pill:nth-child(2) {
+    border-right: none;
+  }
+}
+
+@media (max-width: 580px) {
+  .stat-pill {
+    border-right: none;
+    border-bottom: 1px dashed rgba(44, 34, 25, 0.2);
+    padding-bottom: 8px;
+  }
+  .stat-pill:last-child {
+    border-bottom: none;
+  }
+}
+
+.stat-svg-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--red-primary);
+  flex-shrink: 0;
+}
+
 .stat-icon {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   color: var(--red-primary);
 }
 
@@ -1073,14 +1082,19 @@ body.font-large .bio-body p {
 }
 
 .stat-value {
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   color: var(--text-primary);
   font-weight: 700;
   font-family: var(--font-headline);
+  line-height: 1.35;
 }
 
 .hero-intro-card {
-  margin-bottom: 32px;
+  margin-bottom: 24px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
 }
 
 /* =====================================================================

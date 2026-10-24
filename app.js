@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initAccordion();
   initAcademicBibliography();
   initMediaModal();
-  initAmbientAudio();
   initRippleEffect();
   initCardTiltEffect();
   initToastSystem();
@@ -239,6 +238,12 @@ function initHeaderScrollSpy() {
   }, { rootMargin: '-40% 0px -40% 0px' });
 
   sections.forEach(s => observer.observe(s));
+
+  const brand = document.querySelector('.site-brand');
+  brand?.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 
   window.addEventListener('scroll', () => {
     header?.classList.toggle('scrolled', window.scrollY > 40);
