@@ -109,19 +109,30 @@ html {
 
 body {
   font-family: var(--font-serif);
-  background-color: #caa87b;
-  background-image: 
-    radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.15) 0%, transparent 65%),
-    radial-gradient(ellipse at 50% 100%, rgba(60, 40, 15, 0.22) 0%, transparent 75%),
-    url('images/papel-arrugado-kraft-1.jpg');
-  background-repeat: no-repeat, no-repeat, repeat-y;
-  background-size: 100% 1200px, 100% 1400px, 100% auto;
-  background-position: center top, center bottom, center top;
-  background-attachment: scroll;
+  background-color: #cbb088;
   color: var(--text-secondary);
   line-height: 1.78;
   overflow-x: hidden;
   min-height: 100vh;
+  position: relative;
+}
+
+/* Lienzo de papel continuo unificado: elimina completamente las uniones y cambios de hoja */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: 
+    radial-gradient(ellipse at 50% 15%, rgba(255, 255, 255, 0.14) 0%, transparent 65%),
+    radial-gradient(ellipse at 50% 85%, rgba(60, 40, 15, 0.16) 0%, transparent 70%),
+    url('images/papel-arrugado-kraft-1.jpg');
+  background-size: 100% 100%, 100% 100%, cover;
+  background-position: center top, center bottom, center center;
+  background-repeat: no-repeat;
+  opacity: 0.52;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* Títulos con tipografía de prensa histórica */
@@ -208,32 +219,36 @@ body.font-large .bio-body p {
   top: 0;
   left: 0;
   right: 0;
+  width: 100%;
   height: var(--header-h);
   z-index: 1000;
+  background: rgba(224, 203, 172, 0.96);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1.5px solid var(--ink-rule);
+  box-shadow: 0 2px 10px rgba(35, 22, 10, 0.12);
   transition: all 0.3s var(--ease-out);
 }
 
+.site-header.scrolled {
+  background: rgba(216, 193, 159, 0.98);
+  box-shadow: 0 4px 16px rgba(35, 22, 10, 0.18);
+}
+
 .header-container {
-  max-width: var(--container-w);
+  width: 100%;
+  max-width: 100%;
   height: 100%;
-  margin: 0 auto;
-  padding: 0 24px;
+  margin: 0;
+  padding: 0 clamp(18px, 3.2vw, 44px);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  background: rgba(220, 198, 164, 0.94);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border-bottom: 2px solid var(--ink-rule);
-  box-shadow: 0 2px 8px rgba(35, 22, 10, 0.12);
+  background: transparent;
+  border: none;
+  box-shadow: none;
   transition: all 0.25s ease;
-}
-
-.site-header.scrolled .header-container {
-  background: rgba(212, 188, 152, 0.97);
-  box-shadow: 0 4px 14px rgba(35, 22, 10, 0.18);
-  border-bottom: 3px double var(--ink-rule);
 }
 
 .site-brand {
@@ -563,7 +578,7 @@ body.font-large .bio-body p {
 .module-section {
   position: relative;
   padding: 80px 0;
-  border-bottom: 2px solid var(--ink-rule);
+  border-bottom: none;
   overflow: hidden;
 }
 
@@ -573,102 +588,14 @@ body.font-large .bio-body p {
   }
 }
 
-/* Pliegue de relieve dinámico y sombra de doblado entre secciones */
+/* Descartamos la sombra dura entre secciones para garantizar continuidad fluida sin cortes */
 .module-section::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 20px;
-  background: linear-gradient(180deg, transparent 0%, rgba(45, 28, 12, 0.16) 65%, rgba(30, 18, 8, 0.30) 100%);
-  pointer-events: none;
-  z-index: 3;
+  display: none;
 }
 
-/* Capa de textura y arrugas variables por sección (evolucionan de forma continua al bajar) */
+/* El fondo de papel kraft unificado e ininterrumpido reside en body::before sin saltos ni cambio de hoja */
 .module-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-  mix-blend-mode: multiply;
-  transition: opacity 0.35s ease;
-}
-
-/* MÓDULO 1: Portada — Pliegue horizontal de cabecera y textura kraft 1 */
-#modulo-1::before {
-  background: 
-    linear-gradient(var(--scroll-crease-angle, 125deg), transparent 42%, rgba(55, 35, 12, 0.15) 45%, rgba(255, 255, 255, 0.14) 47%, rgba(55, 35, 12, 0.18) 49%, transparent 54%),
-    radial-gradient(circle at 80% 20%, rgba(70, 45, 18, 0.16) 0%, transparent 60%);
-  opacity: 0.55;
-  transform: translateY(calc(var(--scroll-paper-shift, 0px) * -0.2));
-}
-
-/* MÓDULO 2: Los Hechos — Textura 2 con pliegues diagonales pronunciados */
-#modulo-2::before {
-  background-image: 
-    linear-gradient(135deg, transparent 48%, rgba(50, 32, 14, 0.14) 50%, rgba(255, 255, 255, 0.12) 51%, transparent 53%),
-    url('images/papel-arrugado-kraft-2.jpg');
-  background-size: auto, cover;
-  background-position: center top, center 12%;
-  opacity: 0.44;
-}
-
-/* MÓDULO 3: Investigación y Autoría — Hendiduras diagonales cruzadas */
-#modulo-3::before {
-  background: 
-    linear-gradient(65deg, transparent 32%, rgba(60, 38, 14, 0.16) 35%, rgba(255, 255, 255, 0.15) 37%, rgba(60, 38, 14, 0.14) 39%, transparent 45%),
-    linear-gradient(150deg, transparent 62%, rgba(65, 40, 16, 0.18) 66%, rgba(255, 255, 255, 0.12) 68%, transparent 74%);
-  opacity: 0.58;
-  transform: translateY(calc(var(--scroll-paper-shift, 0px) * 0.15));
-}
-
-/* MÓDULO 4: Víctimas y Santuario — Textura 2 con iluminación cálida de memorial */
-#modulo-4::before {
-  background-image: 
-    radial-gradient(circle at 50% 30%, rgba(255, 200, 100, 0.12) 0%, transparent 60%),
-    url('images/papel-arrugado-kraft-2.jpg');
-  background-size: auto, 115% auto;
-  background-position: center top, center 48%;
-  opacity: 0.46;
-}
-
-/* MÓDULO 5: Hemeroteca — Pliegue central vertical de prensa broadsheet */
-#modulo-5::before {
-  background: 
-    linear-gradient(90deg, transparent calc(50% - 24px), rgba(50, 30, 12, 0.22) calc(50% - 4px), rgba(255, 255, 255, 0.16) 50%, rgba(50, 30, 12, 0.24) calc(50% + 4px), transparent calc(50% + 24px)),
-    linear-gradient(-38deg, transparent 40%, rgba(60, 35, 14, 0.14) 43%, transparent 48%);
-  opacity: 0.60;
-}
-
-/* MÓDULO 6: Proceso Judicial — Textura 1 invertida para patrón único de pliegue */
-#modulo-6::before {
-  background-image: url('images/papel-arrugado-kraft-1.jpg');
-  background-size: cover;
-  background-position: center 78%;
-  transform: scaleX(-1);
-  opacity: 0.40;
-}
-
-/* MÓDULO 7: Reflexión — Hendiduras angulares cruzadas */
-#modulo-7::before {
-  background: 
-    linear-gradient(42deg, transparent 38%, rgba(60, 36, 14, 0.16) 41%, rgba(255, 255, 255, 0.14) 43%, transparent 47%),
-    linear-gradient(136deg, transparent 58%, rgba(60, 36, 14, 0.15) 61%, rgba(255, 255, 255, 0.12) 63%, transparent 68%);
-  opacity: 0.54;
-  transform: translateY(calc(var(--scroll-paper-shift, 0px) * -0.1));
-}
-
-/* MÓDULO 8: Fuentes y Archivo — Textura 2 con pliegues inferiores envejecidos */
-#modulo-8::before {
-  background-image: 
-    linear-gradient(0deg, rgba(40, 24, 10, 0.24) 0%, transparent 40%),
-    url('images/papel-arrugado-kraft-2.jpg');
-  background-size: auto, cover;
-  background-position: center bottom, center 92%;
-  opacity: 0.50;
+  display: none;
 }
 
 .section-header {
@@ -837,7 +764,7 @@ body.font-large .bio-body p {
   display: flex;
   align-items: center;
   padding: 105px 0 85px;
-  border-bottom: 3px double var(--ink-rule);
+  border-bottom: none;
 }
 
 .hero-backdrop {
@@ -864,7 +791,9 @@ body.font-large .bio-body p {
 .hero-gradient-overlay {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 50% 30%, rgba(212, 184, 145, 0.42) 0%, rgba(191, 157, 114, 0.94) 85%);
+  background: 
+    radial-gradient(circle at 50% 30%, rgba(212, 184, 145, 0.35) 0%, rgba(191, 157, 114, 0.70) 75%),
+    linear-gradient(180deg, transparent 65%, rgba(203, 176, 136, 0.98) 100%);
 }
 
 .hero-inner {
