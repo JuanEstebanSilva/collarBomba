@@ -1,13 +1,14 @@
 /**
  * EL CASO DEL COLLAR BOMBA: MEMORIA, VERDAD Y DIGNIDAD
- * Motor de Interactividad, Experiencia Editorial & Efectos Visuales
+ * Motor de Interactividad Cinematográfica — Edición Premium
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   initThemeToggle();
-  initParticlesEmbers();
+  initPremiumParticles();
   initReadingProgressBar();
   initHeaderScrollSpy();
+  initScrollReveal();
   initMobileDrawer();
   initFontSizeToggle();
   initStepTimeline();
@@ -19,11 +20,16 @@ document.addEventListener('DOMContentLoaded', () => {
   initAccordion();
   initMediaModal();
   initAmbientAudio();
+  initRippleEffect();
+  initParallaxHero();
+  initCountUpAnimations();
+  initCardTiltEffect();
+  markHeroImageLoaded();
 });
 
-/* ==========================================================================
-   1. Conmutador de Tema Claro / Oscuro (Claro por Defecto)
-   ========================================================================== */
+/* ========================================================================
+   2. TEMA CLARO / OSCURO (oscuro por defecto)
+   ======================================================================== */
 function initThemeToggle() {
   const btnTheme = document.getElementById('btn-theme-toggle');
   if (!btnTheme) return;
@@ -32,8 +38,7 @@ function initThemeToggle() {
   const moonIcon = btnTheme.querySelector('.icon-moon');
   const themeText = btnTheme.querySelector('.btn-theme-text');
 
-  // Recuperar preferencia previa o usar claro por defecto
-  const savedTheme = localStorage.getItem('cb_theme') || 'light';
+  const savedTheme = localStorage.getItem('cb_theme') || 'dark';
   applyTheme(savedTheme);
 
   btnTheme.addEventListener('click', () => {
@@ -44,167 +49,229 @@ function initThemeToggle() {
   });
 
   function applyTheme(theme) {
-    if (theme === 'dark') {
-      document.body.classList.remove('theme-light');
-      document.body.classList.add('theme-dark');
-      document.documentElement.classList.remove('theme-light');
-      document.documentElement.classList.add('theme-dark');
-      if (sunIcon) sunIcon.style.display = 'none';
-      if (moonIcon) moonIcon.style.display = 'inline';
-      if (themeText) themeText.textContent = 'Oscuro';
-    } else {
+    if (theme === 'light') {
       document.body.classList.remove('theme-dark');
       document.body.classList.add('theme-light');
       document.documentElement.classList.remove('theme-dark');
       document.documentElement.classList.add('theme-light');
+      if (sunIcon) sunIcon.style.display = 'none';
+      if (moonIcon) moonIcon.style.display = 'inline';
+      if (themeText) themeText.textContent = 'Claro';
+    } else {
+      document.body.classList.remove('theme-light');
+      document.body.classList.add('theme-dark');
+      document.documentElement.classList.remove('theme-light');
+      document.documentElement.classList.add('theme-dark');
       if (sunIcon) sunIcon.style.display = 'inline';
       if (moonIcon) moonIcon.style.display = 'none';
-      if (themeText) themeText.textContent = 'Claro';
+      if (themeText) themeText.textContent = 'Oscuro';
     }
   }
 }
 
-/* ==========================================================================
-   2. Canvas de Partículas Doradas / Embers (Efecto Wow de Memoria)
-   ========================================================================== */
+/* ========================================================================
+   3. SISTEMA DE PARTÍCULAS PREMIUM (ascuas doradas)
+   ======================================================================== */
 let triggerEmberBurst = null;
 
-function initParticlesEmbers() {
+function initPremiumParticles() {
   const canvas = document.getElementById('particles-canvas');
   if (!canvas) return;
 
   const ctx = canvas.getContext('2d');
-  let width = canvas.width = window.innerWidth;
-  let height = canvas.height = window.innerHeight;
+  let W = canvas.width = window.innerWidth;
+  let H = canvas.height = window.innerHeight;
+  let animRunning = true;
 
-  window.addEventListener('resize', () => {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
+  const resizeObserver = new ResizeObserver(() => {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
   });
+  resizeObserver.observe(document.body);
 
+  // Pool de partículas con diferentes tipos
   const particles = [];
-  const maxParticles = 35;
+  const MAX_AMBIENT = 40;
 
-  class Particle {
-    constructor(x, y, burst = false) {
-      this.reset(x, y, burst);
-    }
-
-    reset(x, y, burst = false) {
-      this.x = x !== undefined ? x : Math.random() * width;
-      this.y = y !== undefined ? y : height + Math.random() * 20;
-      this.size = Math.random() * 2.2 + 1;
-      this.speedY = burst ? -(Math.random() * 3 + 2) : -(Math.random() * 0.8 + 0.3);
-      this.speedX = (Math.random() - 0.5) * (burst ? 3 : 0.6);
-      this.alpha = burst ? 1 : Math.random() * 0.6 + 0.2;
-      this.decay = burst ? Math.random() * 0.015 + 0.008 : 0.002;
-      this.goldHue = Math.floor(Math.random() * 20 + 35); // Dorados cálidos
+  class Ember {
+    constructor(options = {}) {
+      this.burst = options.burst || false;
+      this.x = options.x !== undefined ? options.x : Math.random() * W;
+      this.y = options.y !== undefined ? options.y : H + 20 + Math.random() * 100;
+      this.size = this.burst ? Math.random() * 3 + 1.5 : Math.random() * 2 + 0.8;
+      this.speedY = this.burst ? -(Math.random() * 5 + 3) : -(Math.random() * 0.9 + 0.3);
+      this.speedX = (Math.random() - 0.5) * (this.burst ? 4 : 0.8);
+      this.alpha = this.burst ? 1 : Math.random() * 0.5 + 0.15;
+      this.maxAlpha = this.alpha;
+      this.decay = this.burst ? Math.random() * 0.018 + 0.01 : 0.0025;
+      this.hue = Math.random() * 30 + 30; // 30-60: dorados/ambar
+      this.wobble = Math.random() * Math.PI * 2;
+      this.wobbleSpeed = Math.random() * 0.04 + 0.01;
+      this.type = Math.random() > 0.7 ? 'star' : 'circle';
     }
 
     update() {
       this.y += this.speedY;
-      this.x += this.speedX;
+      this.x += this.speedX + Math.sin(this.wobble) * 0.5;
+      this.wobble += this.wobbleSpeed;
       this.alpha -= this.decay;
 
-      if (this.alpha <= 0 || this.y < -10) {
-        this.reset();
+      if (this.alpha <= 0 || this.y < -20) {
+        return false; // marcar para eliminar
       }
+      return true;
     }
 
     draw() {
       ctx.save();
       ctx.globalAlpha = Math.max(0, this.alpha);
-      ctx.fillStyle = `hsl(${this.goldHue}, 90%, 60%)`;
-      ctx.shadowBlur = 8;
-      ctx.shadowColor = `hsl(${this.goldHue}, 100%, 50%)`;
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      ctx.fill();
+      const color = `hsl(${this.hue}, 90%, 60%)`;
+      const glowColor = `hsl(${this.hue}, 100%, 50%)`;
+
+      if (this.type === 'star') {
+        drawStar(ctx, this.x, this.y, this.size * 2, 4, color, glowColor);
+      } else {
+        ctx.fillStyle = color;
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = glowColor;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Halo exterior sutil
+        ctx.globalAlpha = Math.max(0, this.alpha * 0.3);
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size * 2.5, 0, Math.PI * 2);
+        ctx.fill();
+      }
       ctx.restore();
     }
   }
 
-  for (let i = 0; i < maxParticles; i++) {
-    particles.push(new Particle());
+  function drawStar(ctx, x, y, radius, spikes, fill, glow) {
+    let rot = (Math.PI / 2) * 3;
+    const step = Math.PI / spikes;
+    ctx.fillStyle = fill;
+    ctx.shadowBlur = 12;
+    ctx.shadowColor = glow;
+    ctx.beginPath();
+    ctx.moveTo(x, y - radius);
+    for (let i = 0; i < spikes; i++) {
+      ctx.lineTo(x + Math.cos(rot) * radius, y + Math.sin(rot) * radius);
+      rot += step;
+      ctx.lineTo(x + Math.cos(rot) * (radius * 0.4), y + Math.sin(rot) * (radius * 0.4));
+      rot += step;
+    }
+    ctx.lineTo(x, y - radius);
+    ctx.closePath();
+    ctx.fill();
   }
 
-  triggerEmberBurst = (originX, originY) => {
-    for (let i = 0; i < 28; i++) {
-      particles.push(new Particle(originX, originY, true));
+  // Partículas iniciales
+  for (let i = 0; i < MAX_AMBIENT; i++) {
+    const p = new Ember({ x: Math.random() * W, y: Math.random() * H });
+    particles.push(p);
+  }
+
+  triggerEmberBurst = (originX, originY, count = 35) => {
+    for (let i = 0; i < count; i++) {
+      particles.push(new Ember({ x: originX, y: originY, burst: true }));
     }
   };
 
+  window.triggerEmberBurst = triggerEmberBurst;
+
+  let frameCount = 0;
   function animate() {
-    ctx.clearRect(0, 0, width, height);
-    for (let i = 0; i < particles.length; i++) {
-      particles[i].update();
-      particles[i].draw();
+    if (!animRunning) return;
+    ctx.clearRect(0, 0, W, H);
+
+    // Actualizar y dibujar partículas (recorrido inverso para splice seguro)
+    for (let i = particles.length - 1; i >= 0; i--) {
+      const alive = particles[i].update();
+      if (alive) {
+        particles[i].draw();
+      } else {
+        particles.splice(i, 1);
+      }
     }
-    // Mantener longitud estable
-    if (particles.length > maxParticles + 40) {
-      particles.splice(0, particles.length - maxParticles);
+
+    // Reponer partículas ambientales
+    frameCount++;
+    if (particles.length < MAX_AMBIENT && frameCount % 4 === 0) {
+      particles.push(new Ember());
     }
+
     requestAnimationFrame(animate);
   }
 
   animate();
 }
 
-/* ==========================================================================
-   3. Barra de Progreso de Lectura
-   ========================================================================== */
+/* ========================================================================
+   4. BARRA DE PROGRESO DE LECTURA
+   ======================================================================== */
 function initReadingProgressBar() {
-  const progressBar = document.getElementById('reading-progress');
-  if (!progressBar) return;
+  const bar = document.getElementById('reading-progress');
+  if (!bar) return;
 
   window.addEventListener('scroll', () => {
-    const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-    if (totalHeight <= 0) return;
-    const progress = (window.scrollY / totalHeight) * 100;
-    progressBar.style.width = `${Math.min(100, Math.max(0, progress))}%`;
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    if (total <= 0) return;
+    const pct = Math.min(100, Math.max(0, (window.scrollY / total) * 100));
+    bar.style.width = `${pct}%`;
   }, { passive: true });
 }
 
-/* ==========================================================================
-   4. Scroll Spy y Header
-   ========================================================================== */
+/* ========================================================================
+   5. SCROLL SPY + HEADER SCROLLED
+   ======================================================================== */
 function initHeaderScrollSpy() {
   const header = document.getElementById('site-header');
   const navLinks = document.querySelectorAll('.desktop-nav .nav-link');
   const sections = document.querySelectorAll('.module-section');
 
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 30) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
-
-    let currentId = '';
-    const scrollPos = window.scrollY + 160;
-
-    sections.forEach(section => {
-      const top = section.offsetTop;
-      const height = section.offsetHeight;
-      if (scrollPos >= top && scrollPos < top + height) {
-        currentId = section.getAttribute('id');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+        });
       }
     });
+  }, { rootMargin: '-50% 0px -50% 0px' });
 
-    if (currentId) {
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${currentId}`) {
-          link.classList.add('active');
-        }
-      });
-    }
+  sections.forEach(s => observer.observe(s));
+
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
   }, { passive: true });
 }
 
-/* ==========================================================================
-   5. Menú Móvil Deslizable (Drawer)
-   ========================================================================== */
+/* ========================================================================
+   6. SCROLL REVEAL CON INTERSECTION OBSERVER
+   ======================================================================== */
+function initScrollReveal() {
+  const revealEls = document.querySelectorAll('.reveal-on-scroll, .reveal-left, .reveal-right, .reveal-scale');
+
+  if (!revealEls.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+  revealEls.forEach(el => observer.observe(el));
+}
+
+/* ========================================================================
+   7. MOBILE DRAWER
+   ======================================================================== */
 function initMobileDrawer() {
   const toggleBtn = document.getElementById('btn-mobile-menu');
   const closeBtn = document.getElementById('btn-close-drawer');
@@ -213,11 +280,19 @@ function initMobileDrawer() {
 
   if (!toggleBtn || !drawer) return;
 
+  let overlay = null;
+
   function openDrawer() {
     drawer.classList.add('open');
     drawer.setAttribute('aria-hidden', 'false');
     toggleBtn.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
+
+    // Overlay oscuro
+    overlay = document.createElement('div');
+    overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:1999;backdrop-filter:blur(4px);animation:fadeInBg 0.3s ease;';
+    overlay.addEventListener('click', closeDrawer);
+    document.body.appendChild(overlay);
   }
 
   function closeDrawer() {
@@ -225,42 +300,33 @@ function initMobileDrawer() {
     drawer.setAttribute('aria-hidden', 'true');
     toggleBtn.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
+    if (overlay) { overlay.remove(); overlay = null; }
   }
 
   toggleBtn.addEventListener('click', openDrawer);
   if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
-
-  navLinks.forEach(link => {
-    link.addEventListener('click', closeDrawer);
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && drawer.classList.contains('open')) {
-      closeDrawer();
-    }
+  navLinks.forEach(link => link.addEventListener('click', closeDrawer));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && drawer.classList.contains('open')) closeDrawer();
   });
 }
 
-/* ==========================================================================
-   6. Tamaño de Fuente Accesible
-   ========================================================================== */
+/* ========================================================================
+   8. TAMAÑO DE FUENTE
+   ======================================================================== */
 function initFontSizeToggle() {
-  const btnFont = document.getElementById('btn-font-size');
-  if (!btnFont) return;
-
-  if (localStorage.getItem('cb_font_size') === 'large') {
-    document.body.classList.add('font-large');
-  }
-
-  btnFont.addEventListener('click', () => {
-    const isLarge = document.body.classList.toggle('font-large');
-    localStorage.setItem('cb_font_size', isLarge ? 'large' : 'normal');
+  const btn = document.getElementById('btn-font-size');
+  if (!btn) return;
+  if (localStorage.getItem('cb_font_size') === 'large') document.body.classList.add('font-large');
+  btn.addEventListener('click', () => {
+    const large = document.body.classList.toggle('font-large');
+    localStorage.setItem('cb_font_size', large ? 'large' : 'normal');
   });
 }
 
-/* ==========================================================================
-   7. Línea de Tiempo Paso a Paso (Módulo 2)
-   ========================================================================== */
+/* ========================================================================
+   9. LÍNEA DE TIEMPO PASO A PASO
+   ======================================================================== */
 function initStepTimeline() {
   const stepPills = document.querySelectorAll('.timeline-step-pills .step-pill');
   const tagEl = document.getElementById('t-step-tag');
@@ -270,85 +336,93 @@ function initStepTimeline() {
   const sourceEl = document.getElementById('t-step-source');
   const btnPrev = document.getElementById('btn-t-prev');
   const btnNext = document.getElementById('btn-t-next');
+  const card = document.getElementById('timeline-dynamic-display');
 
   const stepsData = [
     {
       step: 1,
       tag: 'MADRUGADA DEL 15 DE MAYO DE 2000',
+      borderColor: '#d4a820',
       title: 'Invasión armada e intimidación a la vivienda rural',
-      desc: 'Hombres armados irrumpen por la fuerza en la pequeña vivienda rural de Ana Elvia Cortés de Pachón y su esposo en Simijaca. Intimidan a la pareja exigiendo 15 millones de pesos en efectivo.',
-      source: 'Fuente: Corte Suprema de Justicia, Sala Penal (Proceso 21285)'
+      desc: 'Hombres armados irrumpen por la fuerza en la pequeña vivienda rural de Ana Elvia Cortés de Pachón y su esposo en Simijaca, Cundinamarca. Intimidan violentamente a la pareja exigiendo 15 millones de pesos en efectivo, amenazando con quitarles la vida si no cumplen.',
+      source: 'Fuente: Corte Suprema de Justicia, Sala de Casación Penal (Proceso 21285 · 2005)'
     },
     {
       step: 2,
       tag: 'DURANTE LA MAÑANA DEL 15 DE MAYO',
-      title: 'Colocación del artefacto explosivo artesanal',
-      desc: 'Los delincuentes aseguran tres cilindros de tubo de PVC con dinamita alrededor del cuello de Cortés y activan un reloj despertador modificado. Se alerta de inmediato a las autoridades policiales.',
-      source: 'Fuente: Archivo periodístico El Tiempo (2000)'
+      borderColor: '#d4a820',
+      title: 'Colocación del artefacto explosivo artesanal en el cuello',
+      desc: 'Los delincuentes aseguran tres cilindros de tubo de PVC con dinamita alrededor del cuello de Ana Elvia Cortés y activan un reloj despertador modificado como detonador. Alertan a las autoridades: si el pago no llega a tiempo, el artefacto estallará.',
+      source: 'Fuente: Archivo periodístico El Tiempo — «Collar de dinamita» (Juanita León, 2000)'
     },
     {
       step: 3,
-      tag: 'MEDIODÍA · OPERATIVO POLICIAL',
-      title: 'Intervención heroica del Subintendente Jairo López',
-      desc: 'El técnico antiexplosivos Jairo Hernando López arriba al lugar con traje de protección. Conociendo el inmenso riesgo de la trampa anti-corte, trabaja cuerpo a cuerpo junto a la víctima intentando desactivarlo.',
+      tag: 'MEDIODÍA · OPERATIVO POLICIAL DE RESCATE',
+      borderColor: '#3b82f6',
+      title: 'Intervención heroica del Subintendente Jairo Hernando López',
+      desc: 'El técnico antiexplosivos Jairo Hernando López arriba con traje EOD de protección. Conociendo la letalidad de la trampa anti-corte incorporada en el circuito, asume el altísimo riesgo y trabaja directamente cuerpo a cuerpo junto a la víctima para intentar desactivarlo con herramientas de precisión.',
       source: 'Fuente: El Espectador (Carranza Muñoz, 2016)'
     },
     {
       step: 4,
       tag: '12:45 P. M. · DETONACIÓN TRÁGICA',
-      title: 'Explosión, muerte de Ana Elvia y heridas mortales a López',
-      desc: 'El mecanismo trampa estalla durante la maniobra. Ana Elvia Cortés fallece en el acto. El subintendente López queda gravemente herido y fallece durante el traslado médico de emergencia.',
-      source: 'Fuente: Providencia judicial CSJ 2005'
+      borderColor: '#e03040',
+      title: 'La explosión cobra la vida de Ana Elvia y hiere mortalmente a López',
+      desc: 'El mecanismo trampa de alivio de tensión se activa durante las maniobras de desactivación. Ana Elvia Cortés fallece en el acto. Jairo Hernando López queda gravemente herido, consciente pero crítico. Fallece durante el traslado médico aéreo de emergencia a Bogotá, dejando a su esposa e hijo recién nacido.',
+      source: 'Fuente: Providencia judicial CSJ, Sala Penal (2005) — Proceso 21285'
     },
     {
       step: 5,
-      tag: '2001 – 2005 – 2026 · INVESTIGACIONES Y VERDAD',
-      title: 'Condena judicial por delincuencia común y desmentidos',
-      desc: 'La justicia condena a José Miguel Suárez a 32 años de prisión, descartando la autoría de las FARC. Investigaciones posteriores de ColombiaCheck desmienten la desinformación política.',
-      source: 'Fuente: CSJ (2005) & Chequeos de ColombiaCheck y La Silla Vacía'
+      tag: '2001 – 2005 – 2016 · INVESTIGACIÓN Y VERDAD',
+      borderColor: '#22c55e',
+      title: 'Condena judicial por delincuencia común y desmentidos definitivos',
+      desc: 'La Fiscalía descarta la autoría de las FARC. José Miguel Suárez es condenado a 32 años de prisión por delincuencia común extorsiva. La Corte Suprema de Justicia ratifica la condena en casación (2005). Años después, ColombiaCheck y La Silla Vacía desmienten versiones electorales que reviven la falsa imputación política.',
+      source: 'Fuente: CSJ (2005) · ColombiaCheck · La Silla Vacía · El Espectador'
     }
   ];
 
   let currentIdx = 0;
 
-  function renderStep(idx) {
+  function renderStep(idx, dir = 1) {
     currentIdx = idx;
     const data = stepsData[idx];
 
-    stepPills.forEach((pill, i) => {
-      pill.classList.toggle('active', i === idx);
-    });
+    // Animación de salida/entrada
+    if (card) {
+      card.style.opacity = '0';
+      card.style.transform = `translateX(${dir * 20}px)`;
+      setTimeout(() => {
+        updateContent(data);
+        card.style.transition = 'opacity 0.3s ease, transform 0.3s var(--ease-out), border-left-color 0.3s ease';
+        card.style.opacity = '1';
+        card.style.transform = 'translateX(0)';
+        card.style.borderLeftColor = data.borderColor;
+      }, 150);
+    } else {
+      updateContent(data);
+    }
 
+    stepPills.forEach((pill, i) => pill.classList.toggle('active', i === idx));
+    if (btnPrev) btnPrev.disabled = (idx === 0);
+    if (btnNext) btnNext.disabled = (idx === stepsData.length - 1);
+  }
+
+  function updateContent(data) {
     if (tagEl) tagEl.textContent = data.tag;
     if (numEl) numEl.textContent = `PASO ${data.step} DE ${stepsData.length}`;
     if (titleEl) titleEl.textContent = data.title;
     if (descEl) descEl.textContent = data.desc;
     if (sourceEl) sourceEl.textContent = data.source;
-
-    if (btnPrev) btnPrev.disabled = (idx === 0);
-    if (btnNext) btnNext.disabled = (idx === stepsData.length - 1);
   }
 
-  stepPills.forEach((pill, i) => {
-    pill.addEventListener('click', () => renderStep(i));
-  });
-
-  if (btnPrev) {
-    btnPrev.addEventListener('click', () => {
-      if (currentIdx > 0) renderStep(currentIdx - 1);
-    });
-  }
-
-  if (btnNext) {
-    btnNext.addEventListener('click', () => {
-      if (currentIdx < stepsData.length - 1) renderStep(currentIdx + 1);
-    });
-  }
+  stepPills.forEach((pill, i) => pill.addEventListener('click', () => renderStep(i, i > currentIdx ? 1 : -1)));
+  if (btnPrev) btnPrev.addEventListener('click', () => { if (currentIdx > 0) renderStep(currentIdx - 1, -1); });
+  if (btnNext) btnNext.addEventListener('click', () => { if (currentIdx < stepsData.length - 1) renderStep(currentIdx + 1, 1); });
 }
 
-/* ==========================================================================
-   8. Esquema Forense con Modo Despiece (Exploded View) (Módulo 2)
-   ========================================================================== */
+/* ========================================================================
+   10. ESQUEMA FORENSE INTERACTIVO (EXPLODED VIEW)
+   ======================================================================== */
 function initForensicExplodedSchematic() {
   const container = document.getElementById('forensic-explorer');
   const btnAssembled = document.getElementById('btn-schematic-assembled');
@@ -357,109 +431,181 @@ function initForensicExplodedSchematic() {
   const svgParts = document.querySelectorAll('.diagram-interactive-part');
   const titleEl = document.getElementById('detail-title');
   const textEl = document.getElementById('detail-text');
+  const svgDiagram = document.getElementById('collar-diagram');
 
   const partDetails = {
     explosivo: {
-      title: '1. Dinamita y Carga Explosiva Principal',
-      text: 'El collar constaba de tres secciones de tubo de PVC adaptadas anatómicamente. Uno de los compartimientos alojaba cartuchos de dinamita comercial y metralla pericialmente calculada para causar daño devastador a quemarropa.'
+      title: '1. Dinamita e Indugel Comercial (Carga Primaria)',
+      text: 'El compartimento izquierdo alojaba cartuchos de dinamita e Indugel comercial (~250-300g) acompañados de metralla pericialmente calculada para causar una onda expansiva devastadora a quemarropa. En su interior se encontraba insertado un estopín eléctrico de cobre conectado a la línea de disparo maestro.',
+      citation: 'Dictamen pericial balístico · Expediente CSJ Proceso 21285.',
+      color: '#dc2626'
     },
     temporizador: {
-      title: '2. Reloj Temporizador y Batería',
-      text: 'El segundo cilindro alojaba una batería eléctrica conectada a un reloj despertador modificado como cuenta regresiva analógica, diseñado para cerrar el circuito si expiraba el plazo extorsivo.'
+      title: '2. Reloj Despertador Modificado y Batería 9V',
+      text: 'El compartimento central integraba un reloj despertador adaptado electromecánicamente. La aguja horaria estaba calibrada para hacer contacto eléctrico a las 15:00 horas (hora fatal de la extorsión de 15 millones de pesos). Estaba energizado por una pila prismática alcalina de 9V para garantizar el cierre del circuito.',
+      citation: 'Acta de inspección técnica EOD · Policía Nacional de Colombia.',
+      color: '#d97706'
     },
     trampa: {
-      title: '3. Circuito Trampa de Alivio de Tensión',
-      text: 'El tercer compartimiento contenía la trampa mortal: un microinterruptor sensible a la tracción que detonaba el artefacto si se intentaba cortar o abrir los tubos sin neutralizar los cables maestros.'
+      title: '3. Circuito Trampa Mortal de Alivio de Tensión (Anti-Corte)',
+      text: 'El compartimento derecho contenía el elemento fatal: un microinterruptor de descompresión conectado en lazo trampa ("booby-trap"). Si los técnicos intentaban cortar los conductores o forzar el collar sin neutralizar el circuito cerrado primario, el resorte liberaba la masa disparando la ignición inmediata. Este sistema causó la detonación durante el intento de auxilio.',
+      citation: 'Providencia CSJ Sala Casación Penal 21285 (M.P. Yesid Ramírez Bastidas).',
+      color: '#2563eb'
     },
     candado: {
-      title: '4. Candado y Pasador de Cierre Mecánico',
-      text: 'Un candado aseguraba los extremos de los tubos alrededor del cuello de la víctima, imposibilitando que ella o sus familiares pudieran retirarlo sin herramientas especializadas.'
+      title: '4. Candado de Latón y Pletina de Bloqueo Cervical',
+      text: 'En la nuca de la víctima, dos pletinas de acero con bisagras aseguraban el cierre anatómico mediante un candado de latón macizo con arco templado. El cerrojo estaba interconectado físicamente con el lazo trampa para impedir que la víctima o su familia pudieran retirarlo manualmente.',
+      citation: 'Registro forense de criminalística · Simijaca, Cundinamarca.',
+      color: '#f59e0b'
     }
   };
 
-  if (btnExploded && container) {
+  let isExploded = false;
+
+  if (btnExploded) {
     btnExploded.addEventListener('click', () => {
-      container.classList.add('exploded');
+      isExploded = true;
+      svgDiagram?.classList.add('exploded');
       btnExploded.classList.add('active');
-      btnAssembled.classList.remove('active');
+      if (btnAssembled) btnAssembled.classList.remove('active');
     });
   }
 
-  if (btnAssembled && container) {
+  if (btnAssembled) {
     btnAssembled.addEventListener('click', () => {
-      container.classList.remove('exploded');
+      isExploded = false;
+      svgDiagram?.classList.remove('exploded');
       btnAssembled.classList.add('active');
-      btnExploded.classList.remove('active');
+      if (btnExploded) btnExploded.classList.remove('active');
     });
   }
 
   function highlightPart(partKey) {
     if (!partDetails[partKey]) return;
+    const detail = partDetails[partKey];
 
-    partBtns.forEach(btn => {
-      btn.classList.toggle('active', btn.getAttribute('data-part') === partKey);
-    });
+    partBtns.forEach(btn => btn.classList.toggle('active', btn.getAttribute('data-part') === partKey));
+    svgParts.forEach(svg => svg.classList.toggle('active', svg.getAttribute('data-part') === partKey));
 
-    svgParts.forEach(svg => {
-      svg.classList.toggle('active', svg.getAttribute('data-part') === partKey);
-    });
-
-    if (titleEl && textEl) {
-      titleEl.textContent = partDetails[partKey].title;
-      textEl.textContent = partDetails[partKey].text;
+    if (titleEl) {
+      titleEl.style.opacity = '0';
+      titleEl.style.transform = 'translateY(-6px)';
+      setTimeout(() => {
+        titleEl.textContent = detail.title;
+        titleEl.style.transition = 'opacity 0.22s ease, transform 0.22s ease';
+        titleEl.style.opacity = '1';
+        titleEl.style.transform = 'none';
+      }, 120);
+    }
+    if (textEl) {
+      textEl.style.opacity = '0';
+      setTimeout(() => {
+        textEl.textContent = detail.text;
+        const citEl = document.querySelector('.forensic-detail-box .detail-citation');
+        if (citEl && detail.citation) citEl.textContent = detail.citation;
+        textEl.style.transition = 'opacity 0.22s ease 0.04s';
+        textEl.style.opacity = '1';
+      }, 160);
     }
   }
 
-  partBtns.forEach(btn => {
-    btn.addEventListener('click', () => highlightPart(btn.getAttribute('data-part')));
-  });
-
+  partBtns.forEach(btn => btn.addEventListener('click', () => highlightPart(btn.getAttribute('data-part'))));
   svgParts.forEach(svg => {
     svg.addEventListener('click', () => highlightPart(svg.getAttribute('data-part')));
+    svg.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        highlightPart(svg.getAttribute('data-part'));
+      }
+    });
   });
+
+  // Activar explosivo por defecto
+  setTimeout(() => highlightPart('explosivo'), 300);
 }
 
-/* ==========================================================================
-   9. Ruta Geográfica Interactiva (Módulo 2)
-   ========================================================================== */
+/* ========================================================================
+   11. RUTA GEOGRÁFICA INTERACTIVA (BOYACÁ - CUNDINAMARCA)
+   ======================================================================== */
 function initInteractiveRouteMap() {
   const nodes = document.querySelectorAll('.interactive-map-node');
+  const pills = document.querySelectorAll('.geo-pill-btn');
   const infoBox = document.getElementById('geo-info-box');
 
   const geoData = {
-    'node-simijaca': {
-      tag: '1. Escenario del Crimen (Simijaca, Cundinamarca)',
-      desc: 'Finca rural donde ocurrió la extorsión inicial y el despliegue del operativo policial de rescate, según el expediente judicial oficial de la Fiscalía y la Corte Suprema.'
+    'simijaca': {
+      tag: '1. Escenario Probado del Crimen (Simijaca, Cundinamarca)',
+      desc: 'Finca rural donde ocurrió la incursión de los delincuentes a las 5:00 a.m. del 15 de mayo de 2000, la colocación coercitiva del artefacto sobre doña Ana Elvia Cortés y la fatídica intervención antiexplosivos. La providencia penal 21285 de la Corte Suprema radicó allí la competencia jurisdiccional oficial (Altitud: 2.559 msnm).'
     },
-    'node-chiquinquira': {
-      tag: '2. Atención Asistencial y Foco Mediático (Chiquinquirá, Boyacá)',
-      desc: 'Municipio urbano más cercano donde se concentraron los medios de comunicación y el hospital regional. Por cercanía geográfica, la prensa popularizó el caso como «collar bomba de Chiquinquirá».'
+    'chiquinquira': {
+      tag: '2. Epicentro Asistencial y Foco Mediático (Chiquinquirá, Boyacá)',
+      desc: 'Cabecera municipal a solo 15.2 km al norte por la Ruta 45A. Allí acudió el esposo de la víctima a dar aviso a la Policía y se congregaron los medios de comunicación y el hospital regional San Salvador. Por esta proximidad informativa, los titulares bautizaron popularmente el caso como «collar bomba de Chiquinquirá».'
     },
-    'node-bogota': {
-      tag: '3. Traslado Aéreo de Urgencia (Bogotá D.C.)',
-      desc: 'Ruta de evacuación en helicóptero militar para trasladar a los heridos graves al Hospital Central de la Policía en la capital, donde lamentablemente el subintendente López falleció en el trayecto.'
+    'limite': {
+      tag: '3. Zona Limítrofe Veredal (Vereda Palestina)',
+      desc: 'Corredor rural interdepartamental entre Simijaca y Chiquinquirá. Las divergencias en los testimonios vecinales sobre los linderos de las fincas suscitaron confusión inicial entre despachos judiciales y coberturas de prensa, aclarada posteriormente en la sentencia de casación.'
+    },
+    'bogota': {
+      tag: '4. Trayectoria de Evacuación Aérea (Hacia Bogotá D.C.)',
+      desc: 'Tras la detonación a la 1:30 p.m., el subintendente Jairo Hernando López fue evacuado de urgencia por vía aérea hacia el Hospital Central de la Policía en Bogotá (128 km al sur). Falleció valerosamente en el trayecto debido a la gravedad de las heridas. Su hijo recién nacido lo esperaba en casa.'
     }
   };
 
-  nodes.forEach(node => {
-    node.addEventListener('click', () => {
-      nodes.forEach(n => n.classList.remove('active'));
-      node.classList.add('active');
+  function selectGeoPoint(pointKey) {
+    if (!geoData[pointKey]) return;
+    const data = geoData[pointKey];
 
-      const data = geoData[node.id];
-      if (data && infoBox) {
+    // Actualizar nodos SVG
+    nodes.forEach(node => {
+      const p = node.getAttribute('data-point') || node.id.replace('node-', '');
+      node.classList.toggle('active', p === pointKey);
+    });
+
+    // Actualizar píldoras
+    pills.forEach(pill => {
+      pill.classList.toggle('active', pill.getAttribute('data-point') === pointKey);
+    });
+
+    // Animar caja de información
+    if (infoBox) {
+      infoBox.style.opacity = '0';
+      infoBox.style.transform = 'translateY(6px)';
+      setTimeout(() => {
         infoBox.innerHTML = `
           <span class="geo-tag-badge gold">${data.tag}</span>
           <p>${data.desc}</p>
         `;
+        infoBox.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
+        infoBox.style.opacity = '1';
+        infoBox.style.transform = 'none';
+      }, 120);
+    }
+  }
+
+  nodes.forEach(node => {
+    node.addEventListener('click', () => {
+      const point = node.getAttribute('data-point') || node.id.replace('node-', '');
+      selectGeoPoint(point);
+    });
+    node.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        const point = node.getAttribute('data-point') || node.id.replace('node-', '');
+        selectGeoPoint(point);
       }
+    });
+  });
+
+  pills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      selectGeoPoint(pill.getAttribute('data-point'));
     });
   });
 }
 
-/* ==========================================================================
-   10. Pestañas Judiciales (Módulo 6)
-   ========================================================================== */
+/* ========================================================================
+   12. PESTAÑAS JUDICIALES
+   ======================================================================== */
 function initJudicialTabs() {
   const tabBtns = document.querySelectorAll('.judicial-tab-bar .j-tab-btn');
   const panes = document.querySelectorAll('.j-tab-pane');
@@ -468,22 +614,17 @@ function initJudicialTabs() {
     btn.addEventListener('click', () => {
       tabBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-
       const tab = btn.getAttribute('data-tab');
       panes.forEach(pane => {
-        if (pane.id === `pane-${tab}`) {
-          pane.style.display = 'block';
-        } else {
-          pane.style.display = 'none';
-        }
+        pane.style.display = pane.id === `pane-${tab}` ? 'block' : 'none';
       });
     });
   });
 }
 
-/* ==========================================================================
-   11. Santuario de Memoria & Cuaderno de Dedicatorias (Módulo 4)
-   ========================================================================== */
+/* ========================================================================
+   13. MEMORIAL CANDLE + PARTÍCULAS DE FUEGO
+   ======================================================================== */
 function initMemorialSanctuary() {
   const btnLight = document.getElementById('btn-light-candle');
   const counterEl = document.getElementById('candle-counter');
@@ -497,39 +638,54 @@ function initMemorialSanctuary() {
   const storedExtra = parseInt(localStorage.getItem('cb_candle_extra') || '0', 10);
   let hasLit = localStorage.getItem('cb_user_lit_candle') === 'true';
 
-  counterEl.textContent = (baseCount + storedExtra).toLocaleString();
+  // Animación de contador
+  animateCounter(counterEl, baseCount + storedExtra, 0);
 
   if (hasLit) {
     btnLight.disabled = true;
-    btnLight.innerHTML = '<span>Luz encendida en tu memoria</span>';
+    btnLight.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor" width="18"><path d="M12 2c-.5 2-2 3.5-2 5.5 0 1.5 1 2.5 2 2.5s2-1 2-2.5c0-2-1.5-3.5-2-5.5zm-5 9v11h10V11H7z"/></svg><span>Luz encendida ✓</span>';
   }
 
-  function igniteCandle(evt) {
+  btnLight.addEventListener('click', (e) => {
+    if (hasLit) return;
+    hasLit = true;
+
     const newExtra = storedExtra + 1;
     localStorage.setItem('cb_candle_extra', newExtra.toString());
     localStorage.setItem('cb_user_lit_candle', 'true');
-    counterEl.textContent = (baseCount + newExtra).toLocaleString();
 
+    // Animación del contador
+    animateCounter(counterEl, baseCount + newExtra, 800);
+
+    // Llama reactiva
     if (flameEl) {
-      flameEl.style.transform = 'scale(1.5)';
-      setTimeout(() => { flameEl.style.transform = 'scale(1)'; }, 700);
+      flameEl.style.transform = 'scale(2) rotate(-5deg)';
+      flameEl.style.filter = 'brightness(1.5)';
+      setTimeout(() => {
+        flameEl.style.transition = 'transform 0.5s var(--ease-out), filter 0.5s ease';
+        flameEl.style.transform = 'scale(1)';
+        flameEl.style.filter = '';
+      }, 500);
     }
 
     btnLight.disabled = true;
-    btnLight.innerHTML = '<span>Luz encendida en tu memoria</span>';
+    btnLight.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor" width="18"><path d="M12 2c-.5 2-2 3.5-2 5.5 0 1.5 1 2.5 2 2.5s2-1 2-2.5c0-2-1.5-3.5-2-5.5zm-5 9v11h10V11H7z"/></svg><span>Luz encendida ✓</span>';
 
-    // Ráfaga de partículas doradas en el punto de clic
-    if (triggerEmberBurst) {
+    // RÁFAGA ÉPICA de partículas
+    if (window.triggerEmberBurst) {
       const rect = btnLight.getBoundingClientRect();
-      triggerEmberBurst(rect.left + rect.width / 2, rect.top);
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      window.triggerEmberBurst(cx, cy, 60);
+
+      // Ráfagas múltiples escalonadas
+      setTimeout(() => window.triggerEmberBurst(cx - 20, cy, 30), 200);
+      setTimeout(() => window.triggerEmberBurst(cx + 20, cy, 30), 400);
     }
-  }
+  });
 
-  btnLight.addEventListener('click', igniteCandle);
-
-  // Agregar pensamientos al cuaderno de respeto
   quickPills.forEach(pill => {
-    pill.addEventListener('click', (e) => {
+    pill.addEventListener('click', () => {
       const text = pill.getAttribute('data-text');
       if (!text || !streamContainer) return;
 
@@ -538,25 +694,43 @@ function initMemorialSanctuary() {
       newCard.innerHTML = `
         <span class="t-stream-date">Ahora mismo</span>
         <p>«${text}»</p>
-        <span class="t-stream-author">— Tu pensamiento por la memoria</span>
+        <span class="t-stream-author">— Tu pensamiento de memoria</span>
       `;
       streamContainer.prepend(newCard);
 
-      // Partículas al dejar pensamiento
-      if (triggerEmberBurst) {
+      if (window.triggerEmberBurst) {
         const rect = pill.getBoundingClientRect();
-        triggerEmberBurst(rect.left + rect.width / 2, rect.top);
+        window.triggerEmberBurst(rect.left + rect.width / 2, rect.top, 20);
       }
 
       pill.disabled = true;
-      pill.style.opacity = '0.6';
+      pill.style.opacity = '0.5';
     });
   });
 }
 
-/* ==========================================================================
-   12. Buscador y Filtro de la Hemeroteca Digital (Módulo 5)
-   ========================================================================== */
+/* Animación de contador numérico */
+function animateCounter(el, target, delay = 0) {
+  if (!el) return;
+  setTimeout(() => {
+    const start = parseInt(el.textContent.replace(/,/g, '')) || 0;
+    const duration = 1500;
+    const startTime = performance.now();
+    function update(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = Math.round(start + (target - start) * eased);
+      el.textContent = current.toLocaleString('es-CO');
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  }, delay);
+}
+
+/* ========================================================================
+   14. HEMEROTECA: BÚSQUEDA Y FILTROS
+   ======================================================================== */
 function initHemerotecaSearch() {
   const searchInput = document.getElementById('hemeroteca-search');
   const catPills = document.querySelectorAll('.tag-filter-pills .h-pill');
@@ -566,20 +740,32 @@ function initHemerotecaSearch() {
   let searchTerm = '';
 
   function filterCards() {
+    let visibleCount = 0;
     cards.forEach(card => {
       const cat = card.getAttribute('data-cat');
       const text = card.innerText.toLowerCase();
-      const matchesCat = (activeCat === 'all' || cat === activeCat);
-      const matchesSearch = (!searchTerm || text.includes(searchTerm));
+      const matchesCat = activeCat === 'all' || cat === activeCat;
+      const matchesSearch = !searchTerm || text.includes(searchTerm);
+      const visible = matchesCat && matchesSearch;
 
-      card.style.display = (matchesCat && matchesSearch) ? 'flex' : 'none';
+      card.style.display = visible ? '' : 'none';
+      if (visible) {
+        card.style.animation = 'none';
+        card.offsetHeight; // Reflow
+        card.style.animation = 'tabFade 0.35s ease both';
+        visibleCount++;
+      }
     });
   }
 
   if (searchInput) {
+    let debounceTimer;
     searchInput.addEventListener('input', (e) => {
-      searchTerm = e.target.value.toLowerCase().trim();
-      filterCards();
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        searchTerm = e.target.value.toLowerCase().trim();
+        filterCards();
+      }, 200);
     });
   }
 
@@ -593,9 +779,9 @@ function initHemerotecaSearch() {
   });
 }
 
-/* ==========================================================================
-   13. Acordeón de Preguntas Reflexivas (Módulo 7)
-   ========================================================================== */
+/* ========================================================================
+   15. ACORDEÓN DE REFLEXIÓN
+   ======================================================================== */
 function initAccordion() {
   const headers = document.querySelectorAll('.accordion-header');
 
@@ -605,6 +791,7 @@ function initAccordion() {
       const isOpen = item.classList.contains('active');
       const collapse = item.querySelector('.accordion-collapse');
 
+      // Cerrar todos los demás
       document.querySelectorAll('.accordion-item').forEach(other => {
         if (other !== item && other.classList.contains('active')) {
           other.classList.remove('active');
@@ -618,7 +805,7 @@ function initAccordion() {
       if (!isOpen) {
         item.classList.add('active');
         header.setAttribute('aria-expanded', 'true');
-        if (collapse) collapse.style.maxHeight = `${collapse.scrollHeight + 24}px`;
+        if (collapse) collapse.style.maxHeight = `${collapse.scrollHeight + 32}px`;
       } else {
         item.classList.remove('active');
         header.setAttribute('aria-expanded', 'false');
@@ -628,9 +815,9 @@ function initAccordion() {
   });
 }
 
-/* ==========================================================================
-   14. Modal / Lightbox de Documentos e Imágenes
-   ========================================================================== */
+/* ========================================================================
+   16. MODAL LIGHTBOX
+   ======================================================================== */
 function initMediaModal() {
   const modal = document.getElementById('media-modal');
   const modalImg = document.getElementById('modal-image');
@@ -640,45 +827,52 @@ function initMediaModal() {
   if (!modal || !modalImg) return;
 
   function openModal(src, alt, caption) {
-    modalImg.src = src;
+    modalImg.src = '';
     modalImg.alt = alt;
-    modalCaption.textContent = caption || alt;
     modal.classList.add('open');
     modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+
+    const tempImg = new Image();
+    tempImg.onload = () => {
+      modalImg.src = src;
+      if (modalCaption) modalCaption.textContent = caption || alt;
+    };
+    tempImg.src = src;
   }
 
   function closeModal() {
     modal.classList.remove('open');
     modal.setAttribute('aria-hidden', 'true');
-    modalImg.src = '';
+    setTimeout(() => { modalImg.src = ''; }, 300);
     document.body.style.overflow = '';
   }
 
-  const clickableImages = document.querySelectorAll('.curated-thumb, .context-figure, .strip-item, .visual-debunk-frame');
+  const clickableImages = document.querySelectorAll(
+    '.curated-thumb, .context-figure, .strip-item, .visual-debunk-frame, .h-card-img-wrap'
+  );
   clickableImages.forEach(wrapper => {
     wrapper.style.cursor = 'zoom-in';
     wrapper.addEventListener('click', () => {
       const img = wrapper.querySelector('img');
-      const caption = wrapper.getAttribute('data-caption') || wrapper.querySelector('figcaption')?.innerText;
+      const caption = wrapper.getAttribute('data-caption') ||
+                      wrapper.querySelector('figcaption')?.innerText;
       if (img) openModal(img.src, img.alt, caption);
     });
   });
 
   if (closeBtn) closeBtn.addEventListener('click', closeModal);
-
-  modal.addEventListener('click', (e) => {
+  modal.addEventListener('click', e => {
     if (e.target === modal || e.target.classList.contains('modal-backdrop')) closeModal();
   });
-
-  document.addEventListener('keydown', (e) => {
+  document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
   });
 }
 
-/* ==========================================================================
-   15. Generador Acústico Solemne Ambiental (Web Audio API)
-   ========================================================================== */
+/* ========================================================================
+   17. AUDIO AMBIENTAL SOLEMNE
+   ======================================================================== */
 function initAmbientAudio() {
   const btnToggle = document.getElementById('btn-ambient-audio');
   const waveBar = document.getElementById('audio-wave-bar');
@@ -686,110 +880,222 @@ function initAmbientAudio() {
   const canvas = document.getElementById('soundwave-canvas');
   if (!btnToggle) return;
 
-  let audioCtx = null;
-  let isPlaying = false;
-  let masterGain = null;
-  let osc1 = null;
-  let osc2 = null;
-  let animFrameId = null;
+  let audioCtx = null, isPlaying = false, masterGain = null;
+  let oscs = [], animFrameId = null;
 
   function startAudio() {
-    if (!audioCtx) {
-      const AudioContext = window.AudioContext || window.webkitAudioContext;
-      audioCtx = new AudioContext();
-    }
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if (!audioCtx) audioCtx = new AudioContext();
     if (audioCtx.state === 'suspended') audioCtx.resume();
 
     masterGain = audioCtx.createGain();
     masterGain.gain.setValueAtTime(0.001, audioCtx.currentTime);
-    masterGain.gain.exponentialRampToValueAtTime(0.08, audioCtx.currentTime + 3);
+    masterGain.gain.exponentialRampToValueAtTime(0.07, audioCtx.currentTime + 4);
 
     const filter = audioCtx.createBiquadFilter();
     filter.type = 'lowpass';
-    filter.frequency.setValueAtTime(280, audioCtx.currentTime);
+    filter.frequency.setValueAtTime(320, audioCtx.currentTime);
+    filter.Q.setValueAtTime(0.7, audioCtx.currentTime);
 
-    osc1 = audioCtx.createOscillator();
-    osc1.type = 'sine';
-    osc1.frequency.setValueAtTime(110, audioCtx.currentTime); // La (A2)
+    const reverb = audioCtx.createConvolver();
+    const freqs = [110, 138.6, 164.8, 220];
+    oscs = freqs.map(freq => {
+      const osc = audioCtx.createOscillator();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+      const gainNode = audioCtx.createGain();
+      gainNode.gain.setValueAtTime(0.5 / freqs.length, audioCtx.currentTime);
+      osc.connect(gainNode);
+      gainNode.connect(filter);
+      osc.start();
+      return osc;
+    });
 
-    osc2 = audioCtx.createOscillator();
-    osc2.type = 'sine';
-    osc2.frequency.setValueAtTime(164.8, audioCtx.currentTime); // Mi (E3)
-
-    osc1.connect(filter);
-    osc2.connect(filter);
     filter.connect(masterGain);
     masterGain.connect(audioCtx.destination);
-
-    osc1.start();
-    osc2.start();
-
     isPlaying = true;
-    btnToggle.classList.add('playing');
-    const iconOn = btnToggle.querySelector('.icon-sound.on');
-    const iconOff = btnToggle.querySelector('.icon-sound.off');
-    if (iconOn && iconOff) { iconOn.style.display = 'none'; iconOff.style.display = 'inline'; }
-    const txt = btnToggle.querySelector('.btn-sound-text');
-    if (txt) txt.textContent = 'Silenciar';
 
+    btnToggle.classList.add('playing');
+    updateBtnState(true);
     if (waveBar) waveBar.classList.add('visible');
     drawWave();
   }
 
   function stopAudio() {
-    if (!audioCtx || !isPlaying) return;
-
+    if (!isPlaying) return;
     if (masterGain) {
       masterGain.gain.setValueAtTime(masterGain.gain.value, audioCtx.currentTime);
-      masterGain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 1.5);
+      masterGain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 2);
     }
-
     setTimeout(() => {
-      if (osc1) { osc1.stop(); osc1.disconnect(); }
-      if (osc2) { osc2.stop(); osc2.disconnect(); }
+      oscs.forEach(osc => { try { osc.stop(); osc.disconnect(); } catch(e) {} });
+      oscs = [];
       isPlaying = false;
-    }, 1500);
-
+    }, 2000);
     btnToggle.classList.remove('playing');
-    const iconOn = btnToggle.querySelector('.icon-sound.on');
-    const iconOff = btnToggle.querySelector('.icon-sound.off');
-    if (iconOn && iconOff) { iconOn.style.display = 'inline'; iconOff.style.display = 'none'; }
-    const txt = btnToggle.querySelector('.btn-sound-text');
-    if (txt) txt.textContent = 'Voz Solemne';
-
+    updateBtnState(false);
     if (waveBar) waveBar.classList.remove('visible');
     if (animFrameId) cancelAnimationFrame(animFrameId);
   }
 
+  function updateBtnState(playing) {
+    const iconOn = btnToggle.querySelector('.icon-sound.on');
+    const iconOff = btnToggle.querySelector('.icon-sound.off');
+    const txt = btnToggle.querySelector('.btn-sound-text');
+    if (iconOn) iconOn.style.display = playing ? 'none' : 'inline';
+    if (iconOff) iconOff.style.display = playing ? 'inline' : 'none';
+    if (txt) txt.textContent = playing ? 'Silenciar' : 'Voz Solemne';
+  }
+
   function drawWave() {
     if (!canvas || !isPlaying) return;
-    const ctx = canvas.getContext('2d');
+    const ctx2d = canvas.getContext('2d');
     const w = canvas.width;
     const h = canvas.height;
-    let t = Date.now() * 0.003;
+    let t = 0;
 
     function render() {
       if (!isPlaying) return;
-      ctx.clearRect(0, 0, w, h);
-      ctx.lineWidth = 1.5;
-      ctx.strokeStyle = '#c49219';
-      ctx.beginPath();
+      ctx2d.clearRect(0, 0, w, h);
+      ctx2d.lineWidth = 1.8;
+
+      // Onda dorada con gradiente
+      const grad = ctx2d.createLinearGradient(0, 0, w, 0);
+      grad.addColorStop(0, 'rgba(212,168,32,0.4)');
+      grad.addColorStop(0.5, 'rgba(212,168,32,1)');
+      grad.addColorStop(1, 'rgba(212,168,32,0.4)');
+      ctx2d.strokeStyle = grad;
+      ctx2d.shadowBlur = 6;
+      ctx2d.shadowColor = '#d4a820';
+      ctx2d.beginPath();
       for (let x = 0; x < w; x++) {
-        const y = (h / 2) + Math.sin(x * 0.08 + t) * 6 * Math.sin(x * 0.03 + t * 0.5);
-        if (x === 0) ctx.moveTo(x, y);
-        else ctx.lineTo(x, y);
+        const y = (h / 2) + Math.sin(x * 0.09 + t) * 7 * Math.sin(x * 0.025 + t * 0.4);
+        if (x === 0) ctx2d.moveTo(x, y);
+        else ctx2d.lineTo(x, y);
       }
-      ctx.stroke();
-      t += 0.04;
+      ctx2d.stroke();
+      t += 0.05;
       animFrameId = requestAnimationFrame(render);
     }
     render();
   }
 
-  btnToggle.addEventListener('click', () => {
-    if (!isPlaying) startAudio();
-    else stopAudio();
-  });
-
+  btnToggle.addEventListener('click', () => isPlaying ? stopAudio() : startAudio());
   if (muteBtn) muteBtn.addEventListener('click', stopAudio);
+}
+
+/* ========================================================================
+   18. EFECTO RIPPLE EN BOTONES
+   ======================================================================== */
+function initRippleEffect() {
+  const rippleEls = document.querySelectorAll('.btn-primary-action, .btn-secondary-action, .btn-candle-light, .step-pill');
+
+  rippleEls.forEach(el => {
+    el.classList.add('ripple-container');
+    el.addEventListener('click', (e) => {
+      const rect = el.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height) * 2;
+      const ripple = document.createElement('span');
+      ripple.className = 'ripple';
+      ripple.style.cssText = `
+        width: ${size}px;
+        height: ${size}px;
+        left: ${e.clientX - rect.left - size / 2}px;
+        top: ${e.clientY - rect.top - size / 2}px;
+      `;
+      el.appendChild(ripple);
+      setTimeout(() => ripple.remove(), 700);
+    });
+  });
+}
+
+/* ========================================================================
+   19. PARALLAX HERO
+   ======================================================================== */
+function initParallaxHero() {
+  const heroImg = document.querySelector('.hero-bg-img');
+  if (!heroImg || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        const scrolled = window.scrollY;
+        const heroEl = document.querySelector('.module-hero');
+        if (!heroEl) { ticking = false; return; }
+        const heroH = heroEl.offsetHeight;
+        if (scrolled < heroH) {
+          const parallaxOffset = scrolled * 0.35;
+          heroImg.style.transform = `scale(1.1) translateY(${parallaxOffset}px)`;
+        }
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+}
+
+/* ========================================================================
+   20. CONTADORES ANIMADOS (NÚMEROS GRANDES)
+   ======================================================================== */
+function initCountUpAnimations() {
+  const countEls = document.querySelectorAll('[data-count-up]');
+  if (!countEls.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const target = parseInt(el.getAttribute('data-count-up'));
+        animateCounter(el, target, 0);
+        observer.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  countEls.forEach(el => observer.observe(el));
+}
+
+/* ========================================================================
+   21. EFECTO 3D TILT EN TARJETAS
+   ======================================================================== */
+function initCardTiltEffect() {
+  if (window.matchMedia('(pointer: coarse)').matches) return;
+
+  const cards = document.querySelectorAll('.modern-card.card-3d');
+  if (!cards.length) return;
+
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = ((y - centerY) / centerY) * -8;
+      const rotateY = ((x - centerX) / centerX) * 8;
+
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px) scale(1.01)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transition = 'transform 0.5s var(--ease-out)';
+      card.style.transform = '';
+      setTimeout(() => { card.style.transition = ''; }, 500);
+    });
+  });
+}
+
+/* ========================================================================
+   22. MARCAR IMAGEN HERO COMO CARGADA (Efecto Ken Burns)
+   ======================================================================== */
+function markHeroImageLoaded() {
+  const heroImg = document.querySelector('.hero-bg-img');
+  if (!heroImg) return;
+
+  if (heroImg.complete) {
+    heroImg.classList.add('loaded');
+  } else {
+    heroImg.addEventListener('load', () => heroImg.classList.add('loaded'));
+  }
 }

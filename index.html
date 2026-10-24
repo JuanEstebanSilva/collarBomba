@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth theme-light">
+<html lang="es" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,7 +25,7 @@
 
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="theme-light">
+<body class="theme-dark">
   <!-- Canvas de partículas doradas para efectos wow (velas y homenajes) -->
   <canvas id="particles-canvas" class="particles-bg-canvas" aria-hidden="true"></canvas>
 
@@ -134,6 +134,7 @@
           <img src="images/plaza-chiquinquira.jpg" alt="Fotografía de la Plaza de la Libertad y Basílica en Chiquinquirá" class="hero-bg-img" id="hero-main-photo">
           <div class="hero-gradient-overlay"></div>
         </div>
+        <div class="hero-scan-lines" aria-hidden="true"></div>
       </div>
 
       <div class="content-wrapper hero-inner">
@@ -249,7 +250,7 @@
         </div>
 
         <div class="hero-cta-row">
-          <a href="#modulo-2" class="btn-primary-action">
+          <a href="#modulo-2" class="btn-primary-action ripple-container">
             <span>Explorar Reconstrucción de Hechos</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
           </a>
@@ -259,13 +260,19 @@
           </a>
         </div>
       </div>
+
+      <!-- Indicador de scroll cinematográfico -->
+      <div class="scroll-hint" aria-hidden="true">
+        <span class="scroll-hint-text">Desplazar</span>
+        <div class="scroll-hint-line"></div>
+      </div>
     </section>
 
 
     <!-- ===================================================================
          MÓDULO 2: RECONSTRUCCIÓN DE LOS HECHOS | 15 DE MAYO DE 2000
          =================================================================== -->
-    <section id="modulo-2" class="module-section" aria-labelledby="mod2-title">
+    <section id="modulo-2" class="module-section reveal-on-scroll" aria-labelledby="mod2-title">
       <div class="content-wrapper">
         <header class="section-header">
           <div class="section-tag">
@@ -289,7 +296,7 @@
         </aside>
 
         <!-- LÍNEA DE TIEMPO INTERACTIVA REDISEÑADA -->
-        <div class="timeline-interactive-block modern-card">
+        <div class="timeline-interactive-block modern-card reveal-scale delay-1">
           <div class="timeline-toolbar">
             <div>
               <h3 class="timeline-title">Línea de Tiempo Paso a Paso</h3>
@@ -327,7 +334,7 @@
         <!-- RECURSOS COMPLEMENTARIOS WOW: ESQUEMA FORENSE Y RUTA GEOGRÁFICA -->
         <div class="mod2-interactive-grid">
           <!-- Tarjeta 1: Esquema Forense Interactivo con Modo Despiece (Exploded View) -->
-          <div class="forensic-card modern-card" id="forensic-explorer">
+          <div class="forensic-card modern-card card-3d" id="forensic-explorer">
             <div class="card-badge-header">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
               <h4>Esquema Forense Técnico del Artefacto</h4>
@@ -336,53 +343,161 @@
               Análisis forense basado en la providencia judicial 21285 para explicar técnicamente por qué fue una trampa mortal sin recurrir a imágenes explícitas:
             </p>
 
-            <!-- Controles del Esquema -->
+            <!-- Controles del Esquema Forense -->
             <div class="forensic-mode-bar">
-              <button class="mode-toggle-btn active" id="btn-schematic-assembled">Vista Ensamblada</button>
-              <button class="mode-toggle-btn" id="btn-schematic-exploded">Vista Despiece (Exploded)</button>
+              <button class="mode-toggle-btn active" id="btn-schematic-assembled">Vista Ensamblada (Collar Cerrado)</button>
+              <button class="mode-toggle-btn" id="btn-schematic-exploded">Vista Despiece Forense (Exploded)</button>
             </div>
 
             <div class="schematic-interactive-wrap">
-              <svg viewBox="0 0 380 200" class="forensic-svg" id="collar-diagram" aria-label="Diagrama técnico del collar bomba">
-                <!-- Tubo base PVC -->
-                <path id="svg-tube-base" d="M 60,140 C 60,65 120,35 190,35 C 260,35 320,65 320,140" fill="none" stroke="#cbd5e1" stroke-width="26" stroke-linecap="round"/>
-                
-                <!-- Componente 1: Carga explosiva dinamita -->
-                <g class="diagram-interactive-part" id="part-explosivo" data-part="explosivo">
-                  <path d="M 62,135 C 64,95 105,50 150,38" fill="none" stroke="#dc2626" stroke-width="20" stroke-linecap="round"/>
-                  <circle cx="95" cy="85" r="7" fill="#dc2626" class="part-indicator"/>
-                </g>
+              <div class="schematic-top-meta">
+                <span class="meta-tag"><span class="meta-dot"></span> DIJIN / SIJIN · PROTOCOLO EOD</span>
+                <span class="meta-code">EXPEDIENTE CSJ N.º 21285</span>
+              </div>
+              <svg viewBox="0 0 500 320" class="forensic-svg" id="collar-diagram" aria-label="Diagrama técnico forense del artefacto explosivo artesanal">
+                <defs>
+                  <linearGradient id="pvcGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#64748b"/>
+                    <stop offset="45%" stop-color="#94a3b8"/>
+                    <stop offset="70%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#475569"/>
+                  </linearGradient>
+                  <linearGradient id="dynaGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#991b1b"/>
+                    <stop offset="40%" stop-color="#ef4444"/>
+                    <stop offset="80%" stop-color="#dc2626"/>
+                    <stop offset="100%" stop-color="#7f1d1d"/>
+                  </linearGradient>
+                  <linearGradient id="timerGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#d97706"/>
+                    <stop offset="50%" stop-color="#f59e0b"/>
+                    <stop offset="100%" stop-color="#78350f"/>
+                  </linearGradient>
+                  <linearGradient id="trapGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#2563eb"/>
+                    <stop offset="50%" stop-color="#3b82f6"/>
+                    <stop offset="100%" stop-color="#1e3a8a"/>
+                  </linearGradient>
+                  <linearGradient id="lockGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#f59e0b"/>
+                    <stop offset="50%" stop-color="#d97706"/>
+                    <stop offset="100%" stop-color="#92400e"/>
+                  </linearGradient>
+                  <pattern id="forensicGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+                    <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255, 255, 255, 0.04)" stroke-width="0.8"/>
+                  </pattern>
+                </defs>
 
-                <!-- Componente 2: Batería y temporizador despertador -->
-                <g class="diagram-interactive-part" id="part-temporizador" data-part="temporizador">
-                  <path d="M 150,38 C 175,34 205,34 230,38" fill="none" stroke="#d97706" stroke-width="20"/>
-                  <circle cx="190" cy="35" r="7" fill="#d97706" class="part-indicator"/>
-                </g>
+                <!-- Rejilla milimétrica y retícula técnica -->
+                <rect width="500" height="320" fill="url(#forensicGrid)"/>
+                <circle cx="250" cy="155" r="135" fill="none" stroke="rgba(212, 168, 32, 0.12)" stroke-dasharray="3,6"/>
+                <line x1="20" y1="155" x2="480" y2="155" stroke="rgba(255, 255, 255, 0.06)" stroke-width="1" stroke-dasharray="2,4"/>
+                <line x1="250" y1="20" x2="250" y2="300" stroke="rgba(255, 255, 255, 0.06)" stroke-width="1" stroke-dasharray="2,4"/>
 
-                <!-- Componente 3: Circuito trampa anti-corte -->
-                <g class="diagram-interactive-part" id="part-trampa" data-part="trampa">
-                  <path d="M 230,38 C 275,50 316,95 318,135" fill="none" stroke="#2563eb" stroke-width="20" stroke-linecap="round"/>
-                  <circle cx="285" cy="85" r="7" fill="#2563eb" class="part-indicator"/>
-                </g>
+                <!-- Silueta de la zona cervical de referencia -->
+                <ellipse cx="250" cy="155" rx="64" ry="48" fill="rgba(15, 23, 42, 0.55)" stroke="rgba(148, 163, 184, 0.28)" stroke-width="1.5" stroke-dasharray="4,4"/>
+                <text x="250" y="152" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="'JetBrains Mono', monospace" font-weight="700">PERÍMETRO CERVICAL</text>
+                <text x="250" y="167" text-anchor="middle" fill="#64748b" font-size="8.5" font-family="'JetBrains Mono', monospace">DIÁMETRO INT: 14.5 cm</text>
 
-                <!-- Componente 4: Cerrojo y candado de cierre -->
-                <g class="diagram-interactive-part" id="part-candado" data-part="candado">
-                  <rect x="178" y="125" width="24" height="28" rx="4" fill="#475569"/>
-                  <circle cx="190" cy="139" r="6" fill="#e2e8f0"/>
-                </g>
+                <!-- Grupo General del Collar Articulado -->
+                <g id="schematic-device-assembly">
+                  <!-- Tubo base PVC estructural -->
+                  <path id="svg-tube-base" d="M 125,225 C 88,175 88,105 150,68 C 200,35 300,35 350,68 C 412,105 412,175 375,225" fill="none" stroke="url(#pvcGrad)" stroke-width="32" stroke-linecap="round" opacity="0.3"/>
 
-                <!-- Zona cervical protegida -->
-                <ellipse cx="190" cy="105" rx="50" ry="38" fill="none" stroke="#94a3b8" stroke-dasharray="4,4" stroke-width="1.5"/>
-                <text x="190" y="108" text-anchor="middle" fill="#64748b" font-size="11" font-family="'Plus Jakarta Sans', sans-serif">Zona cervical de la víctima</text>
+                  <!-- COMPONENTE 1: CARGA EXPLOSIVA (Indugel / Dinamita) -->
+                  <g class="diagram-interactive-part" id="part-explosivo" data-part="explosivo" tabindex="0" role="button" aria-label="Componente 1: Carga explosiva dinamita">
+                    <!-- Segmento de tubo PVC izquierdo -->
+                    <path d="M 125,225 C 92,180 94,115 145,75" fill="none" stroke="url(#pvcGrad)" stroke-width="30" stroke-linecap="round"/>
+                    <!-- Sección en corte transparente (cutaway) con cartuchos de dinamita -->
+                    <path d="M 124,217 C 98,177 100,122 142,83" fill="none" stroke="url(#dynaGrad)" stroke-width="18" stroke-linecap="round"/>
+                    <!-- Envolturas de cartuchos y metralla pericial -->
+                    <line x1="102" y1="130" x2="114" y2="134" stroke="#fee2e2" stroke-width="2"/>
+                    <line x1="105" y1="160" x2="118" y2="162" stroke="#fee2e2" stroke-width="2"/>
+                    <line x1="113" y1="190" x2="126" y2="188" stroke="#fee2e2" stroke-width="2"/>
+                    <!-- Estopín / Detonador de cobre incrustado -->
+                    <rect x="135" y="73" width="16" height="8" rx="2" fill="#fcd34d" stroke="#78350f" stroke-width="1" transform="rotate(-35 135 73)"/>
+                    <!-- Hotspot luminoso interactivo -->
+                    <circle cx="108" cy="150" r="10" class="part-indicator" fill="#dc2626"/>
+                    <circle cx="108" cy="150" r="4.5" fill="#ffffff"/>
+                    <text x="56" y="153" fill="#f87171" font-size="10.5" font-weight="700" font-family="'JetBrains Mono', monospace">1. CARGA</text>
+                  </g>
+
+                  <!-- COMPONENTE 2: TEMPORIZADOR DESPERTADOR Y PILA 9V -->
+                  <g class="diagram-interactive-part" id="part-temporizador" data-part="temporizador" tabindex="0" role="button" aria-label="Componente 2: Reloj despertador modificado y batería 9V">
+                    <!-- Segmento de tubo central -->
+                    <path d="M 180,50 C 215,38 285,38 320,50" fill="none" stroke="url(#pvcGrad)" stroke-width="30"/>
+                    <!-- Carcasa del reloj despertador modificado -->
+                    <rect x="220" y="28" width="60" height="44" rx="6" fill="#0f172a" stroke="url(#timerGrad)" stroke-width="2"/>
+                    <!-- Cuadrante de reloj con aguja de detonación a las 15:00 -->
+                    <circle cx="238" cy="50" r="13" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5"/>
+                    <line x1="238" y1="50" x2="238" y2="41" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="238" y1="50" x2="246" y2="50" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round"/>
+                    <circle cx="238" cy="50" r="2.2" fill="#fbbf24"/>
+                    <!-- Batería alcalina 9V con bornes polarizados -->
+                    <rect x="258" y="38" width="16" height="24" rx="2" fill="#334155" stroke="#94a3b8" stroke-width="1"/>
+                    <rect x="260" y="34" width="4" height="4" fill="#fcd34d"/>
+                    <rect x="268" y="35" width="4" height="3" rx="1" fill="#94a3b8"/>
+                    <text x="266" y="54" text-anchor="middle" fill="#f59e0b" font-size="6.5" font-weight="800">9V</text>
+                    <!-- Hotspot luminoso interactivo -->
+                    <circle cx="250" cy="20" r="10" class="part-indicator" fill="#d97706"/>
+                    <circle cx="250" cy="20" r="4.5" fill="#ffffff"/>
+                    <text x="250" y="10" text-anchor="middle" fill="#fbbf24" font-size="10.5" font-weight="700" font-family="'JetBrains Mono', monospace">2. RELOJ 15:00h</text>
+                  </g>
+
+                  <!-- COMPONENTE 3: CIRCUITO TRAMPA MORTAL ANTI-CORTE -->
+                  <g class="diagram-interactive-part" id="part-trampa" data-part="trampa" tabindex="0" role="button" aria-label="Componente 3: Circuito trampa de tensión anti-corte">
+                    <!-- Segmento de tubo PVC derecho -->
+                    <path d="M 355,75 C 406,115 408,180 375,225" fill="none" stroke="url(#pvcGrad)" stroke-width="30" stroke-linecap="round"/>
+                    <!-- Corte longitudinal que muestra el microswitch de descompresión -->
+                    <path d="M 358,83 C 400,122 402,177 376,217" fill="none" stroke="url(#trapGrad)" stroke-width="18" stroke-linecap="round"/>
+                    <!-- Microswitch electromecánico de rotura -->
+                    <rect x="382" y="136" width="20" height="14" rx="3" fill="#0f172a" stroke="#3b82f6" stroke-width="1.8"/>
+                    <circle cx="388" cy="143" r="2.5" fill="#60a5fa"/>
+                    <!-- Resorte trampa tensado -->
+                    <path d="M 392,150 L 388,154 L 394,158 L 388,162 L 392,166" fill="none" stroke="#93c5fd" stroke-width="1.6"/>
+                    <!-- Hotspot luminoso interactivo -->
+                    <circle cx="392" cy="148" r="10" class="part-indicator" fill="#2563eb"/>
+                    <circle cx="392" cy="148" r="4.5" fill="#ffffff"/>
+                    <text x="444" y="152" fill="#60a5fa" font-size="10.5" font-weight="700" font-family="'JetBrains Mono', monospace">3. TRAMPA</text>
+                  </g>
+
+                  <!-- COMPONENTE 4: CANDADO Y CIERRE POSTERIOR CERVICAL -->
+                  <g class="diagram-interactive-part" id="part-candado" data-part="candado" tabindex="0" role="button" aria-label="Componente 4: Candado de latón y cierre mecánico">
+                    <!-- Pletina articulada en la nuca -->
+                    <path d="M 125,225 C 145,255 210,272 250,272 C 290,272 355,255 375,225" fill="none" stroke="#475569" stroke-width="14" stroke-linecap="round" stroke-dasharray="4,4"/>
+                    <!-- Pasador de fijación -->
+                    <rect x="234" y="244" width="32" height="12" rx="3" fill="#64748b" stroke="#94a3b8" stroke-width="1"/>
+                    <!-- Grillete o arco de acero del candado -->
+                    <path d="M 241,256 L 241,268 C 241,274 259,274 259,268 L 259,256" fill="none" stroke="#e2e8f0" stroke-width="4.5" stroke-linecap="round"/>
+                    <!-- Cuerpo del candado en latón macizo -->
+                    <rect x="237" y="266" width="26" height="28" rx="4" fill="url(#lockGrad)" stroke="#78350f" stroke-width="1.5"/>
+                    <circle cx="250" cy="278" r="3.2" fill="#0f172a"/>
+                    <polygon points="248.5,279 251.5,279 252,286 248,286" fill="#0f172a"/>
+                    <!-- Hotspot luminoso interactivo -->
+                    <circle cx="250" cy="280" r="9" class="part-indicator" fill="#f59e0b"/>
+                    <circle cx="250" cy="280" r="4" fill="#ffffff"/>
+                    <text x="250" y="310" text-anchor="middle" fill="#fbbf24" font-size="10.5" font-weight="700" font-family="'JetBrains Mono', monospace">4. CANDADO</text>
+                  </g>
+
+                  <!-- CABLEADO ELÉCTRICO FORENSE INTERNO -->
+                  <!-- Cable rojo (+) : Timer -> Detonador Indugel -->
+                  <path d="M 224,68 C 195,85 155,65 146,76" fill="none" stroke="#ef4444" stroke-width="2.4" stroke-linecap="round"/>
+                  <!-- Cable azul trampa : Timer -> Microswitch de tracción -->
+                  <path d="M 276,68 C 305,85 350,85 382,136" fill="none" stroke="#3b82f6" stroke-width="2.4" stroke-linecap="round"/>
+                  <!-- Cable guía trampa conectado al cierre del candado -->
+                  <path d="M 382,150 C 360,205 285,235 260,250" fill="none" stroke="#fbbf24" stroke-width="1.8" stroke-dasharray="3,2"/>
+                  <!-- Cable negro (-) masa de retorno -->
+                  <path d="M 125,225 C 165,250 215,250 236,246" fill="none" stroke="#0f172a" stroke-width="2.8" stroke-linecap="round"/>
+                </g>
               </svg>
             </div>
 
             <!-- Botones de inspección rápida -->
             <div class="forensic-parts-nav" role="tablist">
-              <button class="part-btn active" data-part="explosivo">1. Dinamita / Carga</button>
-              <button class="part-btn" data-part="temporizador">2. Reloj Temporizador</button>
-              <button class="part-btn" data-part="trampa">3. Circuito Trampa</button>
-              <button class="part-btn" data-part="candado">4. Candado / Cerrojo</button>
+              <button class="part-btn active" data-part="explosivo">1. Dinamita e Indugel</button>
+              <button class="part-btn" data-part="temporizador">2. Reloj Temporizador 9V</button>
+              <button class="part-btn" data-part="trampa">3. Trampa Mortal Anti-Corte</button>
+              <button class="part-btn" data-part="candado">4. Candado de Bloqueo</button>
             </div>
 
             <!-- Detalle Forense Dinámico -->
@@ -395,55 +510,125 @@
             </div>
           </div>
 
-          <!-- Tarjeta 2: Ruta Geográfica Interactiva -->
-          <div class="carto-card modern-card" id="carto-explorer">
+          <!-- Tarjeta 2: Ruta Geográfica Interactiva (Boyacá - Cundinamarca) -->
+          <div class="carto-card modern-card card-3d" id="carto-explorer">
             <div class="card-badge-header">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
               <h4>Ruta Geográfica de los Hechos (Boyacá - Cundinamarca)</h4>
             </div>
             <p class="carto-intro">
-              Haz clic en los puntos geográficos para entender el desplazamiento y la discrepancia entre jurisdicción y atención hospitalaria:
+              Mapa cartográfico táctico para comprender la cronología territorial, el corredor vial y la discrepancia entre jurisdicción y atención hospitalaria:
             </p>
 
+            <!-- Píldoras de selección rápida de puntos geográficos -->
+            <div class="geo-nav-pills">
+              <button class="geo-pill-btn active" data-point="simijaca">1. Finca Simijaca</button>
+              <button class="geo-pill-btn" data-point="chiquinquira">2. Chiquinquirá</button>
+              <button class="geo-pill-btn" data-point="limite">3. Límite Veredal</button>
+              <button class="geo-pill-btn" data-point="bogota">4. Evacuación Bogotá</button>
+            </div>
+
             <div class="interactive-map-visual">
-              <svg viewBox="0 0 400 280" class="colombia-svg-map" aria-label="Mapa esquemático interactivo de la ruta">
-                <!-- Fondo geográfico -->
-                <rect width="400" height="280" fill="var(--map-bg)" rx="10"/>
-                
-                <!-- Regiones esquemáticas -->
-                <path d="M 180,40 L 280,60 L 320,130 L 240,170 L 190,130 Z" fill="var(--map-boyaca)" stroke="var(--map-border)" stroke-width="1.5"/>
-                <path d="M 130,100 L 190,130 L 200,230 L 120,240 L 100,150 Z" fill="var(--map-cundinamarca)" stroke="var(--map-border)" stroke-width="1.5"/>
+              <svg viewBox="0 0 500 320" class="colombia-svg-map" id="colombia-route-svg" aria-label="Mapa cartográfico táctico de la ruta Boyacá - Cundinamarca">
+                <defs>
+                  <linearGradient id="mapBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#050814"/>
+                    <stop offset="100%" stop-color="#0b1329"/>
+                  </linearGradient>
+                  <linearGradient id="boyacaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="rgba(212, 168, 32, 0.22)"/>
+                    <stop offset="100%" stop-color="rgba(180, 83, 9, 0.3)"/>
+                  </linearGradient>
+                  <linearGradient id="cundiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="rgba(14, 165, 233, 0.18)"/>
+                    <stop offset="100%" stop-color="rgba(30, 58, 138, 0.3)"/>
+                  </linearGradient>
+                  <pattern id="radarGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+                    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255, 255, 255, 0.035)" stroke-width="0.8"/>
+                  </pattern>
+                </defs>
 
-                <!-- Línea de ruta con guiones animados -->
-                <path id="route-path" d="M 175,130 L 210,118 L 160,225" fill="none" stroke="var(--gold-primary)" stroke-width="2.5" stroke-dasharray="6,4" class="animated-route-line"/>
+                <!-- Fondo cartográfico táctico -->
+                <rect width="500" height="320" fill="url(#mapBgGrad)" rx="10"/>
+                <rect width="500" height="320" fill="url(#radarGrid)" rx="10"/>
 
-                <!-- Punto 1: Finca Simijaca -->
-                <g class="interactive-map-node active" id="node-simijaca" transform="translate(175, 130)">
-                  <circle r="9" class="node-pulse"/>
-                  <circle r="4.5" fill="#dc2626"/>
-                  <text x="-95" y="4" class="node-label">1. Finca (Simijaca)</text>
+                <!-- Anillos concéntricos de radar militar -->
+                <circle cx="270" cy="115" r="75" fill="none" stroke="rgba(212, 168, 32, 0.08)" stroke-width="1"/>
+                <circle cx="270" cy="115" r="140" fill="none" stroke="rgba(212, 168, 32, 0.05)" stroke-width="1" stroke-dasharray="4,6"/>
+
+                <!-- Curvas de nivel topográficas (Cordillera Oriental) -->
+                <path d="M 50,75 Q 140,45 240,60 T 450,45" fill="none" stroke="rgba(255, 255, 255, 0.04)" stroke-width="1"/>
+                <path d="M 40,135 Q 160,105 260,125 T 460,105" fill="none" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1"/>
+                <path d="M 60,195 Q 180,175 270,190 T 450,175" fill="none" stroke="rgba(255, 255, 255, 0.04)" stroke-width="1"/>
+                <path d="M 80,255 Q 200,235 280,250 T 440,235" fill="none" stroke="rgba(255, 255, 255, 0.03)" stroke-width="1"/>
+
+                <!-- Territorio Departamento de BOYACÁ (Noreste) -->
+                <path d="M 220,30 L 370,40 L 460,95 L 430,165 L 340,170 L 260,135 L 220,70 Z" fill="url(#boyacaGrad)" stroke="rgba(212, 168, 32, 0.65)" stroke-width="1.8"/>
+                <text x="375" y="85" fill="rgba(212, 168, 32, 0.9)" font-size="12" font-weight="800" font-family="'JetBrains Mono', monospace" letter-spacing="1.5">BOYACÁ</text>
+                <text x="375" y="98" fill="rgba(212, 168, 32, 0.55)" font-size="8.5" font-family="'JetBrains Mono', monospace">PROV. OCCIDENTE</text>
+
+                <!-- Territorio Departamento de CUNDINAMARCA (Suroeste) -->
+                <path d="M 120,95 L 220,70 L 260,135 L 270,220 L 250,295 L 150,290 L 110,180 Z" fill="url(#cundiGrad)" stroke="rgba(14, 165, 233, 0.65)" stroke-width="1.8"/>
+                <text x="145" y="195" fill="rgba(56, 189, 248, 0.9)" font-size="12" font-weight="800" font-family="'JetBrains Mono', monospace" letter-spacing="1.5">CUNDINAMARCA</text>
+                <text x="145" y="208" fill="rgba(56, 189, 248, 0.55)" font-size="8.5" font-family="'JetBrains Mono', monospace">VALLE DE UBATÉ</text>
+
+                <!-- Límite Departamental (Vereda Palestina) -->
+                <path d="M 220,70 L 260,135 L 285,150" fill="none" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="3,3"/>
+
+                <!-- Corredor Vial Nacional 45A (Carretera Central del Norte) -->
+                <path id="route-path" d="M 195,290 L 215,225 L 228,142 L 275,102" fill="none" stroke="rgba(245, 158, 11, 0.9)" stroke-width="3" stroke-dasharray="6,4" class="animated-route-line"/>
+
+                <!-- Línea aérea de evacuación en helicóptero hacia Bogotá -->
+                <path d="M 228,142 Q 170,210 195,290" fill="none" stroke="rgba(59, 130, 246, 0.75)" stroke-width="2" stroke-dasharray="4,4"/>
+
+                <!-- WAYPOINT 1: Finca El Manantial (Simijaca, Cundinamarca) -->
+                <g class="interactive-map-node active" id="node-simijaca" data-point="simijaca" transform="translate(228, 142)" tabindex="0" role="button">
+                  <circle r="14" class="node-pulse" fill="rgba(220, 38, 38, 0.3)"/>
+                  <circle r="6" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+                  <text x="-12" y="-12" text-anchor="end" class="node-label-strong" fill="#f87171">1. Finca (Simijaca)</text>
+                  <text x="-12" y="0" text-anchor="end" class="node-sublabel" fill="#cbd5e1">Epicentro · 2.559 msnm</text>
                 </g>
 
-                <!-- Punto 2: Chiquinquirá Asistencial -->
-                <g class="interactive-map-node" id="node-chiquinquira" transform="translate(210, 118)">
-                  <circle r="9" class="node-pulse"/>
-                  <circle r="4.5" fill="#c49219"/>
-                  <text x="14" y="4" class="node-label">2. Chiquinquirá (Prensa)</text>
+                <!-- WAYPOINT 2: Chiquinquirá (Boyacá) -->
+                <g class="interactive-map-node" id="node-chiquinquira" data-point="chiquinquira" transform="translate(275, 102)" tabindex="0" role="button">
+                  <circle r="14" class="node-pulse" fill="rgba(212, 168, 32, 0.3)"/>
+                  <circle r="6" fill="#d4a820" stroke="#ffffff" stroke-width="1.5"/>
+                  <text x="14" y="-8" class="node-label-strong" fill="#fbbf24">2. Chiquinquirá (Boyacá)</text>
+                  <text x="14" y="5" class="node-sublabel" fill="#cbd5e1">Prensa y Rescate (+15.2 km)</text>
                 </g>
 
-                <!-- Punto 3: Traslado aéreo Bogotá -->
-                <g class="interactive-map-node" id="node-bogota" transform="translate(160, 225)">
-                  <circle r="7" class="node-pulse"/>
-                  <circle r="4" fill="#2563eb"/>
-                  <text x="12" y="4" class="node-label">3. Traslado Bogotá</text>
+                <!-- WAYPOINT 3: Límite Departamental (Vereda Palestina) -->
+                <g class="interactive-map-node" id="node-limite" data-point="limite" transform="translate(252, 126)" tabindex="0" role="button">
+                  <circle r="11" class="node-pulse" fill="rgba(168, 85, 247, 0.3)"/>
+                  <circle r="5" fill="#a855f7" stroke="#ffffff" stroke-width="1.2"/>
+                  <text x="12" y="16" class="node-label-strong" fill="#c084fc">3. Vereda Palestina</text>
+                  <text x="12" y="27" class="node-sublabel" fill="#94a3b8">Límite Territorial en Disputa</text>
+                </g>
+
+                <!-- WAYPOINT 4: Evacuación hacia Bogotá D.C. -->
+                <g class="interactive-map-node" id="node-bogota" data-point="bogota" transform="translate(195, 290)" tabindex="0" role="button">
+                  <circle r="13" class="node-pulse" fill="rgba(37, 99, 235, 0.3)"/>
+                  <circle r="5.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+                  <text x="12" y="2" class="node-label-strong" fill="#60a5fa">4. Traslado Bogotá (128 km)</text>
+                  <text x="12" y="14" class="node-sublabel" fill="#94a3b8">Hospital Central de la Policía</text>
+                </g>
+
+                <!-- Rosa de los vientos / Brújula náutica -->
+                <g transform="translate(450, 270)">
+                  <circle r="18" fill="rgba(15, 23, 42, 0.6)" stroke="rgba(212, 168, 32, 0.4)" stroke-width="1"/>
+                  <polygon points="0,-14 4,-4 0,-1 0,0" fill="#f59e0b"/>
+                  <polygon points="0,-14 -4,-4 0,-1 0,0" fill="#d97706"/>
+                  <polygon points="0,14 4,4 0,1 0,0" fill="#64748b"/>
+                  <polygon points="0,14 -4,4 0,1 0,0" fill="#475569"/>
+                  <text x="0" y="-17" text-anchor="middle" fill="#f59e0b" font-size="8" font-weight="800">N</text>
                 </g>
               </svg>
             </div>
 
-            <!-- Explicación de la ruta seleccionada -->
+            <!-- Explicación dinámica de la ruta seleccionada -->
             <div class="geo-tab-explanation" id="geo-info-box">
               <span class="geo-tag-badge gold">1. Escenario del Crimen (Simijaca, Cundinamarca)</span>
-              <p>Finca rural donde ocurrió la extorsión inicial y el despliegue del operativo policial de rescate, según el expediente judicial oficial de la Fiscalía y la Corte Suprema.</p>
+              <p>Finca rural donde ocurrió la extorsión inicial y el despliegue del operativo policial de rescate, según el expediente judicial oficial de la Fiscalía y la Corte Suprema de Justicia.</p>
             </div>
           </div>
         </div>
@@ -476,7 +661,7 @@
     <!-- ===================================================================
          MÓDULO 3: CONTEXTO, INVESTIGACIÓN Y AUTORÍA
          =================================================================== -->
-    <section id="modulo-3" class="module-section" aria-labelledby="mod3-title">
+    <section id="modulo-3" class="module-section reveal-on-scroll" aria-labelledby="mod3-title">
       <div class="content-wrapper">
         <header class="section-header">
           <div class="section-tag">
@@ -494,7 +679,7 @@
           <h3 class="myths-heading">Contraste Clave: Versión Inicial vs. Verdad Probada</h3>
           <p class="myths-sub">Haz clic en cada tarjeta para contrastar lo que se dijo inicialmente con la verdad demostrada:</p>
 
-          <div class="three-cards-grid">
+          <div class="three-cards-grid reveal-on-scroll delay-2">
             <!-- Tarjeta 1: Versión Inicial -->
             <article class="comparative-card modern-card card-initial">
               <div class="card-phase-badge badge-warning">FASE 1: HIPÓTESIS POLÍTICA</div>
@@ -593,7 +778,7 @@
     <!-- ===================================================================
          MÓDULO 4: LAS PERSONAS AFECTADAS | ANA ELVIA CORTÉS Y JAIRO HERNANDO LÓPEZ
          =================================================================== -->
-    <section id="modulo-4" class="module-section" aria-labelledby="mod4-title">
+    <section id="modulo-4" class="module-section reveal-on-scroll" aria-labelledby="mod4-title">
       <div class="content-wrapper">
         <header class="section-header">
           <div class="section-tag">
@@ -617,7 +802,7 @@
         </aside>
 
         <!-- Dos Perfiles Biográficos Centrales -->
-        <div class="profiles-dual-grid">
+        <div class="profiles-dual-grid reveal-on-scroll delay-1">
           <!-- Perfil 1: Ana Elvia Cortés de Pachón -->
           <article class="bio-card modern-card">
             <div class="bio-header">
@@ -670,7 +855,7 @@
         </div>
 
         <!-- WIDGET WOW MEJORADO: SANTUARIO DE MEMORIA INTERACTIVO -->
-        <div class="memorial-sanctuary-wrap modern-card" id="memorial-candle-section">
+        <div class="memorial-sanctuary-wrap modern-card reveal-scale delay-2" id="memorial-candle-section">
           <div class="sanctuary-header">
             <div class="candle-visual">
               <div class="candle-flame" id="candle-flame">
@@ -982,12 +1167,11 @@
         </header>
 
         <!-- Acordeón interactivo de 5 preguntas -->
-        <div class="questions-accordion-wrap">
-          <div class="accordion-item modern-card">
+        <div class="accordion-container">
+          <div class="accordion-item">
             <button class="accordion-header" aria-expanded="false">
-              <span class="q-number">1</span>
-              <span class="q-title">¿Qué responsabilidad tienen los medios y los usuarios al compartir noticias de violencia?</span>
-              <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+              <span class="accordion-question">¿Qué responsabilidad tienen los medios y los usuarios al compartir noticias de violencia?</span>
+              <span class="accordion-icon">+</span>
             </button>
             <div class="accordion-collapse">
               <div class="accordion-body">
@@ -996,11 +1180,10 @@
             </div>
           </div>
 
-          <div class="accordion-item modern-card">
+          <div class="accordion-item">
             <button class="accordion-header" aria-expanded="false">
-              <span class="q-number">2</span>
-              <span class="q-title">¿Por qué es indispensable rectificar públicamente cuando la evidencia cambia?</span>
-              <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+              <span class="accordion-question">¿Por qué es indispensable rectificar públicamente cuando la evidencia cambia?</span>
+              <span class="accordion-icon">+</span>
             </button>
             <div class="accordion-collapse">
               <div class="accordion-body">
@@ -1009,11 +1192,10 @@
             </div>
           </div>
 
-          <div class="accordion-item modern-card">
+          <div class="accordion-item">
             <button class="accordion-header" aria-expanded="false">
-              <span class="q-number">3</span>
-              <span class="q-title">¿Cómo reconocer a las víctimas sin reducirlas únicamente al artefacto que las mató?</span>
-              <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+              <span class="accordion-question">¿Cómo reconocer a las víctimas sin reducirlas únicamente al artefacto que las mató?</span>
+              <span class="accordion-icon">+</span>
             </button>
             <div class="accordion-collapse">
               <div class="accordion-body">
@@ -1022,11 +1204,10 @@
             </div>
           </div>
 
-          <div class="accordion-item modern-card">
+          <div class="accordion-item">
             <button class="accordion-header" aria-expanded="false">
-              <span class="q-number">4</span>
-              <span class="q-title">¿Qué distingue una sentencia judicial de la duda expresada por los familiares?</span>
-              <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+              <span class="accordion-question">¿Qué distingue una sentencia judicial de la duda expresada por los familiares?</span>
+              <span class="accordion-icon">+</span>
             </button>
             <div class="accordion-collapse">
               <div class="accordion-body">
@@ -1035,11 +1216,10 @@
             </div>
           </div>
 
-          <div class="accordion-item modern-card">
+          <div class="accordion-item">
             <button class="accordion-header" aria-expanded="false">
-              <span class="q-number">5</span>
-              <span class="q-title">¿Cómo puede la memoria histórica forjar una ciudadanía más crítica?</span>
-              <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+              <span class="accordion-question">¿Cómo puede la memoria histórica forjar una ciudadanía más crítica?</span>
+              <span class="accordion-icon">+</span>
             </button>
             <div class="accordion-collapse">
               <div class="accordion-body">
@@ -1047,7 +1227,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div><!-- .accordion-container -->
 
         <!-- Banner Final Módulo 7 -->
         <div class="grand-final-banner">
@@ -1309,14 +1489,12 @@
   </footer>
 
   <!-- Modal / Lightbox para ver imágenes -->
-  <div id="media-modal" class="media-modal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div id="media-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Visualizador de imagen">
     <div class="modal-backdrop"></div>
-    <div class="modal-dialog">
-      <button id="modal-close-btn" class="modal-close" aria-label="Cerrar vista">&times;</button>
-      <div class="modal-content">
-        <img id="modal-image" src="" alt="" class="modal-img">
-        <div class="modal-caption" id="modal-caption-text"></div>
-      </div>
+    <div class="modal-inner">
+      <button id="modal-close-btn" aria-label="Cerrar vista ampliada">&times;</button>
+      <img id="modal-image" src="" alt="">
+      <p id="modal-caption-text"></p>
     </div>
   </div>
 
