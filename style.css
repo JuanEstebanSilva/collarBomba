@@ -7,52 +7,56 @@
    1. VARIABLES Y TOKENS DEL SISTEMA DE DISEÑO
    IDENTIDAD EDITORIAL: EDICIÓN ESPECIAL DE PERIÓDICO HISTÓRICO
    ===================================================================== */
-:root {
-  /* Paleta Editorial de Prensa Histórica (Predeterminada) */
-  --bg-void: #ece5d8;
-  --bg-deep: #e4dccb;
-  --bg-primary: #f6f1e7;       /* Papel de periódico envejecido */
-  --bg-surface: #fbf8f1;       /* Pliego editorial / página impresa */
-  --bg-elevated: #ede5d5;      /* Relieve de columna */
-  --bg-card: #fdfbf7;          /* Tarjeta de columna impresa */
-  --bg-glass: rgba(246, 241, 231, 0.96); /* Opaco/prensado, sin blur neón */
-  --bg-overlay: rgba(236, 229, 216, 0.94);
-  --paper-grain: #efe8dc;
+:root,
+html,
+body {
+  /* =====================================================================
+     PALETA EDITORIAL: HOJA ARRUGADA KRAFT / PERIÓDICO ANTIGUO
+     Basado fielmente en el pliego histórico caqui / café de la muestra
+     ===================================================================== */
+  --bg-primary: #caa87b;        /* Tono caqui / café cálido de papel kraft arrugado */
+  --bg-surface: rgba(220, 198, 164, 0.88);  /* Pliego editorial traslúcido para ver arrugas */
+  --bg-card: rgba(228, 208, 176, 0.84);     /* Tarjeta de columna impresa en el pliego */
+  --bg-card-hover: rgba(236, 219, 190, 0.94);
+  --bg-elevated: rgba(204, 180, 142, 0.90); /* Relieve de caja de prensa */
+  --bg-deep: #b39266;           /* Sombra profunda de pliegue */
+  --bg-void: #9e7f54;           /* Fondo exterior / margen de prensa */
+  --bg-glass: rgba(218, 196, 162, 0.94);
+  --bg-overlay: rgba(202, 168, 124, 0.92);
+  --paper-grain: rgba(90, 65, 35, 0.08);
 
-  /* Tinta de Imprenta Histórica */
-  --text-primary: #12100e;     /* Tinta negra carbón profunda */
-  --text-secondary: #27221d;   /* Tinta de lectura editorial enriquecida */
-  --text-muted: #5a5144;       /* Gris cálido de pie de imprenta */
-  --text-dim: #7f7362;         /* Datelines y fechas tipográficas */
-  --ink-rule: #1b1714;         /* Líneas y filetes de tinta */
+  /* Tinta de Imprenta Histórica (Negro Carbón y Tinta Profunda) */
+  --text-primary: #15110d;      /* Negro carbón denso de imprenta */
+  --text-secondary: #271f16;    /* Tinta oscura de lectura editorial */
+  --text-muted: #564634;        /* Tinta sepia cálida de notas al pie */
+  --text-dim: #735f4a;          /* Fechas y datelines */
+  --ink-rule: #1e1711;          /* Filetes de tinta negra densa */
 
-  /* Filetes y Bordes de Composición Tipográfica */
-  --border-subtle: #d6ccba;
-  --border-glass: #c7bc9e;
-  --border-card: #cfc4b0;
-  --border-glow: #8f1e1e;
-  --border-rule-double: 3px double #1b1714;
-  --border-rule-single: 1px solid #1b1714;
+  /* Filetes y Bordes de Imprenta */
+  --border-subtle: rgba(70, 48, 22, 0.28);
+  --border-glass: rgba(70, 48, 22, 0.35);
+  --border-card: rgba(70, 48, 22, 0.42);
+  --border-glow: #8a1515;
+  --border-rule-double: 3px double #1e1711;
+  --border-rule-single: 1px solid #1e1711;
 
-  /* Acentos de Prensa Histórica */
-  --red-primary: #8f1e1e;      /* Rojo de titular urgente / extra de prensa */
-  --red-dark: #6e1515;
-  --red-dim: rgba(143, 30, 30, 0.08);
+  /* Acentos de Prensa Histórica (Rojo de Titulares Urgentes) */
+  --red-primary: #8a1515;       /* Rojo carmesí histórico */
+  --red-dark: #660e0e;
+  --red-dim: rgba(138, 21, 21, 0.12);
 
-  /* Dorado / Bronce de Archivo y Sellos */
-  --gold-primary: #855f1f;
-  --gold-bright: #6c4d17;
-  --gold-dark: #523a10;
-  --gold-dim: rgba(133, 95, 31, 0.1);
-  --gold-glow: rgba(133, 95, 31, 0.22);
+  /* Dorado / Bronce de Archivo y Sellos de Notaría */
+  --gold-primary: #755115;
+  --gold-bright: #91661c;
+  --gold-dark: #583c0e;
+  --gold-dim: rgba(117, 81, 21, 0.14);
+  --gold-glow: rgba(117, 81, 21, 0.25);
 
-  /* Azul Institucional de Prensa / Gaceta Judicial */
-  --blue-primary: #1d4572;
-  --blue-dim: rgba(29, 69, 114, 0.09);
-
-  /* Verde Sobrio de Verificación de Hechos */
-  --green-primary: #245839;
-  --green-dim: rgba(36, 88, 57, 0.09);
+  /* Azul y Verde de Prensa Judicial y Verificación */
+  --blue-primary: #193d66;
+  --blue-dim: rgba(25, 61, 102, 0.12);
+  --green-primary: #1d4f32;
+  --green-dim: rgba(29, 79, 50, 0.12);
 
   /* Tipografías Editoriales */
   --font-display: 'Cinzel', Georgia, serif;
@@ -64,116 +68,25 @@
   /* Layout y Dimensiones */
   --header-h: 70px;
   --container-w: 1220px;
-  --r-sm: 2px;                 /* Bordes nítidos de prensa impresa */
+  --r-sm: 2px;
   --r-md: 4px;
   --r-lg: 6px;
   --r-full: 9999px;
 
-  /* Transiciones y Sombras sobrias de papel impreso (sin halos neón) */
+  /* Transiciones y Sombras sobrias de papel impreso */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.45, 0, 0.55, 1);
   --t-fast: 0.18s var(--ease-out);
   --t-med: 0.3s var(--ease-out);
 
-  --shadow-sm: 0 1px 3px rgba(35, 27, 20, 0.08);
-  --shadow-md: 0 3px 10px rgba(35, 27, 20, 0.12);
-  --shadow-lg: 0 8px 24px rgba(35, 27, 20, 0.16);
-}
+  --shadow-sm: 0 1px 4px rgba(45, 30, 15, 0.12);
+  --shadow-md: 0 3px 12px rgba(45, 30, 15, 0.18);
+  --shadow-lg: 0 8px 28px rgba(45, 30, 15, 0.24);
 
-/* Modo Edición Prensa Histórica (Claro) */
-:root.theme-light,
-html.theme-light,
-body.theme-light {
-  --bg-void: #ece5d8;
-  --bg-deep: #e4dccb;
-  --bg-primary: #f6f1e7;
-  --bg-surface: #fbf8f1;
-  --bg-elevated: #ede5d5;
-  --bg-card: #fdfbf7;
-  --bg-glass: rgba(246, 241, 231, 0.96);
-  --bg-overlay: rgba(236, 229, 216, 0.94);
-  --paper-grain: #efe8dc;
-
-  --text-primary: #12100e;
-  --text-secondary: #27221d;
-  --text-muted: #5a5144;
-  --text-dim: #7f7362;
-  --ink-rule: #1b1714;
-
-  --border-subtle: #d6ccba;
-  --border-glass: #c7bc9e;
-  --border-card: #cfc4b0;
-  --border-glow: #8f1e1e;
-  --border-rule-double: 3px double #1b1714;
-  --border-rule-single: 1px solid #1b1714;
-
-  --red-primary: #8f1e1e;
-  --red-dark: #6e1515;
-  --red-dim: rgba(143, 30, 30, 0.08);
-
-  --gold-primary: #855f1f;
-  --gold-bright: #6c4d17;
-  --gold-dark: #523a10;
-  --gold-dim: rgba(133, 95, 31, 0.1);
-  --gold-glow: rgba(133, 95, 31, 0.22);
-
-  --blue-primary: #1d4572;
-  --blue-dim: rgba(29, 69, 114, 0.09);
-
-  --green-primary: #245839;
-  --green-dim: rgba(36, 88, 57, 0.09);
-
-  --shadow-sm: 0 1px 3px rgba(35, 27, 20, 0.08);
-  --shadow-md: 0 3px 10px rgba(35, 27, 20, 0.12);
-  --shadow-lg: 0 8px 24px rgba(35, 27, 20, 0.16);
-}
-
-/* Modo Microfilm / Archivo Nocturno (Oscuro) */
-:root.theme-dark,
-html.theme-dark,
-body.theme-dark {
-  --bg-void: #0e0f11;
-  --bg-deep: #131518;
-  --bg-primary: #17191d;       /* Pantalla de microfilm oscura */
-  --bg-surface: #1d2026;
-  --bg-elevated: #242830;
-  --bg-card: #1f232b;
-  --bg-glass: rgba(23, 25, 29, 0.94);
-  --bg-overlay: rgba(14, 15, 17, 0.92);
-  --paper-grain: #1b1d22;
-
-  --text-primary: #f2eee8;     /* Tinta plateada de lectura nocturna */
-  --text-secondary: #d5cfc4;
-  --text-muted: #968e81;
-  --text-dim: #6b6459;
-  --ink-rule: #dcd3c3;
-
-  --border-subtle: rgba(220, 211, 195, 0.14);
-  --border-glass: rgba(220, 211, 195, 0.2);
-  --border-card: rgba(220, 211, 195, 0.18);
-  --border-glow: #e04848;
-  --border-rule-double: 3px double #dcd3c3;
-  --border-rule-single: 1px solid #dcd3c3;
-
-  --red-primary: #e04848;
-  --red-dark: #b82c2c;
-  --red-dim: rgba(224, 72, 72, 0.16);
-
-  --gold-primary: #d4a820;
-  --gold-bright: #f59e0b;
-  --gold-dark: #a07818;
-  --gold-dim: rgba(212, 168, 32, 0.16);
-  --gold-glow: rgba(212, 168, 32, 0.28);
-
-  --blue-primary: #5c9ce6;
-  --blue-dim: rgba(92, 156, 230, 0.15);
-
-  --green-primary: #4ade80;
-  --green-dim: rgba(74, 222, 128, 0.15);
-
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.55);
-  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.7);
+  /* Variables dinámicas de pliegues calculadas con el scroll */
+  --scroll-paper-shift: 0px;
+  --scroll-crease-angle: 125deg;
+  --scroll-crease-opacity: 0.35;
 }
 
 /* =====================================================================
@@ -196,14 +109,19 @@ html {
 
 body {
   font-family: var(--font-serif);
-  background-color: var(--bg-primary);
+  background-color: #caa87b;
+  background-image: 
+    radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.15) 0%, transparent 65%),
+    radial-gradient(ellipse at 50% 100%, rgba(60, 40, 15, 0.22) 0%, transparent 75%),
+    url('images/papel-arrugado-kraft-1.jpg');
+  background-repeat: no-repeat, no-repeat, repeat-y;
+  background-size: 100% 1200px, 100% 1400px, 100% auto;
+  background-position: center top, center bottom, center top;
+  background-attachment: scroll;
   color: var(--text-secondary);
   line-height: 1.78;
   overflow-x: hidden;
   min-height: 100vh;
-  transition: background-color 0.35s ease, color 0.35s ease;
-  background-image: radial-gradient(var(--paper-grain) 1px, transparent 0);
-  background-size: 24px 24px;
 }
 
 /* Títulos con tipografía de prensa histórica */
@@ -304,15 +222,17 @@ body.font-large .bio-body p {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  background: var(--bg-surface);
+  background: rgba(220, 198, 164, 0.94);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border-bottom: 2px solid var(--ink-rule);
-  box-shadow: 0 2px 8px rgba(27, 23, 20, 0.08);
+  box-shadow: 0 2px 8px rgba(35, 22, 10, 0.12);
   transition: all 0.25s ease;
 }
 
 .site-header.scrolled .header-container {
-  background: var(--bg-surface);
-  box-shadow: 0 4px 14px rgba(27, 23, 20, 0.14);
+  background: rgba(212, 188, 152, 0.97);
+  box-shadow: 0 4px 14px rgba(35, 22, 10, 0.18);
   border-bottom: 3px double var(--ink-rule);
 }
 
@@ -401,6 +321,33 @@ body.font-large .bio-body p {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+/* Insignia Editorial de Archivo Histórico */
+.header-edition-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 34px;
+  padding: 0 12px;
+  border-radius: var(--r-sm);
+  background: rgba(138, 21, 21, 0.08);
+  border: 1px solid var(--border-card);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--red-primary);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.edition-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--red-primary);
+  box-shadow: 0 0 6px rgba(138, 21, 21, 0.4);
 }
 
 .btn-action-icon {
@@ -540,13 +487,13 @@ body.font-large .bio-body p {
 }
 
 .drawer-nav-item:hover {
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--gold-bright);
+  background: var(--bg-card);
+  color: var(--red-primary);
 }
 
 .drawer-nav-item .d-num {
   font-family: var(--font-mono);
-  color: var(--gold-primary);
+  color: var(--red-primary);
   font-size: 0.8rem;
 }
 
@@ -569,8 +516,8 @@ body.font-large .bio-body p {
   align-items: center;
   gap: 12px;
   padding: 8px 16px;
-  background: rgba(12, 19, 32, 0.92);
-  border: 1px solid var(--border-glow);
+  background: rgba(220, 198, 164, 0.96);
+  border: 1px solid var(--ink-rule);
   border-radius: var(--r-full);
   box-shadow: var(--shadow-md);
   z-index: 999;
@@ -600,22 +547,128 @@ body.font-large .bio-body p {
 /* =====================================================================
    5. LAYOUT GENERAL Y SECCIONES
    ===================================================================== */
+/* =====================================================================
+   5. LAYOUT GENERAL Y SISTEMA DE ARRUGAS EVOLUTIVAS POR MÓDULO
+   Emula un auténtico pliego broadsheet de periódico donde cada sección
+   presenta pliegues, arrugas, relieves y sombras de papel únicos al hacer scroll.
+   ===================================================================== */
 .content-wrapper {
   max-width: var(--container-w);
   margin: 0 auto;
   padding: 0 24px;
+  position: relative;
+  z-index: 2;
 }
 
 .module-section {
   position: relative;
   padding: 80px 0;
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: 2px solid var(--ink-rule);
+  overflow: hidden;
 }
 
 @media (min-width: 768px) {
   .module-section {
     padding: 100px 0;
   }
+}
+
+/* Pliegue de relieve dinámico y sombra de doblado entre secciones */
+.module-section::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 20px;
+  background: linear-gradient(180deg, transparent 0%, rgba(45, 28, 12, 0.16) 65%, rgba(30, 18, 8, 0.30) 100%);
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* Capa de textura y arrugas variables por sección (evolucionan de forma continua al bajar) */
+.module-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: multiply;
+  transition: opacity 0.35s ease;
+}
+
+/* MÓDULO 1: Portada — Pliegue horizontal de cabecera y textura kraft 1 */
+#modulo-1::before {
+  background: 
+    linear-gradient(var(--scroll-crease-angle, 125deg), transparent 42%, rgba(55, 35, 12, 0.15) 45%, rgba(255, 255, 255, 0.14) 47%, rgba(55, 35, 12, 0.18) 49%, transparent 54%),
+    radial-gradient(circle at 80% 20%, rgba(70, 45, 18, 0.16) 0%, transparent 60%);
+  opacity: 0.55;
+  transform: translateY(calc(var(--scroll-paper-shift, 0px) * -0.2));
+}
+
+/* MÓDULO 2: Los Hechos — Textura 2 con pliegues diagonales pronunciados */
+#modulo-2::before {
+  background-image: 
+    linear-gradient(135deg, transparent 48%, rgba(50, 32, 14, 0.14) 50%, rgba(255, 255, 255, 0.12) 51%, transparent 53%),
+    url('images/papel-arrugado-kraft-2.jpg');
+  background-size: auto, cover;
+  background-position: center top, center 12%;
+  opacity: 0.44;
+}
+
+/* MÓDULO 3: Investigación y Autoría — Hendiduras diagonales cruzadas */
+#modulo-3::before {
+  background: 
+    linear-gradient(65deg, transparent 32%, rgba(60, 38, 14, 0.16) 35%, rgba(255, 255, 255, 0.15) 37%, rgba(60, 38, 14, 0.14) 39%, transparent 45%),
+    linear-gradient(150deg, transparent 62%, rgba(65, 40, 16, 0.18) 66%, rgba(255, 255, 255, 0.12) 68%, transparent 74%);
+  opacity: 0.58;
+  transform: translateY(calc(var(--scroll-paper-shift, 0px) * 0.15));
+}
+
+/* MÓDULO 4: Víctimas y Santuario — Textura 2 con iluminación cálida de memorial */
+#modulo-4::before {
+  background-image: 
+    radial-gradient(circle at 50% 30%, rgba(255, 200, 100, 0.12) 0%, transparent 60%),
+    url('images/papel-arrugado-kraft-2.jpg');
+  background-size: auto, 115% auto;
+  background-position: center top, center 48%;
+  opacity: 0.46;
+}
+
+/* MÓDULO 5: Hemeroteca — Pliegue central vertical de prensa broadsheet */
+#modulo-5::before {
+  background: 
+    linear-gradient(90deg, transparent calc(50% - 24px), rgba(50, 30, 12, 0.22) calc(50% - 4px), rgba(255, 255, 255, 0.16) 50%, rgba(50, 30, 12, 0.24) calc(50% + 4px), transparent calc(50% + 24px)),
+    linear-gradient(-38deg, transparent 40%, rgba(60, 35, 14, 0.14) 43%, transparent 48%);
+  opacity: 0.60;
+}
+
+/* MÓDULO 6: Proceso Judicial — Textura 1 invertida para patrón único de pliegue */
+#modulo-6::before {
+  background-image: url('images/papel-arrugado-kraft-1.jpg');
+  background-size: cover;
+  background-position: center 78%;
+  transform: scaleX(-1);
+  opacity: 0.40;
+}
+
+/* MÓDULO 7: Reflexión — Hendiduras angulares cruzadas */
+#modulo-7::before {
+  background: 
+    linear-gradient(42deg, transparent 38%, rgba(60, 36, 14, 0.16) 41%, rgba(255, 255, 255, 0.14) 43%, transparent 47%),
+    linear-gradient(136deg, transparent 58%, rgba(60, 36, 14, 0.15) 61%, rgba(255, 255, 255, 0.12) 63%, transparent 68%);
+  opacity: 0.54;
+  transform: translateY(calc(var(--scroll-paper-shift, 0px) * -0.1));
+}
+
+/* MÓDULO 8: Fuentes y Archivo — Textura 2 con pliegues inferiores envejecidos */
+#modulo-8::before {
+  background-image: 
+    linear-gradient(0deg, rgba(40, 24, 10, 0.24) 0%, transparent 40%),
+    url('images/papel-arrugado-kraft-2.jpg');
+  background-size: auto, cover;
+  background-position: center bottom, center 92%;
+  opacity: 0.50;
 }
 
 .section-header {
@@ -774,16 +827,7 @@ body.font-large .bio-body p {
 .hero-gradient-overlay {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 50% 30%, rgba(246, 241, 231, 0.45) 0%, rgba(236, 229, 216, 0.95) 85%);
-}
-
-body.theme-dark .hero-gradient-overlay {
-  background: radial-gradient(circle at 50% 30%, rgba(23, 25, 29, 0.5) 0%, rgba(14, 15, 17, 0.95) 85%);
-}
-
-body.theme-dark .hero-bg-img {
-  opacity: 0.18;
-  filter: grayscale(85%) contrast(1.1);
+  background: radial-gradient(circle at 50% 30%, rgba(212, 184, 145, 0.42) 0%, rgba(191, 157, 114, 0.94) 85%);
 }
 
 .hero-inner {
@@ -916,6 +960,54 @@ body.theme-dark .hero-bg-img {
   color: var(--text-muted);
   text-transform: uppercase;
   margin-top: 4px;
+}
+
+.masthead-top-ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vintage-filigree-scroll {
+  width: 140px;
+  height: 22px;
+  color: var(--ink-rule);
+}
+
+.vintage-divider-diamond {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 960px;
+  margin: 18px auto 22px;
+  color: var(--ink-rule);
+}
+
+.vintage-divider-diamond .diamond-point {
+  font-size: 0.9rem;
+  line-height: 1;
+  color: var(--ink-rule);
+  user-select: none;
+}
+
+.vintage-divider-diamond .divider-line {
+  flex: 1;
+  height: 2px;
+  background: var(--ink-rule);
+  margin: 0 10px;
+}
+
+.vintage-divider-diamond .divider-center-flourish {
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+}
+
+.vintage-flourish-icon {
+  width: 120px;
+  height: 24px;
+  color: var(--ink-rule);
 }
 
 .masthead-divider-double {
@@ -1479,11 +1571,6 @@ body.theme-dark .hero-bg-img {
   box-shadow: var(--shadow-sm);
 }
 
-body.theme-dark .schematic-interactive-wrap {
-  background: rgba(4, 7, 14, 0.85);
-  border-color: var(--border-card);
-}
-
 .schematic-top-meta {
   display: flex;
   justify-content: space-between;
@@ -1786,13 +1873,9 @@ body.theme-dark .schematic-interactive-wrap {
   z-index: 0;
 }
 
-/* OpenStreetMap tiles con estilo de grabado cartográfico histórico */
+/* OpenStreetMap tiles con estilo de grabado cartográfico histórico sobre papel kraft */
 .osm-custom-dark-tiles {
-  filter: sepia(0.38) contrast(1.15) brightness(0.96) saturate(0.85) !important;
-}
-
-body.theme-dark .osm-custom-dark-tiles {
-  filter: brightness(0.68) invert(1) contrast(2.1) hue-rotate(200deg) saturate(0.28) !important;
+  filter: sepia(0.52) contrast(1.18) brightness(0.92) saturate(0.85) !important;
 }
 
 /* Ajuste de z-index para que los popups Leaflet queden sobre el contenido */
@@ -1859,8 +1942,7 @@ body.theme-dark .osm-custom-dark-tiles {
   top: 8px !important;
   right: 8px !important;
 }
-.leaflet-control-attribution { font-size: 9px; background: rgba(246, 241, 231, 0.8) !important; color: var(--text-dim) !important; }
-body.theme-dark .leaflet-control-attribution { background: rgba(0,0,0,0.5) !important; color: #64748b !important; }
+.leaflet-control-attribution { font-size: 9px; background: rgba(220, 198, 164, 0.88) !important; color: var(--text-dim) !important; }
 .leaflet-control-attribution a { color: var(--text-secondary) !important; }
 
 .interactive-map-node {

@@ -6,7 +6,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   // Inicialización de subsistemas
-  initThemeToggle();
+  initPaperScrollDynamics();
   initPremiumParticles();
   initReadingProgressBar();
   initHeaderScrollSpy();
@@ -48,47 +48,51 @@ function initToastSystem() {
 }
 
 /* ========================================================================
-   2. TEMA CLARO / OSCURO (Oscuro conmemorativo por defecto)
+   2. DINÁMICA DE PAPEL KRAFT EDITORIAL Y EVOLUCIÓN ORGÁNICA DE ARRUGAS
+   Emula un auténtico pliego histórico de periódico cuyas arrugas, pliegues
+   y sombras de relieve evolucionan dinámicamente con el desplazamiento.
    ======================================================================== */
-function initThemeToggle() {
-  const btnTheme = document.getElementById('btn-theme-toggle');
-  if (!btnTheme) return;
+function initPaperScrollDynamics() {
+  // Garantizar modo único: Pliego Editorial de Prensa Histórica
+  document.body.classList.remove('theme-dark');
+  document.body.classList.add('theme-light');
+  document.documentElement.classList.remove('theme-dark');
+  document.documentElement.classList.add('theme-light');
+  try {
+    localStorage.removeItem('cb_theme');
+  } catch (e) {}
 
-  const sunIcon = btnTheme.querySelector('.icon-sun');
-  const moonIcon = btnTheme.querySelector('.icon-moon');
-  const themeText = btnTheme.querySelector('.btn-theme-text');
-
-  const savedTheme = localStorage.getItem('cb_theme') || 'light';
-  applyTheme(savedTheme, false);
-
-  btnTheme.addEventListener('click', () => {
-    const isDark = document.body.classList.contains('theme-dark');
-    const newTheme = isDark ? 'light' : 'dark';
-    applyTheme(newTheme, true);
-    localStorage.setItem('cb_theme', newTheme);
-  });
-
-  function applyTheme(theme, notify = false) {
-    if (theme === 'light') {
-      document.body.classList.remove('theme-dark');
-      document.body.classList.add('theme-light');
-      document.documentElement.classList.remove('theme-dark');
-      document.documentElement.classList.add('theme-light');
-      if (sunIcon) sunIcon.style.display = 'none';
-      if (moonIcon) moonIcon.style.display = 'inline';
-      if (themeText) themeText.textContent = 'Prensa';
-      if (notify) showToast('Edición de prensa histórica activada');
-    } else {
-      document.body.classList.remove('theme-light');
-      document.body.classList.add('theme-dark');
-      document.documentElement.classList.remove('theme-light');
-      document.documentElement.classList.add('theme-dark');
-      if (sunIcon) sunIcon.style.display = 'inline';
-      if (moonIcon) moonIcon.style.display = 'none';
-      if (themeText) themeText.textContent = 'Microfilm';
-      if (notify) showToast('Modo archivo nocturno (microfilm) activado');
-    }
+  // Si existe algún botón residual de cambio de tema, retirarlo
+  const oldThemeBtn = document.getElementById('btn-theme-toggle');
+  if (oldThemeBtn) {
+    oldThemeBtn.remove();
   }
+
+  // Desplazamiento dinámico de iluminación y sombras de arrugas
+  let ticking = false;
+  const root = document.documentElement;
+
+  const updatePaperDynamics = () => {
+    const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+    const docHeight = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    const scrollPercent = Math.min(1, Math.max(0, scrollY / docHeight));
+
+    // Modulación sutil de posición de pliegues para sensación de textura viva y física
+    root.style.setProperty('--scroll-paper-shift', `${(scrollY * 0.08).toFixed(1)}px`);
+    root.style.setProperty('--scroll-crease-angle', `${(120 + scrollPercent * 35).toFixed(1)}deg`);
+    root.style.setProperty('--scroll-crease-opacity', `${(0.32 + Math.sin(scrollPercent * Math.PI * 4) * 0.08).toFixed(2)}`);
+
+    ticking = false;
+  };
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(updatePaperDynamics);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  updatePaperDynamics();
 }
 
 /* ========================================================================
