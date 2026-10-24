@@ -5,18 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>El Caso del Collar Bomba | Memoria, Verdad y Dignidad</title>
-  <meta name="description" content="Portal interactivo de reconstrucción documental sobre el collar bomba en Colombia (15 de mayo de 2000). Rigor judicial, dignidad para las víctimas y pedagogía contra la desinformación.">
-  <meta name="keywords" content="Collar Bomba, Chiquinquirá, Simijaca, Elvia Cortés, Jairo Hernando López, Memoria Histórica Colombia, Verdad y Dignidad">
-  <meta name="author" content="Proyecto de Memoria y Verdad Histórica">
+  <meta name="description" content="Portal interactivo y documental de reconstrucción histórica sobre el crimen del collar bomba en Colombia (15 de mayo de 2000). Rigor judicial, dignidad para las víctimas y pedagogía contra la desinformación.">
+  <meta name="keywords" content="Collar Bomba, Simijaca, Chiquinquirá, Ana Elvia Cortés, Jairo Hernando López, Memoria Histórica Colombia, Verdad y Dignidad, Corte Suprema de Justicia">
+  <meta name="author" content="Proyecto Documental de Memoria y Verdad Histórica">
 
-  <!-- Open Graph -->
+  <!-- Open Graph / Meta Social -->
   <meta property="og:type" content="article">
   <meta property="og:title" content="El Caso del Collar Bomba: Memoria, Verdad y Dignidad">
-  <meta property="og:description" content="Reconstrucción documental del crimen del 15 de mayo de 2000: víctimas, investigación judicial y desinformación.">
+  <meta property="og:description" content="Reconstrucción documental rigurosa: víctimas, verdad procesal judicial (CSJ Proceso 21285) y desmentido de la desinformación.">
   <meta property="og:image" content="images/plaza-chiquinquira.jpg">
 
-  <!-- Favicon SVG con símbolo de memoria / llama -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23c49219'><path d='M12 2c-.5 2-2 3.5-2 5.5 0 1.5 1 2.5 2 2.5s2-1 2-2.5c0-2-1.5-3.5-2-5.5zm-5 9v11h10V11H7zm2 2h6v7H9v-7z'/></svg>">
+  <!-- Favicon SVG con símbolo de memoria / llama conmemorativa -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23d4a820'><path d='M12 2c-.5 2-2 3.5-2 5.5 0 1.5 1 2.5 2 2.5s2-1 2-2.5c0-2-1.5-3.5-2-5.5zm-5 9v11h10V11H7zm2 2h6v7H9v-7z'/></svg>">
 
   <!-- Google Fonts: Cinzel, Playfair Display, Plus Jakarta Sans, JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,22 +26,25 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="theme-dark">
-  <!-- Canvas de partículas doradas para efectos wow (velas y homenajes) -->
+  <!-- Enlace accesible de salto al contenido -->
+  <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
+  <!-- Canvas de partículas doradas ambientales (controlado por observador de visibilidad) -->
   <canvas id="particles-canvas" class="particles-bg-canvas" aria-hidden="true"></canvas>
 
   <!-- Barra de progreso de lectura superior -->
-  <div id="reading-progress" class="reading-progress-bar" aria-hidden="true"></div>
+  <div id="reading-progress" class="reading-progress-bar" role="progressbar" aria-label="Progreso de lectura" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 
   <!-- Encabezado / Navegación principal persistente -->
   <header class="site-header" id="site-header">
     <div class="header-container">
-      <a href="#modulo-1" class="site-brand">
+      <a href="#modulo-1" class="site-brand" aria-label="Volver al inicio del portal">
         <span class="brand-badge">MEMORIA Y VERDAD HISTÓRICA</span>
         <span class="brand-title">El Caso del Collar Bomba</span>
       </a>
 
       <!-- Navegación de escritorio por módulos -->
-      <nav class="desktop-nav" aria-label="Navegación por módulos">
+      <nav class="desktop-nav" aria-label="Navegación principal por módulos">
         <ol class="nav-module-list">
           <li><a href="#modulo-1" class="nav-link active" data-module="1"><span class="m-num">1</span> Portada</a></li>
           <li><a href="#modulo-2" class="nav-link" data-module="2"><span class="m-num">2</span> Los Hechos</a></li>
@@ -58,21 +61,22 @@
       <div class="header-actions">
         <!-- Conmutador Tema Claro / Oscuro -->
         <button id="btn-theme-toggle" class="btn-action-icon" aria-label="Alternar tema claro y oscuro" title="Cambiar tema (Claro / Oscuro)">
-          <svg class="icon-theme icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-          <svg class="icon-theme icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-theme icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="icon-theme icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
           <span class="btn-theme-text">Tema</span>
         </button>
 
-        <!-- Audio Ambiental Solemne (Web Audio API) -->
-        <button id="btn-ambient-audio" class="btn-action-icon" aria-label="Activar audio ambiental solemne" title="Atmósfera sonora de reflexión">
-          <svg class="icon-sound on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
-          <svg class="icon-sound off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
-          <span class="btn-sound-text">Voz Solemne</span>
+        <!-- Audio Ambiental Solemne (Web Audio API - Opt-in voluntario) -->
+        <button id="btn-ambient-audio" class="btn-action-icon" aria-label="Activar atmósfera sonora solemne" title="Atmósfera sonora de reflexión (Web Audio)">
+          <svg class="icon-sound on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+          <svg class="icon-sound off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;" aria-hidden="true"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+          <span class="btn-sound-text">Atmósfera</span>
         </button>
 
-        <!-- Ajuste de tamaño de texto -->
-        <button id="btn-font-size" class="btn-action-icon" aria-label="Ajustar tamaño de fuente" title="Cambiar tamaño de texto">
-          <span class="font-toggle-symbol">A<sup>+</sup></span>
+        <!-- Ajuste de tamaño de texto accesible -->
+        <button id="btn-font-size" class="btn-action-icon" aria-label="Ajustar tamaño de fuente accesible" title="Aumentar / restaurar tamaño de texto">
+          <span class="font-toggle-symbol" aria-hidden="true">A<sup>+</sup></span>
+          <span class="sr-only">Tamaño de fuente</span>
         </button>
 
         <!-- Botón Hamburguesa Móvil -->
@@ -86,7 +90,7 @@
   </header>
 
   <!-- Menú lateral deslizable para móviles -->
-  <aside id="mobile-drawer" class="mobile-drawer" aria-hidden="true">
+  <aside id="mobile-drawer" class="mobile-drawer" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Navegación móvil">
     <div class="drawer-header">
       <div class="drawer-title-group">
         <span class="drawer-badge">NAVEGACIÓN DOCUMENTAL</span>
@@ -95,12 +99,12 @@
       <button id="btn-close-drawer" class="btn-close" aria-label="Cerrar menú">&times;</button>
     </div>
     <div class="drawer-content">
-      <nav aria-label="Navegación móvil">
+      <nav aria-label="Navegación móvil por módulos">
         <ul class="drawer-nav-list">
           <li><a href="#modulo-1" class="drawer-nav-item"><span class="d-num">01</span> Portada y Contexto</a></li>
-          <li><a href="#modulo-2" class="drawer-nav-item"><span class="d-num">02</span> Hechos y Esquema Forense</a></li>
+          <li><a href="#modulo-2" class="drawer-nav-item"><span class="d-num">02</span> Hechos, Esquema y Mapa</a></li>
           <li><a href="#modulo-3" class="drawer-nav-item"><span class="d-num">03</span> Investigación y Autoría</a></li>
-          <li><a href="#modulo-4" class="drawer-nav-item"><span class="d-num">04</span> Las Víctimas y Luz de Memoria</a></li>
+          <li><a href="#modulo-4" class="drawer-nav-item"><span class="d-num">04</span> Las Víctimas y Santuario</a></li>
           <li><a href="#modulo-5" class="drawer-nav-item"><span class="d-num">05</span> Hemeroteca y Fact-Checking</a></li>
           <li><a href="#modulo-6" class="drawer-nav-item"><span class="d-num">06</span> Justicia y Proceso Judicial</a></li>
           <li><a href="#modulo-7" class="drawer-nav-item"><span class="d-num">07</span> Preguntas de Reflexión</a></li>
@@ -109,7 +113,7 @@
       </nav>
       <div class="drawer-footer">
         <div class="drawer-tribute">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 2c-.5 2-2 3.5-2 5.5 0 1.5 1 2.5 2 2.5s2-1 2-2.5c0-2-1.5-3.5-2-5.5zm-5 9v11h10V11H7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M12 2c-.5 2-2 3.5-2 5.5 0 1.5 1 2.5 2 2.5s2-1 2-2.5c0-2-1.5-3.5-2-5.5zm-5 9v11h10V11H7z"/></svg>
           <span>En memoria de Ana Elvia Cortés y Jairo Hernando López</span>
         </div>
       </div>
@@ -118,9 +122,9 @@
 
   <!-- Visualizador de Onda Sonora Flotante cuando el audio está activo -->
   <div id="audio-wave-bar" class="audio-wave-container" aria-hidden="true">
-    <canvas id="soundwave-canvas" width="140" height="24"></canvas>
-    <span class="audio-label">Reflexión acústica activa</span>
-    <button id="btn-audio-mute" class="btn-micro-mute" title="Silenciar">Silenciar</button>
+    <canvas id="soundwave-canvas" width="140" height="24" aria-hidden="true"></canvas>
+    <span class="audio-label">Atmósfera de reflexión activa</span>
+    <button id="btn-audio-mute" class="btn-micro-mute" title="Silenciar atmósfera sonora">Silenciar</button>
   </div>
 
   <main id="main-content">
@@ -131,7 +135,7 @@
     <section id="modulo-1" class="module-section module-hero" aria-labelledby="hero-title">
       <div class="hero-backdrop">
         <div class="hero-image-wrapper">
-          <img src="images/plaza-chiquinquira.jpg" alt="Fotografía de la Plaza de la Libertad y Basílica en Chiquinquirá" class="hero-bg-img" id="hero-main-photo">
+          <img src="images/plaza-chiquinquira.jpg" alt="Fotografía histórica de la Plaza de la Libertad y Basílica de Chiquinquirá (Boyacá)" class="hero-bg-img" id="hero-main-photo">
           <div class="hero-gradient-overlay"></div>
         </div>
         <div class="hero-scan-lines" aria-hidden="true"></div>
@@ -140,7 +144,7 @@
       <div class="content-wrapper hero-inner">
         <!-- Badge y Título Principal -->
         <div class="hero-header-badge">
-          <span class="dot-live"></span>
+          <span class="dot-live" aria-hidden="true"></span>
           <span>RECONSTRUCCIÓN DOCUMENTAL HISTÓRICA</span>
         </div>
 
@@ -149,37 +153,37 @@
         </h1>
 
         <p class="hero-subtitle">
-          Una reconstrucción documental del crimen ocurrido en Colombia el 15 de mayo de 2000, las personas afectadas, la investigación judicial y las versiones que circularon sobre su autoría.
+          Una investigación documental rigurosa sobre el crimen ocurrido en Colombia el 15 de mayo de 2000, la reivindicación de las víctimas, la verdad procesal judicial y la pedagogía contra la desinformación.
         </p>
 
         <!-- Cinta de Métricas Clave (Resumen visual sin sobrecarga) -->
         <div class="hero-stats-ribbon">
           <div class="stat-pill">
-            <span class="stat-icon">🗓️</span>
+            <span class="stat-icon" aria-hidden="true">🗓️</span>
             <div class="stat-info">
               <span class="stat-label">Fecha del crimen</span>
-              <span class="stat-value">15 de Mayo de 2000</span>
+              <strong class="stat-value">15 de Mayo de 2000</strong>
             </div>
           </div>
           <div class="stat-pill">
-            <span class="stat-icon">📍</span>
+            <span class="stat-icon" aria-hidden="true">📍</span>
             <div class="stat-info">
-              <span class="stat-label">Ubicación probada</span>
-              <span class="stat-value">Simijaca, Cundinamarca</span>
+              <span class="stat-label">Ubicación acreditada</span>
+              <strong class="stat-value">Simijaca, Cundinamarca</strong>
             </div>
           </div>
           <div class="stat-pill">
-            <span class="stat-icon">⚖️</span>
+            <span class="stat-icon" aria-hidden="true">⚖️</span>
             <div class="stat-info">
               <span class="stat-label">Corte Suprema de Justicia</span>
-              <span class="stat-value">Proceso 21285 (Condena 32 años)</span>
+              <strong class="stat-value">Proceso 21285 (Condena 32 años)</strong>
             </div>
           </div>
           <div class="stat-pill">
-            <span class="stat-icon">🕊️</span>
+            <span class="stat-icon" aria-hidden="true">🕊️</span>
             <div class="stat-info">
               <span class="stat-label">Víctimas mortales</span>
-              <span class="stat-value">Ana Elvia Cortés · Jairo H. López</span>
+              <strong class="stat-value">Ana Elvia Cortés · Jairo H. López</strong>
             </div>
           </div>
         </div>
@@ -187,24 +191,24 @@
         <!-- Tarjeta de Entrada Editorial Breve y Clara -->
         <div class="hero-intro-card modern-card">
           <p class="hero-lead-paragraph">
-            El 15 de mayo de 2000, <strong>Ana Elvia Cortés de Pachón</strong> fue víctima de una extorsión violenta en la que delincuentes le colocaron un artefacto explosivo alrededor del cuello. Durante el heroico intento de desactivación por parte del subintendente y técnico de la Policía <strong>Jairo Hernando López</strong>, el artefacto estalló cobrando la vida de ambos. Este portal reconstruye los hechos con fuentes judiciales verificables y reivindica la memoria de las víctimas frente a décadas de desinformación <span class="citation">(Corte Suprema de Justicia, 2005; El Tiempo, 2000)</span>.
+            El 15 de mayo de 2000, <strong>Ana Elvia Cortés de Pachón</strong> fue víctima de una extorsión violenta en la que delincuentes comunes le colocaron un artefacto explosivo alrededor del cuello. Durante el abnegado intento de auxilio por parte del subintendente y técnico de la Policía <strong>Jairo Hernando López</strong>, el artefacto estalló segando la vida de ambos. Este portal reconstruye los hechos con fuentes judiciales certificadas y reivindica la memoria de las víctimas frente a décadas de manipulación informativa <span class="citation">(Corte Suprema de Justicia, 2005; El Tiempo, 2000)</span>.
           </p>
 
           <div class="hero-purpose-row">
             <div class="purpose-chip">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
               <span>Verdad Judicial Certificada</span>
             </div>
             <div class="purpose-chip">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
               <span>Cronología Hora a Hora</span>
             </div>
             <div class="purpose-chip">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
               <span>Fact-Checking y Desmentidos</span>
             </div>
             <div class="purpose-chip">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
               <span>Dignidad para las Víctimas</span>
             </div>
           </div>
@@ -213,7 +217,7 @@
         <!-- Banner Destacado Módulo 1 -->
         <aside class="highlight-banner gold-banner">
           <div class="banner-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           </div>
           <blockquote class="banner-quote">
             «Recordar con responsabilidad significa buscar la verdad, reconocer a las víctimas y no repetir como hechos las versiones que no han sido comprobadas.»
@@ -224,26 +228,26 @@
         <div class="hero-lower-grid">
           <div class="geo-note-card modern-card">
             <div class="card-badge-header">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
               <h4>Precisión Geográfica: Simijaca vs. Chiquinquirá</h4>
             </div>
             <p>
-              Aunque popularmente se le llamó <em>«el collar bomba de Chiquinquirá»</em>, la providencia judicial de casación certifica que ocurrió en una finca de <strong>Simijaca (Cundinamarca)</strong>, en el límite con la vereda Palestina de Boyacá. El sitio no equipara automáticamente el nombre mediático con la localización formal de los tribunales <span class="citation">(CSJ, Sala Penal, 2005)</span>.
+              Aunque los medios bautizaron popularmente el caso como <em>«el collar bomba de Chiquinquirá»</em>, la providencia de casación de la Corte Suprema certifica que los hechos ocurrieron en una finca rural de <strong>Simijaca (Cundinamarca)</strong>, en el límite con la vereda Palestina. Chiquinquirá (Boyacá) funcionó como epicentro de auxilio hospitalario y base de los corresponsales de prensa <span class="citation">(CSJ, Sala Penal, 2005)</span>.
             </p>
           </div>
 
           <div class="hero-media-preview modern-card">
             <div class="media-preview-header">
-              <span class="preview-tag">REGISTRO DE PRENSA (MAYO 2000)</span>
+              <span class="preview-tag">REGISTRO DE PRENSA CONTEMPORÁNEO (MAYO 2000)</span>
             </div>
             <div class="media-thumb-pair">
               <figure class="curated-thumb" data-caption="Plaza de la Libertad de Chiquinquirá (Boyacá), epicentro de atención periodística regional en mayo de 2000.">
-                <img src="images/plaza-chiquinquira.jpg" alt="Plaza de Chiquinquirá" loading="lazy">
-                <figcaption><strong>Chiquinquirá (Boyacá):</strong> Región de cobertura periodística contemporánea.</figcaption>
+                <img src="images/plaza-chiquinquira.jpg" alt="Plaza de Chiquinquirá y Basílica" loading="lazy">
+                <figcaption><strong>Chiquinquirá (Boyacá):</strong> Base de prensa y rescate hospitalario.</figcaption>
               </figure>
-              <figure class="curated-thumb" data-caption="Página de archivo de El Tiempo (Mayo 2000): 'Collar de dinamita' por Juanita León.">
-                <img src="images/prensa-collar-dinamita-2000.jpg" alt="Titular de prensa de mayo de 2000" loading="lazy">
-                <figcaption><strong>Titular contemporáneo:</strong> «Collar de dinamita» (El Tiempo, 2000).</figcaption>
+              <figure class="curated-thumb" data-caption="Página de archivo de El Tiempo (17 de mayo de 2000): 'Collar de dinamita' por Juanita León.">
+                <img src="images/prensa-collar-dinamita-2000.jpg" alt="Titular de prensa contemporáneo de mayo de 2000" loading="lazy">
+                <figcaption><strong>Archivo de prensa:</strong> «Collar de dinamita» (El Tiempo, 2000).</figcaption>
               </figure>
             </div>
           </div>
@@ -252,18 +256,18 @@
         <div class="hero-cta-row">
           <a href="#modulo-2" class="btn-primary-action ripple-container">
             <span>Explorar Reconstrucción de Hechos</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
           </a>
           <a href="#modulo-4" class="btn-secondary-action">
             <span>Homenaje a las Víctimas (Vela)</span>
-            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 2c-.5 2-2 3.5-2 5.5 0 1.5 1 2.5 2 2.5s2-1 2-2.5c0-2-1.5-3.5-2-5.5zm-5 9v11h10V11H7z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" aria-hidden="true"><path d="M12 2c-.5 2-2 3.5-2 5.5 0 1.5 1 2.5 2 2.5s2-1 2-2.5c0-2-1.5-3.5-2-5.5zm-5 9v11h10V11H7z"/></svg>
           </a>
         </div>
       </div>
 
-      <!-- Indicador de scroll cinematográfico -->
+      <!-- Indicador de scroll sutil -->
       <div class="scroll-hint" aria-hidden="true">
-        <span class="scroll-hint-text">Desplazar</span>
+        <span class="scroll-hint-text">Desplazar para explorar</span>
         <div class="scroll-hint-line"></div>
       </div>
     </section>
@@ -281,366 +285,339 @@
           </div>
           <h2 id="mod2-title" class="section-title">Reconstrucción de los Hechos <span class="gold-gradient-text">| 15 de Mayo de 2000</span></h2>
           <p class="section-desc">
-            Secuencia cronológica verificada de la tragedia, complementada con el mapa de la ruta geográfica y el esquema forense interactivo del artefacto según las actas judiciales.
+            Secuencia cronológica verificada de la tragedia, complementada con el mapa territorial interactivo de la ruta y la representación ilustrativa documental del artefacto según el expediente de casación.
           </p>
         </header>
 
         <!-- Banner destacado Módulo 2 -->
         <aside class="highlight-banner crimson-banner">
           <div class="banner-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
           </div>
           <blockquote class="banner-quote">
             «Una extorsión convirtió una vivienda rural en escenario de una tragedia. La historia se presenta sin recrear el sufrimiento ni convertir el artefacto en una atracción visual.»
           </blockquote>
         </aside>
 
-        <!-- LÍNEA DE TIEMPO INTERACTIVA REDISEÑADA -->
+        <!-- LÍNEA DE TIEMPO INTERACTIVA CONEXA AL MAPA -->
         <div class="timeline-interactive-block modern-card reveal-scale delay-1">
           <div class="timeline-toolbar">
             <div>
-              <h3 class="timeline-title">Línea de Tiempo Paso a Paso</h3>
-              <p class="timeline-subtitle">Selecciona una etapa para navegar los momentos clave documentados:</p>
+              <h3 class="timeline-title">Línea de Tiempo Sincronizada</h3>
+              <p class="timeline-subtitle">Navega por las etapas clave documentadas (se sincronizan automáticamente con el mapa inferior):</p>
             </div>
-            <div class="timeline-step-pills" role="tablist">
-              <button class="step-pill active" data-step="1">1. Invasión</button>
-              <button class="step-pill" data-step="2">2. El Collar</button>
-              <button class="step-pill" data-step="3">3. El Desactivador</button>
-              <button class="step-pill alert-pill" data-step="4">4. La Tragedia</button>
-              <button class="step-pill" data-step="5">5. Investigaciones</button>
+            <div class="timeline-step-pills" role="tablist" aria-label="Etapas de la cronología">
+              <button class="step-pill active" data-step="1" role="tab" aria-selected="true" id="step-btn-1">1. Invasión</button>
+              <button class="step-pill" data-step="2" role="tab" aria-selected="false" id="step-btn-2">2. El Collar</button>
+              <button class="step-pill" data-step="3" role="tab" aria-selected="false" id="step-btn-3">3. El Auxilio</button>
+              <button class="step-pill alert-pill" data-step="4" role="tab" aria-selected="false" id="step-btn-4">4. La Tragedia</button>
+              <button class="step-pill" data-step="5" role="tab" aria-selected="false" id="step-btn-5">5. La Verdad</button>
             </div>
           </div>
 
           <!-- Tarjeta Dinámica de Paso de Línea de Tiempo -->
-          <div class="timeline-dynamic-card" id="timeline-dynamic-display">
+          <div class="timeline-dynamic-card" id="timeline-dynamic-display" role="tabpanel" aria-labelledby="step-btn-1">
             <div class="step-meta-row">
               <span class="step-badge-tag" id="t-step-tag">MADRUGADA DEL 15 DE MAYO DE 2000</span>
-              <span class="step-stage-num" id="t-step-num">PASO 1 DE 5</span>
+              <div class="step-right-meta">
+                <span class="step-geo-link" id="t-step-geo">📍 Simijaca (Cundinamarca)</span>
+                <span class="step-stage-num" id="t-step-num">PASO 1 DE 5</span>
+              </div>
             </div>
-            <h4 class="step-main-title" id="t-step-title">Invasión armada e intimidación a la vivienda rural</h4>
+            <h4 class="step-main-title" id="t-step-title">Invasión armada e intimidación en vivienda rural</h4>
             <p class="step-main-desc" id="t-step-desc">
-              Hombres armados irrumpen en la vivienda rural de Ana Elvia Cortés de Pachón y su esposo en Simijaca. Intimidan violentamente a la pareja exigiendo 15 millones de pesos en efectivo, amenazando con segarles la vida.
+              Hombres armados irrumpen por la fuerza en la pequeña vivienda rural de Ana Elvia Cortés de Pachón y su esposo en Simijaca, Cundinamarca. Intimidan violentamente a la pareja exigiendo 15 millones de pesos en efectivo, amenazando con quitarles la vida si no cumplen.
             </p>
             <div class="step-footer-row">
-              <span class="step-source-chip" id="t-step-source">Fuente: Corte Suprema de Justicia, Sala de Casación Penal (2005)</span>
+              <span class="step-source-chip" id="t-step-source">Fuente: Corte Suprema de Justicia, Sala de Casación Penal (Proceso 21285 · 2005)</span>
               <div class="step-nav-arrows">
-                <button id="btn-t-prev" class="btn-step-nav" disabled>&larr; Anterior</button>
-                <button id="btn-t-next" class="btn-step-nav">Siguiente &rarr;</button>
+                <button id="btn-t-prev" class="btn-step-nav" disabled aria-label="Etapa anterior">&larr; Anterior</button>
+                <button id="btn-t-next" class="btn-step-nav" aria-label="Etapa siguiente">Siguiente &rarr;</button>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- RECURSOS COMPLEMENTARIOS WOW: ESQUEMA FORENSE Y RUTA GEOGRÁFICA -->
+        <!-- RECURSOS COMPLEMENTARIOS WOW: ESQUEMA ILUSTRATIVO RESPETUOSO Y MAPA TERRITORIAL -->
         <div class="mod2-interactive-grid">
-          <!-- Tarjeta 1: Esquema Forense Interactivo con Modo Despiece (Exploded View) -->
+          <!-- Tarjeta 1: Esquema Forense Ilustrativo (WOW 1: Respetuoso, No Operativo, Despiece Suave) -->
           <div class="forensic-card modern-card card-3d" id="forensic-explorer">
             <div class="card-badge-header">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
-              <h4>Esquema Forense Técnico del Artefacto</h4>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+              <h4>Representación Ilustrativa del Artefacto</h4>
             </div>
             <p class="forensic-intro">
-              Análisis forense basado en la providencia judicial 21285 para explicar técnicamente por qué fue una trampa mortal sin recurrir a imágenes explícitas:
+              Visualización documental estilizada basada en las actas de inspección pericial del proceso penal n.º 21285, orientada a explicar la estructura morfológica del artefacto sin proporcionar detalles de montaje operativo:
             </p>
 
             <!-- Controles del Esquema Forense -->
-            <div class="forensic-mode-bar">
-              <button class="mode-toggle-btn active" id="btn-schematic-assembled">Vista Ensamblada (Collar Cerrado)</button>
-              <button class="mode-toggle-btn" id="btn-schematic-exploded">Vista Despiece Forense (Exploded)</button>
+            <div class="forensic-mode-bar" role="group" aria-label="Modo de visualización del esquema">
+              <button class="mode-toggle-btn active" id="btn-schematic-assembled" aria-pressed="true">Vista Ensamblada (Collar Cerrado)</button>
+              <button class="mode-toggle-btn" id="btn-schematic-exploded" aria-pressed="false">Vista Despiece Ilustrativo</button>
             </div>
 
             <div class="schematic-interactive-wrap">
               <div class="schematic-top-meta">
-                <span class="meta-tag"><span class="meta-dot"></span> DIJIN / SIJIN · PROTOCOLO EOD</span>
+                <span class="meta-tag"><span class="meta-dot"></span> MORFOLOGÍA FORENSE NO OPERATIVA</span>
                 <span class="meta-code">EXPEDIENTE CSJ N.º 21285</span>
               </div>
-              <svg viewBox="0 0 500 320" class="forensic-svg" id="collar-diagram" aria-label="Diagrama técnico forense del artefacto explosivo artesanal">
+
+              <!-- SVG REDISEÑADO: ILUSTRATIVO, RESPETUOSO Y NO OPERATIVO -->
+              <svg viewBox="0 0 520 340" class="forensic-svg" id="collar-diagram" role="img" aria-label="Esquema ilustrativo estilizado del collar explosivo artesanal en cuatro secciones">
                 <defs>
-                  <linearGradient id="pvcGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#64748b"/>
-                    <stop offset="45%" stop-color="#94a3b8"/>
+                  <linearGradient id="pvcSleek" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#475569"/>
+                    <stop offset="40%" stop-color="#94a3b8"/>
                     <stop offset="70%" stop-color="#cbd5e1"/>
-                    <stop offset="100%" stop-color="#475569"/>
+                    <stop offset="100%" stop-color="#334155"/>
                   </linearGradient>
-                  <linearGradient id="dynaGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stop-color="#991b1b"/>
-                    <stop offset="40%" stop-color="#ef4444"/>
-                    <stop offset="80%" stop-color="#dc2626"/>
-                    <stop offset="100%" stop-color="#7f1d1d"/>
-                  </linearGradient>
-                  <linearGradient id="timerGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stop-color="#d97706"/>
-                    <stop offset="50%" stop-color="#f59e0b"/>
-                    <stop offset="100%" stop-color="#78350f"/>
-                  </linearGradient>
-                  <linearGradient id="trapGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#2563eb"/>
-                    <stop offset="50%" stop-color="#3b82f6"/>
-                    <stop offset="100%" stop-color="#1e3a8a"/>
-                  </linearGradient>
-                  <linearGradient id="lockGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <linearGradient id="goldHaze" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stop-color="#f59e0b"/>
                     <stop offset="50%" stop-color="#d97706"/>
-                    <stop offset="100%" stop-color="#92400e"/>
+                    <stop offset="100%" stop-color="#78350f"/>
                   </linearGradient>
-                  <pattern id="forensicGrid" width="20" height="20" patternUnits="userSpaceOnUse">
-                    <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255, 255, 255, 0.04)" stroke-width="0.8"/>
+                  <linearGradient id="crimsonHaze" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#dc2626"/>
+                    <stop offset="60%" stop-color="#991b1b"/>
+                    <stop offset="100%" stop-color="#450a0a"/>
+                  </linearGradient>
+                  <linearGradient id="blueHaze" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#3b82f6"/>
+                    <stop offset="60%" stop-color="#1d4ed8"/>
+                    <stop offset="100%" stop-color="#1e3a8a"/>
+                  </linearGradient>
+                  <pattern id="dotMatrix" width="16" height="16" patternUnits="userSpaceOnUse">
+                    <circle cx="2" cy="2" r="0.8" fill="rgba(255, 255, 255, 0.05)"/>
                   </pattern>
                 </defs>
 
-                <!-- Rejilla milimétrica y retícula técnica -->
-                <rect width="500" height="320" fill="url(#forensicGrid)"/>
-                <circle cx="250" cy="155" r="135" fill="none" stroke="rgba(212, 168, 32, 0.12)" stroke-dasharray="3,6"/>
-                <line x1="20" y1="155" x2="480" y2="155" stroke="rgba(255, 255, 255, 0.06)" stroke-width="1" stroke-dasharray="2,4"/>
-                <line x1="250" y1="20" x2="250" y2="300" stroke="rgba(255, 255, 255, 0.06)" stroke-width="1" stroke-dasharray="2,4"/>
+                <!-- Fondo y retícula sutil de calibración -->
+                <rect width="520" height="340" fill="url(#dotMatrix)" rx="8"/>
+                <circle cx="260" cy="170" r="140" fill="none" stroke="rgba(212, 168, 32, 0.12)" stroke-dasharray="3,6"/>
+                <line x1="20" y1="170" x2="500" y2="170" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1" stroke-dasharray="2,4"/>
+                <line x1="260" y1="20" x2="260" y2="320" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1" stroke-dasharray="2,4"/>
 
-                <!-- Silueta de la zona cervical de referencia -->
-                <ellipse cx="250" cy="155" rx="64" ry="48" class="cervical-silhouette" fill="rgba(15, 23, 42, 0.55)" stroke="rgba(148, 163, 184, 0.28)" stroke-width="1.5" stroke-dasharray="4,4"/>
-                <text x="250" y="152" text-anchor="middle" class="cervical-label" fill="#94a3b8" font-size="10" font-family="'JetBrains Mono', monospace" font-weight="700">PERÍMETRO CERVICAL</text>
-                <text x="250" y="167" text-anchor="middle" class="cervical-sublabel" fill="#64748b" font-size="8.5" font-family="'JetBrains Mono', monospace">DIÁMETRO INT: 14.5 cm</text>
+                <!-- Silueta de la zona cervical de referencia humana sobria -->
+                <ellipse cx="260" cy="170" rx="68" ry="52" class="cervical-silhouette" fill="rgba(15, 23, 42, 0.7)" stroke="rgba(148, 163, 184, 0.3)" stroke-width="1.5" stroke-dasharray="4,4"/>
+                <text x="260" y="166" text-anchor="middle" class="cervical-label" fill="#94a3b8" font-size="10" font-family="'JetBrains Mono', monospace" font-weight="700">PERÍMETRO CERVICAL</text>
+                <text x="260" y="182" text-anchor="middle" class="cervical-sublabel" fill="#64748b" font-size="8.5" font-family="'JetBrains Mono', monospace">DIÁMETRO APROX. 14.5 cm</text>
 
-                <!-- Grupo General del Collar Articulado -->
-                <g id="schematic-device-assembly">
-                  <!-- Tubo base PVC estructural -->
-                  <path id="svg-tube-base" d="M 125,225 C 88,175 88,105 150,68 C 200,35 300,35 350,68 C 412,105 412,175 375,225" fill="none" stroke="url(#pvcGrad)" stroke-width="32" stroke-linecap="round" opacity="0.3"/>
-
-                  <!-- COMPONENTE 1: CARGA EXPLOSIVA (Indugel / Dinamita) -->
-                  <g class="diagram-interactive-part" id="part-explosivo" data-part="explosivo" tabindex="0" role="button" aria-label="Componente 1: Carga explosiva dinamita">
-                    <!-- Segmento de tubo PVC izquierdo -->
-                    <path d="M 125,225 C 92,180 94,115 145,75" fill="none" stroke="url(#pvcGrad)" stroke-width="30" stroke-linecap="round"/>
-                    <!-- Sección en corte transparente (cutaway) con cartuchos de dinamita -->
-                    <path d="M 124,217 C 98,177 100,122 142,83" fill="none" stroke="url(#dynaGrad)" stroke-width="18" stroke-linecap="round"/>
-                    <!-- Envolturas de cartuchos y metralla pericial -->
-                    <line x1="102" y1="130" x2="114" y2="134" stroke="#fee2e2" stroke-width="2"/>
-                    <line x1="105" y1="160" x2="118" y2="162" stroke="#fee2e2" stroke-width="2"/>
-                    <line x1="113" y1="190" x2="126" y2="188" stroke="#fee2e2" stroke-width="2"/>
-                    <!-- Estopín / Detonador de cobre incrustado -->
-                    <rect x="135" y="73" width="16" height="8" rx="2" fill="#fcd34d" stroke="#78350f" stroke-width="1" transform="rotate(-35 135 73)"/>
-                    <!-- Marcador técnico forense [1] fijo y nítido -->
-                    <g class="forensic-marker" transform="translate(108, 150)">
-                      <circle r="9" class="marker-circle marker-red" fill="#dc2626" stroke="#ffffff" stroke-width="1.8"/>
-                      <text y="3" text-anchor="middle" class="marker-num" fill="#ffffff" font-size="9.5" font-family="'JetBrains Mono', monospace" font-weight="800">1</text>
+                <!-- GRUPO ENSAMBLADO / DESPIECE -->
+                <g id="schematic-device-assembly" class="schematic-group">
+                  <!-- Segmento 1: Carga Primaria (Lateral Izquierdo) -->
+                  <g class="diagram-interactive-part active" id="part-explosivo" data-part="explosivo" tabindex="0" role="button" aria-label="Componente 1: Sección de carga explosiva">
+                    <!-- Segmento de tubo curvo estilizado -->
+                    <path class="schematic-pipe-body" d="M 132,238 C 96,192 98,122 152,78" fill="none" stroke="url(#pvcSleek)" stroke-width="32" stroke-linecap="round"/>
+                    <path d="M 130,230 C 102,188 104,130 148,88" fill="none" stroke="url(#crimsonHaze)" stroke-width="16" stroke-linecap="round" opacity="0.85"/>
+                    <!-- Marcador numerado 1 -->
+                    <g class="forensic-marker" transform="translate(108, 155)">
+                      <circle r="11" fill="#dc2626" stroke="#ffffff" stroke-width="2"/>
+                      <text y="4" text-anchor="middle" fill="#ffffff" font-size="10" font-family="'JetBrains Mono', monospace" font-weight="800">1</text>
                     </g>
-                    <text x="56" y="153" class="part-label part-label-red" fill="#f87171" font-size="10.5" font-weight="700" font-family="'JetBrains Mono', monospace">1. CARGA</text>
+                    <text x="50" y="159" class="part-label part-label-red" fill="#f87171" font-size="10.5" font-weight="700" font-family="'JetBrains Mono', monospace">1. CARGA</text>
                   </g>
 
-                  <!-- COMPONENTE 2: TEMPORIZADOR DESPERTADOR Y PILA 9V -->
-                  <g class="diagram-interactive-part" id="part-temporizador" data-part="temporizador" tabindex="0" role="button" aria-label="Componente 2: Reloj despertador modificado y batería 9V">
-                    <!-- Segmento de tubo central -->
-                    <path d="M 180,50 C 215,38 285,38 320,50" fill="none" stroke="url(#pvcGrad)" stroke-width="30"/>
-                    <!-- Carcasa del reloj despertador modificado -->
-                    <rect x="220" y="28" width="60" height="44" rx="6" fill="#0f172a" stroke="url(#timerGrad)" stroke-width="2"/>
-                    <!-- Cuadrante de reloj con aguja de detonación a las 15:00 -->
-                    <circle cx="238" cy="50" r="13" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5"/>
-                    <line x1="238" y1="50" x2="238" y2="41" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
-                    <line x1="238" y1="50" x2="246" y2="50" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round"/>
-                    <circle cx="238" cy="50" r="2.2" fill="#fbbf24"/>
-                    <!-- Batería alcalina 9V con bornes polarizados -->
-                    <rect x="258" y="38" width="16" height="24" rx="2" fill="#334155" stroke="#94a3b8" stroke-width="1"/>
-                    <rect x="260" y="34" width="4" height="4" fill="#fcd34d"/>
-                    <rect x="268" y="35" width="4" height="3" rx="1" fill="#94a3b8"/>
-                    <text x="266" y="54" text-anchor="middle" fill="#f59e0b" font-size="6.5" font-weight="800">9V</text>
-                    <!-- Marcador técnico forense [2] fijo y nítido -->
-                    <g class="forensic-marker" transform="translate(250, 20)">
-                      <circle r="9" class="marker-circle marker-gold" fill="#d97706" stroke="#ffffff" stroke-width="1.8"/>
-                      <text y="3" text-anchor="middle" class="marker-num" fill="#ffffff" font-size="9.5" font-family="'JetBrains Mono', monospace" font-weight="800">2</text>
+                  <!-- Segmento 2: Módulo Temporizador y Batería (Frontal Superior) -->
+                  <g class="diagram-interactive-part" id="part-temporizador" data-part="temporizador" tabindex="0" role="button" aria-label="Componente 2: Módulo temporizador analógico y batería 9V">
+                    <path class="schematic-pipe-body" d="M 190,56 C 225,44 295,44 330,56" fill="none" stroke="url(#pvcSleek)" stroke-width="32"/>
+                    <!-- Módulo frontal de control temporal estilizado -->
+                    <rect x="228" y="32" width="64" height="46" rx="6" fill="#0f172a" stroke="url(#goldHaze)" stroke-width="2"/>
+                    <!-- Esfera de reloj con manecilla a las 15:00 -->
+                    <circle cx="248" cy="55" r="14" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5"/>
+                    <line x1="248" y1="55" x2="248" y2="45" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="248" y1="55" x2="257" y2="55" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="248" cy="55" r="2.5" fill="#fbbf24"/>
+                    <!-- Batería alcalina 9V simbólica -->
+                    <rect x="270" y="42" width="16" height="26" rx="2" fill="#334155" stroke="#94a3b8" stroke-width="1"/>
+                    <text x="278" y="58" text-anchor="middle" fill="#f59e0b" font-size="7" font-weight="800">9V</text>
+                    <!-- Marcador numerado 2 -->
+                    <g class="forensic-marker" transform="translate(260, 22)">
+                      <circle r="11" fill="#d97706" stroke="#ffffff" stroke-width="2"/>
+                      <text y="4" text-anchor="middle" fill="#ffffff" font-size="10" font-family="'JetBrains Mono', monospace" font-weight="800">2</text>
                     </g>
-                    <text x="250" y="8" text-anchor="middle" class="part-label part-label-gold" fill="#fbbf24" font-size="10.5" font-weight="700" font-family="'JetBrains Mono', monospace">2. RELOJ 15:00h</text>
+                    <text x="260" y="8" text-anchor="middle" class="part-label part-label-gold" fill="#fbbf24" font-size="10.5" font-weight="700" font-family="'JetBrains Mono', monospace">2. RELOJ 15:00h</text>
                   </g>
 
-                  <!-- COMPONENTE 3: CIRCUITO TRAMPA MORTAL ANTI-CORTE -->
-                  <g class="diagram-interactive-part" id="part-trampa" data-part="trampa" tabindex="0" role="button" aria-label="Componente 3: Circuito trampa de tensión anti-corte">
-                    <!-- Segmento de tubo PVC derecho -->
-                    <path d="M 355,75 C 406,115 408,180 375,225" fill="none" stroke="url(#pvcGrad)" stroke-width="30" stroke-linecap="round"/>
-                    <!-- Corte longitudinal que muestra el microswitch de descompresión -->
-                    <path d="M 358,83 C 400,122 402,177 376,217" fill="none" stroke="url(#trapGrad)" stroke-width="18" stroke-linecap="round"/>
-                    <!-- Microswitch electromecánico de rotura -->
-                    <rect x="382" y="136" width="20" height="14" rx="3" fill="#0f172a" stroke="#3b82f6" stroke-width="1.8"/>
-                    <circle cx="388" cy="143" r="2.5" fill="#60a5fa"/>
-                    <!-- Resorte trampa tensado -->
-                    <path d="M 392,150 L 388,154 L 394,158 L 388,162 L 392,166" fill="none" stroke="#93c5fd" stroke-width="1.6"/>
-                    <!-- Marcador técnico forense [3] fijo y nítido -->
-                    <g class="forensic-marker" transform="translate(392, 148)">
-                      <circle r="9" class="marker-circle marker-blue" fill="#2563eb" stroke="#ffffff" stroke-width="1.8"/>
-                      <text y="3" text-anchor="middle" class="marker-num" fill="#ffffff" font-size="9.5" font-family="'JetBrains Mono', monospace" font-weight="800">3</text>
+                  <!-- Segmento 3: Mecanismo de Activación / Trampa (Lateral Derecho) -->
+                  <g class="diagram-interactive-part" id="part-trampa" data-part="trampa" tabindex="0" role="button" aria-label="Componente 3: Mecanismo sensor de alivio de tensión">
+                    <path class="schematic-pipe-body" d="M 368,78 C 422,122 424,192 388,238" fill="none" stroke="url(#pvcSleek)" stroke-width="32" stroke-linecap="round"/>
+                    <path d="M 372,88 C 416,130 418,188 390,230" fill="none" stroke="url(#blueHaze)" stroke-width="16" stroke-linecap="round" opacity="0.85"/>
+                    <!-- Marcador numerado 3 -->
+                    <g class="forensic-marker" transform="translate(410, 155)">
+                      <circle r="11" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+                      <text y="4" text-anchor="middle" fill="#ffffff" font-size="10" font-family="'JetBrains Mono', monospace" font-weight="800">3</text>
                     </g>
-                    <text x="444" y="152" class="part-label part-label-blue" fill="#60a5fa" font-size="10.5" font-weight="700" font-family="'JetBrains Mono', monospace">3. TRAMPA</text>
+                    <text x="468" y="159" class="part-label part-label-blue" fill="#60a5fa" font-size="10.5" font-weight="700" font-family="'JetBrains Mono', monospace">3. ACTIVACIÓN</text>
                   </g>
 
-                  <!-- COMPONENTE 4: CANDADO Y CIERRE POSTERIOR CERVICAL -->
-                  <g class="diagram-interactive-part" id="part-candado" data-part="candado" tabindex="0" role="button" aria-label="Componente 4: Candado de latón y cierre mecánico">
-                    <!-- Pletina articulada en la nuca -->
-                    <path d="M 125,225 C 145,255 210,272 250,272 C 290,272 355,255 375,225" fill="none" stroke="#475569" stroke-width="14" stroke-linecap="round" stroke-dasharray="4,4"/>
-                    <!-- Pasador de fijación -->
-                    <rect x="234" y="244" width="32" height="12" rx="3" fill="#64748b" stroke="#94a3b8" stroke-width="1"/>
-                    <!-- Grillete o arco de acero del candado -->
-                    <path d="M 241,256 L 241,268 C 241,274 259,274 259,268 L 259,256" fill="none" stroke="#e2e8f0" stroke-width="4.5" stroke-linecap="round"/>
-                    <!-- Cuerpo del candado en latón macizo -->
-                    <rect x="237" y="266" width="26" height="28" rx="4" fill="url(#lockGrad)" stroke="#78350f" stroke-width="1.5"/>
-                    <circle cx="250" cy="278" r="3.2" fill="#0f172a"/>
-                    <polygon points="248.5,279 251.5,279 252,286 248,286" fill="#0f172a"/>
-                    <!-- Marcador técnico forense [4] fijo y nítido -->
-                    <g class="forensic-marker" transform="translate(250, 280)">
-                      <circle r="9" class="marker-circle marker-gold" fill="#d97706" stroke="#ffffff" stroke-width="1.8"/>
-                      <text y="3" text-anchor="middle" class="marker-num" fill="#ffffff" font-size="9.5" font-family="'JetBrains Mono', monospace" font-weight="800">4</text>
+                  <!-- Segmento 4: Pletina Articulada y Candado Cervical (Posterior) -->
+                  <g class="diagram-interactive-part" id="part-candado" data-part="candado" tabindex="0" role="button" aria-label="Componente 4: Pletina cervical articulada y candado de sujeción">
+                    <path class="schematic-pipe-body" d="M 132,238 C 155,272 220,290 260,290 C 300,290 365,272 388,238" fill="none" stroke="#475569" stroke-width="16" stroke-linecap="round" stroke-dasharray="4,4"/>
+                    <!-- Candado de latón estilizado -->
+                    <path d="M 251,272 L 251,282 C 251,288 269,288 269,282 L 269,272" fill="none" stroke="#e2e8f0" stroke-width="4.5" stroke-linecap="round"/>
+                    <rect x="246" y="282" width="28" height="30" rx="4" fill="url(#goldHaze)" stroke="#78350f" stroke-width="1.5"/>
+                    <circle cx="260" cy="295" r="3.5" fill="#0f172a"/>
+                    <!-- Marcador numerado 4 -->
+                    <g class="forensic-marker" transform="translate(260, 297)">
+                      <circle r="11" fill="#d97706" stroke="#ffffff" stroke-width="2"/>
+                      <text y="4" text-anchor="middle" fill="#ffffff" font-size="10" font-family="'JetBrains Mono', monospace" font-weight="800">4</text>
                     </g>
-                    <text x="250" y="310" text-anchor="middle" class="part-label part-label-gold" fill="#fbbf24" font-size="10.5" font-weight="700" font-family="'JetBrains Mono', monospace">4. CANDADO</text>
+                    <text x="260" y="332" text-anchor="middle" class="part-label part-label-gold" fill="#fbbf24" font-size="10.5" font-weight="700" font-family="'JetBrains Mono', monospace">4. CANDADO</text>
                   </g>
-
-                  <!-- CABLEADO ELÉCTRICO FORENSE INTERNO -->
-                  <!-- Cable rojo (+) : Timer -> Detonador Indugel -->
-                  <path d="M 224,68 C 195,85 155,65 146,76" fill="none" stroke="#ef4444" stroke-width="2.4" stroke-linecap="round"/>
-                  <!-- Cable azul trampa : Timer -> Microswitch de tracción -->
-                  <path d="M 276,68 C 305,85 350,85 382,136" fill="none" stroke="#3b82f6" stroke-width="2.4" stroke-linecap="round"/>
-                  <!-- Cable guía trampa conectado al cierre del candado -->
-                  <path d="M 382,150 C 360,205 285,235 260,250" fill="none" stroke="#fbbf24" stroke-width="1.8" stroke-dasharray="3,2"/>
-                  <!-- Cable negro (-) masa de retorno -->
-                  <path d="M 125,225 C 165,250 215,250 236,246" fill="none" stroke="#0f172a" stroke-width="2.8" stroke-linecap="round"/>
                 </g>
               </svg>
             </div>
 
             <!-- Botones de inspección rápida -->
-            <div class="forensic-parts-nav" role="tablist">
-              <button class="part-btn active" data-part="explosivo">1. Dinamita e Indugel</button>
-              <button class="part-btn" data-part="temporizador">2. Reloj Temporizador 9V</button>
-              <button class="part-btn" data-part="trampa">3. Trampa Mortal Anti-Corte</button>
-              <button class="part-btn" data-part="candado">4. Candado de Bloqueo</button>
+            <div class="forensic-parts-nav" role="tablist" aria-label="Componentes del artefacto">
+              <button class="part-btn active" data-part="explosivo" role="tab" aria-selected="true" id="f-tab-1">1. Masa Explosiva</button>
+              <button class="part-btn" data-part="temporizador" role="tab" aria-selected="false" id="f-tab-2">2. Reloj Temporizador (15:00)</button>
+              <button class="part-btn" data-part="trampa" role="tab" aria-selected="false" id="f-tab-3">3. Sensor de Alivio</button>
+              <button class="part-btn" data-part="candado" role="tab" aria-selected="false" id="f-tab-4">4. Candado Cervical</button>
             </div>
 
-            <!-- Detalle Forense Dinámico -->
-            <div class="forensic-detail-box" id="forensic-detail">
-              <h5 id="detail-title">1. Dinamita y Carga Explosiva Principal</h5>
+            <!-- Detalle Forense Dinámico Accesible -->
+            <div class="forensic-detail-box" id="forensic-detail" aria-live="polite">
+              <h5 id="detail-title">1. Dinamita e Indugel Comercial (Carga Primaria)</h5>
               <p id="detail-text">
-                El collar constaba de tres secciones de tubo de PVC adaptadas anatómicamente. Uno de los compartimientos alojaba cartuchos de dinamita comercial y metralla pericialmente calculada para causar daño devastador a quemarropa.
+                El compartimento curvo de PVC alojaba cartuchos de dinamita e Indugel comercial. Las actas judiciales de criminalística y los peritajes balísticos consignados en el expediente 21285 acreditan que la carga letal estaba confinada dentro del tubo plástico curvado para dirigir la onda expansiva directamente contra la zona cervical de la víctima.
               </p>
-              <span class="detail-citation">Dictamen balístico · CSJ Proceso 21285.</span>
+              <span class="detail-citation">Dictamen balístico y forense · Expediente CSJ Proceso n.º 21285.</span>
+            </div>
+
+            <!-- Disclaimer de Seguridad y Ética Documental -->
+            <div class="forensic-disclaimer-card">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              <span><strong>Aviso ético y de seguridad:</strong> Representación gráfica estilizada con fines exclusivamente pedagógicos y de memoria histórica. Se omiten intencionalmente especificaciones operativas, circuitos de encendido o secuencias de ensamblaje en estricto cumplimiento de principios de seguridad pública y respeto a las víctimas.</span>
             </div>
           </div>
 
-          <!-- Tarjeta 2: Ruta Geográfica Interactiva (Boyacá - Cundinamarca) -->
+          <!-- Tarjeta 2: Mapa Histórico y Territorial (WOW 2: Geografía Rigurosa, Cartografía Editorial, Sincronización) -->
           <div class="carto-card modern-card card-3d" id="carto-explorer">
             <div class="card-badge-header">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
-              <h4>Ruta Geográfica de los Hechos (Boyacá - Cundinamarca)</h4>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+              <h4>Mapa Histórico y Territorial (Boyacá – Cundinamarca)</h4>
             </div>
             <p class="carto-intro">
-              Mapa cartográfico táctico para comprender la cronología territorial, el corredor vial y la discrepancia entre jurisdicción y atención hospitalaria:
+              Cartografía editorial verificada para comprender el corredor geográfico, la jurisdicción judicial oficial de Simijaca y el trayecto hacia Chiquinquirá y Bogotá:
             </p>
 
-            <!-- Píldoras de selección rápida de puntos geográficos -->
-            <div class="geo-nav-pills">
-              <button class="geo-pill-btn active" data-point="simijaca">1. Finca Simijaca</button>
-              <button class="geo-pill-btn" data-point="chiquinquira">2. Chiquinquirá</button>
-              <button class="geo-pill-btn" data-point="limite">3. Límite Veredal</button>
-              <button class="geo-pill-btn" data-point="bogota">4. Evacuación Bogotá</button>
+            <!-- Píldoras de selección de waypoints geográficos -->
+            <div class="geo-nav-pills" role="tablist" aria-label="Puntos geográficos clave">
+              <button class="geo-pill-btn active" data-point="simijaca" role="tab" aria-selected="true" id="g-tab-1">1. Finca Simijaca</button>
+              <button class="geo-pill-btn" data-point="chiquinquira" role="tab" aria-selected="false" id="g-tab-2">2. Chiquinquirá</button>
+              <button class="geo-pill-btn" data-point="limite" role="tab" aria-selected="false" id="g-tab-3">3. Límite Veredal</button>
+              <button class="geo-pill-btn" data-point="bogota" role="tab" aria-selected="false" id="g-tab-4">4. Evacuación Bogotá</button>
             </div>
 
             <div class="interactive-map-visual">
-              <svg viewBox="0 0 500 320" class="colombia-svg-map" id="colombia-route-svg" aria-label="Mapa cartográfico táctico de la ruta Boyacá - Cundinamarca">
+              <!-- SVG EDITORIAL: LÍMITES DEPARTAMENTALES, CORREDOR VIAL 45A, CERO RADARES MILITARES -->
+              <svg viewBox="0 0 520 340" class="colombia-svg-map" id="colombia-route-svg" role="img" aria-label="Mapa cartográfico editorial del corredor Boyacá - Cundinamarca">
                 <defs>
                   <linearGradient id="mapBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#050814"/>
-                    <stop offset="100%" stop-color="#0b1329"/>
+                    <stop offset="0%" stop-color="#070c18"/>
+                    <stop offset="100%" stop-color="#0c162c"/>
                   </linearGradient>
-                  <linearGradient id="boyacaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="rgba(212, 168, 32, 0.22)"/>
-                    <stop offset="100%" stop-color="rgba(180, 83, 9, 0.3)"/>
+                  <linearGradient id="boyacaTerritory" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="rgba(212, 168, 32, 0.18)"/>
+                    <stop offset="100%" stop-color="rgba(180, 83, 9, 0.28)"/>
                   </linearGradient>
-                  <linearGradient id="cundiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="rgba(14, 165, 233, 0.18)"/>
-                    <stop offset="100%" stop-color="rgba(30, 58, 138, 0.3)"/>
+                  <linearGradient id="cundiTerritory" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="rgba(14, 165, 233, 0.16)"/>
+                    <stop offset="100%" stop-color="rgba(30, 58, 138, 0.26)"/>
                   </linearGradient>
-                  <pattern id="radarGrid" width="40" height="40" patternUnits="userSpaceOnUse">
-                    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255, 255, 255, 0.035)" stroke-width="0.8"/>
-                  </pattern>
                 </defs>
 
-                <!-- Fondo cartográfico táctico -->
-                <rect width="500" height="320" fill="url(#mapBgGrad)" rx="10"/>
-                <rect width="500" height="320" fill="url(#radarGrid)" rx="10"/>
+                <!-- Fondo Cartográfico Sobrio -->
+                <rect width="520" height="340" fill="url(#mapBgGrad)" rx="10"/>
 
-                <!-- Anillos concéntricos de radar militar -->
-                <circle cx="270" cy="115" r="75" fill="none" stroke="rgba(212, 168, 32, 0.08)" stroke-width="1"/>
-                <circle cx="270" cy="115" r="140" fill="none" stroke="rgba(212, 168, 32, 0.05)" stroke-width="1" stroke-dasharray="4,6"/>
+                <!-- Curvas de nivel topográficas suaves (Cordillera Oriental) -->
+                <path d="M 30,80 Q 140,50 250,65 T 490,50" fill="none" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1.2"/>
+                <path d="M 20,140 Q 160,110 270,130 T 500,110" fill="none" stroke="rgba(255, 255, 255, 0.06)" stroke-width="1.2"/>
+                <path d="M 40,200 Q 180,180 280,195 T 480,180" fill="none" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1.2"/>
+                <path d="M 60,260 Q 200,240 290,255 T 470,240" fill="none" stroke="rgba(255, 255, 255, 0.04)" stroke-width="1.2"/>
 
-                <!-- Curvas de nivel topográficas (Cordillera Oriental) -->
-                <path d="M 50,75 Q 140,45 240,60 T 450,45" fill="none" stroke="rgba(255, 255, 255, 0.04)" stroke-width="1"/>
-                <path d="M 40,135 Q 160,105 260,125 T 460,105" fill="none" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1"/>
-                <path d="M 60,195 Q 180,175 270,190 T 450,175" fill="none" stroke="rgba(255, 255, 255, 0.04)" stroke-width="1"/>
-                <path d="M 80,255 Q 200,235 280,250 T 440,235" fill="none" stroke="rgba(255, 255, 255, 0.03)" stroke-width="1"/>
+                <!-- Polígono Departamental BOYACÁ (Provincia de Occidente - Noreste) -->
+                <path d="M 230,35 L 380,45 L 475,100 L 440,175 L 350,180 L 270,140 L 230,75 Z" fill="url(#boyacaTerritory)" stroke="rgba(212, 168, 32, 0.7)" stroke-width="1.8"/>
+                <text x="385" y="88" class="dept-label dept-boyaca" fill="rgba(212, 168, 32, 0.95)" font-size="12.5" font-weight="800" font-family="'JetBrains Mono', monospace" letter-spacing="1.5">BOYACÁ</text>
+                <text x="385" y="102" class="dept-sublabel" fill="rgba(212, 168, 32, 0.7)" font-size="8.5" font-family="'JetBrains Mono', monospace">PROV. OCCIDENTE</text>
 
-                <!-- Territorio Departamento de BOYACÁ (Noreste) -->
-                <path d="M 220,30 L 370,40 L 460,95 L 430,165 L 340,170 L 260,135 L 220,70 Z" fill="url(#boyacaGrad)" stroke="rgba(212, 168, 32, 0.65)" stroke-width="1.8"/>
-                <text x="375" y="85" class="dept-label dept-boyaca" fill="rgba(212, 168, 32, 0.95)" font-size="12" font-weight="800" font-family="'JetBrains Mono', monospace" letter-spacing="1.5">BOYACÁ</text>
-                <text x="375" y="98" class="dept-sublabel dept-boyaca" fill="rgba(212, 168, 32, 0.7)" font-size="8.5" font-family="'JetBrains Mono', monospace">PROV. OCCIDENTE</text>
+                <!-- Polígono Departamental CUNDINAMARCA (Valle de Ubaté - Suroeste) -->
+                <path d="M 125,100 L 230,75 L 270,140 L 280,230 L 260,305 L 155,300 L 115,190 Z" fill="url(#cundiTerritory)" stroke="rgba(14, 165, 233, 0.7)" stroke-width="1.8"/>
+                <text x="150" y="200" class="dept-label dept-cundi" fill="rgba(56, 189, 248, 0.95)" font-size="12.5" font-weight="800" font-family="'JetBrains Mono', monospace" letter-spacing="1.5">CUNDINAMARCA</text>
+                <text x="150" y="214" class="dept-sublabel" fill="rgba(56, 189, 248, 0.7)" font-size="8.5" font-family="'JetBrains Mono', monospace">VALLE DE UBATÉ</text>
 
-                <!-- Territorio Departamento de CUNDINAMARCA (Suroeste) -->
-                <path d="M 120,95 L 220,70 L 260,135 L 270,220 L 250,295 L 150,290 L 110,180 Z" fill="url(#cundiGrad)" stroke="rgba(14, 165, 233, 0.65)" stroke-width="1.8"/>
-                <text x="145" y="195" class="dept-label dept-cundi" fill="rgba(56, 189, 248, 0.95)" font-size="12" font-weight="800" font-family="'JetBrains Mono', monospace" letter-spacing="1.5">CUNDINAMARCA</text>
-                <text x="145" y="208" class="dept-sublabel dept-cundi" fill="rgba(56, 189, 248, 0.7)" font-size="8.5" font-family="'JetBrains Mono', monospace">VALLE DE UBATÉ</text>
-
-                <!-- Límite Departamental (Vereda Palestina) -->
-                <path d="M 220,70 L 260,135 L 285,150" fill="none" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="3,3"/>
+                <!-- Límite Departamental Veredal (Línea punteada) -->
+                <path d="M 230,75 L 270,140 L 295,155" fill="none" stroke="#fbbf24" stroke-width="1.8" stroke-dasharray="4,4"/>
 
                 <!-- Corredor Vial Nacional 45A (Carretera Central del Norte) -->
-                <path id="route-path" d="M 195,290 L 215,225 L 228,142 L 275,102" fill="none" stroke="rgba(245, 158, 11, 0.9)" stroke-width="3" stroke-dasharray="6,4" class="animated-route-line"/>
+                <path id="route-path" d="M 205,300 L 225,230 L 238,145 L 285,105" fill="none" stroke="rgba(245, 158, 11, 0.9)" stroke-width="3.5" stroke-dasharray="6,4" class="animated-route-line"/>
+                <text x="210" y="190" fill="#f59e0b" font-size="8" font-family="'JetBrains Mono', monospace" font-weight="700">RUTA 45A</text>
 
-                <!-- Línea aérea de evacuación en helicóptero hacia Bogotá -->
-                <path d="M 228,142 Q 170,210 195,290" fill="none" stroke="rgba(59, 130, 246, 0.75)" stroke-width="2" stroke-dasharray="4,4"/>
+                <!-- Línea de Evacuación Aérea hacia Bogotá D.C. -->
+                <path d="M 238,145 Q 175,220 205,300" fill="none" stroke="rgba(59, 130, 246, 0.8)" stroke-width="2.2" stroke-dasharray="4,4"/>
 
-                <!-- WAYPOINT 1: Finca El Manantial (Simijaca, Cundinamarca) -->
-                <g class="interactive-map-node active" id="node-simijaca" data-point="simijaca" transform="translate(228, 142)" tabindex="0" role="button">
+                <!-- WAYPOINT 1: Finca La Esperanza / El Manantial (Simijaca, Cundinamarca) -->
+                <g class="interactive-map-node active" id="node-simijaca" data-point="simijaca" transform="translate(238, 145)" tabindex="0" role="button" aria-label="Punto 1: Finca rural en Simijaca">
                   <circle r="26" fill="transparent" class="node-hit-area"/>
                   <circle r="12" class="node-pulse" fill="rgba(220, 38, 38, 0.25)"/>
-                  <circle r="6" class="node-pin pin-red" fill="#dc2626" stroke="#ffffff" stroke-width="1.8"/>
-                  <text x="-14" y="-12" text-anchor="end" class="node-label-strong node-label-red" fill="#f87171">1. Finca (Simijaca)</text>
-                  <text x="-14" y="2" text-anchor="end" class="node-sublabel" fill="#cbd5e1">Epicentro · 2.559 msnm</text>
+                  <circle r="6.5" class="node-pin pin-red" fill="#dc2626" stroke="#ffffff" stroke-width="2"/>
+                  <text x="-16" y="-12" text-anchor="end" class="node-label-strong node-label-red" fill="#f87171" font-weight="700" font-size="11">1. Finca (Simijaca)</text>
+                  <text x="-16" y="2" text-anchor="end" class="node-sublabel" fill="#cbd5e1" font-size="8.5">Epicentro Judicial · 2.559 m</text>
                 </g>
 
-                <!-- WAYPOINT 2: Chiquinquirá (Boyacá) -->
-                <g class="interactive-map-node" id="node-chiquinquira" data-point="chiquinquira" transform="translate(275, 102)" tabindex="0" role="button">
+                <!-- WAYPOINT 2: Chiquinquirá (Boyacá - 15.2 km al norte) -->
+                <g class="interactive-map-node" id="node-chiquinquira" data-point="chiquinquira" transform="translate(285, 105)" tabindex="0" role="button" aria-label="Punto 2: Chiquinquirá, Boyacá">
                   <circle r="26" fill="transparent" class="node-hit-area"/>
                   <circle r="12" class="node-pulse" fill="rgba(212, 168, 32, 0.25)"/>
-                  <circle r="6" class="node-pin pin-gold" fill="#d4a820" stroke="#ffffff" stroke-width="1.8"/>
-                  <text x="14" y="-10" class="node-label-strong node-label-gold" fill="#fbbf24">2. Chiquinquirá (Boyacá)</text>
-                  <text x="14" y="4" class="node-sublabel" fill="#cbd5e1">Prensa y Rescate (+15.2 km)</text>
+                  <circle r="6.5" class="node-pin pin-gold" fill="#d4a820" stroke="#ffffff" stroke-width="2"/>
+                  <text x="16" y="-10" class="node-label-strong node-label-gold" fill="#fbbf24" font-weight="700" font-size="11">2. Chiquinquirá (Boyacá)</text>
+                  <text x="16" y="4" class="node-sublabel" fill="#cbd5e1" font-size="8.5">Prensa y Rescate (+15.2 km)</text>
                 </g>
 
-                <!-- WAYPOINT 3: Límite Departamental (Vereda Palestina) -->
-                <g class="interactive-map-node" id="node-limite" data-point="limite" transform="translate(252, 126)" tabindex="0" role="button">
+                <!-- WAYPOINT 3: Vereda Palestina / Límite Departamental -->
+                <g class="interactive-map-node" id="node-limite" data-point="limite" transform="translate(262, 130)" tabindex="0" role="button" aria-label="Punto 3: Vereda Palestina, límite territorial">
                   <circle r="22" fill="transparent" class="node-hit-area"/>
                   <circle r="10" class="node-pulse" fill="rgba(168, 85, 247, 0.25)"/>
-                  <circle r="5" class="node-pin pin-purple" fill="#a855f7" stroke="#ffffff" stroke-width="1.6"/>
-                  <text x="14" y="16" class="node-label-strong node-label-purple" fill="#c084fc">3. Vereda Palestina</text>
-                  <text x="14" y="28" class="node-sublabel" fill="#94a3b8">Límite Territorial</text>
+                  <circle r="5.5" class="node-pin pin-purple" fill="#a855f7" stroke="#ffffff" stroke-width="1.8"/>
+                  <text x="14" y="16" class="node-label-strong node-label-purple" fill="#c084fc" font-weight="700" font-size="10">3. Vereda Palestina</text>
+                  <text x="14" y="28" class="node-sublabel" fill="#94a3b8" font-size="8">Límite Territorial</text>
                 </g>
 
                 <!-- WAYPOINT 4: Evacuación hacia Bogotá D.C. -->
-                <g class="interactive-map-node" id="node-bogota" data-point="bogota" transform="translate(195, 290)" tabindex="0" role="button">
+                <g class="interactive-map-node" id="node-bogota" data-point="bogota" transform="translate(205, 300)" tabindex="0" role="button" aria-label="Punto 4: Traslado de emergencia hacia Bogotá">
                   <circle r="26" fill="transparent" class="node-hit-area"/>
                   <circle r="12" class="node-pulse" fill="rgba(37, 99, 235, 0.25)"/>
-                  <circle r="6" class="node-pin pin-blue" fill="#2563eb" stroke="#ffffff" stroke-width="1.8"/>
-                  <text x="14" y="2" class="node-label-strong node-label-blue" fill="#60a5fa">4. Traslado Bogotá (128 km)</text>
-                  <text x="14" y="15" class="node-sublabel" fill="#94a3b8">Hospital Central Policía</text>
+                  <circle r="6.5" class="node-pin pin-blue" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+                  <text x="16" y="2" class="node-label-strong node-label-blue" fill="#60a5fa" font-weight="700" font-size="11">4. Traslado Bogotá (128 km)</text>
+                  <text x="16" y="15" class="node-sublabel" fill="#94a3b8" font-size="8.5">Hospital Central Policía</text>
                 </g>
 
-                <!-- Rosa de los vientos / Brújula náutica -->
-                <g transform="translate(450, 270)">
-                  <circle r="18" fill="rgba(15, 23, 42, 0.6)" stroke="rgba(212, 168, 32, 0.4)" stroke-width="1"/>
-                  <polygon points="0,-14 4,-4 0,-1 0,0" fill="#f59e0b"/>
-                  <polygon points="0,-14 -4,-4 0,-1 0,0" fill="#d97706"/>
-                  <polygon points="0,14 4,4 0,1 0,0" fill="#64748b"/>
-                  <polygon points="0,14 -4,4 0,1 0,0" fill="#475569"/>
-                  <text x="0" y="-17" text-anchor="middle" fill="#f59e0b" font-size="8" font-weight="800">N</text>
+                <!-- Rosa de los vientos sobria y elegante -->
+                <g transform="translate(465, 280)">
+                  <circle r="16" fill="rgba(15, 23, 42, 0.7)" stroke="rgba(212, 168, 32, 0.5)" stroke-width="1"/>
+                  <polygon points="0,-12 3.5,-3 0,0" fill="#f59e0b"/>
+                  <polygon points="0,-12 -3.5,-3 0,0" fill="#d97706"/>
+                  <polygon points="0,12 3.5,3 0,0" fill="#64748b"/>
+                  <polygon points="0,12 -3.5,3 0,0" fill="#475569"/>
+                  <text x="0" y="-15" text-anchor="middle" fill="#f59e0b" font-size="8" font-weight="800">N</text>
                 </g>
               </svg>
             </div>
 
-            <!-- Explicación dinámica de la ruta seleccionada -->
-            <div class="geo-tab-explanation" id="geo-info-box">
-              <span class="geo-tag-badge gold">1. Escenario del Crimen (Simijaca, Cundinamarca)</span>
-              <p>Finca rural donde ocurrió la extorsión inicial y el despliegue del operativo policial de rescate, según el expediente judicial oficial de la Fiscalía y la Corte Suprema de Justicia.</p>
+            <!-- Explicación dinámica de la ruta seleccionada con enlace de sincronización -->
+            <div class="geo-tab-explanation" id="geo-info-box" aria-live="polite">
+              <div class="geo-info-top">
+                <span class="geo-tag-badge gold" id="geo-badge-tag">1. Escenario Probado del Crimen (Simijaca, Cundinamarca)</span>
+                <button class="btn-sync-timeline" id="btn-sync-to-timeline" title="Ver esta etapa en la cronología">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  <span>Ver en Cronología (Paso 1)</span>
+                </button>
+              </div>
+              <p id="geo-desc-text">Predio rural donde ocurrió la incursión extorsiva inicial a las 5:00 a.m. del 15 de mayo de 2000 y el despliegue del auxilio policial. La providencia penal 21285 de la Corte Suprema radicó allí la competencia jurisdiccional oficial (Altitud: 2.559 msnm).</p>
+              <div class="geo-source-foot">
+                <span id="geo-source-text">Fuente: Corte Suprema de Justicia, Sala de Casación Penal (2005)</span>
+              </div>
             </div>
           </div>
         </div>
@@ -689,41 +666,41 @@
         <!-- WIDGET WOW: MITOS VS. REALIDAD (TARJETAS GIRATORIAS/DESPLEGABLES) -->
         <div class="myths-reality-container">
           <h3 class="myths-heading">Contraste Clave: Versión Inicial vs. Verdad Probada</h3>
-          <p class="myths-sub">Haz clic en cada tarjeta para contrastar lo que se dijo inicialmente con la verdad demostrada:</p>
+          <p class="myths-sub">Evolución documental desde la acusación política coyuntural hasta las decisiones judiciales en firme:</p>
 
           <div class="three-cards-grid reveal-on-scroll delay-2">
             <!-- Tarjeta 1: Versión Inicial -->
             <article class="comparative-card modern-card card-initial">
-              <div class="card-phase-badge badge-warning">FASE 1: HIPÓTESIS POLÍTICA</div>
+              <div class="card-phase-badge badge-warning">FASE 1: HIPÓTESIS POLÍTICA (2000)</div>
               <div class="card-icon-circle">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
               </div>
               <h3 class="comp-title">Lo que se dijo inicialmente</h3>
               <p class="comp-summary">
-                Autoridades y medios de comunicación atribuyeron el crimen inmediatamente a las FARC, tensando de manera crítica los diálogos de paz del Caguán.
+                Autoridades gubernamentales y medios de comunicación atribuyeron el crimen de forma inmediata a las FARC, tensando de manera crítica los diálogos de paz en la zona de distensión del Caguán.
               </p>
               <div class="comp-detail-box">
                 <div class="detail-label">Realidad documental:</div>
-                <p>Fue una <strong>declaración coyuntural</strong> sin peritajes balísticos ni orden judicial que la respaldara.</p>
+                <p>Fue una <strong>declaración coyuntural</strong> sin peritajes balísticos ni orden judicial previa que la respaldara.</p>
               </div>
               <div class="comp-footer">
-                <span class="source-stamp">El Tiempo (Mayo de 2000)</span>
+                <span class="source-stamp">El Tiempo (17 de mayo de 2000)</span>
               </div>
             </article>
 
             <!-- Tarjeta 2: Investigación Judicial -->
             <article class="comparative-card modern-card card-judicial">
-              <div class="card-phase-badge badge-info">FASE 2: INVESTIGACIÓN PENAL</div>
+              <div class="card-phase-badge badge-info">FASE 2: INVESTIGACIÓN PENAL (2001–2005)</div>
               <div class="card-icon-circle">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M16 12l-4-4-4 4M12 8v8"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M16 12l-4-4-4 4M12 8v8"/></svg>
               </div>
               <h3 class="comp-title">Qué investigaron las autoridades</h3>
               <p class="comp-summary">
-                La Fiscalía descartó a la insurgencia y probó que se trató de una banda de delincuencia común extorsiva local.
+                La Fiscalía descartó la autoría insurgente y probó que se trató de una banda de delincuencia común extorsiva local. José Miguel Suárez fue plenamente procesado.
               </p>
               <div class="comp-detail-box">
                 <div class="detail-label">Resultado judicial:</div>
-                <p><strong>Condena de 32 años de prisión</strong> contra José Miguel Suárez, ratificada por Tribunal y revisada en casación.</p>
+                <p><strong>Condena de 32 años de prisión</strong> ratificada por el Tribunal Superior y confirmada en casación por la Corte Suprema.</p>
               </div>
               <div class="comp-footer">
                 <span class="source-stamp">CSJ Proceso 21285 (2005)</span>
@@ -732,20 +709,20 @@
 
             <!-- Tarjeta 3: Verificación y Familias -->
             <article class="comparative-card modern-card card-verification">
-              <div class="card-phase-badge badge-success">FASE 3: FACT-CHECK & FAMILIA</div>
+              <div class="card-phase-badge badge-success">FASE 3: FACT-CHECK & FAMILIA (2016–2026)</div>
               <div class="card-icon-circle">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
               </div>
               <h3 class="comp-title">Lo que puede afirmarse hoy</h3>
               <p class="comp-summary">
-                ColombiaCheck y La Silla Vacía concluyen que <strong>es falso atribuir el collar a las FARC</strong>; persisten dudas familiares sobre otros implicados.
+                Chequeadores independientes concluyen que <strong>es falso atribuir el collar a las FARC</strong>; al tiempo, se reconocen con respeto las dudas de los familiares de las víctimas.
               </p>
               <div class="comp-detail-box">
                 <div class="detail-label">Dimensión humana:</div>
-                <p>Se respeta la perspectiva y el dolor de los familiares de Jairo Hernando López expresadas a la prensa <span class="citation">(Carranza Muñoz, 2016)</span>.</p>
+                <p>Se respeta la perspectiva y el dolor de los deudos del subintendente Jairo Hernando López expresadas a la prensa <span class="citation">(Carranza Muñoz, 2016)</span>.</p>
               </div>
               <div class="comp-footer">
-                <span class="source-stamp">ColombiaCheck & El Espectador</span>
+                <span class="source-stamp">ColombiaCheck, La Silla Vacía & El Espectador</span>
               </div>
             </article>
           </div>
@@ -754,7 +731,7 @@
         <!-- Banner destacado Módulo 3 -->
         <aside class="highlight-banner blue-banner">
           <div class="banner-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
           <blockquote class="banner-quote">
             «Una hipótesis inicial no es una conclusión definitiva. En hechos de alto impacto, la verificación y la corrección de errores son parte de la responsabilidad pública.»
@@ -765,21 +742,21 @@
         <div class="context-imagery-pair">
           <figure class="context-figure modern-card" data-caption="Imagen de archivo sobre la cobertura del conflicto armado en el año 2000, momento en el cual se formuló la acusación preliminar contra las FARC.">
             <div class="fig-img-container">
-              <img src="images/farc-conflicto-contexto.jpg" alt="Contexto del conflicto armado en Colombia" loading="lazy">
+              <img src="images/farc-conflicto-contexto.jpg" alt="Contexto de las negociaciones y conflicto armado en Colombia (2000)" loading="lazy">
               <span class="img-badge-overlay badge-warning">Hipótesis inicial de 2000</span>
             </div>
             <figcaption>
-              <strong>Conflicto y Diálogos de Paz:</strong> La acusación inicial fue usada en el debate sobre la zona de distensión del Caguán.
+              <strong>Conflicto y Diálogos de Paz:</strong> La acusación apresurada fue instrumentalizada en el debate político sobre el Caguán.
             </figcaption>
           </figure>
 
           <figure class="context-figure modern-card" data-caption="Registro contextual utilizado por organizaciones de verificación como ColombiaCheck para desmentir cadenas de desinformación electoral sobre el collar bomba.">
             <div class="fig-img-container">
-              <img src="images/farc-brazalete-contexto.jpg" alt="Verificación de desinformación" loading="lazy">
+              <img src="images/farc-brazalete-contexto.jpg" alt="Verificación de desinformación política" loading="lazy">
               <span class="img-badge-overlay badge-success">Chequeo de verificación</span>
             </div>
             <figcaption>
-              <strong>Verificación rigurosa:</strong> Organizaciones de verificación desmintieron acusaciones políticas que reviven este caso falsamente.
+              <strong>Verificación rigurosa:</strong> Organizaciones de verificación desmintieron falsedades electorales que revivieron el caso.
             </figcaption>
           </figure>
         </div>
@@ -806,7 +783,7 @@
         <!-- Banner destacado Módulo 4 -->
         <aside class="highlight-banner gold-banner">
           <div class="banner-icon">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
           </div>
           <blockquote class="banner-quote">
             «Las víctimas no son una imagen ni un titular. Son personas con una historia, una familia y una vida que merece ser recordada con dignidad.»
@@ -834,7 +811,7 @@
                 Mujer campesina trabajadora y dedicada a las faenas agrícolas junto a su esposo en su pequeña parcela rural. El 15 de mayo de 2000 fue obligada por extorsionistas armados a llevar el artefacto adherido a su cuello para forzar el pago de 15 millones de pesos.
               </p>
               <div class="bio-editorial-commitment">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                 <span><strong>Tratamiento con dignidad:</strong> Su memoria se rescata con respeto absoluto, sin reproducir imágenes explícitas del instante mortal <span class="citation">(CSJ, 2005)</span>.</span>
               </div>
             </div>
@@ -844,7 +821,7 @@
           <article class="bio-card modern-card">
             <div class="bio-header">
               <div class="bio-avatar-frame">
-                <img src="images/tecnico-antiexplosivos-traje.jpg" alt="Técnico antiexplosivos en servicio" class="bio-img">
+                <img src="images/tecnico-antiexplosivos-traje.jpg" alt="Técnico antiexplosivos con equipamiento de protección en servicio" class="bio-img">
                 <span class="bio-badge badge-service">Héroe en servicio</span>
               </div>
               <div class="bio-title-wrap">
@@ -859,17 +836,17 @@
                 Especialista policial antiexplosivos que acudió con valentía extrema para intentar salvar la vida de doña Ana Elvia Cortés, sabiendo que el collar presentaba una letal trampa de alivio de tensión. Falleció a causa de las heridas durante su traslado aéreo.
               </p>
               <div class="bio-family-perspective">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                 <span><strong>Memoria familiar:</strong> Dejó a su esposa y a un hijo recién nacido de pocos meses. Su familia aún clama por verdad plena <span class="citation">(Carranza Muñoz, 2016)</span>.</span>
               </div>
             </div>
           </article>
         </div>
 
-        <!-- WIDGET WOW MEJORADO: SANTUARIO DE MEMORIA INTERACTIVO -->
+        <!-- WIDGET WOW 3: SANTUARIO VIRTUAL DE MEMORIA INTERACTIVO CON PERSISTENCIA REAL -->
         <div class="memorial-sanctuary-wrap modern-card reveal-scale delay-2" id="memorial-candle-section">
           <div class="sanctuary-header">
-            <div class="candle-visual">
+            <div class="candle-visual" aria-hidden="true">
               <div class="candle-flame" id="candle-flame">
                 <span class="flame-core"></span>
                 <span class="flame-glow"></span>
@@ -887,42 +864,54 @@
 
           <div class="sanctuary-controls-row">
             <button id="btn-light-candle" class="btn-candle-light">
-              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2c-.5 2-2 3.5-2 5.5 0 1.5 1 2.5 2 2.5s2-1 2-2.5c0-2-1.5-3.5-2-5.5zm-5 9v11h10V11H7z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><path d="M12 2c-.5 2-2 3.5-2 5.5 0 1.5 1 2.5 2 2.5s2-1 2-2.5c0-2-1.5-3.5-2-5.5zm-5 9v11h10V11H7z"/></svg>
               <span>Encender Vela de Memoria</span>
             </button>
             <div class="candle-counter-wrap">
-              <span class="counter-number" id="candle-counter">1,402</span>
-              <span class="counter-text">luces encendidas por visitantes</span>
+              <span class="counter-number" id="candle-counter">1</span>
+              <span class="counter-text" id="candle-counter-text">homenajes registrados en este navegador</span>
             </div>
           </div>
 
-          <!-- MURO INTERACTIVO DE CONDOLENCIAS Y RESPETO -->
+          <!-- FORMULARIO INTERACTIVO PARA DEDICATORIAS PERSONALIZADAS -->
+          <div class="dedication-form-box" id="dedication-form-wrap">
+            <h4 class="form-title">Escribe tu Dedicatoria o Pensamiento</h4>
+            <p class="form-desc">Tus palabras se guardarán de forma respetuosa en la memoria local de este navegador:</p>
+
+            <form id="form-memorial-dedication" onsubmit="return false;">
+              <div class="form-group">
+                <label for="dedication-input-text" class="sr-only">Mensaje de homenaje</label>
+                <textarea id="dedication-input-text" maxlength="240" placeholder="Escribe un mensaje en honor a las víctimas o una reflexión sobre la verdad..." rows="3" required></textarea>
+                <div class="form-meta-row">
+                  <span class="char-countdown" id="char-counter">240 caracteres disponibles</span>
+                </div>
+              </div>
+
+              <div class="form-inline-row">
+                <div class="input-author-wrap">
+                  <label for="dedication-input-author" class="sr-only">Tu nombre o procedencia</label>
+                  <input type="text" id="dedication-input-author" maxlength="50" placeholder="Tu nombre o ciudad (opcional)">
+                </div>
+                <button type="submit" id="btn-submit-dedication" class="btn-primary-action btn-sm">
+                  <span>Guardar Pensamiento</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                </button>
+              </div>
+            </form>
+
+            <div class="tribute-chips-select">
+              <span class="t-chip-label">O pulsa una dedicatoria rápida:</span>
+              <button class="tribute-quick-pill" data-text="Memoria, verdad y dignidad para doña Ana Elvia y el Subintendente Jairo.">🕊️ Memoria, verdad y dignidad</button>
+              <button class="tribute-quick-pill" data-text="No más violencia extorsiva en los campos de Colombia. Paz y justicia.">🌱 Paz en el campo colombiano</button>
+              <button class="tribute-quick-pill" data-text="Heroísmo, valentía y vocación de servicio que jamás olvidaremos.">🎖️ Homenaje al Subintendente Jairo</button>
+            </div>
+          </div>
+
+          <!-- MURO INTERACTIVO DE PENSAMIENTOS (PERSISTENTE EN LOCALSTORAGE) -->
           <div class="tribute-wall-box">
             <h4 class="tribute-wall-title">Cuaderno de Pensamientos y Respeto</h4>
-            <div class="tribute-chips-select">
-              <span class="t-chip-label">Deja una dedicatoria:</span>
-              <button class="tribute-quick-pill" data-text="Memoria, verdad y dignidad para Ana Elvia y Jairo.">🕊️ Memoria, verdad y dignidad</button>
-              <button class="tribute-quick-pill" data-text="No más violencia extorsiva en los campos de Colombia.">🌱 Paz en el campo colombiano</button>
-              <button class="tribute-quick-pill" data-text="Heroísmo y vocación de servicio que no olvidaremos.">🎖️ Homenaje al Subintendente Jairo</button>
-            </div>
-
-            <!-- Lista interactiva de tributos en tarjetas limpias -->
-            <div class="tribute-cards-masonry" id="tribute-cards-stream">
-              <div class="t-stream-card">
-                <span class="t-stream-date">Hace un momento</span>
-                <p>«Por la dignidad de doña Ana Elvia y el heroísmo de Jairo. La verdad prevalece sobre las mentiras.»</p>
-                <span class="t-stream-author">— Visitante desde Bogotá</span>
-              </div>
-              <div class="t-stream-card">
-                <span class="t-stream-date">Hoy</span>
-                <p>«Recordar con responsabilidad y respeto para que hechos tan atroces no se repitan jamás.»</p>
-                <span class="t-stream-author">— Colectivo de Memoria Histórica</span>
-              </div>
-              <div class="t-stream-card">
-                <span class="t-stream-date">Ayer</span>
-                <p>«El deber ético de la memoria frente a la desinformación es un compromiso ciudadano.»</p>
-                <span class="t-stream-author">— Estudiante de Periodismo</span>
-              </div>
+            <div class="tribute-cards-masonry" id="tribute-cards-stream" aria-live="polite">
+              <!-- Se hidratará automáticamente desde localStorage y pensamientos base -->
             </div>
           </div>
         </div>
@@ -946,7 +935,7 @@
           </p>
         </header>
 
-        <!-- WIDGET WOW: COMPARADOR ANTES/DESPUÉS O FICCIÓN VS REALIDAD -->
+        <!-- WIDGET WOW: COMPARADOR DESLIZANTE ANTES/DESPUÉS (FICCIÓN PVC-1 VS REALIDAD) -->
         <div class="pvc1-investigation-card modern-card">
           <div class="pvc1-badge-row">
             <span class="badge-debunk">CASO DE VERIFICACIÓN VISUAL FORENSE</span>
@@ -957,27 +946,55 @@
             <div class="pvc1-text-col">
               <h3 class="pvc1-title">La Foto Viral de la Película <em>PVC-1</em> vs. La Realidad</h3>
               <p>
-                Durante años circuló en redes sociales una imagen de una mujer con el artefacto adhesivo afirmando que era la fotografía auténtica de doña Ana Elvia Cortés segundos antes de su muerte.
+                Durante años circuló en redes sociales una fotografía de una mujer con el artefacto adherido afirmando engañosamente que era el registro auténtico de doña Ana Elvia Cortés antes de morir.
               </p>
               <div class="factcheck-box-alert">
                 <strong>Desmentido oficial de los verificadores:</strong>
                 <p>
-                  Agencias de verificación internacional (<strong>AFP Factual</strong>) y portales de fact-checking colombianos demostraron que la imagen corresponde a la actriz <strong>Mérida Urquía</strong> en una escena de la película de ficción <em>PVC-1</em> (estrenada en 2007) <span class="citation">(AFP Factual, 2026; Proimágenes Colombia, 2007)</span>.
+                  Agencias internacionales (<strong>AFP Factual</strong>) y verificadores colombianos demostraron que la imagen corresponde a la actriz <strong>Mérida Urquía</strong> en una escena de la película de ficción <em>PVC-1</em> (2007) <span class="citation">(AFP Factual, 2026; Proimágenes Colombia, 2007)</span>.
                 </p>
+              </div>
+              <p class="caption-debunk-lead">
+                <strong>Lección ética:</strong> Las obras cinematográficas no deben difundirse como pruebas documentales de una tragedia real.
+              </p>
+
+              <!-- Controles del Slider Comparador -->
+              <div class="slider-control-buttons" role="group" aria-label="Controles de comparación visual">
+                <button class="btn-slider-mode active" id="btn-show-comparison">Deslizador Interactivo</button>
+                <button class="btn-slider-mode" id="btn-show-fiction">Ver Ficción (100%)</button>
+                <button class="btn-slider-mode" id="btn-show-debunk">Ver Desmentido (100%)</button>
               </div>
             </div>
 
+            <!-- COMPARADOR VISUAL DESLIZANTE INTERACTIVO -->
             <div class="pvc1-visual-col">
-              <div class="visual-debunk-frame">
-                <img src="images/pvc1-pelicula-ficcion.jpg" alt="Fotograma de la película PVC-1 con Mérida Urquía" class="debunk-img">
-                <div class="debunk-watermark-stamp">
-                  <span class="stamp-title">RECREACIÓN CINEMATOGRÁFICA</span>
-                  <span class="stamp-sub">Actriz Mérida Urquía (Película PVC-1, 2007) · NO ES LA VÍCTIMA REAL</span>
+              <div class="split-slider-container" id="pvc1-slider-container">
+                <!-- Capa 1: Ficción (Fondo) -->
+                <div class="slider-layer-under">
+                  <img src="images/pvc1-pelicula-ficcion.jpg" alt="Fotograma de ficción con actriz Mérida Urquía en PVC-1" class="slider-img">
+                  <div class="slider-label-under">FOTOGRAMA DE FICCIÓN (PVC-1, 2007)</div>
+                </div>
+
+                <!-- Capa 2: Desmentido (Capa Superior Recortada) -->
+                <div class="slider-layer-over" id="slider-layer-over" style="width: 50%;">
+                  <img src="images/pvc1-pelicula-ficcion.jpg" alt="Desmentido pericial sobre fotograma de ficción" class="slider-img filter-debunk">
+                  <div class="slider-label-over">CHEQUEO FACT-CHECK: NO ES LA VÍCTIMA REAL</div>
+                  <div class="debunk-watermark-stamp">
+                    <span class="stamp-title">RECREACIÓN DRAMÁTICA</span>
+                    <span class="stamp-sub">Actriz Mérida Urquía · Archivo cinematográfico</span>
+                  </div>
+                </div>
+
+                <!-- Barra Deslizadora Táctil / Teclado -->
+                <div class="slider-handle" id="slider-handle" style="left: 50%;" tabindex="0" role="slider" aria-label="Deslizador de comparación entre ficción y desmentido" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                  <div class="handle-line"></div>
+                  <div class="handle-knob">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+                  </div>
                 </div>
               </div>
-              <p class="caption-debunk">
-                <strong>Lección ética:</strong> Las obras dramáticas ficcionales no deben viralizarse como registros probatorios reales.
-              </p>
+              <p class="slider-hint-text">Arrastra el control para contrastar la imagen de ficción con el sello pericial de verificación.</p>
             </div>
           </div>
         </div>
@@ -985,14 +1002,14 @@
         <!-- Banner destacado Módulo 5 -->
         <aside class="highlight-banner blue-banner">
           <div class="banner-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
           </div>
           <blockquote class="banner-quote">
             «Antes de compartir una imagen o una acusación, es necesario verificar su origen, su fecha y la fuente que la respalda.»
           </blockquote>
         </aside>
 
-        <!-- HEMEROTECA DIGITAL INTERACTIVA CON FILTRO RÁPIDO -->
+        <!-- HEMEROTECA DIGITAL INTERACTIVA CON FILTRO RÁPIDO Y RESULTADOS -->
         <div class="hemeroteca-section modern-card">
           <div class="hemeroteca-header-row">
             <div>
@@ -1003,10 +1020,10 @@
             <!-- Buscador y botones de filtro -->
             <div class="hemeroteca-controls">
               <div class="search-input-wrap">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                <input type="text" id="hemeroteca-search" placeholder="Buscar por medio o tema..." aria-label="Buscar en la hemeroteca">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input type="text" id="hemeroteca-search" placeholder="Buscar por medio, autor o tema..." aria-label="Buscar en la hemeroteca digital">
               </div>
-              <div class="tag-filter-pills" role="group">
+              <div class="tag-filter-pills" role="group" aria-label="Filtrar por categoría">
                 <button class="h-pill active" data-cat="all">Todas</button>
                 <button class="h-pill" data-cat="contemporanea">Cobertura 2000</button>
                 <button class="h-pill" data-cat="investigacion">Investigación</button>
@@ -1015,7 +1032,11 @@
             </div>
           </div>
 
-          <!-- Cuadrícula de Tarjetas -->
+          <div class="hemeroteca-results-meta">
+            <span id="hemeroteca-count">Mostrando 6 artículos indexados</span>
+          </div>
+
+          <!-- Cuadrícula de Tarjetas de Prensa -->
           <div class="hemeroteca-grid" id="hemeroteca-cards-container">
             <article class="h-card" data-cat="contemporanea">
               <div class="h-card-top">
@@ -1024,7 +1045,7 @@
               </div>
               <span class="h-date">17 de mayo de 2000</span>
               <h4 class="h-headline">«El collar explosivo, peor que el secuestro»</h4>
-              <p class="h-excerpt">Primeras crónicas tras la tragedia e impacto inicial en los diálogos del Caguán.</p>
+              <p class="h-excerpt">Primeras crónicas tras la tragedia e impacto inicial en los diálogos de distensión del Caguán.</p>
               <div class="h-card-footer">
                 <a href="https://www.eltiempo.com/archivo/documento/mam-1255427" target="_blank" rel="noopener noreferrer" class="h-link">Consultar archivo original &rarr;</a>
               </div>
@@ -1037,7 +1058,7 @@
               </div>
               <span class="h-date">28 de mayo de 2000</span>
               <h4 class="h-headline">«Collar bomba, acto de bandas»</h4>
-              <p class="h-excerpt">Autoridades reconsideran acusaciones a las FARC al hallar pistas de delincuencia común.</p>
+              <p class="h-excerpt">Autoridades reconsideran acusaciones a las FARC al hallar pistas de delincuencia común extorsiva.</p>
               <div class="h-card-footer">
                 <a href="https://www.eltiempo.com/archivo/documento/mam-1226570" target="_blank" rel="noopener noreferrer" class="h-link">Consultar archivo original &rarr;</a>
               </div>
@@ -1050,7 +1071,7 @@
               </div>
               <span class="h-date">14 de mayo de 2016</span>
               <h4 class="h-headline">«El otro muerto del collar bomba»</h4>
-              <p class="h-excerpt">Crónica de D. Carranza Muñoz que rescata la memoria del subintendente Jairo Hernando López.</p>
+              <p class="h-excerpt">Crónica de D. Carranza Muñoz que rescata la memoria humana del subintendente Jairo Hernando López.</p>
               <div class="h-card-footer">
                 <a href="https://www.elespectador.com/colombia/mas-regiones/el-otro-muerto-del-collar-bomba-article-632293/" target="_blank" rel="noopener noreferrer" class="h-link">Leer crónica completa &rarr;</a>
               </div>
@@ -1076,7 +1097,7 @@
               </div>
               <span class="h-date">7 de abril de 2026</span>
               <h4 class="h-headline">«El caso del collar bomba y la foto de una actriz»</h4>
-              <p class="h-excerpt">Identificación forense del fotograma de Mérida Urquía en PVC-1 difundido engañosamente.</p>
+              <p class="h-excerpt">Identificación pericial del fotograma de Mérida Urquía en PVC-1 difundido de forma engañosa.</p>
               <div class="h-card-footer">
                 <a href="https://factual.afp.com/doc.afp.com.A6ZK7ZQ" target="_blank" rel="noopener noreferrer" class="h-link">Ver análisis AFP &rarr;</a>
               </div>
@@ -1116,35 +1137,35 @@
           </p>
         </header>
 
-        <!-- Pestañas Interactivas: 3 Perspectivas Claras -->
+        <!-- Pestañas Interactivas: 3 Perspectivas Claras con ARIA -->
         <div class="judicial-perspective-tabs modern-card">
-          <div class="judicial-tab-bar" role="tablist">
-            <button class="j-tab-btn active" data-tab="sentencia">1. La Sentencia Judicial</button>
-            <button class="j-tab-btn" data-tab="prensa">2. La Cobertura de Prensa</button>
-            <button class="j-tab-btn" data-tab="familia">3. Las Dudas de la Familia</button>
+          <div class="judicial-tab-bar" role="tablist" aria-label="Perspectivas del proceso judicial">
+            <button class="j-tab-btn active" data-tab="sentencia" role="tab" aria-selected="true" id="j-tab-1" aria-controls="pane-sentencia">1. La Sentencia Judicial</button>
+            <button class="j-tab-btn" data-tab="prensa" role="tab" aria-selected="false" id="j-tab-2" aria-controls="pane-prensa">2. La Cobertura de Prensa</button>
+            <button class="j-tab-btn" data-tab="familia" role="tab" aria-selected="false" id="j-tab-3" aria-controls="pane-familia">3. Las Dudas de la Familia</button>
           </div>
 
-          <div class="j-tab-pane active" id="pane-sentencia">
+          <div class="j-tab-pane active" id="pane-sentencia" role="tabpanel" aria-labelledby="j-tab-1">
             <h4 class="pane-title">Fallo en Casación · Proceso 21285 (25 de octubre de 2005)</h4>
             <p>
-              La Sala de Casación Penal de la Corte Suprema de Justicia resolvió la demanda interpuesta contra la condena a <strong>32 años de prisión</strong> contra José Miguel Suárez. La justicia acreditó penalmente una extorsión ejecutada por delincuencia común con artefacto explosivo en tubo de PVC.
+              La Sala de Casación Penal de la Corte Suprema de Justicia (M.P. Yesid Ramírez Bastidas) resolvió la demanda interpuesta contra la condena a <strong>32 años de prisión</strong> dictada contra José Miguel Suárez. La providencia acreditó penalmente una extorsión cometida por delincuencia común con artefacto explosivo artesanal en tubo de PVC y ratificó la sentencia condenatoria.
             </p>
             <a href="https://vlex.com.co/vid/providencia-corte-suprema-justicia-874010134" target="_blank" rel="noopener noreferrer" class="btn-inline-link">
-              Consultar providencia en vLex Colombia &rarr;
+              Consultar providencia completa en vLex Colombia &rarr;
             </a>
           </div>
 
-          <div class="j-tab-pane" id="pane-prensa" style="display:none;">
+          <div class="j-tab-pane" id="pane-prensa" role="tabpanel" aria-labelledby="j-tab-2" style="display:none;">
             <h4 class="pane-title">Evolución de los Reportes Periodísticos</h4>
             <p>
-              Los periódicos transitaron desde titulares acusatorios inmediatos en mayo de 2000 hacia crónicas de rectificación judicial en 2002 y 2003, documentando la confirmación de la pena privativa de la libertad por el Tribunal Superior de Cundinamarca.
+              Los periódicos transitaron desde titulares acusatorios inmediatos en mayo de 2000 hacia crónicas de rectificación judicial en 2002 y 2003, documentando la confirmación de la pena privativa de la libertad por el Tribunal Superior de Cundinamarca y el esclarecimiento de las redes de extorsión común.
             </p>
           </div>
 
-          <div class="j-tab-pane" id="pane-familia" style="display:none;">
+          <div class="j-tab-pane" id="pane-familia" role="tabpanel" aria-labelledby="j-tab-3" style="display:none;">
             <h4 class="pane-title">Perspectiva y Preguntas Abiertas de los Familiares</h4>
             <p>
-              En reportajes como el de <em>El Espectador</em> (2016), los seres queridos del subintendente Jairo Hernando López manifestaron desconfianza sobre si en el proceso judicial se castigó a todos los autores intelectuales, manteniendo un reclamo digno de verdad plena.
+              En reportajes como el de <em>El Espectador</em> (2016), los seres queridos del subintendente Jairo Hernando López manifestaron desconfianza sobre si en el proceso judicial se castigó a todos los autores intelectuales y materiales, manteniendo un reclamo digno de verdad plena que el Estado no debe desoír.
             </p>
           </div>
         </div>
@@ -1152,7 +1173,7 @@
         <!-- Banner destacado Módulo 6 -->
         <aside class="highlight-banner gold-banner">
           <div class="banner-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
           </div>
           <blockquote class="banner-quote">
             «La memoria responsable presenta los documentos, reconoce las voces afectadas y distingue entre una decisión judicial y las preguntas que siguen abiertas para una familia.»
@@ -1178,14 +1199,14 @@
           </p>
         </header>
 
-        <!-- Acordeón interactivo de 5 preguntas -->
-        <div class="accordion-container">
+        <!-- Acordeón interactivo de 5 preguntas accesibles -->
+        <div class="accordion-container" role="region" aria-label="Preguntas de debate ético">
           <div class="accordion-item">
-            <button class="accordion-header" aria-expanded="false">
+            <button class="accordion-header" aria-expanded="false" id="acc-header-1" aria-controls="acc-body-1">
               <span class="accordion-question">¿Qué responsabilidad tienen los medios y los usuarios al compartir noticias de violencia?</span>
-              <span class="accordion-icon">+</span>
+              <span class="accordion-icon" aria-hidden="true">+</span>
             </button>
-            <div class="accordion-collapse">
+            <div class="accordion-collapse" id="acc-body-1" role="region" aria-labelledby="acc-header-1">
               <div class="accordion-body">
                 <p>Compartir imágenes morbosas o hipótesis sin corroborar revictimiza a las familias. La ciudadanía informada debe exigir verificación previa antes de replicar cualquier contenido.</p>
               </div>
@@ -1193,11 +1214,11 @@
           </div>
 
           <div class="accordion-item">
-            <button class="accordion-header" aria-expanded="false">
+            <button class="accordion-header" aria-expanded="false" id="acc-header-2" aria-controls="acc-body-2">
               <span class="accordion-question">¿Por qué es indispensable rectificar públicamente cuando la evidencia cambia?</span>
-              <span class="accordion-icon">+</span>
+              <span class="accordion-icon" aria-hidden="true">+</span>
             </button>
-            <div class="accordion-collapse">
+            <div class="accordion-collapse" id="acc-body-2" role="region" aria-labelledby="acc-header-2">
               <div class="accordion-body">
                 <p>Las primeras declaraciones gubernamentales en situaciones de crisis pueden estar erradas. Rectificar con transparencia es la base de la verdad histórica y la credibilidad democrática.</p>
               </div>
@@ -1205,11 +1226,11 @@
           </div>
 
           <div class="accordion-item">
-            <button class="accordion-header" aria-expanded="false">
+            <button class="accordion-header" aria-expanded="false" id="acc-header-3" aria-controls="acc-body-3">
               <span class="accordion-question">¿Cómo reconocer a las víctimas sin reducirlas únicamente al artefacto que las mató?</span>
-              <span class="accordion-icon">+</span>
+              <span class="accordion-icon" aria-hidden="true">+</span>
             </button>
-            <div class="accordion-collapse">
+            <div class="accordion-collapse" id="acc-body-3" role="region" aria-labelledby="acc-header-3">
               <div class="accordion-body">
                 <p>Recordando sus nombres, sus vidas de campo, sus hijos y su vocación de auxilio. Las personas no son el arma homicida ni una imagen sensacionalista.</p>
               </div>
@@ -1217,11 +1238,11 @@
           </div>
 
           <div class="accordion-item">
-            <button class="accordion-header" aria-expanded="false">
+            <button class="accordion-header" aria-expanded="false" id="acc-header-4" aria-controls="acc-body-4">
               <span class="accordion-question">¿Qué distingue una sentencia judicial de la duda expresada por los familiares?</span>
-              <span class="accordion-icon">+</span>
+              <span class="accordion-icon" aria-hidden="true">+</span>
             </button>
-            <div class="accordion-collapse">
+            <div class="accordion-collapse" id="acc-body-4" role="region" aria-labelledby="acc-header-4">
               <div class="accordion-body">
                 <p>La sentencia fija la verdad jurídica demostrada en juicio, mientras que las dudas familiares reflejan la herida humana no resuelta y el reclamo por esclarecimiento integral.</p>
               </div>
@@ -1229,21 +1250,21 @@
           </div>
 
           <div class="accordion-item">
-            <button class="accordion-header" aria-expanded="false">
+            <button class="accordion-header" aria-expanded="false" id="acc-header-5" aria-controls="acc-body-5">
               <span class="accordion-question">¿Cómo puede la memoria histórica forjar una ciudadanía más crítica?</span>
-              <span class="accordion-icon">+</span>
+              <span class="accordion-icon" aria-hidden="true">+</span>
             </button>
-            <div class="accordion-collapse">
+            <div class="accordion-collapse" id="acc-body-5" role="region" aria-labelledby="acc-header-5">
               <div class="accordion-body">
-                <p>Al dotar a la sociedad de anticuerpos contra la manipulación electoral y el engaño digital, reconociendo el valor de los archivos y los derechos de las víctimas.</p>
+                <p>Al dotar a la sociedad de anticuerpos contra la manipulación electoral y el engaño digital, reconociendo el valor de los archivos y los derechos inalienables de las víctimas.</p>
               </div>
             </div>
           </div>
-        </div><!-- .accordion-container -->
+        </div>
 
         <!-- Banner Final Módulo 7 -->
         <div class="grand-final-banner">
-          <div class="final-banner-glow"></div>
+          <div class="final-banner-glow" aria-hidden="true"></div>
           <h3 class="final-triad">
             <span>MEMORIA CON VERDAD</span>
             <span class="gold-dot">·</span>
@@ -1257,7 +1278,7 @@
 
 
     <!-- ===================================================================
-         MÓDULO 8: FUENTES, MÉTODO Y CRÉDITOS
+         MÓDULO 8: FUENTES, MÉTODO Y CRÉDITOS | BIBLIOGRAFÍA COMPACTA APA 7
          =================================================================== -->
     <section id="modulo-8" class="module-section" aria-labelledby="mod8-title">
       <div class="content-wrapper">
@@ -1268,125 +1289,330 @@
           </div>
           <h2 id="mod8-title" class="section-title">Fuentes, Método <span class="gold-gradient-text">y Créditos</span></h2>
           <p class="section-desc">
-            Bibliografía completa bajo normas APA (7.ª edición) con hipervínculos funcionales y tabla de atribución de archivos.
+            Bibliografía documental bajo normas APA (7.ª edición) con presentación compacta, buscador de fuentes, copia instantánea al portapapeles y exportación BibTeX.
           </p>
         </header>
 
-        <!-- REFERENCIAS BIBLIOGRÁFICAS APA 7 -->
-        <div class="apa-references-card modern-card">
-          <div class="apa-header">
-            <div>
-              <span class="apa-badge">NORMA APA 7.ª EDICIÓN</span>
-              <h3 class="apa-title">Bibliografía Documental Verificada</h3>
-            </div>
-            <span class="apa-count">13 Fuentes Indexadas</span>
+        <!-- BARRA DE HERRAMIENTAS ACADÉMICAS -->
+        <div class="apa-academic-toolbar modern-card">
+          <div class="toolbar-search-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="apa-filter-input" placeholder="Filtrar por autor, tribunal o medio..." aria-label="Filtrar referencias bibliográficas">
           </div>
-
-          <ol class="apa-list">
-            <li class="apa-item">
-              <div class="apa-content">
-                <span class="apa-entry">AFP Factual. (2026, 7 de abril). <em>El caso del “collar bomba” en Colombia no fue atribuido a las FARC; y la foto viral es de una actriz</em>.</span>
-                <a href="https://factual.afp.com/doc.afp.com.A6ZK7ZQ" target="_blank" rel="noopener noreferrer" class="apa-link">https://factual.afp.com/doc.afp.com.A6ZK7ZQ</a>
-              </div>
-            </li>
-            <li class="apa-item">
-              <div class="apa-content">
-                <span class="apa-entry">Carranza Muñoz, D. L. (2016, 14 de mayo). <em>El otro muerto del collar bomba</em>. El Espectador.</span>
-                <a href="https://www.elespectador.com/colombia/mas-regiones/el-otro-muerto-del-collar-bomba-article-632293/" target="_blank" rel="noopener noreferrer" class="apa-link">https://www.elespectador.com/colombia/mas-regiones/el-otro-muerto-del-collar-bomba-article-632293/</a>
-              </div>
-            </li>
-            <li class="apa-item">
-              <div class="apa-content">
-                <span class="apa-entry">ColombiaCheck. (2016, 27 de septiembre). <em>Lo del collar bomba, otra explosiva mentira</em>.</span>
-                <a href="https://colombiacheck.com/chequeos/lo-del-collar-bomba-otra-explosiva-mentira" target="_blank" rel="noopener noreferrer" class="apa-link">https://colombiacheck.com/chequeos/lo-del-collar-bomba-otra-explosiva-mentira</a>
-              </div>
-            </li>
-            <li class="apa-item">
-              <div class="apa-content">
-                <span class="apa-entry">ColombiaCheck. (2022, 27 de enero). <em>Collar bomba fue un acto de la delincuencia común, pero aún se lo atribuyen falsamente a las FARC</em>.</span>
-                <a href="https://colombiacheck.com/chequeos/collar-bomba-fue-un-acto-de-la-delincuencia-comun-pero-aun-se-lo-atribuyen-falsamente-las" target="_blank" rel="noopener noreferrer" class="apa-link">https://colombiacheck.com/chequeos/collar-bomba-fue-un-acto-de-la-delincuencia-comun-pero-aun-se-lo-atribuyen-falsamente-las</a>
-              </div>
-            </li>
-            <li class="apa-item">
-              <div class="apa-content">
-                <span class="apa-entry">ColombiaCheck. (2026, 15 de abril). <em>Vieja desinformación sobre el collar bomba se usa para cuestionar campaña de Cepeda</em>.</span>
-                <a href="https://colombiacheck.com/chequeos/vieja-desinformacion-sobre-el-collar-bomba-se-usa-para-cuestionar-campana-de-cepeda" target="_blank" rel="noopener noreferrer" class="apa-link">https://colombiacheck.com/chequeos/vieja-desinformacion-sobre-el-collar-bomba-se-usa-para-cuestionar-campana-de-cepeda</a>
-              </div>
-            </li>
-            <li class="apa-item">
-              <div class="apa-content">
-                <span class="apa-entry">Corte Suprema de Justicia, Sala de Casación Penal. (2005, 25 de octubre). <em>Providencia, proceso n.º 21285</em>. vLex Colombia.</span>
-                <a href="https://vlex.com.co/vid/providencia-corte-suprema-justicia-874010134" target="_blank" rel="noopener noreferrer" class="apa-link">https://vlex.com.co/vid/providencia-corte-suprema-justicia-874010134</a>
-              </div>
-            </li>
-            <li class="apa-item">
-              <div class="apa-content">
-                <span class="apa-entry">El Tiempo. (2000, 17 de mayo). <em>El collar explosivo, peor que el secuestro</em>. Archivo de El Tiempo.</span>
-                <a href="https://www.eltiempo.com/archivo/documento/mam-1255427" target="_blank" rel="noopener noreferrer" class="apa-link">https://www.eltiempo.com/archivo/documento/mam-1255427</a>
-              </div>
-            </li>
-            <li class="apa-item">
-              <div class="apa-content">
-                <span class="apa-entry">El Tiempo. (2000, 28 de mayo). <em>Collar bomba, acto de bandas</em>. Archivo de El Tiempo.</span>
-                <a href="https://www.eltiempo.com/archivo/documento/mam-1226570" target="_blank" rel="noopener noreferrer" class="apa-link">https://www.eltiempo.com/archivo/documento/mam-1226570</a>
-              </div>
-            </li>
-            <li class="apa-item">
-              <div class="apa-content">
-                <span class="apa-entry">El Tiempo. (2002, 24 de septiembre). <em>Collar bomba: un solo condenado</em>. Archivo de El Tiempo.</span>
-                <a href="https://www.eltiempo.com/archivo/documento/mam-1333136" target="_blank" rel="noopener noreferrer" class="apa-link">https://www.eltiempo.com/archivo/documento/mam-1333136</a>
-              </div>
-            </li>
-            <li class="apa-item">
-              <div class="apa-content">
-                <span class="apa-entry">El Tiempo. (2003, 7 de febrero). <em>Confirman pena por collar bomba</em>. Archivo de El Tiempo.</span>
-                <a href="https://www.eltiempo.com/archivo/documento/mam-980725" target="_blank" rel="noopener noreferrer" class="apa-link">https://www.eltiempo.com/archivo/documento/mam-980725</a>
-              </div>
-            </li>
-            <li class="apa-item">
-              <div class="apa-content">
-                <span class="apa-entry">El Tiempo. (2008, 13 de noviembre). <em>Historia de la tragedia del collar bomba</em>. Archivo de El Tiempo.</span>
-                <a href="https://www.eltiempo.com/archivo/documento/CMS-4664634" target="_blank" rel="noopener noreferrer" class="apa-link">https://www.eltiempo.com/archivo/documento/CMS-4664634</a>
-              </div>
-            </li>
-            <li class="apa-item">
-              <div class="apa-content">
-                <span class="apa-entry">La Silla Vacía. (2023, 30 de junio). <em>Detector: ninguna guerrilla fue responsable del caso del collar bomba</em>.</span>
-                <a href="https://www.lasillavacia.com/detector-de-mentiras/falso/detector-ninguna-guerrilla-fue-responsable-del-caso-del-collar-bomba/" target="_blank" rel="noopener noreferrer" class="apa-link">https://www.lasillavacia.com/detector-de-mentiras/falso/detector-ninguna-guerrilla-fue-responsable-del-caso-del-collar-bomba/</a>
-              </div>
-            </li>
-            <li class="apa-item">
-              <div class="apa-content">
-                <span class="apa-entry">La Silla Vacía. (2026, 21 de octubre). <em>Collar bomba: la justicia probó que fueron delincuentes comunes, no las Farc</em>.</span>
-                <a href="https://www.lasillavacia.com/detector-de-mentiras/falso/collar-bomba-la-justicia-probo-que-fueron-delincuentes-comunes-no-las-farc/" target="_blank" rel="noopener noreferrer" class="apa-link">https://www.lasillavacia.com/detector-de-mentiras/falso/collar-bomba-la-justicia-probo-que-fueron-delincuentes-comunes-no-las-farc/</a>
-              </div>
-            </li>
-            <li class="apa-item">
-              <div class="apa-content">
-                <span class="apa-entry">Proimágenes Colombia. (s. f.). <em>PVC-1</em>. Cine colombiano.</span>
-                <a href="https://www.proimagenescolombia.com/secciones/cine_colombiano/peliculas_colombianas/pelicula_plantilla.php?id_pelicula=1796" target="_blank" rel="noopener noreferrer" class="apa-link">https://www.proimagenescolombia.com/secciones/cine_colombiano/peliculas_colombianas/pelicula_plantilla.php?id_pelicula=1796</a>
-              </div>
-            </li>
-            <li class="apa-item">
-              <div class="apa-content">
-                <span class="apa-entry">Proimágenes Colombia. (2007, 30 de noviembre). <em>El largometraje colombiano PVC-1 gana en el Festival de Cine de Tesalónica</em>.</span>
-                <a href="https://www.proimagenescolombia.com/secciones/pantalla_colombia/breves_plantilla.php?id_noticia=652" target="_blank" rel="noopener noreferrer" class="apa-link">https://www.proimagenescolombia.com/secciones/pantalla_colombia/breves_plantilla.php?id_noticia=652</a>
-              </div>
-            </li>
-          </ol>
+          <div class="toolbar-actions">
+            <button id="btn-copy-all-apa" class="btn-academic-action" title="Copiar las 15 referencias APA 7 en el portapapeles">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span>Copiar Todas (APA 7)</span>
+            </button>
+            <button id="btn-download-bibtex" class="btn-academic-action" title="Descargar archivo BibTeX para gestores como Zotero o Mendeley">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span>Descargar BibTeX (.bib)</span>
+            </button>
+          </div>
         </div>
 
-        <!-- Tabla de Créditos -->
+        <!-- CONTENEDOR COMPACTO DE REFERENCIAS APA 7 -->
+        <div class="apa-compact-container" id="apa-references-list" role="feed" aria-label="Lista de referencias bibliográficas APA 7">
+          <!-- 15 referencias estructuradas e interactivas -->
+          
+          <article class="apa-card" data-category="factcheck" data-id="afp2026">
+            <div class="apa-card-header">
+              <div class="apa-meta-left">
+                <span class="apa-cat-badge badge-factcheck">Fact-Checking</span>
+                <span class="apa-author-year">AFP Factual (2026)</span>
+              </div>
+              <div class="apa-actions">
+                <button class="btn-copy-citation" data-citation="AFP Factual. (2026, 7 de abril). El caso del “collar bomba” en Colombia no fue atribuido a las FARC; y la foto viral es de una actriz. https://factual.afp.com/doc.afp.com.A6ZK7ZQ" title="Copiar cita APA al portapapeles">Copiar Cita</button>
+                <a href="https://factual.afp.com/doc.afp.com.A6ZK7ZQ" target="_blank" rel="noopener noreferrer" class="btn-open-source" title="Abrir fuente original en nueva pestaña">Abrir &nearr;</a>
+                <button class="btn-toggle-apa" aria-expanded="false" title="Ver ficha completa">Detalles</button>
+              </div>
+            </div>
+            <h4 class="apa-work-title">El caso del “collar bomba” en Colombia no fue atribuido a las FARC; y la foto viral es de una actriz</h4>
+            <div class="apa-card-expanded">
+              <p class="apa-full-entry">AFP Factual. (2026, 7 de abril). <em>El caso del “collar bomba” en Colombia no fue atribuido a las FARC; y la foto viral es de una actriz</em>.</p>
+              <p class="apa-note"><strong>Relevancia:</strong> Verificación visual forense que demostró que la imagen viral atribuida a la víctima corresponde a la actriz Mérida Urquía en la película PVC-1.</p>
+            </div>
+          </article>
+
+          <article class="apa-card" data-category="prensa" data-id="carranza2016">
+            <div class="apa-card-header">
+              <div class="apa-meta-left">
+                <span class="apa-cat-badge badge-prensa">Prensa / Memoria</span>
+                <span class="apa-author-year">Carranza Muñoz, D. L. (2016)</span>
+              </div>
+              <div class="apa-actions">
+                <button class="btn-copy-citation" data-citation="Carranza Muñoz, D. L. (2016, 14 de mayo). El otro muerto del collar bomba. El Espectador. https://www.elespectador.com/colombia/mas-regiones/el-otro-muerto-del-collar-bomba-article-632293/" title="Copiar cita APA al portapapeles">Copiar Cita</button>
+                <a href="https://www.elespectador.com/colombia/mas-regiones/el-otro-muerto-del-collar-bomba-article-632293/" target="_blank" rel="noopener noreferrer" class="btn-open-source" title="Abrir fuente original en nueva pestaña">Abrir &nearr;</a>
+                <button class="btn-toggle-apa" aria-expanded="false" title="Ver ficha completa">Detalles</button>
+              </div>
+            </div>
+            <h4 class="apa-work-title">El otro muerto del collar bomba (El Espectador)</h4>
+            <div class="apa-card-expanded">
+              <p class="apa-full-entry">Carranza Muñoz, D. L. (2016, 14 de mayo). <em>El otro muerto del collar bomba</em>. El Espectador.</p>
+              <p class="apa-note"><strong>Relevancia:</strong> Crónica humana sobre el subintendente Jairo Hernando López, su familia, su bebé recién nacido y las preguntas que siguen abiertas.</p>
+            </div>
+          </article>
+
+          <article class="apa-card" data-category="factcheck" data-id="ccheck2016">
+            <div class="apa-card-header">
+              <div class="apa-meta-left">
+                <span class="apa-cat-badge badge-factcheck">Fact-Checking</span>
+                <span class="apa-author-year">ColombiaCheck (2016)</span>
+              </div>
+              <div class="apa-actions">
+                <button class="btn-copy-citation" data-citation="ColombiaCheck. (2016, 27 de septiembre). Lo del collar bomba, otra explosiva mentira. https://colombiacheck.com/chequeos/lo-del-collar-bomba-otra-explosiva-mentira" title="Copiar cita APA al portapapeles">Copiar Cita</button>
+                <a href="https://colombiacheck.com/chequeos/lo-del-collar-bomba-otra-explosiva-mentira" target="_blank" rel="noopener noreferrer" class="btn-open-source" title="Abrir fuente original en nueva pestaña">Abrir &nearr;</a>
+                <button class="btn-toggle-apa" aria-expanded="false" title="Ver ficha completa">Detalles</button>
+              </div>
+            </div>
+            <h4 class="apa-work-title">Lo del collar bomba, otra explosiva mentira</h4>
+            <div class="apa-card-expanded">
+              <p class="apa-full-entry">ColombiaCheck. (2016, 27 de septiembre). <em>Lo del collar bomba, otra explosiva mentira</em>.</p>
+              <p class="apa-note"><strong>Relevancia:</strong> Primer chequeo independiente que desmintió la instrumentalización del crimen en el contexto del plebiscito de paz.</p>
+            </div>
+          </article>
+
+          <article class="apa-card" data-category="factcheck" data-id="ccheck2022">
+            <div class="apa-card-header">
+              <div class="apa-meta-left">
+                <span class="apa-cat-badge badge-factcheck">Fact-Checking</span>
+                <span class="apa-author-year">ColombiaCheck (2022)</span>
+              </div>
+              <div class="apa-actions">
+                <button class="btn-copy-citation" data-citation="ColombiaCheck. (2022, 27 de enero). Collar bomba fue un acto de la delincuencia común, pero aún se lo atribuyen falsamente a las FARC. https://colombiacheck.com/chequeos/collar-bomba-fue-un-acto-de-la-delincuencia-comun-pero-aun-se-lo-atribuyen-falsamente-las" title="Copiar cita APA al portapapeles">Copiar Cita</button>
+                <a href="https://colombiacheck.com/chequeos/collar-bomba-fue-un-acto-de-la-delincuencia-comun-pero-aun-se-lo-atribuyen-falsamente-las" target="_blank" rel="noopener noreferrer" class="btn-open-source" title="Abrir fuente original en nueva pestaña">Abrir &nearr;</a>
+                <button class="btn-toggle-apa" aria-expanded="false" title="Ver ficha completa">Detalles</button>
+              </div>
+            </div>
+            <h4 class="apa-work-title">Collar bomba fue un acto de la delincuencia común, pero aún se lo atribuyen falsamente a las FARC</h4>
+            <div class="apa-card-expanded">
+              <p class="apa-full-entry">ColombiaCheck. (2022, 27 de enero). <em>Collar bomba fue un acto de la delincuencia común, pero aún se lo atribuyen falsamente a las FARC</em>.</p>
+              <p class="apa-note"><strong>Relevancia:</strong> Síntesis judicial y hemerográfica que certifica la condena de José Miguel Suárez por delincuencia común.</p>
+            </div>
+          </article>
+
+          <article class="apa-card" data-category="factcheck" data-id="ccheck2026">
+            <div class="apa-card-header">
+              <div class="apa-meta-left">
+                <span class="apa-cat-badge badge-factcheck">Fact-Checking</span>
+                <span class="apa-author-year">ColombiaCheck (2026)</span>
+              </div>
+              <div class="apa-actions">
+                <button class="btn-copy-citation" data-citation="ColombiaCheck. (2026, 15 de abril). Vieja desinformación sobre el collar bomba se usa para cuestionar campaña de Cepeda. https://colombiacheck.com/chequeos/vieja-desinformacion-sobre-el-collar-bomba-se-usa-para-cuestionar-campana-de-cepeda" title="Copiar cita APA al portapapeles">Copiar Cita</button>
+                <a href="https://colombiacheck.com/chequeos/vieja-desinformacion-sobre-el-collar-bomba-se-usa-para-cuestionar-campana-de-cepeda" target="_blank" rel="noopener noreferrer" class="btn-open-source" title="Abrir fuente original en nueva pestaña">Abrir &nearr;</a>
+                <button class="btn-toggle-apa" aria-expanded="false" title="Ver ficha completa">Detalles</button>
+              </div>
+            </div>
+            <h4 class="apa-work-title">Vieja desinformación sobre el collar bomba se usa para cuestionar campaña de Cepeda</h4>
+            <div class="apa-card-expanded">
+              <p class="apa-full-entry">ColombiaCheck. (2026, 15 de abril). <em>Vieja desinformación sobre el collar bomba se usa para cuestionar campaña de Cepeda</em>.</p>
+              <p class="apa-note"><strong>Relevancia:</strong> Análisis de desinformación electoral contemporánea que reitera la verdad procesal jurídica inalterable.</p>
+            </div>
+          </article>
+
+          <article class="apa-card" data-category="judicial" data-id="csj2005">
+            <div class="apa-card-header">
+              <div class="apa-meta-left">
+                <span class="apa-cat-badge badge-judicial">Judicial (Fuente Primaria)</span>
+                <span class="apa-author-year">Corte Suprema de Justicia (2005)</span>
+              </div>
+              <div class="apa-actions">
+                <button class="btn-copy-citation" data-citation="Corte Suprema de Justicia, Sala de Casación Penal. (2005, 25 de octubre). Providencia, proceso n.º 21285 (M.P. Yesid Ramírez Bastidas). vLex Colombia. https://vlex.com.co/vid/providencia-corte-suprema-justicia-874010134" title="Copiar cita APA al portapapeles">Copiar Cita</button>
+                <a href="https://vlex.com.co/vid/providencia-corte-suprema-justicia-874010134" target="_blank" rel="noopener noreferrer" class="btn-open-source" title="Abrir providencia original en vLex">Abrir &nearr;</a>
+                <button class="btn-toggle-apa" aria-expanded="false" title="Ver ficha completa">Detalles</button>
+              </div>
+            </div>
+            <h4 class="apa-work-title">Providencia judicial de Casación, Proceso n.º 21285 (Sala Penal)</h4>
+            <div class="apa-card-expanded">
+              <p class="apa-full-entry">Corte Suprema de Justicia, Sala de Casación Penal. (2005, 25 de octubre). <em>Providencia, proceso n.º 21285</em>. M.P. Yesid Ramírez Bastidas. vLex Colombia.</p>
+              <p class="apa-note"><strong>Relevancia:</strong> Fuente primaria central del caso. Ratificó la condena a 32 años por extorsión y homicidio, certificando los hechos en Simijaca y la autoría de delincuencia común.</p>
+            </div>
+          </article>
+
+          <article class="apa-card" data-category="prensa" data-id="tiempo2000a">
+            <div class="apa-card-header">
+              <div class="apa-meta-left">
+                <span class="apa-cat-badge badge-prensa">Prensa Contemporánea</span>
+                <span class="apa-author-year">El Tiempo (17 de mayo de 2000)</span>
+              </div>
+              <div class="apa-actions">
+                <button class="btn-copy-citation" data-citation="El Tiempo. (2000, 17 de mayo). El collar explosivo, peor que el secuestro. Archivo de El Tiempo. https://www.eltiempo.com/archivo/documento/mam-1255427" title="Copiar cita APA al portapapeles">Copiar Cita</button>
+                <a href="https://www.eltiempo.com/archivo/documento/mam-1255427" target="_blank" rel="noopener noreferrer" class="btn-open-source" title="Abrir fuente original en nueva pestaña">Abrir &nearr;</a>
+                <button class="btn-toggle-apa" aria-expanded="false" title="Ver ficha completa">Detalles</button>
+              </div>
+            </div>
+            <h4 class="apa-work-title">El collar explosivo, peor que el secuestro (Crónica inicial)</h4>
+            <div class="apa-card-expanded">
+              <p class="apa-full-entry">El Tiempo. (2000, 17 de mayo). <em>El collar explosivo, peor que el secuestro</em>. Archivo de El Tiempo.</p>
+              <p class="apa-note"><strong>Relevancia:</strong> Cobertura periodística contemporánea tras el estallido y conmoción nacional inicial.</p>
+            </div>
+          </article>
+
+          <article class="apa-card" data-category="prensa" data-id="tiempo2000b">
+            <div class="apa-card-header">
+              <div class="apa-meta-left">
+                <span class="apa-cat-badge badge-prensa">Prensa Contemporánea</span>
+                <span class="apa-author-year">El Tiempo (28 de mayo de 2000)</span>
+              </div>
+              <div class="apa-actions">
+                <button class="btn-copy-citation" data-citation="El Tiempo. (2000, 28 de mayo). Collar bomba, acto de bandas. Archivo de El Tiempo. https://www.eltiempo.com/archivo/documento/mam-1226570" title="Copiar cita APA al portapapeles">Copiar Cita</button>
+                <a href="https://www.eltiempo.com/archivo/documento/mam-1226570" target="_blank" rel="noopener noreferrer" class="btn-open-source" title="Abrir fuente original en nueva pestaña">Abrir &nearr;</a>
+                <button class="btn-toggle-apa" aria-expanded="false" title="Ver ficha completa">Detalles</button>
+              </div>
+            </div>
+            <h4 class="apa-work-title">Collar bomba, acto de bandas (Rectificación temprana)</h4>
+            <div class="apa-card-expanded">
+              <p class="apa-full-entry">El Tiempo. (2000, 28 de mayo). <em>Collar bomba, acto de bandas</em>. Archivo de El Tiempo.</p>
+              <p class="apa-note"><strong>Relevancia:</strong> Primer reporte periodístico formal donde las autoridades policiales reconsideran la autoría de las FARC tras hallar indicios de delincuencia común.</p>
+            </div>
+          </article>
+
+          <article class="apa-card" data-category="prensa" data-id="tiempo2002">
+            <div class="apa-card-header">
+              <div class="apa-meta-left">
+                <span class="apa-cat-badge badge-prensa">Prensa Judicial</span>
+                <span class="apa-author-year">El Tiempo (2002)</span>
+              </div>
+              <div class="apa-actions">
+                <button class="btn-copy-citation" data-citation="El Tiempo. (2002, 24 de septiembre). Collar bomba: un solo condenado. Archivo de El Tiempo. https://www.eltiempo.com/archivo/documento/mam-1333136" title="Copiar cita APA al portapapeles">Copiar Cita</button>
+                <a href="https://www.eltiempo.com/archivo/documento/mam-1333136" target="_blank" rel="noopener noreferrer" class="btn-open-source" title="Abrir fuente original en nueva pestaña">Abrir &nearr;</a>
+                <button class="btn-toggle-apa" aria-expanded="false" title="Ver ficha completa">Detalles</button>
+              </div>
+            </div>
+            <h4 class="apa-work-title">Collar bomba: un solo condenado</h4>
+            <div class="apa-card-expanded">
+              <p class="apa-full-entry">El Tiempo. (2002, 24 de septiembre). <em>Collar bomba: un solo condenado</em>. Archivo de El Tiempo.</p>
+              <p class="apa-note"><strong>Relevancia:</strong> Registro de la primera condena de 32 años contra José Miguel Suárez emitida por el Juzgado Penal del Circuito.</p>
+            </div>
+          </article>
+
+          <article class="apa-card" data-category="prensa" data-id="tiempo2003">
+            <div class="apa-card-header">
+              <div class="apa-meta-left">
+                <span class="apa-cat-badge badge-prensa">Prensa Judicial</span>
+                <span class="apa-author-year">El Tiempo (2003)</span>
+              </div>
+              <div class="apa-actions">
+                <button class="btn-copy-citation" data-citation="El Tiempo. (2003, 7 de febrero). Confirman pena por collar bomba. Archivo de El Tiempo. https://www.eltiempo.com/archivo/documento/mam-980725" title="Copiar cita APA al portapapeles">Copiar Cita</button>
+                <a href="https://www.eltiempo.com/archivo/documento/mam-980725" target="_blank" rel="noopener noreferrer" class="btn-open-source" title="Abrir fuente original en nueva pestaña">Abrir &nearr;</a>
+                <button class="btn-toggle-apa" aria-expanded="false" title="Ver ficha completa">Detalles</button>
+              </div>
+            </div>
+            <h4 class="apa-work-title">Confirman pena por collar bomba (Tribunal Superior)</h4>
+            <div class="apa-card-expanded">
+              <p class="apa-full-entry">El Tiempo. (2003, 7 de febrero). <em>Confirman pena por collar bomba</em>. Archivo de El Tiempo.</p>
+              <p class="apa-note"><strong>Relevancia:</strong> Decisión de segunda instancia del Tribunal Superior de Cundinamarca que ratificó la condena privativa de la libertad.</p>
+            </div>
+          </article>
+
+          <article class="apa-card" data-category="prensa" data-id="tiempo2008">
+            <div class="apa-card-header">
+              <div class="apa-meta-left">
+                <span class="apa-cat-badge badge-prensa">Prensa / Archivo</span>
+                <span class="apa-author-year">El Tiempo (2008)</span>
+              </div>
+              <div class="apa-actions">
+                <button class="btn-copy-citation" data-citation="El Tiempo. (2008, 13 de noviembre). Historia de la tragedia del collar bomba. Archivo de El Tiempo. https://www.eltiempo.com/archivo/documento/CMS-4664634" title="Copiar cita APA al portapapeles">Copiar Cita</button>
+                <a href="https://www.eltiempo.com/archivo/documento/CMS-4664634" target="_blank" rel="noopener noreferrer" class="btn-open-source" title="Abrir fuente original en nueva pestaña">Abrir &nearr;</a>
+                <button class="btn-toggle-apa" aria-expanded="false" title="Ver ficha completa">Detalles</button>
+              </div>
+            </div>
+            <h4 class="apa-work-title">Historia de la tragedia del collar bomba</h4>
+            <div class="apa-card-expanded">
+              <p class="apa-full-entry">El Tiempo. (2008, 13 de noviembre). <em>Historia de la tragedia del collar bomba</em>. Archivo de El Tiempo.</p>
+              <p class="apa-note"><strong>Relevancia:</strong> Recuento en retrospectiva sobre las lecciones de criminalística y los efectos familiares de la extorsión.</p>
+            </div>
+          </article>
+
+          <article class="apa-card" data-category="factcheck" data-id="lasilla2023">
+            <div class="apa-card-header">
+              <div class="apa-meta-left">
+                <span class="apa-cat-badge badge-factcheck">Detector de Mentiras</span>
+                <span class="apa-author-year">La Silla Vacía (2023)</span>
+              </div>
+              <div class="apa-actions">
+                <button class="btn-copy-citation" data-citation="La Silla Vacía. (2023, 30 de junio). Detector: ninguna guerrilla fue responsable del caso del collar bomba. https://www.lasillavacia.com/detector-de-mentiras/falso/detector-ninguna-guerrilla-fue-responsable-del-caso-del-collar-bomba/" title="Copiar cita APA al portapapeles">Copiar Cita</button>
+                <a href="https://www.lasillavacia.com/detector-de-mentiras/falso/detector-ninguna-guerrilla-fue-responsable-del-caso-del-collar-bomba/" target="_blank" rel="noopener noreferrer" class="btn-open-source" title="Abrir fuente original en nueva pestaña">Abrir &nearr;</a>
+                <button class="btn-toggle-apa" aria-expanded="false" title="Ver ficha completa">Detalles</button>
+              </div>
+            </div>
+            <h4 class="apa-work-title">Detector: ninguna guerrilla fue responsable del caso del collar bomba</h4>
+            <div class="apa-card-expanded">
+              <p class="apa-full-entry">La Silla Vacía. (2023, 30 de junio). <em>Detector: ninguna guerrilla fue responsable del caso del collar bomba</em>.</p>
+              <p class="apa-note"><strong>Relevancia:</strong> Riguroso peritaje periodístico que confrontó expedientes de la Fiscalía y CSJ para desmentir publicaciones virales.</p>
+            </div>
+          </article>
+
+          <article class="apa-card" data-category="factcheck" data-id="lasilla2026">
+            <div class="apa-card-header">
+              <div class="apa-meta-left">
+                <span class="apa-cat-badge badge-factcheck">Detector de Mentiras</span>
+                <span class="apa-author-year">La Silla Vacía (2026)</span>
+              </div>
+              <div class="apa-actions">
+                <button class="btn-copy-citation" data-citation="La Silla Vacía. (2026, 21 de octubre). Collar bomba: la justicia probó que fueron delincuentes comunes, no las Farc. https://www.lasillavacia.com/detector-de-mentiras/falso/collar-bomba-la-justicia-probo-que-fueron-delincuentes-comunes-no-las-farc/" title="Copiar cita APA al portapapeles">Copiar Cita</button>
+                <a href="https://www.lasillavacia.com/detector-de-mentiras/falso/collar-bomba-la-justicia-probo-que-fueron-delincuentes-comunes-no-las-farc/" target="_blank" rel="noopener noreferrer" class="btn-open-source" title="Abrir fuente original en nueva pestaña">Abrir &nearr;</a>
+                <button class="btn-toggle-apa" aria-expanded="false" title="Ver ficha completa">Detalles</button>
+              </div>
+            </div>
+            <h4 class="apa-work-title">Collar bomba: la justicia probó que fueron delincuentes comunes, no las Farc</h4>
+            <div class="apa-card-expanded">
+              <p class="apa-full-entry">La Silla Vacía. (2026, 21 de octubre). <em>Collar bomba: la justicia probó que fueron delincuentes comunes, no las Farc</em>.</p>
+              <p class="apa-note"><strong>Relevancia:</strong> Desarticulación definitiva de señalamientos falsos repetidos en debates públicos contemporáneos.</p>
+            </div>
+          </article>
+
+          <article class="apa-card" data-category="audiovisual" data-id="proimagenes_ficha">
+            <div class="apa-card-header">
+              <div class="apa-meta-left">
+                <span class="apa-cat-badge badge-cine">Cine / Ficción</span>
+                <span class="apa-author-year">Proimágenes Colombia (s. f.)</span>
+              </div>
+              <div class="apa-actions">
+                <button class="btn-copy-citation" data-citation="Proimágenes Colombia. (s. f.). PVC-1. Cine colombiano. https://www.proimagenescolombia.com/secciones/cine_colombiano/peliculas_colombianas/pelicula_plantilla.php?id_pelicula=1796" title="Copiar cita APA al portapapeles">Copiar Cita</button>
+                <a href="https://www.proimagenescolombia.com/secciones/cine_colombiano/peliculas_colombianas/pelicula_plantilla.php?id_pelicula=1796" target="_blank" rel="noopener noreferrer" class="btn-open-source" title="Abrir ficha cinematográfica">Abrir &nearr;</a>
+                <button class="btn-toggle-apa" aria-expanded="false" title="Ver ficha completa">Detalles</button>
+              </div>
+            </div>
+            <h4 class="apa-work-title">Ficha técnica institucional de la película PVC-1 (Dir. Spiros Stathoulopoulos)</h4>
+            <div class="apa-card-expanded">
+              <p class="apa-full-entry">Proimágenes Colombia. (s. f.). <em>PVC-1</em>. Cine colombiano.</p>
+              <p class="apa-note"><strong>Relevancia:</strong> Ficha oficial que documenta que PVC-1 es un largometraje dramático ficcional protagonizado por la actriz Mérida Urquía.</p>
+            </div>
+          </article>
+
+          <article class="apa-card" data-category="audiovisual" data-id="proimagenes2007">
+            <div class="apa-card-header">
+              <div class="apa-meta-left">
+                <span class="apa-cat-badge badge-cine">Cine / Ficción</span>
+                <span class="apa-author-year">Proimágenes Colombia (2007)</span>
+              </div>
+              <div class="apa-actions">
+                <button class="btn-copy-citation" data-citation="Proimágenes Colombia. (2007, 30 de noviembre). El largometraje colombiano PVC-1 gana en el Festival de Cine de Tesalónica. Pantalla Colombia. https://www.proimagenescolombia.com/secciones/pantalla_colombia/breves_plantilla.php?id_noticia=652" title="Copiar cita APA al portapapeles">Copiar Cita</button>
+                <a href="https://www.proimagenescolombia.com/secciones/pantalla_colombia/breves_plantilla.php?id_noticia=652" target="_blank" rel="noopener noreferrer" class="btn-open-source" title="Abrir fuente original en nueva pestaña">Abrir &nearr;</a>
+                <button class="btn-toggle-apa" aria-expanded="false" title="Ver ficha completa">Detalles</button>
+              </div>
+            </div>
+            <h4 class="apa-work-title">El largometraje colombiano PVC-1 gana en el Festival de Cine de Tesalónica (Grecia)</h4>
+            <div class="apa-card-expanded">
+              <p class="apa-full-entry">Proimágenes Colombia. (2007, 30 de noviembre). <em>El largometraje colombiano PVC-1 gana en el Festival de Cine de Tesalónica</em>. Pantalla Colombia.</p>
+              <p class="apa-note"><strong>Relevancia:</strong> Reseña histórica sobre el estreno internacional de la obra cinematográfica independiente.</p>
+            </div>
+          </article>
+        </div>
+
+        <!-- Tabla de Créditos y Atribuciones Visuales -->
         <div class="credits-table-wrap modern-card">
-          <h3 class="credits-heading">Créditos de Materiales Visuales</h3>
+          <h3 class="credits-heading">Atribución y Licencias de Materiales Visuales</h3>
           <div class="table-responsive">
             <table class="credits-table">
               <thead>
                 <tr>
-                  <th>Archivo</th>
-                  <th>Módulo</th>
-                  <th>Descripción</th>
-                  <th>Fuente / Crédito</th>
+                  <th scope="col">Archivo</th>
+                  <th scope="col">Módulo</th>
+                  <th scope="col">Descripción</th>
+                  <th scope="col">Fuente / Titular</th>
+                  <th scope="col">Uso y Licencia</th>
                 </tr>
               </thead>
               <tbody>
@@ -1395,54 +1621,63 @@
                   <td>1</td>
                   <td>Plaza de la Libertad y Basílica de Chiquinquirá</td>
                   <td>Situr Boyacá</td>
+                  <td>Documental / Contextual</td>
                 </tr>
                 <tr>
                   <td><code>prensa-collar-dinamita-2000.jpg</code></td>
                   <td>1 / 5</td>
                   <td>Titular «Collar de dinamita» (Mayo 2000)</td>
                   <td>El Tiempo / Juanita León</td>
+                  <td>Archivo de prensa con cita de procedencia</td>
                 </tr>
                 <tr>
                   <td><code>elvia-cortes-archivo-2000.jpg</code></td>
                   <td>2 / 4</td>
                   <td>Fotografía histórica de doña Ana Elvia Cortés</td>
                   <td>Archivo de prensa (2000)</td>
+                  <td>Memoria y dignificación de la víctima</td>
                 </tr>
                 <tr>
                   <td><code>pvc1-pelicula-ficcion.jpg</code></td>
                   <td>5</td>
                   <td>Fotograma de ficción con actriz Mérida Urquía (PVC-1)</td>
                   <td>Proimágenes / Spiros Stathoulopoulos</td>
+                  <td>Uso crítico y pedagógico para fact-checking</td>
                 </tr>
                 <tr>
                   <td><code>farc-conflicto-contexto.jpg</code></td>
                   <td>3</td>
-                  <td>Archivo sobre conflicto armado</td>
-                  <td>Archivo periodístico</td>
+                  <td>Archivo sobre conflicto armado y diálogos del Caguán</td>
+                  <td>Archivo periodístico nacional</td>
+                  <td>Contextual histórico</td>
                 </tr>
                 <tr>
                   <td><code>farc-brazalete-contexto.jpg</code></td>
                   <td>3 / 5</td>
-                  <td>Registro contextual de verificación</td>
+                  <td>Registro pericial de verificación política</td>
                   <td>ColombiaCheck / AFP Factual</td>
+                  <td>Pedagogía contra la desinformación</td>
                 </tr>
                 <tr>
                   <td><code>tecnico-antiexplosivos-traje.jpg</code></td>
                   <td>2 / 4</td>
                   <td>Técnico policial con traje de protección EOD</td>
                   <td>Policía Nacional de Colombia</td>
+                  <td>Institucional ilustrativo</td>
                 </tr>
                 <tr>
                   <td><code>detonacion-controlada-eod.jpg</code></td>
                   <td>2</td>
-                  <td>Detonación controlada de artefactos</td>
-                  <td>Archivo policial</td>
+                  <td>Detonación controlada de artefactos en polígono</td>
+                  <td>Archivo policial especializado</td>
+                  <td>Contexto técnico EOD</td>
                 </tr>
                 <tr>
                   <td><code>policia-escuadron-antiexplosivos.jpg</code></td>
                   <td>2 / 4</td>
-                  <td>Escuadrón antiexplosivos oficial</td>
+                  <td>Escuadrón antiexplosivos policial en formación</td>
                   <td>Policía Nacional de Colombia</td>
+                  <td>Homenaje y reconocimiento en servicio</td>
                 </tr>
               </tbody>
             </table>
@@ -1488,24 +1723,30 @@
 
       <div class="footer-bottom">
         <p class="copyright-text">
-          &copy; 2000 – 2026 Proyecto Documental y de Verdad Histórica. Basado en providencias judiciales y chequeos independientes.
+          &copy; 2000 – 2026 Proyecto Documental y de Verdad Histórica. Basado en providencias judiciales de la Corte Suprema y chequeos independientes.
         </p>
         <div class="footer-back-top">
-          <a href="#modulo-1" class="btn-top" title="Volver al inicio">
+          <a href="#modulo-1" class="btn-top" title="Volver al inicio del portal">
             <span>Volver arriba</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>
           </a>
         </div>
       </div>
     </div>
   </footer>
 
-  <!-- Modal / Lightbox para ver imágenes -->
-  <div id="media-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Visualizador de imagen">
+  <!-- Toast Notification Flotante Global (Accesible) -->
+  <div id="global-toast" class="global-toast" role="status" aria-live="polite" aria-atomic="true">
+    <div class="toast-icon">✓</div>
+    <div class="toast-message" id="toast-message-text">Acción completada exitosamente</div>
+  </div>
+
+  <!-- Modal / Lightbox para ver imágenes en alta definición -->
+  <div id="media-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Visualizador de imagen en alta resolución">
     <div class="modal-backdrop"></div>
     <div class="modal-inner">
       <button id="modal-close-btn" aria-label="Cerrar vista ampliada">&times;</button>
-      <img id="modal-image" src="" alt="">
+      <img id="modal-image" src="" alt="Fotografía o recorte de archivo en vista ampliada">
       <p id="modal-caption-text"></p>
     </div>
   </div>

@@ -1,9 +1,11 @@
 /**
  * EL CASO DEL COLLAR BOMBA: MEMORIA, VERDAD Y DIGNIDAD
- * Motor de Interactividad Cinematográfica — Edición Premium
+ * Motor de Interactividad, Cartografía, Visualización Forense y Memoria
+ * Versión 2.0 Premium — Arquitectura Vanilla ES6+
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Inicialización de subsistemas
   initThemeToggle();
   initPremiumParticles();
   initReadingProgressBar();
@@ -11,24 +13,42 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollReveal();
   initMobileDrawer();
   initFontSizeToggle();
-  initStepTimeline();
-  initForensicExplodedSchematic();
-  initInteractiveRouteMap();
-  initJudicialTabs();
+  initSynchronizedTimelineAndMap();
+  initForensicSchematic();
   initMemorialSanctuary();
+  initComparisonSlider();
   initHemerotecaSearch();
+  initJudicialTabs();
   initAccordion();
+  initAcademicBibliography();
   initMediaModal();
   initAmbientAudio();
   initRippleEffect();
-  initParallaxHero();
-  initCountUpAnimations();
   initCardTiltEffect();
-  markHeroImageLoaded();
+  initToastSystem();
 });
 
 /* ========================================================================
-   2. TEMA CLARO / OSCURO (oscuro por defecto)
+   1. SISTEMA GLOBAL DE NOTIFICACIONES TOAST (Accesible)
+   ======================================================================== */
+let showToast = (message, duration = 3500) => {
+  const toast = document.getElementById('global-toast');
+  const msgEl = document.getElementById('toast-message-text');
+  if (!toast || !msgEl) return;
+  msgEl.textContent = message;
+  toast.classList.add('visible');
+  clearTimeout(toast._timer);
+  toast._timer = setTimeout(() => {
+    toast.classList.remove('visible');
+  }, duration);
+};
+
+function initToastSystem() {
+  window.showToast = showToast;
+}
+
+/* ========================================================================
+   2. TEMA CLARO / OSCURO (Oscuro conmemorativo por defecto)
    ======================================================================== */
 function initThemeToggle() {
   const btnTheme = document.getElementById('btn-theme-toggle');
@@ -39,16 +59,16 @@ function initThemeToggle() {
   const themeText = btnTheme.querySelector('.btn-theme-text');
 
   const savedTheme = localStorage.getItem('cb_theme') || 'dark';
-  applyTheme(savedTheme);
+  applyTheme(savedTheme, false);
 
   btnTheme.addEventListener('click', () => {
     const isDark = document.body.classList.contains('theme-dark');
     const newTheme = isDark ? 'light' : 'dark';
-    applyTheme(newTheme);
+    applyTheme(newTheme, true);
     localStorage.setItem('cb_theme', newTheme);
   });
 
-  function applyTheme(theme) {
+  function applyTheme(theme, notify = false) {
     if (theme === 'light') {
       document.body.classList.remove('theme-dark');
       document.body.classList.add('theme-light');
@@ -57,6 +77,7 @@ function initThemeToggle() {
       if (sunIcon) sunIcon.style.display = 'none';
       if (moonIcon) moonIcon.style.display = 'inline';
       if (themeText) themeText.textContent = 'Claro';
+      if (notify) showToast('Modo de lectura claro activado');
     } else {
       document.body.classList.remove('theme-light');
       document.body.classList.add('theme-dark');
@@ -65,12 +86,13 @@ function initThemeToggle() {
       if (sunIcon) sunIcon.style.display = 'inline';
       if (moonIcon) moonIcon.style.display = 'none';
       if (themeText) themeText.textContent = 'Oscuro';
+      if (notify) showToast('Modo ceremonial oscuro activado');
     }
   }
 }
 
 /* ========================================================================
-   3. SISTEMA DE PARTÍCULAS PREMIUM (ascuas doradas)
+   3. SISTEMA DE PARTÍCULAS AMBIENTALES (Optimizado con Pause en Viewport)
    ======================================================================== */
 let triggerEmberBurst = null;
 
@@ -81,7 +103,8 @@ function initPremiumParticles() {
   const ctx = canvas.getContext('2d');
   let W = canvas.width = window.innerWidth;
   let H = canvas.height = window.innerHeight;
-  let animRunning = true;
+  let isVisible = true;
+  let isDocumentVisible = !document.hidden;
 
   const handleResize = () => {
     W = canvas.width = window.innerWidth;
@@ -89,26 +112,37 @@ function initPremiumParticles() {
   };
   window.addEventListener('resize', handleResize, { passive: true });
 
-  // Pool de partículas de alto rendimiento (ascuas solemnes)
+  // Pausar si el usuario cambia de pestaña para no malgastar batería
+  document.addEventListener('visibilitychange', () => {
+    isDocumentVisible = !document.hidden;
+    if (isDocumentVisible && isVisible) {
+      requestAnimationFrame(animate);
+    }
+  });
+
+  // Pausar si no hay movimiento o si el usuario prefiere movimiento reducido
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion) return;
+
   const particles = [];
-  const MAX_AMBIENT = 14; // Reducido para máxima fluidez y evitar saturación visual
+  const MAX_AMBIENT = 12; // Cantidad moderada y no invasiva
 
   class Ember {
     constructor(options = {}) {
       this.burst = options.burst || false;
       this.x = options.x !== undefined ? options.x : Math.random() * W;
-      this.y = options.y !== undefined ? options.y : H + 10 + Math.random() * 60;
-      this.size = this.burst ? Math.random() * 2.5 + 1.2 : Math.random() * 1.6 + 0.8;
-      this.speedY = this.burst ? -(Math.random() * 4 + 2) : -(Math.random() * 0.5 + 0.25);
-      this.speedX = this.burst ? (Math.random() - 0.5) * 3 : (Math.random() - 0.5) * 0.15; // Trayectoria recta suave sin oscilación lateral
+      this.y = options.y !== undefined ? options.y : H + 10 + Math.random() * 40;
+      this.size = this.burst ? Math.random() * 2.5 + 1.2 : Math.random() * 1.5 + 0.8;
+      this.speedY = this.burst ? -(Math.random() * 3.5 + 1.5) : -(Math.random() * 0.45 + 0.2);
+      this.speedX = this.burst ? (Math.random() - 0.5) * 2.8 : (Math.random() - 0.5) * 0.12;
       this.alpha = this.burst ? 1 : Math.random() * 0.35 + 0.1;
-      this.decay = this.burst ? Math.random() * 0.02 + 0.012 : 0.0018;
-      this.hue = Math.random() * 20 + 35; // 35-55: tonos dorados sobrios
+      this.decay = this.burst ? Math.random() * 0.02 + 0.014 : 0.0016;
+      this.hue = Math.random() * 15 + 38; // Tonos ámbar dorado
     }
 
     update() {
       this.y += this.speedY;
-      this.x += this.speedX; // Movimiento vertical sutil, cero oscilación de lado a lado
+      this.x += this.speedX;
       this.alpha -= this.decay;
       return (this.alpha > 0 && this.y >= -15);
     }
@@ -116,25 +150,17 @@ function initPremiumParticles() {
     draw() {
       ctx.save();
       const isLight = document.body.classList.contains('theme-light');
-      const currentAlpha = Math.max(0, this.alpha * (isLight ? 0.2 : 0.7));
+      const currentAlpha = Math.max(0, this.alpha * (isLight ? 0.2 : 0.65));
       ctx.globalAlpha = currentAlpha;
-      ctx.fillStyle = isLight ? `hsl(${this.hue}, 65%, 45%)` : `hsl(${this.hue}, 85%, 65%)`;
+      ctx.fillStyle = isLight ? `hsl(${this.hue}, 60%, 45%)` : `hsl(${this.hue}, 85%, 65%)`;
 
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
       ctx.fill();
-
-      // Halo sutil sin usar ctx.shadowBlur (GPU friendly)
-      ctx.globalAlpha = currentAlpha * 0.3;
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size * 2, 0, Math.PI * 2);
-      ctx.fill();
-
       ctx.restore();
     }
   }
 
-  // Partículas iniciales distribuidas
   for (let i = 0; i < MAX_AMBIENT; i++) {
     particles.push(new Ember({ x: Math.random() * W, y: Math.random() * H }));
   }
@@ -144,12 +170,11 @@ function initPremiumParticles() {
       particles.push(new Ember({ x: originX, y: originY, burst: true }));
     }
   };
-
   window.triggerEmberBurst = triggerEmberBurst;
 
   let frameCount = 0;
   function animate() {
-    if (!animRunning) return;
+    if (!isVisible || !isDocumentVisible) return;
     ctx.clearRect(0, 0, W, H);
 
     for (let i = particles.length - 1; i >= 0; i--) {
@@ -161,7 +186,7 @@ function initPremiumParticles() {
     }
 
     frameCount++;
-    if (particles.length < MAX_AMBIENT && frameCount % 8 === 0) {
+    if (particles.length < MAX_AMBIENT && frameCount % 10 === 0) {
       particles.push(new Ember());
     }
 
@@ -181,13 +206,14 @@ function initReadingProgressBar() {
   window.addEventListener('scroll', () => {
     const total = document.documentElement.scrollHeight - window.innerHeight;
     if (total <= 0) return;
-    const pct = Math.min(100, Math.max(0, (window.scrollY / total) * 100));
+    const pct = Math.min(100, Math.max(0, Math.round((window.scrollY / total) * 100)));
     bar.style.width = `${pct}%`;
+    bar.setAttribute('aria-valuenow', pct.toString());
   }, { passive: true });
 }
 
 /* ========================================================================
-   5. SCROLL SPY + HEADER SCROLLED
+   5. HEADER SCROLL SPY + ESTADO SCROLLED
    ======================================================================== */
 function initHeaderScrollSpy() {
   const header = document.getElementById('site-header');
@@ -199,25 +225,27 @@ function initHeaderScrollSpy() {
       if (entry.isIntersecting) {
         const id = entry.target.getAttribute('id');
         navLinks.forEach(link => {
-          link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+          const match = link.getAttribute('href') === `#${id}`;
+          link.classList.toggle('active', match);
+          if (match) link.setAttribute('aria-current', 'page');
+          else link.removeAttribute('aria-current');
         });
       }
     });
-  }, { rootMargin: '-50% 0px -50% 0px' });
+  }, { rootMargin: '-40% 0px -40% 0px' });
 
   sections.forEach(s => observer.observe(s));
 
   window.addEventListener('scroll', () => {
-    header.classList.toggle('scrolled', window.scrollY > 40);
+    header?.classList.toggle('scrolled', window.scrollY > 40);
   }, { passive: true });
 }
 
 /* ========================================================================
-   6. SCROLL REVEAL CON INTERSECTION OBSERVER
+   6. SCROLL REVEAL SUAVE
    ======================================================================== */
 function initScrollReveal() {
-  const revealEls = document.querySelectorAll('.reveal-on-scroll, .reveal-left, .reveal-right, .reveal-scale');
-
+  const revealEls = document.querySelectorAll('.reveal-on-scroll, .reveal-scale');
   if (!revealEls.length) return;
 
   const observer = new IntersectionObserver((entries) => {
@@ -227,13 +255,13 @@ function initScrollReveal() {
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
   revealEls.forEach(el => observer.observe(el));
 }
 
 /* ========================================================================
-   7. MOBILE DRAWER
+   7. MENÚ MÓVIL DESLIZABLE (DRAWER)
    ======================================================================== */
 function initMobileDrawer() {
   const toggleBtn = document.getElementById('btn-mobile-menu');
@@ -251,9 +279,9 @@ function initMobileDrawer() {
     toggleBtn.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
 
-    // Overlay oscuro
     overlay = document.createElement('div');
-    overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:1999;backdrop-filter:blur(4px);animation:fadeInBg 0.3s ease;';
+    overlay.className = 'mobile-drawer-overlay';
+    overlay.style.cssText = 'position:fixed;inset:0;background:rgba(2,4,8,0.75);backdrop-filter:blur(4px);z-index:1999;';
     overlay.addEventListener('click', closeDrawer);
     document.body.appendChild(overlay);
   }
@@ -275,204 +303,333 @@ function initMobileDrawer() {
 }
 
 /* ========================================================================
-   8. TAMAÑO DE FUENTE
+   8. TAMAÑO DE FUENTE ACCESIBLE
    ======================================================================== */
 function initFontSizeToggle() {
   const btn = document.getElementById('btn-font-size');
   if (!btn) return;
-  if (localStorage.getItem('cb_font_size') === 'large') document.body.classList.add('font-large');
+
+  if (localStorage.getItem('cb_font_size') === 'large') {
+    document.body.classList.add('font-large');
+  }
+
   btn.addEventListener('click', () => {
-    const large = document.body.classList.toggle('font-large');
-    localStorage.setItem('cb_font_size', large ? 'large' : 'normal');
+    const isLarge = document.body.classList.toggle('font-large');
+    localStorage.setItem('cb_font_size', isLarge ? 'large' : 'normal');
+    showToast(isLarge ? 'Tamaño de fuente aumentado (A+)' : 'Tamaño de fuente estándar restablecido');
   });
 }
 
 /* ========================================================================
-   9. LÍNEA DE TIEMPO PASO A PASO
+   9. WOW 1 & 2: CRONOLOGÍA Y MAPA TERRITORIAL SINCRONIZADOS
    ======================================================================== */
-function initStepTimeline() {
+const TIMELINE_DATA = [
+  {
+    step: 1,
+    tag: 'MADRUGADA DEL 15 DE MAYO DE 2000',
+    geoPoint: 'simijaca',
+    geoLabel: '📍 Finca rural en Simijaca',
+    title: 'Invasión armada e intimidación en vivienda rural',
+    desc: 'Hombres armados irrumpen por la fuerza en la vivienda rural de Ana Elvia Cortés de Pachón y su esposo en Simijaca, Cundinamarca. Intimidan violentamente a la pareja exigiendo 15 millones de pesos en efectivo, amenazando con segarles la vida.',
+    source: 'Corte Suprema de Justicia, Sala de Casación Penal (Proceso 21285 · 2005)'
+  },
+  {
+    step: 2,
+    tag: 'MAÑANA DEL 15 DE MAYO DE 2000',
+    geoPoint: 'simijaca',
+    geoLabel: '📍 Finca rural en Simijaca',
+    title: 'Fijación coactiva del artefacto explosivo cervical',
+    desc: 'Los asaltantes aseguran tres segmentos curvos de tubo PVC con carga de dinamita e indugel alrededor del cuello de Ana Elvia Cortés. Conectan un reloj despertador calibrado a las 15:00 h y un candado posterior, advirtiendo que detonará si no pagan.',
+    source: 'Archivo periodístico El Tiempo — «Collar de dinamita» (Juanita León, 2000)'
+  },
+  {
+    step: 3,
+    tag: 'MEDIODÍA · OPERATIVO POLICIAL DE RESCATE',
+    geoPoint: 'chiquinquira',
+    geoLabel: '📍 Corredor Chiquinquirá – Simijaca',
+    title: 'Intervención heroica del Subintendente Jairo H. López',
+    desc: 'El esposo da aviso en Chiquinquirá. El técnico antiexplosivos Jairo Hernando López arriba con traje EOD de protección. Conociendo el riesgo del lazo trampa anti-corte, asume la maniobra directa cuerpo a cuerpo junto a doña Ana Elvia para salvarle la vida.',
+    source: 'Crónica El Espectador (Carranza Muñoz, 2016) · Policía Nacional'
+  },
+  {
+    step: 4,
+    tag: '12:45 P. M. – 1:30 P. M. · DETONACIÓN TRÁGICA',
+    geoPoint: 'bogota',
+    geoLabel: '📍 Evacuación aérea hacia Bogotá D.C.',
+    title: 'La explosión cobra la vida de Ana Elvia y hiere de muerte a López',
+    desc: 'El mecanismo de alivio de tensión se activa durante la intervención. Ana Elvia Cortés fallece de forma instantánea. El subintendente López queda herido críticamente y fallece valerosamente durante su evacuación en helicóptero hacia Bogotá.',
+    source: 'Providencia CSJ, Sala Penal (Proceso 21285 · 2005)'
+  },
+  {
+    step: 5,
+    tag: '2001 – 2005 – REVISIONES ACTUALES',
+    geoPoint: 'simijaca',
+    geoLabel: '📍 Tribunales y Corte Suprema de Justicia',
+    title: 'Condena judicial por delincuencia común y verdad histórica',
+    desc: 'La justicia descarta la autoría de las FARC y condena a José Miguel Suárez a 32 años de prisión por delincuencia común extorsiva. La Corte Suprema ratifica en casación la sentencia. Verificadores confirman que atribuir el collar a la guerrilla es una falsedad electoral.',
+    source: 'CSJ Proceso 21285 · ColombiaCheck · La Silla Vacía · AFP Factual'
+  }
+];
+
+const GEO_WAYPOINTS = {
+  'simijaca': {
+    id: 'simijaca',
+    badge: '1. Escenario Probado del Crimen (Simijaca, Cundinamarca)',
+    desc: 'Predio rural donde ocurrió la incursión armada extorsiva a las 5:00 a.m. del 15 de mayo de 2000 y el despliegue del auxilio policial. La providencia penal 21285 de la Corte Suprema radicó allí la competencia jurisdiccional oficial (Altitud: 2.559 msnm).',
+    source: 'Corte Suprema de Justicia, Sala de Casación Penal (2005)',
+    stepNum: 1
+  },
+  'chiquinquira': {
+    id: 'chiquinquira',
+    badge: '2. Epicentro Asistencial y Foco Mediático (Chiquinquirá, Boyacá)',
+    desc: 'Cabecera municipal a 15.2 km al norte por la Ruta 45A. Allí acudió el esposo a solicitar auxilio policial y se concentraron los corresponsales de prensa y el Hospital San Salvador. Por esta cercanía, la prensa contemporánea acuñó el término «Collar bomba de Chiquinquirá».',
+    source: 'El Tiempo (17 de mayo de 2000) · Situr Boyacá',
+    stepNum: 3
+  },
+  'limite': {
+    id: 'limite',
+    badge: '3. Zona Limítrofe Veredal (Vereda Palestina)',
+    desc: 'Corredor rural interdepartamental entre Simijaca y Chiquinquirá. Las divergencias testimoniales sobre los linderos de las fincas suscitaron confusión inicial sobre la jurisdicción, aclarada formalmente por el tribunal y la Corte Suprema.',
+    source: 'Expediente penal CSJ n.º 21285',
+    stepNum: 2
+  },
+  'bogota': {
+    id: 'bogota',
+    badge: '4. Trayectoria de Evacuación Aérea (Hacia Bogotá D.C.)',
+    desc: 'Tras la detonación a la 1:30 p.m., el subintendente Jairo Hernando López fue evacuado de urgencia por vía aérea hacia el Hospital Central de la Policía en Bogotá (128 km al sur). Falleció valerosamente en el trayecto debido a la gravedad de las heridas.',
+    source: 'Crónica El Espectador (Carranza Muñoz, 2016)',
+    stepNum: 4
+  }
+};
+
+function initSynchronizedTimelineAndMap() {
   const stepPills = document.querySelectorAll('.timeline-step-pills .step-pill');
   const tagEl = document.getElementById('t-step-tag');
   const numEl = document.getElementById('t-step-num');
+  const geoLinkEl = document.getElementById('t-step-geo');
   const titleEl = document.getElementById('t-step-title');
   const descEl = document.getElementById('t-step-desc');
   const sourceEl = document.getElementById('t-step-source');
   const btnPrev = document.getElementById('btn-t-prev');
   const btnNext = document.getElementById('btn-t-next');
-  const card = document.getElementById('timeline-dynamic-display');
+  const dynamicCard = document.getElementById('timeline-dynamic-display');
 
-  const stepsData = [
-    {
-      step: 1,
-      tag: 'MADRUGADA DEL 15 DE MAYO DE 2000',
-      borderColor: '#d4a820',
-      title: 'Invasión armada e intimidación a la vivienda rural',
-      desc: 'Hombres armados irrumpen por la fuerza en la pequeña vivienda rural de Ana Elvia Cortés de Pachón y su esposo en Simijaca, Cundinamarca. Intimidan violentamente a la pareja exigiendo 15 millones de pesos en efectivo, amenazando con quitarles la vida si no cumplen.',
-      source: 'Fuente: Corte Suprema de Justicia, Sala de Casación Penal (Proceso 21285 · 2005)'
-    },
-    {
-      step: 2,
-      tag: 'DURANTE LA MAÑANA DEL 15 DE MAYO',
-      borderColor: '#d4a820',
-      title: 'Colocación del artefacto explosivo artesanal en el cuello',
-      desc: 'Los delincuentes aseguran tres cilindros de tubo de PVC con dinamita alrededor del cuello de Ana Elvia Cortés y activan un reloj despertador modificado como detonador. Alertan a las autoridades: si el pago no llega a tiempo, el artefacto estallará.',
-      source: 'Fuente: Archivo periodístico El Tiempo — «Collar de dinamita» (Juanita León, 2000)'
-    },
-    {
-      step: 3,
-      tag: 'MEDIODÍA · OPERATIVO POLICIAL DE RESCATE',
-      borderColor: '#3b82f6',
-      title: 'Intervención heroica del Subintendente Jairo Hernando López',
-      desc: 'El técnico antiexplosivos Jairo Hernando López arriba con traje EOD de protección. Conociendo la letalidad de la trampa anti-corte incorporada en el circuito, asume el altísimo riesgo y trabaja directamente cuerpo a cuerpo junto a la víctima para intentar desactivarlo con herramientas de precisión.',
-      source: 'Fuente: El Espectador (Carranza Muñoz, 2016)'
-    },
-    {
-      step: 4,
-      tag: '12:45 P. M. · DETONACIÓN TRÁGICA',
-      borderColor: '#e03040',
-      title: 'La explosión cobra la vida de Ana Elvia y hiere mortalmente a López',
-      desc: 'El mecanismo trampa de alivio de tensión se activa durante las maniobras de desactivación. Ana Elvia Cortés fallece en el acto. Jairo Hernando López queda gravemente herido, consciente pero crítico. Fallece durante el traslado médico aéreo de emergencia a Bogotá, dejando a su esposa e hijo recién nacido.',
-      source: 'Fuente: Providencia judicial CSJ, Sala Penal (2005) — Proceso 21285'
-    },
-    {
-      step: 5,
-      tag: '2001 – 2005 – 2016 · INVESTIGACIÓN Y VERDAD',
-      borderColor: '#22c55e',
-      title: 'Condena judicial por delincuencia común y desmentidos definitivos',
-      desc: 'La Fiscalía descarta la autoría de las FARC. José Miguel Suárez es condenado a 32 años de prisión por delincuencia común extorsiva. La Corte Suprema de Justicia ratifica la condena en casación (2005). Años después, ColombiaCheck y La Silla Vacía desmienten versiones electorales que reviven la falsa imputación política.',
-      source: 'Fuente: CSJ (2005) · ColombiaCheck · La Silla Vacía · El Espectador'
-    }
-  ];
+  // Mapa
+  const mapNodes = document.querySelectorAll('.interactive-map-node');
+  const geoPills = document.querySelectorAll('.geo-nav-pills .geo-pill-btn');
+  const geoBadge = document.getElementById('geo-badge-tag');
+  const geoDesc = document.getElementById('geo-desc-text');
+  const geoSource = document.getElementById('geo-source-text');
+  const btnSyncToTimeline = document.getElementById('btn-sync-to-timeline');
 
-  let currentIdx = 0;
+  let currentStepIdx = 0;
 
-  function renderStep(idx, dir = 1) {
-    currentIdx = idx;
-    const data = stepsData[idx];
+  function setStep(idx, dir = 1) {
+    if (idx < 0 || idx >= TIMELINE_DATA.length) return;
+    currentStepIdx = idx;
+    const data = TIMELINE_DATA[idx];
 
-    // Animación de salida/entrada
-    if (card) {
-      card.style.opacity = '0';
-      card.style.transform = `translateX(${dir * 20}px)`;
+    // Animación de tarjeta
+    if (dynamicCard) {
+      dynamicCard.style.opacity = '0';
+      dynamicCard.style.transform = `translateX(${dir * 18}px)`;
       setTimeout(() => {
-        updateContent(data);
-        card.style.transition = 'opacity 0.3s ease, transform 0.3s var(--ease-out), border-left-color 0.3s ease';
-        card.style.opacity = '1';
-        card.style.transform = 'translateX(0)';
-        card.style.borderLeftColor = data.borderColor;
-      }, 150);
-    } else {
-      updateContent(data);
+        if (tagEl) tagEl.textContent = data.tag;
+        if (numEl) numEl.textContent = `PASO ${data.step} DE ${TIMELINE_DATA.length}`;
+        if (geoLinkEl) geoLinkEl.textContent = data.geoLabel;
+        if (titleEl) titleEl.textContent = data.title;
+        if (descEl) descEl.textContent = data.desc;
+        if (sourceEl) sourceEl.textContent = `Fuente: ${data.source}`;
+        dynamicCard.style.transition = 'opacity 0.28s ease, transform 0.28s cubic-bezier(0.16,1,0.3,1)';
+        dynamicCard.style.opacity = '1';
+        dynamicCard.style.transform = 'translateX(0)';
+      }, 140);
     }
 
-    stepPills.forEach((pill, i) => pill.classList.toggle('active', i === idx));
+    stepPills.forEach((p, i) => {
+      const active = (i === idx);
+      p.classList.toggle('active', active);
+      p.setAttribute('aria-selected', active.toString());
+    });
+
     if (btnPrev) btnPrev.disabled = (idx === 0);
-    if (btnNext) btnNext.disabled = (idx === stepsData.length - 1);
+    if (btnNext) btnNext.disabled = (idx === TIMELINE_DATA.length - 1);
+
+    // Sincronizar con el Mapa Cartográfico
+    highlightMapWaypoint(data.geoPoint, false);
   }
 
-  function updateContent(data) {
-    if (tagEl) tagEl.textContent = data.tag;
-    if (numEl) numEl.textContent = `PASO ${data.step} DE ${stepsData.length}`;
-    if (titleEl) titleEl.textContent = data.title;
-    if (descEl) descEl.textContent = data.desc;
-    if (sourceEl) sourceEl.textContent = data.source;
+  function highlightMapWaypoint(pointKey, syncTimeline = true) {
+    const data = GEO_WAYPOINTS[pointKey];
+    if (!data) return;
+
+    // Actualizar nodos SVG
+    mapNodes.forEach(node => {
+      const p = node.getAttribute('data-point');
+      const active = (p === pointKey);
+      node.classList.toggle('active', active);
+    });
+
+    // Actualizar píldoras del mapa
+    geoPills.forEach(pill => {
+      const p = pill.getAttribute('data-point');
+      const active = (p === pointKey);
+      pill.classList.toggle('active', active);
+      pill.setAttribute('aria-selected', active.toString());
+    });
+
+    // Actualizar panel contextual del mapa
+    if (geoBadge) geoBadge.textContent = data.badge;
+    if (geoDesc) geoDesc.textContent = data.desc;
+    if (geoSource) geoSource.textContent = `Fuente: ${data.source}`;
+
+    if (btnSyncToTimeline) {
+      btnSyncToTimeline.querySelector('span').textContent = `Ver en Cronología (Paso ${data.stepNum})`;
+      btnSyncToTimeline.setAttribute('data-target-step', data.stepNum.toString());
+    }
+
+    if (syncTimeline && data.stepNum !== (currentStepIdx + 1)) {
+      setStep(data.stepNum - 1, 1);
+    }
   }
 
-  stepPills.forEach((pill, i) => pill.addEventListener('click', () => renderStep(i, i > currentIdx ? 1 : -1)));
-  if (btnPrev) btnPrev.addEventListener('click', () => { if (currentIdx > 0) renderStep(currentIdx - 1, -1); });
-  if (btnNext) btnNext.addEventListener('click', () => { if (currentIdx < stepsData.length - 1) renderStep(currentIdx + 1, 1); });
+  // Event Listeners Timeline
+  stepPills.forEach((pill, i) => {
+    pill.addEventListener('click', () => setStep(i, i > currentStepIdx ? 1 : -1));
+  });
+
+  if (btnPrev) btnPrev.addEventListener('click', () => setStep(currentStepIdx - 1, -1));
+  if (btnNext) btnNext.addEventListener('click', () => setStep(currentStepIdx + 1, 1));
+
+  // Event Listeners Mapa
+  mapNodes.forEach(node => {
+    node.addEventListener('click', () => {
+      const point = node.getAttribute('data-point');
+      highlightMapWaypoint(point, true);
+    });
+    node.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        highlightMapWaypoint(node.getAttribute('data-point'), true);
+      }
+    });
+  });
+
+  geoPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      highlightMapWaypoint(pill.getAttribute('data-point'), true);
+    });
+  });
+
+  if (btnSyncToTimeline) {
+    btnSyncToTimeline.addEventListener('click', () => {
+      const target = parseInt(btnSyncToTimeline.getAttribute('data-target-step') || '1', 10);
+      setStep(target - 1, 1);
+      const timelineBlock = document.querySelector('.timeline-interactive-block');
+      timelineBlock?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  }
+
+  // Estado inicial
+  setStep(0, 1);
 }
 
 /* ========================================================================
-   10. ESQUEMA FORENSE INTERACTIVO (EXPLODED VIEW)
+   10. WOW 1: ESQUEMA FORENSE ILUSTRATIVO (Respetuoso y No Operativo)
    ======================================================================== */
-function initForensicExplodedSchematic() {
-  const container = document.getElementById('forensic-explorer');
+function initForensicSchematic() {
   const btnAssembled = document.getElementById('btn-schematic-assembled');
   const btnExploded = document.getElementById('btn-schematic-exploded');
+  const svgDiagram = document.getElementById('collar-diagram');
   const partBtns = document.querySelectorAll('.forensic-parts-nav .part-btn');
   const svgParts = document.querySelectorAll('.diagram-interactive-part');
   const titleEl = document.getElementById('detail-title');
   const textEl = document.getElementById('detail-text');
-  const svgDiagram = document.getElementById('collar-diagram');
 
-  const partDetails = {
+  const PART_DETAILS = {
     explosivo: {
-      title: '1. Dinamita e Indugel Comercial (Carga Primaria)',
-      text: 'El compartimento izquierdo alojaba cartuchos de dinamita e Indugel comercial (~250-300g) acompañados de metralla pericialmente calculada para causar una onda expansiva devastadora a quemarropa. En su interior se encontraba insertado un estopín eléctrico de cobre conectado a la línea de disparo maestro.',
-      citation: 'Dictamen pericial balístico · Expediente CSJ Proceso 21285.',
-      color: '#dc2626'
+      title: '1. Sección de Carga Explosiva (Indugel / Dinamita)',
+      text: 'El compartimento lateral izquierdo de PVC alojaba cartuchos de dinamita comercial e indugel. La carga pericialmente calculada estaba confinada dentro del tubo plástico curvado anatómicamente. La pericia balística acreditó que el confinamiento dirigía la onda hacia la zona cervical de la víctima.',
+      citation: 'Dictamen pericial balístico y forense · Expediente CSJ Proceso n.º 21285.'
     },
     temporizador: {
-      title: '2. Reloj Despertador Modificado y Batería 9V',
-      text: 'El compartimento central integraba un reloj despertador adaptado electromecánicamente. La aguja horaria estaba calibrada para hacer contacto eléctrico a las 15:00 horas (hora fatal de la extorsión de 15 millones de pesos). Estaba energizado por una pila prismática alcalina de 9V para garantizar el cierre del circuito.',
-      citation: 'Acta de inspección técnica EOD · Policía Nacional de Colombia.',
-      color: '#d97706'
+      title: '2. Módulo Temporizador Analógico y Batería 9V',
+      text: 'En la sección frontal superior se integraba un reloj despertador modificado electromecánicamente. La aguja de control horario estaba fijada para hacer contacto eléctrico fatal a las 15:00 horas (hora límite de la extorsión de 15 millones de pesos), energizado por una batería prismática alcalina de 9V.',
+      citation: 'Acta de inspección criminalística EOD · Policía Nacional de Colombia (2000).'
     },
     trampa: {
-      title: '3. Circuito Trampa Mortal de Alivio de Tensión (Anti-Corte)',
-      text: 'El compartimento derecho contenía el elemento fatal: un microinterruptor de descompresión conectado en lazo trampa ("booby-trap"). Si los técnicos intentaban cortar los conductores o forzar el collar sin neutralizar el circuito cerrado primario, el resorte liberaba la masa disparando la ignición inmediata. Este sistema causó la detonación durante el intento de auxilio.',
-      citation: 'Providencia CSJ Sala Casación Penal 21285 (M.P. Yesid Ramírez Bastidas).',
-      color: '#2563eb'
+      title: '3. Mecanismo Sensor de Alivio de Tensión (Anti-Corte)',
+      text: 'El compartimento lateral derecho contenía el elemento traicionero: un microinterruptor conectado en lazo trampa ("booby-trap"). Si los técnicos intentaban cortar los conductores o forzar el collar sin neutralizar el circuito cerrado primario, el resorte liberaba la masa disparando la ignición inmediata.',
+      citation: 'Providencia CSJ Sala Casación Penal 21285 (M.P. Yesid Ramírez Bastidas).'
     },
     candado: {
-      title: '4. Candado de Latón y Pletina de Bloqueo Cervical',
-      text: 'En la nuca de la víctima, dos pletinas de acero con bisagras aseguraban el cierre anatómico mediante un candado de latón macizo con arco templado. El cerrojo estaba interconectado físicamente con el lazo trampa para impedir que la víctima o su familia pudieran retirarlo manualmente.',
-      citation: 'Registro forense de criminalística · Simijaca, Cundinamarca.',
-      color: '#f59e0b'
+      title: '4. Pletina Cervical Articulada y Candado de Bloqueo',
+      text: 'En la nuca de la víctima, dos pletinas de fijación mecánica aseguraban el cierre anatómico mediante un candado de latón macizo. El pasador impedía que la víctima o su familia pudieran despojarse manualmente del artefacto sin activar el sensor de tensión.',
+      citation: 'Acta de inspección técnica al cadáver · Simijaca, Cundinamarca (15 de mayo de 2000).'
     }
   };
 
-  let isExploded = false;
-
+  // Toggle de vistas
   if (btnExploded) {
     btnExploded.addEventListener('click', () => {
-      isExploded = true;
       svgDiagram?.classList.add('exploded');
       btnExploded.classList.add('active');
-      if (btnAssembled) btnAssembled.classList.remove('active');
+      btnExploded.setAttribute('aria-pressed', 'true');
+      btnAssembled?.classList.remove('active');
+      btnAssembled?.setAttribute('aria-pressed', 'false');
     });
   }
 
   if (btnAssembled) {
     btnAssembled.addEventListener('click', () => {
-      isExploded = false;
       svgDiagram?.classList.remove('exploded');
       btnAssembled.classList.add('active');
-      if (btnExploded) btnExploded.classList.remove('active');
+      btnAssembled.setAttribute('aria-pressed', 'true');
+      btnExploded?.classList.remove('active');
+      btnExploded?.setAttribute('aria-pressed', 'false');
     });
   }
 
   function highlightPart(partKey) {
-    if (!partDetails[partKey]) return;
-    const detail = partDetails[partKey];
+    const detail = PART_DETAILS[partKey];
+    if (!detail) return;
 
-    partBtns.forEach(btn => btn.classList.toggle('active', btn.getAttribute('data-part') === partKey));
-    svgParts.forEach(svg => svg.classList.toggle('active', svg.getAttribute('data-part') === partKey));
+    partBtns.forEach(btn => {
+      const match = (btn.getAttribute('data-part') === partKey);
+      btn.classList.toggle('active', match);
+      btn.setAttribute('aria-selected', match.toString());
+    });
+
+    svgParts.forEach(part => {
+      const match = (part.getAttribute('data-part') === partKey);
+      part.classList.toggle('active', match);
+    });
 
     if (titleEl) {
       titleEl.style.opacity = '0';
-      titleEl.style.transform = 'translateY(-6px)';
       setTimeout(() => {
         titleEl.textContent = detail.title;
-        titleEl.style.transition = 'opacity 0.22s ease, transform 0.22s ease';
+        titleEl.style.transition = 'opacity 0.22s ease';
         titleEl.style.opacity = '1';
-        titleEl.style.transform = 'none';
-      }, 120);
+      }, 100);
     }
+
     if (textEl) {
       textEl.style.opacity = '0';
       setTimeout(() => {
         textEl.textContent = detail.text;
         const citEl = document.querySelector('.forensic-detail-box .detail-citation');
         if (citEl && detail.citation) citEl.textContent = detail.citation;
-        textEl.style.transition = 'opacity 0.22s ease 0.04s';
+        textEl.style.transition = 'opacity 0.22s ease';
         textEl.style.opacity = '1';
-      }, 160);
+      }, 120);
     }
   }
 
-  partBtns.forEach(btn => btn.addEventListener('click', () => highlightPart(btn.getAttribute('data-part'))));
+  partBtns.forEach(btn => {
+    btn.addEventListener('click', () => highlightPart(btn.getAttribute('data-part')));
+  });
+
   svgParts.forEach(svg => {
     svg.addEventListener('click', () => highlightPart(svg.getAttribute('data-part')));
     svg.addEventListener('keydown', (e) => {
@@ -483,252 +640,319 @@ function initForensicExplodedSchematic() {
     });
   });
 
-  // Activar explosivo por defecto
-  setTimeout(() => highlightPart('explosivo'), 300);
+  // Selección por defecto
+  highlightPart('explosivo');
 }
 
 /* ========================================================================
-   11. RUTA GEOGRÁFICA INTERACTIVA (BOYACÁ - CUNDINAMARCA)
+   11. WOW 3: SANTUARIO VIRTUAL DE MEMORIA (Persistencia Real en LocalStorage)
    ======================================================================== */
-function initInteractiveRouteMap() {
-  const nodes = document.querySelectorAll('.interactive-map-node');
-  const pills = document.querySelectorAll('.geo-pill-btn');
-  const infoBox = document.getElementById('geo-info-box');
-
-  const geoData = {
-    'simijaca': {
-      tag: '1. Escenario Probado del Crimen (Simijaca, Cundinamarca)',
-      desc: 'Finca rural donde ocurrió la incursión de los delincuentes a las 5:00 a.m. del 15 de mayo de 2000, la colocación coercitiva del artefacto sobre doña Ana Elvia Cortés y la fatídica intervención antiexplosivos. La providencia penal 21285 de la Corte Suprema radicó allí la competencia jurisdiccional oficial (Altitud: 2.559 msnm).'
-    },
-    'chiquinquira': {
-      tag: '2. Epicentro Asistencial y Foco Mediático (Chiquinquirá, Boyacá)',
-      desc: 'Cabecera municipal a solo 15.2 km al norte por la Ruta 45A. Allí acudió el esposo de la víctima a dar aviso a la Policía y se congregaron los medios de comunicación y el hospital regional San Salvador. Por esta proximidad informativa, los titulares bautizaron popularmente el caso como «collar bomba de Chiquinquirá».'
-    },
-    'limite': {
-      tag: '3. Zona Limítrofe Veredal (Vereda Palestina)',
-      desc: 'Corredor rural interdepartamental entre Simijaca y Chiquinquirá. Las divergencias en los testimonios vecinales sobre los linderos de las fincas suscitaron confusión inicial entre despachos judiciales y coberturas de prensa, aclarada posteriormente en la sentencia de casación.'
-    },
-    'bogota': {
-      tag: '4. Trayectoria de Evacuación Aérea (Hacia Bogotá D.C.)',
-      desc: 'Tras la detonación a la 1:30 p.m., el subintendente Jairo Hernando López fue evacuado de urgencia por vía aérea hacia el Hospital Central de la Policía en Bogotá (128 km al sur). Falleció valerosamente en el trayecto debido a la gravedad de las heridas. Su hijo recién nacido lo esperaba en casa.'
-    }
-  };
-
-  function selectGeoPoint(pointKey) {
-    if (!geoData[pointKey]) return;
-    const data = geoData[pointKey];
-
-    // Actualizar nodos SVG
-    nodes.forEach(node => {
-      const p = node.getAttribute('data-point') || node.id.replace('node-', '');
-      node.classList.toggle('active', p === pointKey);
-    });
-
-    // Actualizar píldoras
-    pills.forEach(pill => {
-      pill.classList.toggle('active', pill.getAttribute('data-point') === pointKey);
-    });
-
-    // Animar caja de información
-    if (infoBox) {
-      infoBox.style.opacity = '0';
-      infoBox.style.transform = 'translateY(6px)';
-      setTimeout(() => {
-        infoBox.innerHTML = `
-          <span class="geo-tag-badge gold">${data.tag}</span>
-          <p>${data.desc}</p>
-        `;
-        infoBox.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
-        infoBox.style.opacity = '1';
-        infoBox.style.transform = 'none';
-      }, 120);
-    }
+const BASE_MEMORIAL_THOUGHTS = [
+  {
+    id: 'base-1',
+    author: 'Visitante desde Bogotá D.C.',
+    date: 'Conmemoración Documental',
+    text: 'Por la dignidad de doña Ana Elvia y el heroísmo del Subintendente Jairo. La verdad prevalece sobre las mentiras políticas.'
+  },
+  {
+    id: 'base-2',
+    author: 'Colectivo de Memoria Histórica',
+    date: 'Homenaje a las Víctimas',
+    text: 'Recordar con responsabilidad y rigor ético para que hechos tan atroces no se repitan jamás en el campo colombiano.'
+  },
+  {
+    id: 'base-3',
+    author: 'Estudiante de Derecho y Periodismo',
+    date: 'Memoria y Verdad',
+    text: 'El deber ético de la memoria frente a la desinformación es un compromiso ciudadano innegociable.'
   }
+];
 
-  nodes.forEach(node => {
-    node.addEventListener('click', () => {
-      const point = node.getAttribute('data-point') || node.id.replace('node-', '');
-      selectGeoPoint(point);
-    });
-    node.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        const point = node.getAttribute('data-point') || node.id.replace('node-', '');
-        selectGeoPoint(point);
-      }
-    });
-  });
-
-  pills.forEach(pill => {
-    pill.addEventListener('click', () => {
-      selectGeoPoint(pill.getAttribute('data-point'));
-    });
-  });
-}
-
-/* ========================================================================
-   12. PESTAÑAS JUDICIALES
-   ======================================================================== */
-function initJudicialTabs() {
-  const tabBtns = document.querySelectorAll('.judicial-tab-bar .j-tab-btn');
-  const panes = document.querySelectorAll('.j-tab-pane');
-
-  tabBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      tabBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const tab = btn.getAttribute('data-tab');
-      panes.forEach(pane => {
-        pane.style.display = pane.id === `pane-${tab}` ? 'block' : 'none';
-      });
-    });
-  });
-}
-
-/* ========================================================================
-   13. MEMORIAL CANDLE + PARTÍCULAS DE FUEGO
-   ======================================================================== */
 function initMemorialSanctuary() {
   const btnLight = document.getElementById('btn-light-candle');
   const counterEl = document.getElementById('candle-counter');
   const flameEl = document.getElementById('candle-flame');
+  const form = document.getElementById('form-memorial-dedication');
+  const inputText = document.getElementById('dedication-input-text');
+  const inputAuthor = document.getElementById('dedication-input-author');
+  const charCounter = document.getElementById('char-counter');
   const quickPills = document.querySelectorAll('.tribute-quick-pill');
-  const streamContainer = document.getElementById('tribute-cards-stream');
+  const stream = document.getElementById('tribute-cards-stream');
 
-  if (!btnLight || !counterEl) return;
+  if (!btnLight || !counterEl || !stream) return;
 
-  const baseCount = 1402;
-  const storedExtra = parseInt(localStorage.getItem('cb_candle_extra') || '0', 10);
-  let hasLit = localStorage.getItem('cb_user_lit_candle') === 'true';
-
-  // Animación de contador
-  animateCounter(counterEl, baseCount + storedExtra, 0);
-
-  if (hasLit) {
-    btnLight.disabled = true;
-    btnLight.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor" width="18"><path d="M12 2c-.5 2-2 3.5-2 5.5 0 1.5 1 2.5 2 2.5s2-1 2-2.5c0-2-1.5-3.5-2-5.5zm-5 9v11h10V11H7z"/></svg><span>Luz encendida ✓</span>';
+  // Cargar pensamientos guardados en localStorage
+  let savedThoughts = [];
+  try {
+    savedThoughts = JSON.parse(localStorage.getItem('cb_user_dedications') || '[]');
+  } catch (e) {
+    savedThoughts = [];
   }
 
-  btnLight.addEventListener('click', (e) => {
-    if (hasLit) return;
-    hasLit = true;
+  // Comprobar si ya encendió la vela en esta sesión/navegador
+  let userHasLit = localStorage.getItem('cb_candle_lit') === 'true';
 
-    const newExtra = storedExtra + 1;
-    localStorage.setItem('cb_candle_extra', newExtra.toString());
-    localStorage.setItem('cb_user_lit_candle', 'true');
+  function updateCounter() {
+    const totalCount = BASE_MEMORIAL_THOUGHTS.length + savedThoughts.length + (userHasLit ? 1 : 0);
+    counterEl.textContent = totalCount.toLocaleString('es-CO');
+  }
+  updateCounter();
 
-    // Animación del contador
-    animateCounter(counterEl, baseCount + newExtra, 800);
+  if (userHasLit) {
+    btnLight.disabled = true;
+    btnLight.classList.add('lit');
+    btnLight.innerHTML = `
+      <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><path d="M12 2c-.5 2-2 3.5-2 5.5 0 1.5 1 2.5 2 2.5s2-1 2-2.5c0-2-1.5-3.5-2-5.5zm-5 9v11h10V11H7z"/></svg>
+      <span>Luz Encendida en tu Navegador ✓</span>
+    `;
+    if (flameEl) flameEl.classList.add('ignited');
+  }
 
-    // Llama reactiva
+  // Encendido de la vela
+  btnLight.addEventListener('click', () => {
+    if (userHasLit) return;
+    userHasLit = true;
+    localStorage.setItem('cb_candle_lit', 'true');
+
     if (flameEl) {
-      flameEl.style.transform = 'scale(2) rotate(-5deg)';
-      flameEl.style.filter = 'brightness(1.5)';
-      setTimeout(() => {
-        flameEl.style.transition = 'transform 0.5s var(--ease-out), filter 0.5s ease';
-        flameEl.style.transform = 'scale(1)';
-        flameEl.style.filter = '';
-      }, 500);
+      flameEl.classList.add('ignited');
+      flameEl.style.transform = 'scale(1.4)';
+      setTimeout(() => { flameEl.style.transform = ''; }, 600);
     }
 
     btnLight.disabled = true;
-    btnLight.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor" width="18"><path d="M12 2c-.5 2-2 3.5-2 5.5 0 1.5 1 2.5 2 2.5s2-1 2-2.5c0-2-1.5-3.5-2-5.5zm-5 9v11h10V11H7z"/></svg><span>Luz encendida ✓</span>';
+    btnLight.classList.add('lit');
+    btnLight.innerHTML = `
+      <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><path d="M12 2c-.5 2-2 3.5-2 5.5 0 1.5 1 2.5 2 2.5s2-1 2-2.5c0-2-1.5-3.5-2-5.5zm-5 9v11h10V11H7z"/></svg>
+      <span>Luz Encendida en tu Navegador ✓</span>
+    `;
 
-    // RÁFAGA ÉPICA de partículas
+    updateCounter();
+
     if (window.triggerEmberBurst) {
       const rect = btnLight.getBoundingClientRect();
-      const cx = rect.left + rect.width / 2;
-      const cy = rect.top + rect.height / 2;
-      window.triggerEmberBurst(cx, cy, 60);
-
-      // Ráfagas múltiples escalonadas
-      setTimeout(() => window.triggerEmberBurst(cx - 20, cy, 30), 200);
-      setTimeout(() => window.triggerEmberBurst(cx + 20, cy, 30), 400);
+      window.triggerEmberBurst(rect.left + rect.width / 2, rect.top, 35);
     }
+
+    showToast('Has encendido una luz en homenaje a Ana Elvia Cortés y Jairo H. López');
+    inputText?.focus();
   });
 
-  quickPills.forEach(pill => {
-    pill.addEventListener('click', () => {
-      const text = pill.getAttribute('data-text');
-      if (!text || !streamContainer) return;
+  // Renderizar pensamientos combinados
+  function renderAllThoughts() {
+    stream.innerHTML = '';
+    const all = [...savedThoughts, ...BASE_MEMORIAL_THOUGHTS];
 
-      const newCard = document.createElement('div');
-      newCard.className = 't-stream-card';
-      newCard.innerHTML = `
-        <span class="t-stream-date">Ahora mismo</span>
-        <p>«${text}»</p>
-        <span class="t-stream-author">— Tu pensamiento de memoria</span>
+    all.forEach(item => {
+      const card = document.createElement('article');
+      card.className = 't-stream-card';
+      const cleanAuthor = escapeHTML(item.author || 'Visitante anónimo');
+      const cleanText = escapeHTML(item.text);
+      const cleanDate = escapeHTML(item.date || 'Reciente');
+
+      card.innerHTML = `
+        <span class="t-stream-date">${cleanDate}</span>
+        <p>«${cleanText}»</p>
+        <span class="t-stream-author">— ${cleanAuthor}</span>
       `;
-      streamContainer.prepend(newCard);
+      stream.appendChild(card);
+    });
+  }
 
-      if (window.triggerEmberBurst) {
-        const rect = pill.getBoundingClientRect();
-        window.triggerEmberBurst(rect.left + rect.width / 2, rect.top, 20);
+  renderAllThoughts();
+
+  // Contador de caracteres
+  if (inputText && charCounter) {
+    inputText.addEventListener('input', () => {
+      const left = 240 - inputText.value.length;
+      charCounter.textContent = `${left} caracteres disponibles`;
+      charCounter.style.color = left < 20 ? 'var(--red-primary)' : 'var(--text-muted)';
+    });
+  }
+
+  // Envío de dedicatoria
+  if (form && inputText) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const text = inputText.value.trim();
+      if (!text || text.length < 5) {
+        showToast('Por favor escribe un mensaje de al menos 5 caracteres');
+        inputText.focus();
+        return;
       }
 
-      pill.disabled = true;
-      pill.style.opacity = '0.5';
+      const author = (inputAuthor?.value.trim()) || 'Visitante conmemorativo';
+      const today = new Date().toLocaleDateString('es-CO', { day: 'numeric', month: 'short', year: 'numeric' });
+
+      const newThought = {
+        id: 'user-' + Date.now(),
+        author: author,
+        date: `Hoy (${today})`,
+        text: text
+      };
+
+      savedThoughts.unshift(newThought);
+      try {
+        localStorage.setItem('cb_user_dedications', JSON.stringify(savedThoughts));
+      } catch (err) {
+        console.warn('LocalStorage lleno o deshabilitado');
+      }
+
+      inputText.value = '';
+      if (inputAuthor) inputAuthor.value = '';
+      if (charCounter) charCounter.textContent = '240 caracteres disponibles';
+
+      renderAllThoughts();
+      updateCounter();
+
+      if (window.triggerEmberBurst) {
+        const rect = form.getBoundingClientRect();
+        window.triggerEmberBurst(rect.left + rect.width / 2, rect.top + 20, 25);
+      }
+
+      showToast('Tu dedicatoria ha sido guardada con respeto en tu dispositivo');
+    });
+  }
+
+  // Píldoras de dedicatoria rápida
+  quickPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      const txt = pill.getAttribute('data-text');
+      if (inputText && txt) {
+        inputText.value = txt;
+        inputText.focus();
+        if (charCounter) {
+          charCounter.textContent = `${240 - txt.length} caracteres disponibles`;
+        }
+      }
     });
   });
 }
 
-/* Animación de contador numérico */
-function animateCounter(el, target, delay = 0) {
-  if (!el) return;
-  setTimeout(() => {
-    const start = parseInt(el.textContent.replace(/,/g, '')) || 0;
-    const duration = 1500;
-    const startTime = performance.now();
-    function update(now) {
-      const elapsed = now - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      const current = Math.round(start + (target - start) * eased);
-      el.textContent = current.toLocaleString('es-CO');
-      if (progress < 1) requestAnimationFrame(update);
-    }
-    requestAnimationFrame(update);
-  }, delay);
+function escapeHTML(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
 }
 
 /* ========================================================================
-   14. HEMEROTECA: BÚSQUEDA Y FILTROS
+   12. MÓDULO 5: COMPARADOR DESLIZANTE (FICCIÓN PVC-1 VS REALIDAD)
+   ======================================================================== */
+function initComparisonSlider() {
+  const container = document.getElementById('pvc1-slider-container');
+  const layerOver = document.getElementById('slider-layer-over');
+  const handle = document.getElementById('slider-handle');
+  const btnComp = document.getElementById('btn-show-comparison');
+  const btnFict = document.getElementById('btn-show-fiction');
+  const btnDebunk = document.getElementById('btn-show-debunk');
+
+  if (!container || !layerOver || !handle) return;
+
+  let isDragging = false;
+
+  function updateSlider(pct) {
+    const clamped = Math.max(0, Math.min(100, pct));
+    layerOver.style.width = `${clamped}%`;
+    handle.style.left = `${clamped}%`;
+    handle.setAttribute('aria-valuenow', Math.round(clamped).toString());
+  }
+
+  function handleMove(e) {
+    if (!isDragging) return;
+    const rect = container.getBoundingClientRect();
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const x = clientX - rect.left;
+    const pct = (x / rect.width) * 100;
+    updateSlider(pct);
+  }
+
+  handle.addEventListener('mousedown', () => { isDragging = true; });
+  handle.addEventListener('touchstart', () => { isDragging = true; }, { passive: true });
+
+  window.addEventListener('mousemove', handleMove);
+  window.addEventListener('touchmove', handleMove, { passive: true });
+
+  window.addEventListener('mouseup', () => { isDragging = false; });
+  window.addEventListener('touchend', () => { isDragging = false; });
+
+  // Control por teclado (Accesibilidad)
+  handle.addEventListener('keydown', (e) => {
+    let current = parseFloat(handle.getAttribute('aria-valuenow') || '50');
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      updateSlider(current - 5);
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      updateSlider(current + 5);
+    }
+  });
+
+  // Botones de modo
+  if (btnComp) {
+    btnComp.addEventListener('click', () => {
+      updateSlider(50);
+      setActiveButton(btnComp);
+    });
+  }
+
+  if (btnFict) {
+    btnFict.addEventListener('click', () => {
+      updateSlider(0);
+      setActiveButton(btnFict);
+    });
+  }
+
+  if (btnDebunk) {
+    btnDebunk.addEventListener('click', () => {
+      updateSlider(100);
+      setActiveButton(btnDebunk);
+    });
+  }
+
+  function setActiveButton(activeBtn) {
+    [btnComp, btnFict, btnDebunk].forEach(b => b?.classList.remove('active'));
+    activeBtn?.classList.add('active');
+  }
+}
+
+/* ========================================================================
+   13. MÓDULO 5: HEMEROTECA DIGITAL (Búsqueda y Filtro)
    ======================================================================== */
 function initHemerotecaSearch() {
   const searchInput = document.getElementById('hemeroteca-search');
   const catPills = document.querySelectorAll('.tag-filter-pills .h-pill');
   const cards = document.querySelectorAll('#hemeroteca-cards-container .h-card');
+  const countEl = document.getElementById('hemeroteca-count');
 
   let activeCat = 'all';
   let searchTerm = '';
 
-  function filterCards() {
+  function filterHemeroteca() {
     let visibleCount = 0;
     cards.forEach(card => {
       const cat = card.getAttribute('data-cat');
       const text = card.innerText.toLowerCase();
-      const matchesCat = activeCat === 'all' || cat === activeCat;
+      const matchesCat = (activeCat === 'all' || cat === activeCat);
       const matchesSearch = !searchTerm || text.includes(searchTerm);
-      const visible = matchesCat && matchesSearch;
+      const isVisible = matchesCat && matchesSearch;
 
-      card.style.display = visible ? '' : 'none';
-      if (visible) {
-        card.style.animation = 'none';
-        card.offsetHeight; // Reflow
-        card.style.animation = 'tabFade 0.35s ease both';
-        visibleCount++;
-      }
+      card.style.display = isVisible ? '' : 'none';
+      if (isVisible) visibleCount++;
     });
+
+    if (countEl) {
+      countEl.textContent = `Mostrando ${visibleCount} de ${cards.length} artículos indexados`;
+    }
   }
 
   if (searchInput) {
-    let debounceTimer;
+    let timer;
     searchInput.addEventListener('input', (e) => {
-      clearTimeout(debounceTimer);
-      debounceTimer = setTimeout(() => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
         searchTerm = e.target.value.toLowerCase().trim();
-        filterCards();
-      }, 200);
+        filterHemeroteca();
+      }, 150);
     });
   }
 
@@ -736,14 +960,40 @@ function initHemerotecaSearch() {
     pill.addEventListener('click', () => {
       catPills.forEach(p => p.classList.remove('active'));
       pill.classList.add('active');
-      activeCat = pill.getAttribute('data-cat');
-      filterCards();
+      activeCat = pill.getAttribute('data-cat') || 'all';
+      filterHemeroteca();
     });
   });
 }
 
 /* ========================================================================
-   15. ACORDEÓN DE REFLEXIÓN
+   14. MÓDULO 6: PESTAÑAS JUDICIALES ACCESIBLES
+   ======================================================================== */
+function initJudicialTabs() {
+  const tabBtns = document.querySelectorAll('.judicial-tab-bar .j-tab-btn');
+  const panes = document.querySelectorAll('.j-tab-pane');
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabBtns.forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+
+      const targetTab = btn.getAttribute('data-tab');
+      panes.forEach(pane => {
+        const isMatch = (pane.id === `pane-${targetTab}`);
+        pane.style.display = isMatch ? 'block' : 'none';
+        pane.classList.toggle('active', isMatch);
+      });
+    });
+  });
+}
+
+/* ========================================================================
+   15. MÓDULO 7: ACORDEÓN PEDAGÓGICO DE REFLEXIÓN
    ======================================================================== */
 function initAccordion() {
   const headers = document.querySelectorAll('.accordion-header');
@@ -754,14 +1004,13 @@ function initAccordion() {
       const isOpen = item.classList.contains('active');
       const collapse = item.querySelector('.accordion-collapse');
 
-      // Cerrar todos los demás
+      // Cerrar otros
       document.querySelectorAll('.accordion-item').forEach(other => {
         if (other !== item && other.classList.contains('active')) {
           other.classList.remove('active');
           const otherCollapse = other.querySelector('.accordion-collapse');
           if (otherCollapse) otherCollapse.style.maxHeight = '0px';
-          const otherHeader = other.querySelector('.accordion-header');
-          if (otherHeader) otherHeader.setAttribute('aria-expanded', 'false');
+          other.querySelector('.accordion-header')?.setAttribute('aria-expanded', 'false');
         }
       });
 
@@ -779,7 +1028,182 @@ function initAccordion() {
 }
 
 /* ========================================================================
-   16. MODAL LIGHTBOX
+   16. MÓDULO 8: BIBLIOGRAFÍA COMPACTA Y HERRAMIENTAS ACADÉMICAS
+   ======================================================================== */
+const ALL_APA_CITATIONS = [
+  `AFP Factual. (2026, 7 de abril). El caso del “collar bomba” en Colombia no fue atribuido a las FARC; y la foto viral es de una actriz. https://factual.afp.com/doc.afp.com.A6ZK7ZQ`,
+  `Carranza Muñoz, D. L. (2016, 14 de mayo). El otro muerto del collar bomba. El Espectador. https://www.elespectador.com/colombia/mas-regiones/el-otro-muerto-del-collar-bomba-article-632293/`,
+  `ColombiaCheck. (2016, 27 de septiembre). Lo del collar bomba, otra explosiva mentira. https://colombiacheck.com/chequeos/lo-del-collar-bomba-otra-explosiva-mentira`,
+  `ColombiaCheck. (2022, 27 de enero). Collar bomba fue un acto de la delincuencia común, pero aún se lo atribuyen falsamente a las FARC. https://colombiacheck.com/chequeos/collar-bomba-fue-un-acto-de-la-delincuencia-comun-pero-aun-se-lo-atribuyen-falsamente-las`,
+  `ColombiaCheck. (2026, 15 de abril). Vieja desinformación sobre el collar bomba se usa para cuestionar campaña de Cepeda. https://colombiacheck.com/chequeos/vieja-desinformacion-sobre-el-collar-bomba-se-usa-para-cuestionar-campana-de-cepeda`,
+  `Corte Suprema de Justicia, Sala de Casación Penal. (2005, 25 de octubre). Providencia, proceso n.º 21285 (M.P. Yesid Ramírez Bastidas). vLex Colombia. https://vlex.com.co/vid/providencia-corte-suprema-justicia-874010134`,
+  `El Tiempo. (2000, 17 de mayo). El collar explosivo, peor que el secuestro. Archivo de El Tiempo. https://www.eltiempo.com/archivo/documento/mam-1255427`,
+  `El Tiempo. (2000, 28 de mayo). Collar bomba, acto de bandas. Archivo de El Tiempo. https://www.eltiempo.com/archivo/documento/mam-1226570`,
+  `El Tiempo. (2002, 24 de septiembre). Collar bomba: un solo condenado. Archivo de El Tiempo. https://www.eltiempo.com/archivo/documento/mam-1333136`,
+  `El Tiempo. (2003, 7 de febrero). Confirman pena por collar bomba. Archivo de El Tiempo. https://www.eltiempo.com/archivo/documento/mam-980725`,
+  `El Tiempo. (2008, 13 de noviembre). Historia de la tragedia del collar bomba. Archivo de El Tiempo. https://www.eltiempo.com/archivo/documento/CMS-4664634`,
+  `La Silla Vacía. (2023, 30 de junio). Detector: ninguna guerrilla fue responsable del caso del collar bomba. https://www.lasillavacia.com/detector-de-mentiras/falso/detector-ninguna-guerrilla-fue-responsable-del-caso-del-collar-bomba/`,
+  `La Silla Vacía. (2026, 21 de octubre). Collar bomba: la justicia probó que fueron delincuentes comunes, no las Farc. https://www.lasillavacia.com/detector-de-mentiras/falso/collar-bomba-la-justicia-probo-que-fueron-delincuentes-comunes-no-las-farc/`,
+  `Proimágenes Colombia. (s. f.). PVC-1. Cine colombiano. https://www.proimagenescolombia.com/secciones/cine_colombiano/peliculas_colombianas/pelicula_plantilla.php?id_pelicula=1796`,
+  `Proimágenes Colombia. (2007, 30 de noviembre). El largometraje colombiano PVC-1 gana en el Festival de Cine de Tesalónica. Pantalla Colombia. https://www.proimagenescolombia.com/secciones/pantalla_colombia/breves_plantilla.php?id_noticia=652`
+];
+
+const BIBTEX_ENTRIES = `@jurisdiction{csj2005_21285,
+  author = {{Corte Suprema de Justicia de Colombia}},
+  title = {Providencia, Proceso Penal N.º 21285},
+  year = {2005},
+  month = {octubre},
+  url = {https://vlex.com.co/vid/providencia-corte-suprema-justicia-874010134},
+  note = {Sala de Casación Penal. M.P. Yesid Ramírez Bastidas}
+}
+
+@article{carranza2016,
+  author = {Carranza Muñoz, Diana Lucía},
+  title = {El otro muerto del collar bomba},
+  journal = {El Espectador},
+  year = {2016},
+  month = {mayo},
+  url = {https://www.elespectador.com/colombia/mas-regiones/el-otro-muerto-del-collar-bomba-article-632293/}
+}
+
+@misc{colombiacheck2022,
+  author = {{ColombiaCheck}},
+  title = {Collar bomba fue un acto de la delincuencia común, pero aún se lo atribuyen falsamente a las FARC},
+  year = {2022},
+  month = {enero},
+  url = {https://colombiacheck.com/chequeos/collar-bomba-fue-un-acto-de-la-delincuencia-comun-pero-aun-se-lo-atribuyen-falsamente-las}
+}
+
+@misc{afp_factual_2026,
+  author = {{AFP Factual}},
+  title = {El caso del "collar bomba" en Colombia no fue atribuido a las FARC; y la foto viral es de una actriz},
+  year = {2026},
+  month = {abril},
+  url = {https://factual.afp.com/doc.afp.com.A6ZK7ZQ}
+}
+
+@misc{lasillavacia2026,
+  author = {{La Silla Vacía}},
+  title = {Collar bomba: la justicia probó que fueron delincuentes comunes, no las Farc},
+  year = {2026},
+  month = {octubre},
+  url = {https://www.lasillavacia.com/detector-de-mentiras/falso/collar-bomba-la-justicia-probo-que-fueron-delincuentes-comunes-no-las-farc/}
+}
+
+@article{eltiempo2000_1,
+  author = {{El Tiempo}},
+  title = {El collar explosivo, peor que el secuestro},
+  journal = {El Tiempo},
+  year = {2000},
+  month = {mayo},
+  url = {https://www.eltiempo.com/archivo/documento/mam-1255427}
+}
+
+@article{eltiempo2000_2,
+  author = {{El Tiempo}},
+  title = {Collar bomba, acto de bandas},
+  journal = {El Tiempo},
+  year = {2000},
+  month = {mayo},
+  url = {https://www.eltiempo.com/archivo/documento/mam-1226570}
+}
+`;
+
+function initAcademicBibliography() {
+  const cards = document.querySelectorAll('.apa-card');
+  const copyBtns = document.querySelectorAll('.btn-copy-citation');
+  const toggleBtns = document.querySelectorAll('.btn-toggle-apa');
+  const btnCopyAll = document.getElementById('btn-copy-all-apa');
+  const btnDownloadBibtex = document.getElementById('btn-download-bibtex');
+  const filterInput = document.getElementById('apa-filter-input');
+
+  // Desplegables de fichas
+  toggleBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const card = btn.closest('.apa-card');
+      const expanded = card.querySelector('.apa-card-expanded');
+      const isOpen = card.classList.toggle('expanded');
+      btn.setAttribute('aria-expanded', isOpen.toString());
+      btn.textContent = isOpen ? 'Ocultar' : 'Detalles';
+      if (expanded) {
+        expanded.style.maxHeight = isOpen ? `${expanded.scrollHeight + 20}px` : '0px';
+      }
+    });
+  });
+
+  // Copia individual
+  copyBtns.forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const citation = btn.getAttribute('data-citation');
+      if (!citation) return;
+      try {
+        await navigator.clipboard.writeText(citation);
+        showToast('Cita APA 7 copiada al portapapeles');
+      } catch (err) {
+        fallbackCopy(citation);
+      }
+    });
+  });
+
+  // Copiar todas
+  if (btnCopyAll) {
+    btnCopyAll.addEventListener('click', async () => {
+      const allText = ALL_APA_CITATIONS.join('\n\n');
+      try {
+        await navigator.clipboard.writeText(allText);
+        showToast('15 referencias APA 7 copiadas al portapapeles');
+      } catch (err) {
+        fallbackCopy(allText);
+      }
+    });
+  }
+
+  // Descargar BibTeX (.bib)
+  if (btnDownloadBibtex) {
+    btnDownloadBibtex.addEventListener('click', () => {
+      const blob = new Blob([BIBTEX_ENTRIES], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'collar_bomba_bibliografia_apa7.bib';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast('Archivo BibTeX (.bib) descargado');
+    });
+  }
+
+  // Filtrado de referencias
+  if (filterInput) {
+    filterInput.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase().trim();
+      cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        card.style.display = (!query || text.includes(query)) ? '' : 'none';
+      });
+    });
+  }
+
+  function fallbackCopy(text) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      document.execCommand('copy');
+      showToast('Copiado al portapapeles');
+    } catch (e) {
+      showToast('No se pudo copiar automáticamente');
+    }
+    document.body.removeChild(ta);
+  }
+}
+
+/* ========================================================================
+   17. MODAL LIGHTBOX HD PARA ARCHIVOS DE PRENSA
    ======================================================================== */
 function initMediaModal() {
   const modal = document.getElementById('media-modal');
@@ -790,51 +1214,43 @@ function initMediaModal() {
   if (!modal || !modalImg) return;
 
   function openModal(src, alt, caption) {
-    modalImg.src = '';
-    modalImg.alt = alt;
+    modalImg.src = src;
+    modalImg.alt = alt || '';
+    if (modalCaption) modalCaption.textContent = caption || alt || '';
     modal.classList.add('open');
     modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
-
-    const tempImg = new Image();
-    tempImg.onload = () => {
-      modalImg.src = src;
-      if (modalCaption) modalCaption.textContent = caption || alt;
-    };
-    tempImg.src = src;
+    closeBtn?.focus();
   }
 
   function closeModal() {
     modal.classList.remove('open');
     modal.setAttribute('aria-hidden', 'true');
-    setTimeout(() => { modalImg.src = ''; }, 300);
     document.body.style.overflow = '';
+    setTimeout(() => { modalImg.src = ''; }, 250);
   }
 
-  const clickableImages = document.querySelectorAll(
-    '.curated-thumb, .context-figure, .strip-item, .visual-debunk-frame, .h-card-img-wrap'
-  );
-  clickableImages.forEach(wrapper => {
-    wrapper.style.cursor = 'zoom-in';
-    wrapper.addEventListener('click', () => {
-      const img = wrapper.querySelector('img');
-      const caption = wrapper.getAttribute('data-caption') ||
-                      wrapper.querySelector('figcaption')?.innerText;
+  const clickableImages = document.querySelectorAll('.curated-thumb, .context-figure, .strip-item');
+  clickableImages.forEach(item => {
+    item.style.cursor = 'zoom-in';
+    item.addEventListener('click', () => {
+      const img = item.querySelector('img');
+      const caption = item.getAttribute('data-caption') || item.querySelector('figcaption')?.innerText;
       if (img) openModal(img.src, img.alt, caption);
     });
   });
 
-  if (closeBtn) closeBtn.addEventListener('click', closeModal);
-  modal.addEventListener('click', e => {
+  closeBtn?.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => {
     if (e.target === modal || e.target.classList.contains('modal-backdrop')) closeModal();
   });
-  document.addEventListener('keydown', e => {
+  document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
   });
 }
 
 /* ========================================================================
-   17. AUDIO AMBIENTAL SOLEMNE
+   18. AUDIO AMBIENTAL SOLEMNE (Web Audio API - Cero Archivos Externos)
    ======================================================================== */
 function initAmbientAudio() {
   const btnToggle = document.getElementById('btn-ambient-audio');
@@ -844,7 +1260,7 @@ function initAmbientAudio() {
   if (!btnToggle) return;
 
   let audioCtx = null, isPlaying = false, masterGain = null;
-  let oscs = [], animFrameId = null;
+  let oscs = [], animId = null;
 
   function startAudio() {
     const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -853,23 +1269,23 @@ function initAmbientAudio() {
 
     masterGain = audioCtx.createGain();
     masterGain.gain.setValueAtTime(0.001, audioCtx.currentTime);
-    masterGain.gain.exponentialRampToValueAtTime(0.07, audioCtx.currentTime + 4);
+    masterGain.gain.exponentialRampToValueAtTime(0.06, audioCtx.currentTime + 3);
 
     const filter = audioCtx.createBiquadFilter();
     filter.type = 'lowpass';
-    filter.frequency.setValueAtTime(320, audioCtx.currentTime);
+    filter.frequency.setValueAtTime(300, audioCtx.currentTime);
     filter.Q.setValueAtTime(0.7, audioCtx.currentTime);
 
-    const reverb = audioCtx.createConvolver();
+    // Acorde solemne y sereno de fondo
     const freqs = [110, 138.6, 164.8, 220];
     oscs = freqs.map(freq => {
       const osc = audioCtx.createOscillator();
       osc.type = 'sine';
       osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-      const gainNode = audioCtx.createGain();
-      gainNode.gain.setValueAtTime(0.5 / freqs.length, audioCtx.currentTime);
-      osc.connect(gainNode);
-      gainNode.connect(filter);
+      const gain = audioCtx.createGain();
+      gain.gain.setValueAtTime(0.4 / freqs.length, audioCtx.currentTime);
+      osc.connect(gain);
+      gain.connect(filter);
       osc.start();
       return osc;
     });
@@ -879,35 +1295,37 @@ function initAmbientAudio() {
     isPlaying = true;
 
     btnToggle.classList.add('playing');
-    updateBtnState(true);
-    if (waveBar) waveBar.classList.add('visible');
+    updateBtn(true);
+    waveBar?.classList.add('visible');
     drawWave();
+    showToast('Atmósfera sonora solemne activada');
   }
 
   function stopAudio() {
     if (!isPlaying) return;
-    if (masterGain) {
+    if (masterGain && audioCtx) {
       masterGain.gain.setValueAtTime(masterGain.gain.value, audioCtx.currentTime);
-      masterGain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 2);
+      masterGain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 1.5);
     }
     setTimeout(() => {
       oscs.forEach(osc => { try { osc.stop(); osc.disconnect(); } catch(e) {} });
       oscs = [];
       isPlaying = false;
-    }, 2000);
+    }, 1600);
+
     btnToggle.classList.remove('playing');
-    updateBtnState(false);
-    if (waveBar) waveBar.classList.remove('visible');
-    if (animFrameId) cancelAnimationFrame(animFrameId);
+    updateBtn(false);
+    waveBar?.classList.remove('visible');
+    if (animId) cancelAnimationFrame(animId);
   }
 
-  function updateBtnState(playing) {
+  function updateBtn(playing) {
     const iconOn = btnToggle.querySelector('.icon-sound.on');
     const iconOff = btnToggle.querySelector('.icon-sound.off');
     const txt = btnToggle.querySelector('.btn-sound-text');
     if (iconOn) iconOn.style.display = playing ? 'none' : 'inline';
     if (iconOff) iconOff.style.display = playing ? 'inline' : 'none';
-    if (txt) txt.textContent = playing ? 'Silenciar' : 'Voz Solemne';
+    if (txt) txt.textContent = playing ? 'Silenciar' : 'Atmósfera';
   }
 
   function drawWave() {
@@ -921,144 +1339,83 @@ function initAmbientAudio() {
       if (!isPlaying) return;
       ctx2d.clearRect(0, 0, w, h);
       ctx2d.lineWidth = 1.8;
-
-      // Onda dorada con gradiente
-      const grad = ctx2d.createLinearGradient(0, 0, w, 0);
-      grad.addColorStop(0, 'rgba(212,168,32,0.4)');
-      grad.addColorStop(0.5, 'rgba(212,168,32,1)');
-      grad.addColorStop(1, 'rgba(212,168,32,0.4)');
-      ctx2d.strokeStyle = grad;
-      ctx2d.shadowBlur = 6;
-      ctx2d.shadowColor = '#d4a820';
+      ctx2d.strokeStyle = '#d4a820';
       ctx2d.beginPath();
       for (let x = 0; x < w; x++) {
-        const y = (h / 2) + Math.sin(x * 0.09 + t) * 7 * Math.sin(x * 0.025 + t * 0.4);
+        const y = (h / 2) + Math.sin(x * 0.08 + t) * 6 * Math.sin(x * 0.02 + t * 0.3);
         if (x === 0) ctx2d.moveTo(x, y);
         else ctx2d.lineTo(x, y);
       }
       ctx2d.stroke();
       t += 0.05;
-      animFrameId = requestAnimationFrame(render);
+      animId = requestAnimationFrame(render);
     }
     render();
   }
 
   btnToggle.addEventListener('click', () => isPlaying ? stopAudio() : startAudio());
-  if (muteBtn) muteBtn.addEventListener('click', stopAudio);
+  muteBtn?.addEventListener('click', stopAudio);
+
+  // Silenciar automáticamente si el usuario minimiza o cambia de pestaña
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden && isPlaying) {
+      stopAudio();
+    }
+  });
 }
 
 /* ========================================================================
-   18. EFECTO RIPPLE EN BOTONES
+   19. EFECTO RIPPLE EN BOTONES PRINCIPALES
    ======================================================================== */
 function initRippleEffect() {
-  const rippleEls = document.querySelectorAll('.btn-primary-action, .btn-secondary-action, .btn-candle-light, .step-pill');
-
+  const rippleEls = document.querySelectorAll('.btn-primary-action, .btn-secondary-action, .btn-candle-light');
   rippleEls.forEach(el => {
     el.classList.add('ripple-container');
     el.addEventListener('click', (e) => {
       const rect = el.getBoundingClientRect();
-      const size = Math.max(rect.width, rect.height) * 2;
+      const size = Math.max(rect.width, rect.height) * 1.8;
       const ripple = document.createElement('span');
       ripple.className = 'ripple';
       ripple.style.cssText = `
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.25);
+        pointer-events: none;
         width: ${size}px;
         height: ${size}px;
         left: ${e.clientX - rect.left - size / 2}px;
         top: ${e.clientY - rect.top - size / 2}px;
+        transform: scale(0);
+        animation: rippleAnim 0.6s linear;
       `;
       el.appendChild(ripple);
-      setTimeout(() => ripple.remove(), 700);
+      setTimeout(() => ripple.remove(), 650);
     });
   });
 }
 
 /* ========================================================================
-   19. PARALLAX HERO
-   ======================================================================== */
-function initParallaxHero() {
-  const heroImg = document.querySelector('.hero-bg-img');
-  if (!heroImg || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-  let ticking = false;
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      requestAnimationFrame(() => {
-        const scrolled = window.scrollY;
-        const heroEl = document.querySelector('.module-hero');
-        if (!heroEl) { ticking = false; return; }
-        const heroH = heroEl.offsetHeight;
-        if (scrolled < heroH) {
-          const parallaxOffset = scrolled * 0.35;
-          heroImg.style.transform = `scale(1.1) translateY(${parallaxOffset}px)`;
-        }
-        ticking = false;
-      });
-      ticking = true;
-    }
-  }, { passive: true });
-}
-
-/* ========================================================================
-   20. CONTADORES ANIMADOS (NÚMEROS GRANDES)
-   ======================================================================== */
-function initCountUpAnimations() {
-  const countEls = document.querySelectorAll('[data-count-up]');
-  if (!countEls.length) return;
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const el = entry.target;
-        const target = parseInt(el.getAttribute('data-count-up'));
-        animateCounter(el, target, 0);
-        observer.unobserve(el);
-      }
-    });
-  }, { threshold: 0.5 });
-
-  countEls.forEach(el => observer.observe(el));
-}
-
-/* ========================================================================
-   21. EFECTO 3D TILT EN TARJETAS
+   20. EFECTO 3D TILT SUTIL EN TARJETAS DESTACADAS
    ======================================================================== */
 function initCardTiltEffect() {
   if (window.matchMedia('(pointer: coarse)').matches) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   const cards = document.querySelectorAll('.modern-card.card-3d');
-  if (!cards.length) return;
-
   cards.forEach(card => {
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      const rotateX = ((y - centerY) / centerY) * -8;
-      const rotateY = ((x - centerX) / centerX) * 8;
-
-      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px) scale(1.01)`;
+      const rotateX = ((y - rect.height / 2) / (rect.height / 2)) * -4;
+      const rotateY = ((x - rect.width / 2) / (rect.width / 2)) * 4;
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-3px)`;
     });
 
     card.addEventListener('mouseleave', () => {
-      card.style.transition = 'transform 0.5s var(--ease-out)';
+      card.style.transition = 'transform 0.4s ease';
       card.style.transform = '';
-      setTimeout(() => { card.style.transition = ''; }, 500);
+      setTimeout(() => { card.style.transition = ''; }, 400);
     });
   });
-}
-
-/* ========================================================================
-   22. MARCAR IMAGEN HERO COMO CARGADA (Efecto Ken Burns)
-   ======================================================================== */
-function markHeroImageLoaded() {
-  const heroImg = document.querySelector('.hero-bg-img');
-  if (!heroImg) return;
-
-  if (heroImg.complete) {
-    heroImg.classList.add('loaded');
-  } else {
-    heroImg.addEventListener('load', () => heroImg.classList.add('loaded'));
-  }
 }
