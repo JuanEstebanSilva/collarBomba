@@ -340,7 +340,10 @@ const TIMELINE_DATA = [
     geoLabel: 'Finca rural en Simijaca',
     title: 'Invasión armada e intimidación en vivienda rural',
     desc: 'Hombres armados irrumpen por la fuerza en la vivienda rural de Ana Elvia Cortés de Pachón y su esposo en Simijaca, Cundinamarca. Intimidan violentamente a la pareja exigiendo 15 millones de pesos en efectivo, amenazando con segarles la vida.',
-    source: 'Corte Suprema de Justicia, Sala de Casación Penal (Proceso 21285 · 2005)'
+    source: 'Corte Suprema de Justicia, Sala de Casación Penal (Proceso 21285 · 2005)',
+    imgSrc: 'images/finca.jpg',
+    imgAlt: 'Vivienda rural en Simijaca, Cundinamarca',
+    caption: 'Finca rural · Simijaca, Cundinamarca'
   },
   {
     step: 2,
@@ -349,7 +352,10 @@ const TIMELINE_DATA = [
     geoLabel: 'Finca rural en Simijaca',
     title: 'Fijación coactiva del artefacto explosivo cervical',
     desc: 'Los asaltantes aseguran tres segmentos curvos de tubo PVC con carga de dinamita e indugel alrededor del cuello de Ana Elvia Cortés. Conectan un reloj despertador calibrado a las 15:00 h y un candado posterior, advirtiendo que detonará si no pagan.',
-    source: 'Archivo periodístico El Tiempo — «Collar de dinamita» (Juanita León, 2000)'
+    source: 'Archivo periodístico El Tiempo — «Collar de dinamita» (Juanita León, 2000)',
+    imgSrc: 'images/collar.jpg',
+    imgAlt: 'Reconstrucción forense del collar de tubos PVC y dinamita',
+    caption: 'Morfología del collar explosivo (3 segmentos PVC)'
   },
   {
     step: 3,
@@ -358,7 +364,10 @@ const TIMELINE_DATA = [
     geoLabel: 'Corredor Chiquinquirá – Simijaca',
     title: 'Intervención heroica del Subintendente Jairo H. López',
     desc: 'El esposo da aviso en Chiquinquirá. El técnico antiexplosivos Jairo Hernando López arriba con traje EOD de protección. Conociendo el riesgo del lazo trampa anti-corte, asume la maniobra directa cuerpo a cuerpo junto a doña Ana Elvia para salvarle la vida.',
-    source: 'Crónica El Espectador (Carranza Muñoz, 2016) · Policía Nacional'
+    source: 'Crónica El Espectador (Carranza Muñoz, 2016) · Policía Nacional',
+    imgSrc: 'images/jairo-lopez.jpg',
+    imgAlt: 'Subintendente Jairo Hernando López con traje de protección EOD',
+    caption: 'Subintendente Jairo H. López con traje antiexplosivos EOD'
   },
   {
     step: 4,
@@ -367,7 +376,10 @@ const TIMELINE_DATA = [
     geoLabel: 'Evacuación aérea hacia Bogotá D.C.',
     title: 'La explosión cobra la vida de Ana Elvia y hiere de muerte a López',
     desc: 'El mecanismo de alivio de tensión se activa durante la intervención. Ana Elvia Cortés fallece de forma instantánea. El subintendente López queda herido críticamente y fallece valerosamente durante su evacuación en helicóptero hacia Bogotá.',
-    source: 'Providencia CSJ, Sala Penal (Proceso 21285 · 2005)'
+    source: 'Providencia CSJ, Sala Penal (Proceso 21285 · 2005)',
+    imgSrc: 'images/explosion.jpg',
+    imgAlt: 'Detonación del artefacto explosivo',
+    caption: 'Detonación trágica del artefacto explosivo'
   },
   {
     step: 5,
@@ -376,7 +388,10 @@ const TIMELINE_DATA = [
     geoLabel: 'Tribunales y Corte Suprema de Justicia',
     title: 'Condena judicial por delincuencia común y verdad histórica',
     desc: 'La justicia descarta la autoría de las FARC y condena a José Miguel Suárez a 32 años de prisión por delincuencia común extorsiva. La Corte Suprema ratifica en casación la sentencia. Verificadores confirman que atribuir el collar a la guerrilla es una falsedad electoral.',
-    source: 'CSJ Proceso 21285 · ColombiaCheck · La Silla Vacía · AFP Factual'
+    source: 'CSJ Proceso 21285 · ColombiaCheck · La Silla Vacía · AFP Factual',
+    imgSrc: 'images/Juicio.jpg',
+    imgAlt: 'Audiencia judicial y condena penal',
+    caption: 'Juicio penal · Condena a 32 años por delincuencia común'
   }
 ];
 
@@ -422,6 +437,10 @@ function initSynchronizedTimelineAndMap() {
   const btnPrev = document.getElementById('btn-t-prev');
   const btnNext = document.getElementById('btn-t-next');
   const dynamicCard = document.getElementById('timeline-dynamic-display');
+  const imgEl = document.getElementById('t-step-img');
+  const captionEl = document.getElementById('t-step-caption');
+  const autoplayBtn = document.getElementById('t-autoplay-btn');
+  const autoplayLabel = document.getElementById('t-autoplay-label');
 
   // Panel del mapa (sincronización)
   const geoPills = document.querySelectorAll('.geo-nav-pills .geo-pill-btn');
@@ -431,6 +450,49 @@ function initSynchronizedTimelineAndMap() {
   const btnSyncToTimeline = document.getElementById('btn-sync-to-timeline');
 
   let currentStepIdx = 0;
+
+  // ----------------------------------------------------------------
+  // REPRODUCCIÓN AUTOMÁTICA (5 SEGUNDOS CÍCLICA 1 -> 5 -> 1)
+  // ----------------------------------------------------------------
+  let autoplayInterval = null;
+  let isAutoplayPaused = false;
+  let manualPause = false;
+  const AUTOPLAY_DELAY_MS = 5000;
+
+  function updateAutoplayUI() {
+    if (!autoplayBtn) return;
+    const isPaused = isAutoplayPaused || manualPause;
+    autoplayBtn.classList.toggle('is-paused', isPaused);
+    if (autoplayLabel) {
+      autoplayLabel.textContent = isPaused ? 'PAUSA' : '5s AUTO';
+    }
+  }
+
+  function advanceStepAutomatically() {
+    if (isAutoplayPaused || manualPause) return;
+    const nextIdx = (currentStepIdx + 1) % TIMELINE_DATA.length;
+    setStep(nextIdx, 1);
+  }
+
+  function startAutoplay() {
+    stopAutoplay();
+    autoplayInterval = setInterval(advanceStepAutomatically, AUTOPLAY_DELAY_MS);
+    updateAutoplayUI();
+  }
+
+  function stopAutoplay() {
+    if (autoplayInterval) {
+      clearInterval(autoplayInterval);
+      autoplayInterval = null;
+    }
+  }
+
+  function resetAutoplay() {
+    stopAutoplay();
+    if (!manualPause) {
+      startAutoplay();
+    }
+  }
 
   // ----------------------------------------------------------------
   // LEAFLET MAP — Coordenadas reales Colombia (CartoDB Dark Matter)
@@ -542,9 +604,10 @@ function initSynchronizedTimelineAndMap() {
   }
 
   function setStep(idx, dir = 1) {
-    if (idx < 0 || idx >= TIMELINE_DATA.length) return;
-    currentStepIdx = idx;
-    const data = TIMELINE_DATA[idx];
+    // Soporte cíclico de 1 a 5 y de 5 a 1
+    const validIdx = (idx % TIMELINE_DATA.length + TIMELINE_DATA.length) % TIMELINE_DATA.length;
+    currentStepIdx = validIdx;
+    const data = TIMELINE_DATA[validIdx];
 
     if (dynamicCard) {
       dynamicCard.style.opacity = '0';
@@ -553,6 +616,11 @@ function initSynchronizedTimelineAndMap() {
         if (tagEl) tagEl.textContent = data.tag;
         if (numEl) numEl.textContent = `PASO ${data.step} DE ${TIMELINE_DATA.length}`;
         if (geoLinkEl) geoLinkEl.innerHTML = `<svg class="step-geo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> ${data.geoLabel}`;
+        if (imgEl) {
+          imgEl.src = data.imgSrc;
+          imgEl.alt = data.imgAlt;
+        }
+        if (captionEl) captionEl.textContent = data.caption;
         if (titleEl) titleEl.textContent = data.title;
         if (descEl) descEl.textContent = data.desc;
         if (sourceEl) sourceEl.textContent = `Fuente: ${data.source}`;
@@ -563,13 +631,13 @@ function initSynchronizedTimelineAndMap() {
     }
 
     stepPills.forEach((p, i) => {
-      const active = (i === idx);
+      const active = (i === validIdx);
       p.classList.toggle('active', active);
       p.setAttribute('aria-selected', active.toString());
     });
 
-    if (btnPrev) btnPrev.disabled = (idx === 0);
-    if (btnNext) btnNext.disabled = (idx === TIMELINE_DATA.length - 1);
+    if (btnPrev) btnPrev.disabled = false;
+    if (btnNext) btnNext.disabled = false;
 
     highlightMapWaypoint(data.geoPoint, false);
   }
@@ -602,16 +670,64 @@ function initSynchronizedTimelineAndMap() {
 
     if (syncTimeline && data.stepNum !== (currentStepIdx + 1)) {
       setStep(data.stepNum - 1, 1);
+      resetAutoplay();
     }
   }
 
-  // Event Listeners Timeline
+  // Event Listeners Timeline (con reinicio de los 5 segundos de autoplay)
   stepPills.forEach((pill, i) => {
-    pill.addEventListener('click', () => setStep(i, i > currentStepIdx ? 1 : -1));
+    pill.addEventListener('click', () => {
+      setStep(i, i >= currentStepIdx ? 1 : -1);
+      resetAutoplay();
+    });
   });
 
-  if (btnPrev) btnPrev.addEventListener('click', () => setStep(currentStepIdx - 1, -1));
-  if (btnNext) btnNext.addEventListener('click', () => setStep(currentStepIdx + 1, 1));
+  if (btnPrev) {
+    btnPrev.addEventListener('click', () => {
+      const prevIdx = (currentStepIdx - 1 + TIMELINE_DATA.length) % TIMELINE_DATA.length;
+      setStep(prevIdx, -1);
+      resetAutoplay();
+    });
+  }
+
+  if (btnNext) {
+    btnNext.addEventListener('click', () => {
+      const nextIdx = (currentStepIdx + 1) % TIMELINE_DATA.length;
+      setStep(nextIdx, 1);
+      resetAutoplay();
+    });
+  }
+
+  // Pausa por hover sobre la tarjeta para facilitar la lectura del visitante
+  if (dynamicCard) {
+    dynamicCard.addEventListener('mouseenter', () => {
+      isAutoplayPaused = true;
+      updateAutoplayUI();
+    });
+    dynamicCard.addEventListener('mouseleave', () => {
+      isAutoplayPaused = false;
+      updateAutoplayUI();
+    });
+  }
+
+  // Control manual del autoplay
+  if (autoplayBtn) {
+    autoplayBtn.addEventListener('click', () => {
+      manualPause = !manualPause;
+      if (!manualPause) {
+        startAutoplay();
+      } else {
+        stopAutoplay();
+      }
+      updateAutoplayUI();
+    });
+    autoplayBtn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        autoplayBtn.click();
+      }
+    });
+  }
 
   // Event Listeners Mapa (píldoras)
   geoPills.forEach(pill => {
@@ -624,6 +740,7 @@ function initSynchronizedTimelineAndMap() {
     btnSyncToTimeline.addEventListener('click', () => {
       const target = parseInt(btnSyncToTimeline.getAttribute('data-target-step') || '1', 10);
       setStep(target - 1, 1);
+      resetAutoplay();
       const timelineBlock = document.querySelector('.timeline-interactive-block');
       timelineBlock?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
@@ -632,6 +749,7 @@ function initSynchronizedTimelineAndMap() {
   // Iniciar
   initLeafletMap();
   setStep(0, 1);
+  startAutoplay();
 }
 
 /* ========================================================================

@@ -339,16 +339,33 @@
               <div class="step-right-meta">
                 <span class="step-geo-link" id="t-step-geo"><svg class="step-geo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Simijaca (Cundinamarca)</span>
                 <span class="step-stage-num" id="t-step-num">PASO 1 DE 5</span>
+                <div class="step-autoplay-pill" id="t-autoplay-btn" role="button" tabindex="0" title="Avance automático cada 5s (Click para pausar/reanudar)">
+                  <span class="autoplay-pulse-dot" aria-hidden="true"></span>
+                  <span class="autoplay-text" id="t-autoplay-label">5s AUTO</span>
+                </div>
               </div>
             </div>
-            <h4 class="step-main-title" id="t-step-title">Invasión armada e intimidación en vivienda rural</h4>
-            <p class="step-main-desc" id="t-step-desc">
-              Hombres armados irrumpen por la fuerza en la pequeña vivienda rural de Ana Elvia Cortés de Pachón y su esposo en Simijaca, Cundinamarca. Intimidan violentamente a la pareja exigiendo 15 millones de pesos en efectivo, amenazando con quitarles la vida si no cumplen.
-            </p>
+
+            <!-- Fila de cuerpo: Imagen a la izquierda, Texto y Título a la derecha -->
+            <div class="step-body-grid">
+              <div class="step-media-col">
+                <figure class="step-image-frame">
+                  <img id="t-step-img" src="images/finca.jpg" alt="Vivienda rural en Simijaca, Cundinamarca" class="step-archival-img" loading="eager" />
+                  <figcaption class="step-image-caption" id="t-step-caption">Finca rural · Simijaca, Cundinamarca</figcaption>
+                </figure>
+              </div>
+              <div class="step-text-col">
+                <h4 class="step-main-title" id="t-step-title">Invasión armada e intimidación en vivienda rural</h4>
+                <p class="step-main-desc" id="t-step-desc">
+                  Hombres armados irrumpen por la fuerza en la pequeña vivienda rural de Ana Elvia Cortés de Pachón y su esposo en Simijaca, Cundinamarca. Intimidan violentamente a la pareja exigiendo 15 millones de pesos en efectivo, amenazando con quitarles la vida si no cumplen.
+                </p>
+              </div>
+            </div>
+
             <div class="step-footer-row">
               <span class="step-source-chip" id="t-step-source">Fuente: Corte Suprema de Justicia, Sala de Casación Penal (Proceso 21285 · 2005)</span>
               <div class="step-nav-arrows">
-                <button id="btn-t-prev" class="btn-step-nav" disabled aria-label="Etapa anterior">&larr; Anterior</button>
+                <button id="btn-t-prev" class="btn-step-nav" aria-label="Etapa anterior">&larr; Anterior</button>
                 <button id="btn-t-next" class="btn-step-nav" aria-label="Etapa siguiente">Siguiente &rarr;</button>
               </div>
             </div>
