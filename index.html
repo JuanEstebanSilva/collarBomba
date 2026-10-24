@@ -1,0 +1,1773 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>El Caso del Collar Bomba: Memoria, Verdad y Dignidad</title>
+  <meta name="description" content="Reconstrucción documental rigurosa sobre el caso del collar bomba en Colombia (15 de mayo de 2000): investigación judicial, víctimas, desinformación y memoria histórica.">
+  <meta name="keywords" content="Collar Bomba, Chiquinquirá, Simijaca, Elvia Cortés, Jairo Hernando López, Memoria Histórica Colombia, Verdad y Dignidad, FARC desinformación, Delincuencia Común">
+  <meta name="author" content="Proyecto de Memoria y Verdad Histórica">
+
+  <!-- Open Graph / Meta para redes y previsualización -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="El Caso del Collar Bomba: Memoria, Verdad y Dignidad">
+  <meta property="og:description" content="Una reconstrucción documental del crimen ocurrido en Colombia el 15 de mayo de 2000, las personas afectadas, la investigación judicial y las versiones sobre su autoría.">
+  <meta property="og:image" content="images/plaza-chiquinquira.jpg">
+
+  <!-- Favicon SVG con símbolo de memoria / vela -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23d4af37'><path d='M12 2c-.5 2-2 3.5-2 5.5 0 1.5 1 2.5 2 2.5s2-1 2-2.5c0-2-1.5-3.5-2-5.5zm-5 9v11h10V11H7zm2 2h6v7H9v-7z'/></svg>">
+
+  <!-- Google Fonts: Cinzel & Playfair Display (editorial sobrio y solemne), Plus Jakarta Sans (lectura óptima), JetBrains Mono (citas y fechas) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-dark">
+  <!-- Barra de progreso de lectura superior -->
+  <div id="reading-progress" class="reading-progress-bar" aria-hidden="true"></div>
+
+  <!-- Encabezado / Navegación principal persistente -->
+  <header class="site-header" id="site-header">
+    <div class="header-container">
+      <a href="#modulo-1" class="site-brand">
+        <span class="brand-badge">MEMORIA Y VERDAD</span>
+        <span class="brand-title">El Caso del Collar Bomba</span>
+      </a>
+
+      <!-- Navegación de escritorio -->
+      <nav class="desktop-nav" aria-label="Navegación por módulos">
+        <ol class="nav-module-list">
+          <li><a href="#modulo-1" class="nav-link active" data-module="1"><span class="m-num">1</span> Portada</a></li>
+          <li><a href="#modulo-2" class="nav-link" data-module="2"><span class="m-num">2</span> Los Hechos</a></li>
+          <li><a href="#modulo-3" class="nav-link" data-module="3"><span class="m-num">3</span> Autoría</a></li>
+          <li><a href="#modulo-4" class="nav-link" data-module="4"><span class="m-num">4</span> Víctimas</a></li>
+          <li><a href="#modulo-5" class="nav-link" data-module="5"><span class="m-num">5</span> Hemeroteca</a></li>
+          <li><a href="#modulo-6" class="nav-link" data-module="6"><span class="m-num">6</span> Justicia</a></li>
+          <li><a href="#modulo-7" class="nav-link" data-module="7"><span class="m-num">7</span> Reflexión</a></li>
+          <li><a href="#modulo-8" class="nav-link" data-module="8"><span class="m-num">8</span> Fuentes</a></li>
+        </ol>
+      </nav>
+
+      <!-- Botones de Utilidades: Ambient Sound + Modo Lectura + Menú Móvil -->
+      <div class="header-actions">
+        <!-- Control de Sonido Ambiental Solemne (Web Audio API) -->
+        <button id="btn-ambient-audio" class="btn-action-icon" aria-label="Activar audio ambiental solemne" title="Audio ambiental de reflexión">
+          <svg class="icon-sound on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+          <svg class="icon-sound off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+          <span class="btn-sound-text">Voz Solemne</span>
+        </button>
+
+        <!-- Ajuste de tamaño de fuente para accesibilidad -->
+        <button id="btn-font-size" class="btn-action-icon" aria-label="Ajustar tamaño de fuente" title="Cambiar tamaño de texto">
+          <span class="font-toggle-symbol">A<sup>+</sup></span>
+        </button>
+
+        <!-- Botón Hamburguesa Móvil -->
+        <button id="btn-mobile-menu" class="btn-mobile-toggle" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="mobile-drawer">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Menú lateral deslizable para móviles -->
+  <aside id="mobile-drawer" class="mobile-drawer" aria-hidden="true">
+    <div class="drawer-header">
+      <div class="drawer-title-group">
+        <span class="drawer-badge">NAVEGACIÓN DOCUMENTAL</span>
+        <h2 class="drawer-title">Los 8 Módulos</h2>
+      </div>
+      <button id="btn-close-drawer" class="btn-close" aria-label="Cerrar menú">&times;</button>
+    </div>
+    <div class="drawer-content">
+      <nav aria-label="Navegación móvil">
+        <ul class="drawer-nav-list">
+          <li><a href="#modulo-1" class="drawer-nav-item"><span class="d-num">01</span> Portada: Memoria, Verdad y Dignidad</a></li>
+          <li><a href="#modulo-2" class="drawer-nav-item"><span class="d-num">02</span> Reconstrucción de los Hechos (15 de Mayo)</a></li>
+          <li><a href="#modulo-3" class="drawer-nav-item"><span class="d-num">03</span> Contexto, Investigación y Autoría</a></li>
+          <li><a href="#modulo-4" class="drawer-nav-item"><span class="d-num">04</span> Las Personas Afectadas</a></li>
+          <li><a href="#modulo-5" class="drawer-nav-item"><span class="d-num">05</span> Medios, Sociedad y Desinformación</a></li>
+          <li><a href="#modulo-6" class="drawer-nav-item"><span class="d-num">06</span> Justicia y Memoria: Actuaciones Judiciales</a></li>
+          <li><a href="#modulo-7" class="drawer-nav-item"><span class="d-num">07</span> Reflexión: Responsabilidad Ciudadana</a></li>
+          <li><a href="#modulo-8" class="drawer-nav-item"><span class="d-num">08</span> Fuentes, Método y Referencias APA 7</a></li>
+        </ul>
+      </nav>
+      <div class="drawer-footer">
+        <div class="drawer-tribute">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 2c-.5 2-2 3.5-2 5.5 0 1.5 1 2.5 2 2.5s2-1 2-2.5c0-2-1.5-3.5-2-5.5zm-5 9v11h10V11H7z"/></svg>
+          <span>En memoria de Ana Elvia Cortés y Jairo Hernando López</span>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Visualizador de Onda Sonora Flotante cuando el audio está activo -->
+  <div id="audio-wave-bar" class="audio-wave-container" aria-hidden="true">
+    <canvas id="soundwave-canvas" width="140" height="24"></canvas>
+    <span class="audio-label">Reflexión acústica activa</span>
+    <button id="btn-audio-mute" class="btn-micro-mute" title="Silenciar">Silenciar</button>
+  </div>
+
+  <main id="main-content">
+
+    <!-- ===================================================================
+         MÓDULO 1: PORTADA | MEMORIA, VERDAD Y DIGNIDAD
+         =================================================================== -->
+    <section id="modulo-1" class="module-section module-hero" aria-labelledby="hero-title">
+      <div class="hero-backdrop">
+        <div class="hero-image-wrapper">
+          <img src="images/plaza-chiquinquira.jpg" alt="Fotografía actual de la Plaza de la Libertad y Basílica en Chiquinquirá, Boyacá" class="hero-bg-img" id="hero-main-photo">
+          <div class="hero-gradient-overlay"></div>
+        </div>
+      </div>
+
+      <div class="content-wrapper hero-inner">
+        <div class="hero-header-badge">
+          <span class="dot-live"></span>
+          <span>RECONSTRUCCIÓN DOCUMENTAL HISTÓRICA</span>
+        </div>
+
+        <h1 id="hero-title" class="hero-main-title">
+          El caso del collar bomba: <span class="gold-gradient-text">memoria, verdad y dignidad</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          Una reconstrucción documental del crimen ocurrido en Colombia el 15 de mayo de 2000, las personas afectadas, la investigación judicial y las versiones que circularon sobre su autoría.
+        </p>
+
+        <!-- Tarjeta de Texto Introductorio y Propósito -->
+        <div class="hero-intro-card glass-panel">
+          <div class="card-lead-text">
+            <p>
+              El 15 de mayo de 2000, <strong>Ana Elvia Cortés de Pachón</strong> fue víctima de una extorsión en la que delincuentes le colocaron un artefacto explosivo alrededor del cuello. Cuando un técnico antiexplosivos de la Policía intentaba intervenir, el artefacto estalló. Cortés murió y el subintendente <strong>Jairo Hernando López</strong> resultó herido de gravedad y falleció posteriormente. El caso conmocionó al país y fue objeto de investigaciones judiciales y de una prolongada discusión pública sobre sus responsables <span class="citation">(Corte Suprema de Justicia, Sala de Casación Penal, 2005; El Tiempo, 2000)</span>.
+            </p>
+          </div>
+
+          <div class="site-purpose-block">
+            <div class="purpose-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <h3 class="purpose-heading">Propósito de esta investigación</h3>
+              <p class="purpose-body">
+                Esta página reconstruye los hechos con fuentes verificables, reconoce la dignidad de las personas afectadas y explica cómo se formaron y corrigieron distintas versiones sobre el caso. Su propósito es informar, contextualizar y promover una reflexión responsable sobre la violencia y la desinformación.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Banner Destacado Módulo 1 -->
+        <aside class="highlight-banner gold-banner">
+          <div class="banner-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <blockquote class="banner-quote">
+            «Recordar con responsabilidad significa buscar la verdad, reconocer a las víctimas y no repetir como hechos las versiones que no han sido comprobadas.»
+          </blockquote>
+        </aside>
+
+        <!-- Bloque de Contexto: Nota Geográfica y Galería de Entrada -->
+        <div class="hero-lower-grid">
+          <div class="geo-note-card glass-panel">
+            <div class="card-badge-header">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <h4>Nota geográfica y precisión documental</h4>
+            </div>
+            <p>
+              El caso suele conocerse popularmente como el <em>«collar bomba de Chiquinquirá»</em>, pero las fuentes no coinciden por completo al describir el punto geográfico exacto. La providencia judicial resume los hechos como ocurridos en una finca de jurisdicción de <strong>Simijaca, Cundinamarca</strong>; crónicas periodísticas también mencionan la <strong>vereda Palestina</strong> y el entorno urbano y regional de <strong>Chiquinquirá, Boyacá</strong>.
+            </p>
+            <p class="geo-clarification">
+              Este sitio presenta esta diferencia como una nota rigurosa de contexto y <strong>no equipara automáticamente el nombre popular del caso con la ubicación consignada en cada providencia</strong> <span class="citation">(Corte Suprema de Justicia, Sala de Casación Penal, 2005; Carranza Muñoz, 2016; El Tiempo, 2008)</span>.
+            </p>
+          </div>
+
+          <!-- Contenedores con imágenes y espacios documentales -->
+          <div class="hero-media-preview glass-panel">
+            <div class="media-preview-header">
+              <span class="preview-tag">REGISTRO VISUAL DOCUMENTAL</span>
+              <span class="preview-count">Archivos del caso</span>
+            </div>
+            <div class="media-thumb-pair">
+              <figure class="curated-thumb" data-caption="Plaza de la Libertad y Basílica de Chiquinquirá, epicentro regional de la cobertura mediática en mayo de 2000.">
+                <img src="images/plaza-chiquinquira.jpg" alt="Plaza de Chiquinquirá" loading="lazy">
+                <figcaption><strong>Chiquinquirá (Boyacá):</strong> Fotografía actual de la región de cobertura periodística contemporánea.</figcaption>
+              </figure>
+              <figure class="curated-thumb" data-caption="Página de prensa de mayo de 2000: 'Collar de dinamita', archivo periodístico contemporáneo de El Tiempo redactado por Juanita León.">
+                <img src="images/prensa-collar-dinamita-2000.jpg" alt="Recorte de prensa de mayo de 2000" loading="lazy">
+                <figcaption><strong>Archivo de prensa (Mayo 2000):</strong> Titular contemporáneo «Collar de dinamita» (El Tiempo).</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-cta-row">
+          <a href="#modulo-2" class="btn-primary-action">
+            <span>Conoce la historia</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+          </a>
+          <a href="#modulo-8" class="btn-secondary-action">
+            <span>Ver metodología y fuentes (APA 7)</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===================================================================
+         MÓDULO 2: RECONSTRUCCIÓN DE LOS HECHOS | 15 DE MAYO DE 2000
+         =================================================================== -->
+    <section id="modulo-2" class="module-section" aria-labelledby="mod2-title">
+      <div class="content-wrapper">
+        <header class="section-header">
+          <div class="section-tag">
+            <span class="module-chip">MÓDULO 2</span>
+            <span>CRONOLOGÍA RIGUROSA</span>
+          </div>
+          <h2 id="mod2-title" class="section-title">Reconstrucción de los Hechos <span class="gold-gradient-text">| 15 de Mayo de 2000</span></h2>
+          <p class="section-desc">
+            Explicación de la secuencia del acontecimiento mediante una cronología clara, con distinción estricta entre hechos documentados y detalles que requieren verificación adicional.
+          </p>
+        </header>
+
+        <!-- Introducción y contexto periodístico -->
+        <div class="narrative-grid">
+          <div class="narrative-card glass-panel">
+            <h3 class="narrative-heading">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Los hechos en la vivienda rural
+            </h3>
+            <p>
+              La mañana del 15 de mayo de 2000, varios hombres llegaron a la vivienda rural de Ana Elvia Cortés de Pachón y su esposo. Según el resumen de antecedentes recogido en una providencia de la Sala de Casación Penal, los hombres intimidaron a la pareja, colocaron un collar bomba a Cortés y exigieron 15 millones de pesos, amenazando con hacer explotar el artefacto si no recibían el dinero.
+            </p>
+            <p>
+              La Policía acudió al lugar y, durante el intento de intervención del dispositivo por parte de un técnico antiexplosivos, este estalló. Cortés murió en el lugar y el técnico Jairo Hernando López sufrió heridas mortales; otras personas también resultaron heridas <span class="citation">(Corte Suprema de Justicia, Sala de Casación Penal, 2005; El Tiempo, 2000)</span>.
+            </p>
+          </div>
+
+          <div class="narrative-card glass-panel">
+            <h3 class="narrative-heading">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 20H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v1m2 13a2 2 0 0 1-2-2V7m2 13a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2"/></svg>
+              Contexto periodístico y de emergencia
+            </h3>
+            <p>
+              La tragedia fue ampliamente cubierta por la prensa nacional e internacional. Los archivos periodísticos describen las horas de angustia que vivió Cortés y el heroico intento de las autoridades por desactivar el artefacto en condiciones de extremo riesgo.
+            </p>
+            <p>
+              Algunas publicaciones presentan diferencias en los detalles o en la ubicación precisa; la reconstrucción de este sitio se apoya estrictamente en los documentos judiciales y se contrasta con las crónicas contemporáneas verificadas <span class="citation">(El Tiempo, 2000, 2008)</span>.
+            </p>
+          </div>
+        </div>
+
+        <!-- Banner destacado Módulo 2 -->
+        <aside class="highlight-banner crimson-banner">
+          <div class="banner-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+          </div>
+          <blockquote class="banner-quote">
+            «Una extorsión convirtió una vivienda rural en escenario de una tragedia. La historia se presenta sin recrear el sufrimiento ni convertir el artefacto en una atracción visual.»
+          </blockquote>
+        </aside>
+
+        <!-- LÍNEA DE TIEMPO INTERACTIVA -->
+        <div class="interactive-timeline-container glass-panel">
+          <div class="timeline-toolbar">
+            <h3 class="timeline-title">Línea de Tiempo Documentada</h3>
+            <div class="timeline-filters" role="group" aria-label="Filtrar eventos por etapa">
+              <button class="t-filter active" data-filter="all">Todos los momentos</button>
+              <button class="t-filter" data-filter="dia-15">15 de Mayo</button>
+              <button class="t-filter" data-filter="posteriores">Investigación posterior</button>
+            </div>
+          </div>
+
+          <div class="timeline-track">
+            <!-- Evento 1 -->
+            <article class="timeline-event" data-stage="dia-15">
+              <div class="event-marker">
+                <span class="marker-dot"></span>
+                <span class="marker-time">Madrugada</span>
+              </div>
+              <div class="event-body glass-inner">
+                <div class="event-header-row">
+                  <span class="event-date">15 de mayo de 2000</span>
+                  <span class="event-tag">Intimidación</span>
+                </div>
+                <h4 class="event-heading">Invasión armada a la vivienda rural</h4>
+                <p>
+                  Hombres armados ingresan por la fuerza a la vivienda rural de Ana Elvia Cortés de Pachón y su esposo. Intimidan violentamente a la pareja y anuncian la extorsión exigiendo 15 millones de pesos.
+                </p>
+                <div class="event-source">
+                  <strong>Fuente:</strong> Corte Suprema de Justicia, Sala de Casación Penal (2005).
+                </div>
+              </div>
+            </article>
+
+            <!-- Evento 2 -->
+            <article class="timeline-event" data-stage="dia-15">
+              <div class="event-marker">
+                <span class="marker-dot"></span>
+                <span class="marker-time">Mañana</span>
+              </div>
+              <div class="event-body glass-inner">
+                <div class="event-header-row">
+                  <span class="event-date">15 de mayo de 2000</span>
+                  <span class="event-tag">Colocación del artefacto</span>
+                </div>
+                <h4 class="event-heading">Fijación del artefacto explosivo y aviso</h4>
+                <p>
+                  Los delincuentes aseguran un collar de tubos con explosivos alrededor del cuello de Cortés. Se le advierte que el dispositivo detonará si se intenta forzar o si no se cancela el dinero. Las autoridades policiales son notificadas y acuden a la zona.
+                </p>
+                <div class="event-source">
+                  <strong>Fuente:</strong> Archivos judiciales; El Tiempo (2000, 17 de mayo).
+                </div>
+              </div>
+            </article>
+
+            <!-- Evento 3 -->
+            <article class="timeline-event" data-stage="dia-15">
+              <div class="event-marker">
+                <span class="marker-dot"></span>
+                <span class="marker-time">Mediodía</span>
+              </div>
+              <div class="event-body glass-inner">
+                <div class="event-header-row">
+                  <span class="event-date">15 de mayo de 2000</span>
+                  <span class="event-tag">Intervención técnica</span>
+                </div>
+                <h4 class="event-heading">Labor del técnico antiexplosivos</h4>
+                <p>
+                  El subintendente de la Policía Nacional y técnico antiexplosivos, <strong>Jairo Hernando López</strong>, acude al lugar para intentar desactivar el collar y liberar a Ana Elvia Cortés bajo una tensión extrema, protegiendo a la víctima con su propio cuerpo.
+                </p>
+                <div class="event-source">
+                  <strong>Fuente:</strong> El Espectador (Carranza Muñoz, 2016); El Tiempo (2000).
+                </div>
+              </div>
+            </article>
+
+            <!-- Evento 4 -->
+            <article class="timeline-event" data-stage="dia-15">
+              <div class="event-marker alert-marker">
+                <span class="marker-dot pulse-red"></span>
+                <span class="marker-time">Detonación</span>
+              </div>
+              <div class="event-body glass-inner alert-body">
+                <div class="event-header-row">
+                  <span class="event-date">15 de mayo de 2000 (Aprox. 12:45 p. m.)</span>
+                  <span class="event-tag tag-alert">Explosión trágica</span>
+                </div>
+                <h4 class="event-heading">Explosión y muerte de Ana Elvia y el Subintendente</h4>
+                <p>
+                  El artefacto explosivo estalla durante la maniobra de desactivación. Muere instantáneamente Ana Elvia Cortés. El técnico Jairo Hernando López sufre heridas mortales de gravedad y fallece poco después mientras era trasladado de urgencia a Bogotá. Cuatro uniformados y personas presentes resultan también heridos.
+                </p>
+                <div class="event-source">
+                  <strong>Fuente:</strong> Corte Suprema de Justicia (2005); El Tiempo (2000).
+                </div>
+              </div>
+            </article>
+
+            <!-- Evento 5 -->
+            <article class="timeline-event" data-stage="posteriores">
+              <div class="event-marker">
+                <span class="marker-dot"></span>
+                <span class="marker-time">Días siguientes</span>
+              </div>
+              <div class="event-body glass-inner">
+                <div class="event-header-row">
+                  <span class="event-date">Mayo de 2000</span>
+                  <span class="event-tag">Impacto público</span>
+                </div>
+                <h4 class="event-heading">Atención nacional e hipótesis iniciales</h4>
+                <p>
+                  El caso conmociona a la opinión pública colombiana y mundial. Inicialmente, mandos y figuras del gobierno atribuyen el atentado a las FARC, provocando tensiones en la mesa de negociación de paz del Caguán. Con el paso de los días, la Fiscalía abre líneas que apuntan a bandas criminales extorsivas.
+                </p>
+                <div class="event-source">
+                  <strong>Fuente:</strong> El Tiempo (2000, 28 de mayo); ColombiaCheck (2016, 2022).
+                </div>
+              </div>
+            </article>
+
+            <!-- Evento 6 -->
+            <article class="timeline-event" data-stage="posteriores">
+              <div class="event-marker">
+                <span class="marker-dot"></span>
+                <span class="marker-time">Años posteriores</span>
+              </div>
+              <div class="event-body glass-inner">
+                <div class="event-header-row">
+                  <span class="event-date">2001 – 2005 – 2026</span>
+                  <span class="event-tag">Justicia y Verificación</span>
+                </div>
+                <h4 class="event-heading">Juicio penal, casación y desmentidos</h4>
+                <p>
+                  La justicia penal condena a José Miguel Suárez a 32 años de prisión por delincuencia común extorsiva. En 2005 la Corte Suprema de Justicia revisa la casación (Proceso 21285). Décadas después, verificaciones independientes corrigen falsas narrativas que buscaban revivir la autoría guerrillera.
+                </p>
+                <div class="event-source">
+                  <strong>Fuente:</strong> Corte Suprema de Justicia (2005); ColombiaCheck (2022, 2026); La Silla Vacía (2023, 2026).
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="timeline-precision-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span><strong>Nota de precisión:</strong> La cronología es una síntesis de las fuentes citadas. La hora exacta y otros pormenores técnicos están sujetos a las constancias documentadas en el expediente judicial de casación.</span>
+          </div>
+        </div>
+
+        <!-- RECURSOS COMPLEMENTARIOS: MAPA INTERACTIVO Y ESQUEMA FORENSE RESPETUOSO -->
+        <div class="mod2-interactive-grid">
+          <!-- Tarjeta 1: Mapa interactivo cartográfico de la discrepancia geográfica -->
+          <div class="carto-card glass-panel" id="carto-explorer">
+            <div class="card-badge-header">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+              <h4>Geografía del caso: Boyacá y Cundinamarca</h4>
+            </div>
+            <p class="carto-intro">
+              Contraste entre la providencia de la Corte Suprema y el imaginario mediático popular:
+            </p>
+
+            <div class="interactive-map-visual">
+              <svg viewBox="0 0 400 300" class="colombia-svg-map" aria-label="Mapa cartográfico esquemático de Boyacá y Cundinamarca">
+                <defs>
+                  <linearGradient id="gradBoyaca" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#2a3b4c"/>
+                    <stop offset="100%" stop-color="#1b2836"/>
+                  </linearGradient>
+                  <linearGradient id="gradCundinamarca" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#3b322a"/>
+                    <stop offset="100%" stop-color="#251e18"/>
+                  </linearGradient>
+                </defs>
+                <!-- Fondo geográfico abstracto -->
+                <rect width="400" height="300" fill="#0f141a" rx="8"/>
+                <!-- Boyacá -->
+                <path class="geo-region region-boyaca" d="M190,50 L270,70 L310,130 L250,180 L200,140 Z" fill="url(#gradBoyaca)" stroke="#4a6984" stroke-width="1.5"/>
+                <!-- Cundinamarca -->
+                <path class="geo-region region-cundinamarca" d="M140,110 L200,140 L210,230 L130,240 L110,160 Z" fill="url(#gradCundinamarca)" stroke="#8c6d46" stroke-width="1.5"/>
+
+                <!-- Puntos clave -->
+                <!-- Chiquinquirá (Boyacá) -->
+                <g class="map-point point-chiquinquira" transform="translate(205, 125)">
+                  <circle r="6" class="point-glow"/>
+                  <circle r="3.5" class="point-core-gold"/>
+                  <text x="12" y="4" class="map-label label-chiquinquira">Chiquinquirá (Boyacá)</text>
+                </g>
+                <!-- Simijaca (Cundinamarca) -->
+                <g class="map-point point-simijaca" transform="translate(182, 138)">
+                  <circle r="6" class="point-glow"/>
+                  <circle r="3.5" class="point-core-red"/>
+                  <text x="-125" y="4" class="map-label label-simijaca">Simijaca (Cundinamarca)</text>
+                </g>
+                <!-- Vereda Palestina límite -->
+                <line x1="182" y1="138" x2="205" y2="125" stroke="#d4af37" stroke-dasharray="3,3" stroke-width="1.5"/>
+                <!-- Bogotá referencia -->
+                <g class="map-point point-bogota" transform="translate(165, 220)">
+                  <circle r="3" fill="#64748b"/>
+                  <text x="10" y="4" class="map-label label-ref">Bogotá D.C. (130 km)</text>
+                </g>
+              </svg>
+            </div>
+
+            <div class="geo-tab-explanation">
+              <div class="geo-tab-row">
+                <span class="geo-tag-badge gold">Expediente Judicial (2005)</span>
+                <p><strong>Finca en Simijaca, Cundinamarca:</strong> Jurisdicción formal donde ocurrieron los hechos y se instruyó la acusación penal.</p>
+              </div>
+              <div class="geo-tab-row">
+                <span class="geo-tag-badge blue">Imaginario Colectivo</span>
+                <p><strong>Chiquinquirá, Boyacá:</strong> Centro asistencial y mediático más cercano, donde se concentró la atención de la prensa.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tarjeta 2: Esquema Técnico Forense Respetuoso del Artefacto -->
+          <div class="forensic-card glass-panel" id="forensic-explorer">
+            <div class="card-badge-header">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+              <h4>Esquema Forense Documental del Dispositivo</h4>
+            </div>
+            <p class="forensic-intro">
+              Descripción técnica judicial del artefacto, analizado objetivamente para comprender la extrema dificultad y la trampa mortal que enfrentó el técnico Jairo Hernando López <span class="citation">(Corte Suprema de Justicia, 2005)</span>.
+            </p>
+
+            <!-- Diagrama SVG interactivo del collar -->
+            <div class="schematic-interactive-wrap">
+              <svg viewBox="0 0 360 180" class="forensic-svg" id="collar-diagram" aria-label="Diagrama técnico del collar bomba">
+                <!-- Tubos de PVC en arco -->
+                <path d="M 60,130 C 60,60 120,30 180,30 C 240,30 300,60 300,130" fill="none" stroke="#607284" stroke-width="26" stroke-linecap="round"/>
+                <!-- Sección 1: Carga explosiva -->
+                <path d="M 62,125 C 64,85 100,45 140,35" fill="none" stroke="#c0392b" stroke-width="20" stroke-linecap="round" class="diagram-part" data-part="explosivo"/>
+                <!-- Sección 2: Batería y temporizador -->
+                <path d="M 140,35 C 160,30 200,30 220,35" fill="none" stroke="#d4af37" stroke-width="20" class="diagram-part" data-part="temporizador"/>
+                <!-- Sección 3: Trampa de alivio/apertura -->
+                <path d="M 220,35 C 260,45 296,85 298,125" fill="none" stroke="#2980b9" stroke-width="20" stroke-linecap="round" class="diagram-part" data-part="trampa"/>
+                <!-- Cerrojo de seguridad con candado -->
+                <rect x="170" y="115" width="20" height="24" rx="4" fill="#8c7853" class="diagram-part" data-part="candado"/>
+                <!-- Indicador central de cuello -->
+                <ellipse cx="180" cy="100" rx="45" ry="35" fill="none" stroke="#253342" stroke-dasharray="4,4" stroke-width="1.5"/>
+                <text x="180" y="103" text-anchor="middle" fill="#718096" font-size="11" font-family="'Plus Jakarta Sans', sans-serif">Zona cervical</text>
+              </svg>
+            </div>
+
+            <!-- Selector de componentes forenses -->
+            <div class="forensic-parts-nav" role="tablist">
+              <button class="part-btn active" data-part="explosivo">1. Carga Explosiva</button>
+              <button class="part-btn" data-part="temporizador">2. Temporizador / Pila</button>
+              <button class="part-btn" data-part="trampa">3. Circuito Trampa</button>
+              <button class="part-btn" data-part="candado">4. Mecanismo de Cierre</button>
+            </div>
+
+            <div class="forensic-detail-box" id="forensic-detail">
+              <h5 id="detail-title">Carga Explosiva (Tubo de PVC)</h5>
+              <p id="detail-text">
+                El collar constaba de tres secciones de tubo de PVC adaptadas anatómicamente. Uno de los compartimientos alojaba una carga de dinamita suficiente para una deflagración inmediata a corta distancia.
+              </p>
+              <span class="detail-citation">Fuente: Providencia CSJ Proceso 21285.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Galería de contexto institucional / policial respetuosa -->
+        <div class="context-media-strip glass-panel">
+          <div class="media-strip-header">
+            <span class="strip-title">REGISTRO FOTOGRÁFICO DE CONTEXTO INSTITUCIONAL</span>
+            <span class="strip-subtitle">La labor de los técnicos antiexplosivos y los servicios de emergencia</span>
+          </div>
+          <div class="strip-grid">
+            <figure class="strip-item">
+              <img src="images/tecnico-antiexplosivos-traje.jpg" alt="Técnico antiexplosivos de la Policía vistiendo traje de protección EOD" loading="lazy">
+              <figcaption>
+                <strong>Labor antiexplosivos:</strong> Imagen de archivo institucional que ilustra el equipo y riesgo que asumen los técnicos como Jairo Hernando López.
+              </figcaption>
+            </figure>
+            <figure class="strip-item">
+              <img src="images/policia-escuadron-antiexplosivos.jpg" alt="Integrantes del escuadrón antiexplosivos de la Policía Nacional con distintivo institucional" loading="lazy">
+              <figcaption>
+                <strong>Cuerpo especializado:</strong> Integrantes de la Policía Nacional preparándose para maniobras de desactivación.
+              </figcaption>
+            </figure>
+            <figure class="strip-item">
+              <img src="images/detonacion-controlada-eod.jpg" alt="Práctica de detonación controlada realizada por unidades antiexplosivos" loading="lazy">
+              <figcaption>
+                <strong>Peligro operativo:</strong> Registro contextual de la letalidad de artefactos no convencionales manipulados por delincuencia común.
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===================================================================
+         MÓDULO 3: CONTEXTO, INVESTIGACIÓN Y AUTORÍA
+         =================================================================== -->
+    <section id="modulo-3" class="module-section" aria-labelledby="mod3-title">
+      <div class="content-wrapper">
+        <header class="section-header">
+          <div class="section-tag">
+            <span class="module-chip">MÓDULO 3</span>
+            <span>VERIFICACIÓN Y RIGOR</span>
+          </div>
+          <h2 id="mod3-title" class="section-title">Contexto, Investigación <span class="gold-gradient-text">y Autoría</span></h2>
+          <p class="section-desc">
+            Explicación de la extorsión económica, las hipótesis iniciales, los resultados probados en el expediente judicial y el contraste con las dudas documentadas por los familiares.
+          </p>
+        </header>
+
+        <!-- Introducción de contexto y definición jurídica -->
+        <div class="context-overview-grid">
+          <div class="overview-text glass-panel">
+            <h3 class="overview-heading">Extorsión y desinformación inicial</h3>
+            <p>
+              El hecho estuvo directamente relacionado con una <strong>extorsión económica</strong>: los atacantes irrumpieron en la vivienda exigiendo dinero en efectivo y utilizaron una amenaza explosiva no convencional para presionar a la familia.
+            </p>
+            <p>
+              En las primeras horas, voceros oficiales del gobierno y diversos medios de comunicación difundieron hipótesis que atribuían el crimen a las FARC, en el marco de la coyuntura de los diálogos de paz del Caguán. Sin embargo, las <strong>verificaciones periodísticas y judiciales posteriores concluyeron que no había fundamento para atribuir este crimen a esa guerrilla</strong> <span class="citation">(ColombiaCheck, 2016, 2022, 2026; La Silla Vacía, 2023, 2026)</span>.
+            </p>
+          </div>
+
+          <div class="extortion-card glass-panel">
+            <div class="extortion-badge">CONCEPTO PENAL</div>
+            <h3 class="extortion-title">¿Qué es la extorsión?</h3>
+            <p>
+              La extorsión consiste en obligar o presionar a una persona, mediante violencia o intimidación, para realizar u omitir un acto en perjuicio de su patrimonio o el de un tercero con el fin de obtener un beneficio ilícito.
+            </p>
+            <div class="extortion-case-box">
+              <strong>En este caso:</strong> Las fuentes judiciales describen una exigencia concreta de <strong>15 millones de pesos</strong> y la amenaza implícita de activar el artefacto si no se pagaba la suma <span class="citation">(Corte Suprema de Justicia, Sala de Casación Penal, 2005)</span>.
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 TARJETAS COMPARATIVAS (Core del Módulo 3) -->
+        <div class="three-cards-grid">
+          <!-- Tarjeta 1: Versión inicial -->
+          <article class="comparative-card glass-panel card-initial">
+            <div class="card-phase-badge badge-warning">FASE 1: HIPÓTESIS INICIAL</div>
+            <div class="card-icon-circle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            </div>
+            <h3 class="comp-title">Lo que se dijo inicialmente</h3>
+            <p class="comp-summary">
+              Algunas autoridades y medios atribuyeron el crimen casi inmediatamente a las FARC. Esta hipótesis generó enorme indignación pública y casi paraliza los diálogos de paz de la época.
+            </p>
+            <div class="comp-detail-box">
+              <div class="detail-label">Naturaleza documental:</div>
+              <p>Constituyó una <strong>hipótesis política y mediática</strong> difundida en el calor del momento, mas no una conclusión penal demostrada con pruebas científicas ni judiciales.</p>
+            </div>
+            <div class="comp-footer">
+              <span class="source-stamp">El Tiempo (Mayo 2000)</span>
+            </div>
+          </article>
+
+          <!-- Tarjeta 2: Qué investigaron las autoridades -->
+          <article class="comparative-card glass-panel card-judicial">
+            <div class="card-phase-badge badge-info">FASE 2: INVESTIGACIÓN PENAL</div>
+            <div class="card-icon-circle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M16 12l-4-4-4 4M12 8v8"/></svg>
+            </div>
+            <h3 class="comp-title">Qué investigaron las autoridades</h3>
+            <p class="comp-summary">
+              La Fiscalía y la justicia penal adelantaron actuaciones que descartaron a la guerrilla y vincularon el hecho a una banda de delincuencia común extorsiva de la región.
+            </p>
+            <div class="comp-detail-box">
+              <div class="detail-label">Resultado judicial:</div>
+              <p>Se produjo una <strong>condena penal de 32 años de prisión</strong> contra José Miguel Suárez por delitos derivados del hecho, revisada por la Corte Suprema de Justicia en casación (Proceso 21285).</p>
+            </div>
+            <div class="comp-footer">
+              <span class="source-stamp">CSJ Proceso 21285 (2005)</span>
+            </div>
+          </article>
+
+          <!-- Tarjeta 3: Qué establecieron fuentes posteriores -->
+          <article class="comparative-card glass-panel card-verification">
+            <div class="card-phase-badge badge-success">FASE 3: FACT-CHECK & FAMILIA</div>
+            <div class="card-icon-circle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <h3 class="comp-title">Lo que puede afirmarse con rigor</h3>
+            <p class="comp-summary">
+              Las verificaciones independientes de ColombiaCheck y La Silla Vacía concluyen que <strong>no es correcto atribuir el crimen a las FARC</strong>.
+            </p>
+            <div class="comp-detail-box">
+              <div class="detail-label">Perspectiva humana:</div>
+              <p>El portal describe la condena judicial y, a su vez, respeta las <strong>dudas de familiares</strong> de Jairo Hernando López recogidas en la prensa sobre la exhaustividad del juicio <span class="citation">(Carranza Muñoz, 2016)</span>.</p>
+            </div>
+            <div class="comp-footer">
+              <span class="source-stamp">ColombiaCheck & El Espectador</span>
+            </div>
+          </article>
+        </div>
+
+        <!-- Banner destacado Módulo 3 -->
+        <aside class="highlight-banner blue-banner">
+          <div class="banner-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <blockquote class="banner-quote">
+            «Una hipótesis inicial no es una conclusión definitiva. En hechos de alto impacto, la verificación y la corrección de errores son parte de la responsabilidad pública.»
+          </blockquote>
+        </aside>
+
+        <!-- Galería de imágenes contextuales del módulo 3 -->
+        <div class="context-imagery-pair">
+          <figure class="context-figure glass-panel">
+            <div class="fig-img-container">
+              <img src="images/farc-conflicto-contexto.jpg" alt="Imagen de contexto sobre el conflicto armado y grupos guerrilleros" loading="lazy">
+              <span class="img-badge-overlay badge-warning">Hipótesis inicial de 2000</span>
+            </div>
+            <figcaption>
+              <strong>Contexto del conflicto:</strong> Durante mayo de 2000, la atribución a la guerrilla ocupó las portadas, pero carecía de sustento pericial en la investigación fiscal.
+            </figcaption>
+          </figure>
+
+          <figure class="context-figure glass-panel">
+            <div class="fig-img-container">
+              <img src="images/farc-brazalete-contexto.jpg" alt="Brazalete FARC y combatiente en contexto de verificación informativa" loading="lazy">
+              <span class="img-badge-overlay badge-success">Verificación periodística</span>
+            </div>
+            <figcaption>
+              <strong>Verificación posterior:</strong> Investigaciones de ColombiaCheck y La Silla Vacía demostraron la reiterada desinformación electoral que revive este caso falsamente.
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===================================================================
+         MÓDULO 4: LAS PERSONAS AFECTADAS | ANA ELVIA CORTÉS Y JAIRO HERNANDO LÓPEZ
+         =================================================================== -->
+    <section id="modulo-4" class="module-section" aria-labelledby="mod4-title">
+      <div class="content-wrapper">
+        <header class="section-header">
+          <div class="section-tag">
+            <span class="module-chip">MÓDULO 4</span>
+            <span>MEMORIA Y HUMANIDAD</span>
+          </div>
+          <h2 id="mod4-title" class="section-title">Las Personas Afectadas <span class="gold-gradient-text">| Ana Elvia Cortés y Jairo Hernando López</span></h2>
+          <p class="section-desc">
+            Dar centralidad a las personas afectadas, reconociendo su historia, sus familias y su dignidad, evitando reducir sus vidas al artefacto explosivo o al instante de su muerte.
+          </p>
+        </header>
+
+        <!-- Banner destacado Módulo 4 -->
+        <aside class="highlight-banner gold-banner">
+          <div class="banner-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          </div>
+          <blockquote class="banner-quote">
+            «Las víctimas no son una imagen ni un titular. Son personas con una historia, una familia y una vida que merece ser recordada con dignidad.»
+          </blockquote>
+        </aside>
+
+        <!-- Dos Perfiles Biográficos Centrales -->
+        <div class="profiles-dual-grid">
+          <!-- Perfil 1: Ana Elvia Cortés de Pachón -->
+          <article class="bio-card glass-panel">
+            <div class="bio-header">
+              <div class="bio-avatar-frame">
+                <img src="images/elvia-cortes-archivo-2000.jpg" alt="Registro fotográfico de archivo de Ana Elvia Cortés siendo acompañada en el lugar" class="bio-img">
+                <span class="bio-badge">Víctima de extorsión</span>
+              </div>
+              <div class="bio-title-wrap">
+                <span class="bio-role">Campesina y madre de familia</span>
+                <h3 class="bio-name">Ana Elvia Cortés de Pachón</h3>
+                <span class="bio-dates">Fallecida el 15 de mayo de 2000 · 53 años</span>
+              </div>
+            </div>
+
+            <div class="bio-body">
+              <p>
+                Las fuentes periodísticas y comunitarias describen a doña <strong>Ana Elvia Cortés</strong> como una mujer campesina trabajadora de la región, dedicada a las labores del campo junto a su esposo en su pequeña finca rural.
+              </p>
+              <p>
+                El 15 de mayo de 2000, su hogar y su tranquilidad fueron brutalmente vulnerados por delincuentes armados que la obligaron a llevar un artefacto explosivo alrededor de su cuello para exigir un rescate económico inalcanzable.
+              </p>
+              <div class="bio-editorial-commitment">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span><strong>Tratamiento ético:</strong> Su historia se cuenta con profundo respeto, sin recurrir a imágenes explícitas ni a recursos morbosos que conviertan su sufrimiento en espectáculo <span class="citation">(Corte Suprema de Justicia, 2005; El Tiempo, 2000)</span>.</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Perfil 2: Jairo Hernando López -->
+          <article class="bio-card glass-panel">
+            <div class="bio-header">
+              <div class="bio-avatar-frame">
+                <img src="images/tecnico-antiexplosivos-traje.jpg" alt="Técnico antiexplosivos en labor humanitaria de desactivación" class="bio-img">
+                <span class="bio-badge badge-service">Servidor del deber</span>
+              </div>
+              <div class="bio-title-wrap">
+                <span class="bio-role">Subintendente de la Policía Nacional</span>
+                <h3 class="bio-name">Jairo Hernando López</h3>
+                <span class="bio-dates">Fallecido en acto de servicio · 31 años</span>
+              </div>
+            </div>
+
+            <div class="bio-body">
+              <p>
+                López era un subintendente de la Policía Nacional de Colombia y técnico especialista antiexplosivos. Al ser alertado sobre la situación de Ana Elvia, acudió inmediatamente al lugar con el único objetivo de salvar su vida, sabiendo que el artefacto estaba diseñado con una sofisticación destructiva inusual.
+              </p>
+              <p>
+                Durante las extenuantes horas de intervención, trabajó milímetro a milímetro contiguo a la víctima. La explosión le causó heridas de máxima gravedad y falleció durante el traslado aéreo de emergencia.
+              </p>
+              <div class="bio-family-perspective">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <span><strong>Memoria familiar:</strong> El reportaje de <em>El Espectador</em> rescata su vida familiar, el reciente nacimiento de su pequeño hijo de escasos meses y el dolor persistente que marcó para siempre a sus seres queridos <span class="citation">(Carranza Muñoz, 2016)</span>.</span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Apartado sobre otras personas afectadas y consecuencias familiares -->
+        <div class="other-victims-box glass-panel">
+          <div class="ov-header">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            <h4>Otras personas heridas y secuelas en las familias</h4>
+          </div>
+          <p>
+            Las providencias judiciales y los reportes de prensa señalan que la onda explosiva y las esquirlas causaron heridas de diversa consideración a otros miembros de la fuerza pública presentes (entre ellos los uniformados que acordonaban el perímetro) y generaron secuelas físicas y psicológicas en la familia de Ana Elvia Cortés.
+          </p>
+          <p class="privacy-note">
+            El sitio solo incorpora nombres, datos médicos o testimonios cuando están debidamente respaldados por fuentes fiables y su publicación es pertinente; la información de índole privada e innecesaria se resguarda en respeto a la intimidad familiar.
+          </p>
+        </div>
+
+        <!-- WIDGET INTERACTIVO WOW: VELA DE MEMORIA Y CONDOLENCIAS -->
+        <div class="memorial-candle-widget glass-panel" id="memorial-candle-section">
+          <div class="candle-inner">
+            <div class="candle-visual">
+              <div class="candle-flame" id="candle-flame">
+                <span class="flame-core"></span>
+                <span class="flame-glow"></span>
+              </div>
+              <div class="candle-wax"></div>
+            </div>
+            <div class="candle-content">
+              <h3 class="candle-heading">Enciende una luz de memoria</h3>
+              <p class="candle-sub">
+                Un gesto simbólico y solemne en recuerdo de las víctimas del collar bomba y de todas las vidas afectadas por la violencia extorsiva en Colombia.
+              </p>
+              <div class="candle-actions">
+                <button id="btn-light-candle" class="btn-candle-light">
+                  <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2c-.5 2-2 3.5-2 5.5 0 1.5 1 2.5 2 2.5s2-1 2-2.5c0-2-1.5-3.5-2-5.5zm-5 9v11h10V11H7z"/></svg>
+                  <span>Encender vela de memoria</span>
+                </button>
+                <div class="candle-counter-wrap">
+                  <span class="counter-number" id="candle-counter">1,402</span>
+                  <span class="counter-text">luces encendidas por visitantes</span>
+                </div>
+              </div>
+              <p class="candle-confirmation" id="candle-feedback" style="display:none;">
+                Has encendido una luz por la memoria, la verdad y la dignidad de las víctimas.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===================================================================
+         MÓDULO 5: MEDIOS, SOCIEDAD Y DESINFORMACIÓN
+         =================================================================== -->
+    <section id="modulo-5" class="module-section" aria-labelledby="mod5-title">
+      <div class="content-wrapper">
+        <header class="section-header">
+          <div class="section-tag">
+            <span class="module-chip">MÓDULO 5</span>
+            <span>HEMEROTECA Y FACT-CHECK</span>
+          </div>
+          <h2 id="mod5-title" class="section-title">Medios, Sociedad <span class="gold-gradient-text">y Desinformación</span></h2>
+          <p class="section-desc">
+            Análisis de cómo se narró el caso en los medios de comunicación en 2000, cómo mutaron las hipótesis iniciales y cómo las noticias falsas y fotos descontextualizadas han vuelto a circular en redes sociales.
+          </p>
+        </header>
+
+        <!-- Caso de Estudio PVC-1: Comparador Interactivo de Desinformación Visual -->
+        <div class="pvc1-investigation-card glass-panel">
+          <div class="pvc1-badge-row">
+            <span class="badge-debunk">CASO DE VERIFICACIÓN VISUAL CRÍTICO</span>
+            <span class="badge-source">AFP Factual & ColombiaCheck</span>
+          </div>
+          <div class="pvc1-grid">
+            <div class="pvc1-text-col">
+              <h3 class="pvc1-title">La imagen viral de la película <em>PVC-1</em> vs. La realidad</h3>
+              <p>
+                Años después del suceso, volvió a viralizarse masivamente en redes sociales una fotografía dramática presentada como si fuera el registro real de doña Ana Elvia Cortés instantes previos a la explosión.
+              </p>
+              <p>
+                <strong>El hallazgo de los verificadores:</strong> La agencia internacional <strong>AFP Factual</strong> y los portales <strong>ColombiaCheck</strong> y <strong>La Silla Vacía</strong> documentaron que dicha imagen <strong>no corresponde a la víctima real</strong>, sino a la actriz colombiana <strong>Mérida Urquía</strong> en una escena del largometraje cinematográfico de ficción <em>PVC-1</em> (dirigido por Spiros Stathoulopoulos en 2007) <span class="citation">(AFP Factual, 2026; ColombiaCheck, 2022, 2026; Proimágenes Colombia, 2007)</span>.
+              </p>
+              <div class="verif-takeaway">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                <span><strong>Regla deontológica:</strong> Presentar fotogramas de obras de ficción dramática como pruebas documentales reales revictimiza a los involucrados y altera la memoria colectiva.</span>
+              </div>
+            </div>
+
+            <!-- Comparador visual con sello de verificación -->
+            <div class="pvc1-visual-col">
+              <div class="visual-debunk-frame">
+                <img src="images/pvc1-pelicula-ficcion.jpg" alt="Fotograma de la actriz Mérida Urquía en la película PVC-1" class="debunk-img">
+                <div class="debunk-watermark-stamp">
+                  <span class="stamp-title">FICCIÓN CINEMATOGRÁFICA</span>
+                  <span class="stamp-sub">Actriz: Mérida Urquía (Película PVC-1, 2007) · NO ES LA VÍCTIMA REAL</span>
+                </div>
+              </div>
+              <p class="caption-debunk">
+                <strong>Fotograma promocional autorizado:</strong> Claramente rotulado como «recreación cinematográfica» de la película <em>PVC-1</em>, nunca presentado como fotografía documental.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Banner destacado Módulo 5 -->
+        <aside class="highlight-banner blue-banner">
+          <div class="banner-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <blockquote class="banner-quote">
+            «Antes de compartir una imagen o una acusación, es necesario verificar su origen, su fecha y la fuente que la respalda.»
+          </blockquote>
+        </aside>
+
+        <!-- HEMEROTECA DIGITAL INTERACTIVA -->
+        <div class="hemeroteca-section glass-panel">
+          <div class="hemeroteca-header-row">
+            <div>
+              <h3 class="hemeroteca-title">Hemeroteca Digital y Archivo de Prensa</h3>
+              <p class="hemeroteca-sub">Consulta los registros contemporáneos, las rectificaciones de prensa y los chequeos de verificación.</p>
+            </div>
+
+            <!-- Filtros de la Hemeroteca -->
+            <div class="hemeroteca-controls">
+              <div class="search-input-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input type="text" id="hemeroteca-search" placeholder="Buscar por medio, titular o año..." aria-label="Buscar en la hemeroteca">
+              </div>
+              <div class="tag-filter-pills" role="group" aria-label="Filtrar por etiqueta temporal">
+                <button class="h-pill active" data-cat="all">Todas</button>
+                <button class="h-pill" data-cat="contemporanea">Cobertura 2000</button>
+                <button class="h-pill" data-cat="investigacion">Investigación Posterior</button>
+                <button class="h-pill" data-cat="verificacion">Verificación / Fact-Check</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cuadrícula de Tarjetas de Hemeroteca -->
+          <div class="hemeroteca-grid" id="hemeroteca-cards-container">
+            <!-- Tarjeta 1: El Tiempo 17 Mayo 2000 -->
+            <article class="h-card" data-cat="contemporanea">
+              <div class="h-card-top">
+                <span class="h-outlet">El Tiempo</span>
+                <span class="h-badge badge-warn">Cobertura contemporánea</span>
+              </div>
+              <span class="h-date">17 de mayo de 2000</span>
+              <h4 class="h-headline">«El collar explosivo, peor que el secuestro»</h4>
+              <p class="h-excerpt">
+                Primeras crónicas tras la tragedia. Refleja la indignación nacional y el impacto inicial sobre el proceso de diálogo que se llevaba a cabo en el Caguán.
+              </p>
+              <div class="h-card-footer">
+                <a href="https://www.eltiempo.com/archivo/documento/mam-1255427" target="_blank" rel="noopener noreferrer" class="h-link">
+                  <span>Consultar archivo original</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </a>
+              </div>
+            </article>
+
+            <!-- Tarjeta 2: El Tiempo 28 Mayo 2000 -->
+            <article class="h-card" data-cat="contemporanea">
+              <div class="h-card-top">
+                <span class="h-outlet">El Tiempo</span>
+                <span class="h-badge badge-info">Rectificación / Giro</span>
+              </div>
+              <span class="h-date">28 de mayo de 2000</span>
+              <h4 class="h-headline">«Collar bomba, acto de bandas»</h4>
+              <p class="h-excerpt">
+                Apenas dos semanas después, el medio informa que las autoridades reconsideran las acusaciones iniciales contra las FARC al hallar pistas de delincuencia organizada común.
+              </p>
+              <div class="h-card-footer">
+                <a href="https://www.eltiempo.com/archivo/documento/mam-1226570" target="_blank" rel="noopener noreferrer" class="h-link">
+                  <span>Consultar archivo original</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </a>
+              </div>
+            </article>
+
+            <!-- Tarjeta 3: El Espectador 2016 -->
+            <article class="h-card" data-cat="investigacion">
+              <div class="h-card-top">
+                <span class="h-outlet">El Espectador</span>
+                <span class="h-badge badge-primary">Investigación posterior</span>
+              </div>
+              <span class="h-date">14 de mayo de 2016</span>
+              <h4 class="h-headline">«El otro muerto del collar bomba»</h4>
+              <p class="h-excerpt">
+                Crónica de Diego L. Carranza Muñoz que rescata la memoria del subintendente Jairo Hernando López y documenta las dudas de sus familiares sobre el juicio penal.
+              </p>
+              <div class="h-card-footer">
+                <a href="https://www.elespectador.com/colombia/mas-regiones/el-otro-muerto-del-collar-bomba-article-632293/" target="_blank" rel="noopener noreferrer" class="h-link">
+                  <span>Leer crónica completa</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </a>
+              </div>
+            </article>
+
+            <!-- Tarjeta 4: ColombiaCheck 2016 -->
+            <article class="h-card" data-cat="verificacion">
+              <div class="h-card-top">
+                <span class="h-outlet">ColombiaCheck</span>
+                <span class="h-badge badge-success">Verificación de desinformación</span>
+              </div>
+              <span class="h-date">27 de septiembre de 2016</span>
+              <h4 class="h-headline">«Lo del collar bomba, otra explosiva mentira»</h4>
+              <p class="h-excerpt">
+                Fact-check que desmonta cómo se instrumentalizó falsamente el crimen en el contexto del plebiscito de paz de 2016 para sembrar confusión sobre los responsables.
+              </p>
+              <div class="h-card-footer">
+                <a href="https://colombiacheck.com/chequeos/lo-del-collar-bomba-otra-explosiva-mentira" target="_blank" rel="noopener noreferrer" class="h-link">
+                  <span>Ver chequeo completo</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </a>
+              </div>
+            </article>
+
+            <!-- Tarjeta 5: ColombiaCheck 2022 -->
+            <article class="h-card" data-cat="verificacion">
+              <div class="h-card-top">
+                <span class="h-outlet">ColombiaCheck</span>
+                <span class="h-badge badge-success">Verificación de desinformación</span>
+              </div>
+              <span class="h-date">27 de enero de 2022</span>
+              <h4 class="h-headline">«Collar bomba fue un acto de la delincuencia común...»</h4>
+              <p class="h-excerpt">
+                Revisión exhaustiva de los fallos de la Corte Suprema y el expediente penal que ratifica que el crimen no fue obra de la guerrilla sino de delincuencia común.
+              </p>
+              <div class="h-card-footer">
+                <a href="https://colombiacheck.com/chequeos/collar-bomba-fue-un-acto-de-la-delincuencia-comun-pero-aun-se-lo-atribuyen-falsamente-las" target="_blank" rel="noopener noreferrer" class="h-link">
+                  <span>Ver verificación judicial</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </a>
+              </div>
+            </article>
+
+            <!-- Tarjeta 6: La Silla Vacía 2023 -->
+            <article class="h-card" data-cat="verificacion">
+              <div class="h-card-top">
+                <span class="h-outlet">La Silla Vacía</span>
+                <span class="h-badge badge-success">Detector de Mentiras</span>
+              </div>
+              <span class="h-date">30 de junio de 2023</span>
+              <h4 class="h-headline">«Detector: ninguna guerrilla fue responsable del caso»</h4>
+              <p class="h-excerpt">
+                Desmentido formal a afirmaciones en redes y discursos políticos que insisten en responsabilizar a grupos insurgentes ignorando las sentencias judiciales en firme.
+              </p>
+              <div class="h-card-footer">
+                <a href="https://www.lasillavacia.com/detector-de-mentiras/falso/detector-ninguna-guerrilla-fue-responsable-del-caso-del-collar-bomba/" target="_blank" rel="noopener noreferrer" class="h-link">
+                  <span>Ver nota del detector</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </a>
+              </div>
+            </article>
+
+            <!-- Tarjeta 7: AFP Factual 2026 -->
+            <article class="h-card" data-cat="verificacion">
+              <div class="h-card-top">
+                <span class="h-outlet">AFP Factual</span>
+                <span class="h-badge badge-success">Chequeo Internacional</span>
+              </div>
+              <span class="h-date">7 de abril de 2026</span>
+              <h4 class="h-headline">«El caso del "collar bomba" y la foto viral de una actriz»</h4>
+              <p class="h-excerpt">
+                Investigación forense digital de AFP Factual que identifica el fotograma viralizado como una escena de ficción de la actriz Mérida Urquía en la película PVC-1.
+              </p>
+              <div class="h-card-footer">
+                <a href="https://factual.afp.com/doc.afp.com.A6ZK7ZQ" target="_blank" rel="noopener noreferrer" class="h-link">
+                  <span>Ver análisis de AFP Factual</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </a>
+              </div>
+            </article>
+
+            <!-- Tarjeta 8: La Silla Vacía 2026 -->
+            <article class="h-card" data-cat="verificacion">
+              <div class="h-card-top">
+                <span class="h-outlet">La Silla Vacía</span>
+                <span class="h-badge badge-success">Detector de Mentiras</span>
+              </div>
+              <span class="h-date">21 de octubre de 2026</span>
+              <h4 class="h-headline">«La justicia probó que fueron delincuentes comunes»</h4>
+              <p class="h-excerpt">
+                Recapitulación histórica y jurídica con motivo del debate electoral contemporáneo, recordando la inalterabilidad de la verdad judicial frente al ruido político.
+              </p>
+              <div class="h-card-footer">
+                <a href="https://www.lasillavacia.com/detector-de-mentiras/falso/collar-bomba-la-justicia-probo-que-fueron-delincuentes-comunes-no-las-farc/" target="_blank" rel="noopener noreferrer" class="h-link">
+                  <span>Ver artículo del detector</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </a>
+              </div>
+            </article>
+          </div>
+
+          <!-- Bloque Pedagógico sobre Periodismo -->
+          <div class="journalism-lesson-box">
+            <h4 class="jl-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              ¿Qué enseña este caso sobre el periodismo y el consumo de información?
+            </h4>
+            <p>
+              La cobertura de hechos violentos debe distinguir estrictamente entre <strong>información confirmada</strong>, <strong>hipótesis preliminares de las autoridades</strong> y <strong>versiones no verificadas</strong>. Cuando una hipótesis cambia a la luz de los peritajes científicos, los medios tienen la obligación ética de corregirla con la misma contundencia.
+            </p>
+            <p>
+              Asimismo, las imágenes compartidas en el ecosistema digital exigen verificación técnica inversa: una recreación ficcional de una película no debe jamás presentarse como prueba documental auténtica de un crimen <span class="citation">(AFP Factual, 2026; ColombiaCheck, 2021/2022)</span>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===================================================================
+         MÓDULO 6: JUSTICIA Y MEMORIA | ACTUACIONES JUDICIALES
+         =================================================================== -->
+    <section id="modulo-6" class="module-section" aria-labelledby="mod6-title">
+      <div class="content-wrapper">
+        <header class="section-header">
+          <div class="section-tag">
+            <span class="module-chip">MÓDULO 6</span>
+            <span>VERDAD PROCESAL</span>
+          </div>
+          <h2 id="mod6-title" class="section-title">Justicia y Memoria <span class="gold-gradient-text">| Actuaciones Judiciales</span></h2>
+          <p class="section-desc">
+            Resumen del proceso judicial sin sustituir los documentos originales, diferenciando con nitidez las sentencias de los tribunales, los reportes de prensa y las perspectivas familiares.
+          </p>
+        </header>
+
+        <!-- Introducción procesal y alcance de fuentes -->
+        <div class="judicial-intro-grid">
+          <div class="judicial-text-card glass-panel">
+            <h3 class="j-card-title">El proceso penal y la casación</h3>
+            <p>
+              La investigación penal dio lugar a actuaciones judiciales contra <strong>José Miguel Suárez</strong>. La prensa informó que fue condenado a 32 años de prisión y que el Tribunal Superior de Cundinamarca confirmó la condena.
+            </p>
+            <p>
+              La providencia de la Sala de Casación Penal de la Corte Suprema de Justicia, identificada con el <strong>proceso n.º 21285</strong> y fechada el 25 de octubre de 2005, resume los antecedentes y examina la demanda de casación presentada por su defensa <span class="citation">(Corte Suprema de Justicia, Sala de Casación Penal, 2005; El Tiempo, 2002, 2003)</span>.
+            </p>
+          </div>
+
+          <div class="judicial-scope-card glass-panel">
+            <h3 class="j-card-title">Alcance y rigor de las fuentes</h3>
+            <p>
+              La providencia de 2005 es la fuente judicial primaria para conocer los antecedentes procesales y la revisión en sede extraordinaria. Las noticias de prensa contextualizan la cobertura de la condena, pero no sustituyen la lectura íntegra del expediente.
+            </p>
+            <p class="family-dissent-note">
+              A su vez, la crónica de <em>El Espectador</em> (2016) recoge las <strong>dudas expresadas por la familia del policía Jairo Hernando López</strong> sobre la culpabilidad del condenado; la página presenta esta información como una <strong>perspectiva familiar documentada</strong>, sin presentarla como si anulara jurídicamente la sentencia en firme <span class="citation">(Carranza Muñoz, 2016)</span>.
+            </p>
+          </div>
+        </div>
+
+        <!-- Cronología Judicial Interactiva -->
+        <div class="judicial-timeline-box glass-panel">
+          <h3 class="j-timeline-heading">Hitos del Proceso Judicial</h3>
+
+          <div class="j-timeline-steps">
+            <!-- Paso 2001 -->
+            <div class="j-step">
+              <div class="j-step-badge">2001</div>
+              <div class="j-step-content">
+                <h4>Resolución de Acusación</h4>
+                <p>La providencia de la Corte recoge que se formuló formalmente resolución de acusación contra una persona por delitos relacionados con el caso extorsivo.</p>
+                <span class="j-doc-ref">Documento: Auto de llamamiento a juicio · Fiscalía General de la Nación.</span>
+              </div>
+            </div>
+
+            <!-- Paso 2002-2003 -->
+            <div class="j-step">
+              <div class="j-step-badge">2002 – 2003</div>
+              <div class="j-step-content">
+                <h4>Condena de 32 años y Confirmación en Tribunal</h4>
+                <p>El juzgado penal emite sentencia condenatoria a 32 años de prisión contra José Miguel Suárez. Posteriormente, el Tribunal Superior del Distrito Judicial de Cundinamarca confirma la condena.</p>
+                <span class="j-doc-ref">Registro de prensa: El Tiempo (24 sept 2002; 7 feb 2003).</span>
+              </div>
+            </div>
+
+            <!-- Paso 2005 -->
+            <div class="j-step milestone-step">
+              <div class="j-step-badge gold-badge">25 OCT 2005</div>
+              <div class="j-step-content">
+                <h4>Fallo de la Corte Suprema de Justicia (Proceso 21285)</h4>
+                <p>La Sala de Casación Penal de la Corte Suprema de Justicia resuelve la demanda de casación interpuesta por la defensa, consolidando los antecedentes fácticos probados en las instancias previas.</p>
+                <span class="j-doc-ref">Providencia judicial n.º 21285 (M.P. Sala Penal).</span>
+                <a href="https://vlex.com.co/vid/providencia-corte-suprema-justicia-874010134" target="_blank" rel="noopener noreferrer" class="j-link-btn">
+                  Consultar providencia en vLex Colombia &rarr;
+                </a>
+              </div>
+            </div>
+
+            <!-- Paso 2016 en adelante -->
+            <div class="j-step">
+              <div class="j-step-badge">2016 – Hoy</div>
+              <div class="j-step-content">
+                <h4>Revisión Periodística y Memoria de los Familiares</h4>
+                <p>Investigaciones periodísticas y organizaciones de verificación independiente retoman el caso para desmentir falsas acusaciones políticas y escuchar las dudas y el dolor no resuelto de los seres queridos de las víctimas.</p>
+                <span class="j-doc-ref">Crónica El Espectador & Chequeos ColombiaCheck / La Silla Vacía.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Banner destacado Módulo 6 -->
+        <aside class="highlight-banner gold-banner">
+          <div class="banner-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </div>
+          <blockquote class="banner-quote">
+            «La memoria responsable presenta los documentos, reconoce las voces afectadas y distingue entre una decisión judicial y las preguntas que siguen abiertas para una familia.»
+          </blockquote>
+        </aside>
+
+        <!-- Tratamiento de Discrepancias: 3 Columnas Claras -->
+        <div class="discrepancy-trio">
+          <div class="disc-col glass-panel">
+            <div class="disc-header">
+              <span class="disc-badge">QUÉ DICE LA SENTENCIA</span>
+            </div>
+            <p>
+              Acredita la existencia de una extorsión cometida por delincuentes comunes que utilizaron un artefacto de dinamita en tubo de PVC y determina la responsabilidad penal individual de José Miguel Suárez.
+            </p>
+          </div>
+
+          <div class="disc-col glass-panel">
+            <div class="disc-header">
+              <span class="disc-badge">QUÉ REPORTÓ LA PRENSA</span>
+            </div>
+            <p>
+              Inició con titulares acusatorios contra las FARC, rectificó en semanas hacia bandas organizadas regionales y cubrió la confirmación de la pena carcelaria de más de tres décadas.
+            </p>
+          </div>
+
+          <div class="disc-col glass-panel">
+            <div class="disc-header">
+              <span class="disc-badge">QUÉ EXPRESARON FAMILIARES</span>
+            </div>
+            <p>
+              Parientes del subintendente manifestaron desconfianza sobre si en el juicio se identificó a todos los verdaderos cerebros del crimen, manteniendo un duelo cargado de interrogantes.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===================================================================
+         MÓDULO 7: REFLEXIÓN | MEMORIA Y RESPONSABILIDAD
+         =================================================================== -->
+    <section id="modulo-7" class="module-section" aria-labelledby="mod7-title">
+      <div class="content-wrapper">
+        <header class="section-header text-center">
+          <div class="section-tag center-tag">
+            <span class="module-chip">MÓDULO 7</span>
+            <span>ÉTICA Y CIUDADANÍA</span>
+          </div>
+          <h2 id="mod7-title" class="section-title">Reflexión <span class="gold-gradient-text">| Memoria y Responsabilidad</span></h2>
+          <p class="section-desc max-w-2xl mx-auto">
+            Cerrar el recorrido con una reflexión ciudadana que conecte la condena de la violencia, la dignidad de las víctimas, la justicia procesal y la responsabilidad en el ecosistema informativo.
+          </p>
+        </header>
+
+        <!-- Introducción y Reflexión Central -->
+        <div class="reflection-main-card glass-panel">
+          <div class="rf-quote-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+          </div>
+          <div class="rf-body">
+            <h3 class="rf-title">El deber ético de la memoria frente a la violencia</h3>
+            <p>
+              El caso del collar bomba obliga a pensar en la violencia ejercida para extorsionar, en el peligro que enfrentan las víctimas y quienes intentan auxiliarlas, y en las consecuencias que una tragedia deja en familias y comunidades enteras.
+            </p>
+            <p>
+              También demuestra cómo una <strong>información equivocada puede mantenerse activa durante décadas</strong>, reaparecer oportunistamente en momentos de discusión política y polarización, y distorsionar la manera en que la sociedad recuerda a quienes sufrieron la barbarie <span class="citation">(ColombiaCheck, 2022, 2026; La Silla Vacía, 2023, 2026)</span>.
+            </p>
+            <p class="rf-strong">
+              Recordar este hecho no exige mostrar imágenes explícitas ni repetir detalles escabrosos que aumenten el sufrimiento. Exige explicar lo que se conoce, reconocer con humildad qué aspectos aún requieren contraste, citar con rigor las fuentes y evitar a toda costa que una tragedia sea instrumentalizada.
+            </p>
+          </div>
+        </div>
+
+        <!-- ACORDEÓN INTERACTIVO: 5 PREGUNTAS PARA LA REFLEXIÓN CIUDADANA -->
+        <div class="questions-accordion-wrap">
+          <h3 class="accordion-main-heading">5 Preguntas Clave para el Debate y la Reflexión</h3>
+
+          <div class="accordion-item glass-panel">
+            <button class="accordion-header" aria-expanded="false">
+              <span class="q-number">1</span>
+              <span class="q-title">¿Qué responsabilidad tienen los medios y las personas que comparten información cuando una noticia involucra violencia extrema?</span>
+              <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="accordion-collapse">
+              <div class="accordion-body">
+                <p>
+                  Compartir información no es un acto inocuo. Cuando se replican imágenes de dolor o afirmaciones apresuradas, se puede vulnerar la privacidad de las familias y revictimizar a las personas afectadas. La ética periodística y ciudadana exige verificar antes de viralizar, anteponer la dignidad humana al sensacionalismo y comprobar la procedencia del material.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item glass-panel">
+            <button class="accordion-header" aria-expanded="false">
+              <span class="q-number">2</span>
+              <span class="q-title">¿Por qué es indispensable corregir públicamente una acusación cuando la evidencia posterior no la respalda?</span>
+              <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="accordion-collapse">
+              <div class="accordion-body">
+                <p>
+                  Porque las hipótesis iniciales suelen formularse en estados de confusión o interés político. Si la investigación judicial y pericial demuestra que los autores fueron delincuentes comunes y no una organización guerrillera, omitir la rectificación perpetúa el error histórico y manipula la verdad de lo ocurrido.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item glass-panel">
+            <button class="accordion-header" aria-expanded="false">
+              <span class="q-number">3</span>
+              <span class="q-title">¿Cómo puede una página web reconocer a las víctimas sin exponerlas ni reducirlas al momento de su muerte?</span>
+              <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="accordion-collapse">
+              <div class="accordion-body">
+                <p>
+                  Centrando la narrativa en su condición humana: doña Ana Elvia era una campesina con una vida, hijos y sueños; el intendente Jairo era un padre con un bebé recién nacido y una vocación de auxilio. Reducirlos al artefacto explosivo es una segunda violencia; honrar su memoria es hablar de sus vidas y del respeto que merecen sus seres queridos.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item glass-panel">
+            <button class="accordion-header" aria-expanded="false">
+              <span class="q-number">4</span>
+              <span class="q-title">¿Qué diferencia existe entre una sentencia judicial, una hipótesis inicial y la duda legítima de un familiar?</span>
+              <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="accordion-collapse">
+              <div class="accordion-body">
+                <p>
+                  Una <em>sentencia</em> es una decisión jurídica emanada de un debido proceso con pruebas practicadas. Una <em>hipótesis</em> es una conjetura preliminar de investigación. La <em>duda de un familiar</em> representa la experiencia del duelo y el reclamo por una verdad plena. Un trabajo riguroso debe presentar cada nivel en su justa dimensión sin confundir los planos.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item glass-panel">
+            <button class="accordion-header" aria-expanded="false">
+              <span class="q-number">5</span>
+              <span class="q-title">¿Cómo puede la memoria histórica contribuir a forjar una ciudadanía más crítica y respetuosa?</span>
+              <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="accordion-collapse">
+              <div class="accordion-body">
+                <p>
+                  Al proveer herramientas para desconfiar de discursos incendiarios y desinformaciones electorales. Una ciudadanía que conoce sus archivos, comprende el valor de las providencias judiciales y empatiza con las víctimas es más inmune a las mentiras y más solidaria en la construcción de paz.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Compromiso Editorial y Cierre -->
+        <div class="editorial-manifesto glass-panel">
+          <div class="manifesto-badge">DECLARACIÓN DE PRINCIPIOS</div>
+          <h3 class="manifesto-title">Compromiso Editorial del Proyecto</h3>
+          <ul class="manifesto-list">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><strong>No reproducimos imágenes explícitas</strong> ni recreaciones morbosas del instante de la deflagración.</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><strong>No presentamos escenas de ficción</strong> (como la película <em>PVC-1</em>) como documentos fotográficos reales.</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><strong>No difundimos acusaciones sin respaldo judicial</strong> ni perpetuamos hipótesis desmentidas por los tribunales.</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><strong>Mostramos todas las fuentes primarias y secundarias</strong> en formato APA 7 para que cualquier lector pueda contrastar la evidencia.</span>
+            </li>
+          </ul>
+
+          <div class="closing-summary">
+            <p>
+              La historia del collar bomba no debe recordarse únicamente por la violencia del artefacto, sino por las vidas que se perdieron, las familias que quedaron marcadas y la responsabilidad colectiva de buscar la verdad. Contar el caso con rigor significa contrastar fuentes, reconocer los límites de lo que se sabe y tratar a las víctimas con dignidad.
+            </p>
+          </div>
+        </div>
+
+        <!-- Banner Final Módulo 7 -->
+        <div class="grand-final-banner">
+          <div class="final-banner-glow"></div>
+          <h3 class="final-triad">
+            <span>MEMORIA CON VERDAD</span>
+            <span class="gold-dot">·</span>
+            <span>INFORMACIÓN CON RESPONSABILIDAD</span>
+            <span class="gold-dot">·</span>
+            <span>DIGNIDAD PARA LAS VÍCTIMAS</span>
+          </h3>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===================================================================
+         MÓDULO 8: FUENTES, MÉTODO Y CRÉDITOS
+         =================================================================== -->
+    <section id="modulo-8" class="module-section" aria-labelledby="mod8-title">
+      <div class="content-wrapper">
+        <header class="section-header">
+          <div class="section-tag">
+            <span class="module-chip">MÓDULO 8</span>
+            <span>TRANSPARENCIA DOCUMENTAL</span>
+          </div>
+          <h2 id="mod8-title" class="section-title">Fuentes, Método <span class="gold-gradient-text">y Créditos</span></h2>
+          <p class="section-desc">
+            Metodología documental explícita, criterios de verificación aplicados y bibliografía completa bajo normas APA (7.ª edición) con hipervínculos activos.
+          </p>
+        </header>
+
+        <!-- Método Documental y Criterios de Verificación -->
+        <div class="methodology-grid">
+          <div class="method-card glass-panel">
+            <h3 class="method-heading">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+              Método Documental
+            </h3>
+            <p>
+              La página combina fuentes primarias y secundarias:
+            </p>
+            <ul class="method-features">
+              <li><strong>Fuente Judicial:</strong> La providencia de la Sala de Casación Penal de la Corte Suprema de Justicia (Proceso 21285) establece los antecedentes procesales y la calificación del delito.</li>
+              <li><strong>Prensa de Archivo:</strong> Los registros de <em>El Tiempo</em> permiten reconstruir la cobertura contemporánea y los fallos de primera y segunda instancia.</li>
+              <li><strong>Memoria Familiar:</strong> El reportaje de <em>El Espectador</em> aporta testimonios de los seres queridos de Jairo Hernando López y contextualiza las dudas que subsisten.</li>
+              <li><strong>Verificación de Desinformación:</strong> <em>ColombiaCheck</em>, <em>La Silla Vacía</em> y <em>AFP Factual</em> permiten rastrear y corregir afirmaciones falsas y fotografías descontextualizadas.</li>
+              <li><strong>Ficha Cinematográfica:</strong> <em>Proimágenes Colombia</em> documenta el largometraje <em>PVC-1</em> como obra de ficción inspirada en hechos reales, distinguiéndola de cualquier archivo probatorio.</li>
+            </ul>
+          </div>
+
+          <div class="method-card glass-panel">
+            <h3 class="method-heading">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+              Criterios de Verificación Aplicados
+            </h3>
+            <ol class="criteria-list">
+              <li><strong>Priorización documental:</strong> Priorizar documentos judiciales originales sobre trascendidos de prensa.</li>
+              <li><strong>Contraste múltiple:</strong> Contrastar nombres, fechas, ubicaciones geográficas y actuaciones en más de una fuente.</li>
+              <li><strong>Separación categórica:</strong> Separar hechos probados, hipótesis preliminares, testimonios familiares y análisis editorial.</li>
+              <li><strong>Identificación exhaustiva:</strong> Registrar autor, medio, fecha y enlace clicable en cada cita.</li>
+              <li><strong>Protección de accesibilidad:</strong> Proveer crédito, archivo y texto alternativo descriptivo en cada imagen.</li>
+              <li><strong>Filtro de redes:</strong> No incorporar imágenes virales de redes sociales sin corroborar su cadena de custodia visual.</li>
+              <li><strong>Transparencia en discrepancias:</strong> Declarar abiertamente cuando dos fuentes presenten contradicciones geográficas o cronológicas.</li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- REFERENCIAS BIBLIOGRÁFICAS COMPLETAS (APA 7) -->
+        <div class="apa-references-card glass-panel">
+          <div class="apa-header">
+            <div class="apa-title-group">
+              <span class="apa-badge">NORMA INTERNACIONAL</span>
+              <h3 class="apa-title">Referencias Bibliográficas (APA 7.ª edición)</h3>
+            </div>
+            <span class="apa-count">13 Fuentes Indexadas</span>
+          </div>
+
+          <p class="apa-intro">
+            Entradas en orden alfabético estricto. Todos los enlaces han sido verificados y son directamente clicables para facilitar la veeduría ciudadana:
+          </p>
+
+          <ol class="apa-list">
+            <!-- AFP Factual -->
+            <li class="apa-item">
+              <div class="apa-content">
+                <span class="apa-entry">
+                  AFP Factual. (2026, 7 de abril). <em>El caso del “collar bomba” en Colombia no fue atribuido a las FARC; y la foto viral es de una actriz</em>.
+                </span>
+                <a href="https://factual.afp.com/doc.afp.com.A6ZK7ZQ" target="_blank" rel="noopener noreferrer" class="apa-link">
+                  https://factual.afp.com/doc.afp.com.A6ZK7ZQ
+                </a>
+              </div>
+            </li>
+
+            <!-- Carranza Muñoz / El Espectador -->
+            <li class="apa-item">
+              <div class="apa-content">
+                <span class="apa-entry">
+                  Carranza Muñoz, D. L. (2016, 14 de mayo). <em>El otro muerto del collar bomba</em>. El Espectador.
+                </span>
+                <a href="https://www.elespectador.com/colombia/mas-regiones/el-otro-muerto-del-collar-bomba-article-632293/" target="_blank" rel="noopener noreferrer" class="apa-link">
+                  https://www.elespectador.com/colombia/mas-regiones/el-otro-muerto-del-collar-bomba-article-632293/
+                </a>
+              </div>
+            </li>
+
+            <!-- ColombiaCheck 2016 -->
+            <li class="apa-item">
+              <div class="apa-content">
+                <span class="apa-entry">
+                  ColombiaCheck. (2016, 27 de septiembre). <em>Lo del collar bomba, otra explosiva mentira</em>.
+                </span>
+                <a href="https://colombiacheck.com/chequeos/lo-del-collar-bomba-otra-explosiva-mentira" target="_blank" rel="noopener noreferrer" class="apa-link">
+                  https://colombiacheck.com/chequeos/lo-del-collar-bomba-otra-explosiva-mentira
+                </a>
+              </div>
+            </li>
+
+            <!-- ColombiaCheck 2022 -->
+            <li class="apa-item">
+              <div class="apa-content">
+                <span class="apa-entry">
+                  ColombiaCheck. (2022, 27 de enero). <em>Collar bomba fue un acto de la delincuencia común, pero aún se lo atribuyen falsamente a las FARC</em>.
+                </span>
+                <a href="https://colombiacheck.com/chequeos/collar-bomba-fue-un-acto-de-la-delincuencia-comun-pero-aun-se-lo-atribuyen-falsamente-las" target="_blank" rel="noopener noreferrer" class="apa-link">
+                  https://colombiacheck.com/chequeos/collar-bomba-fue-un-acto-de-la-delincuencia-comun-pero-aun-se-lo-atribuyen-falsamente-las
+                </a>
+              </div>
+            </li>
+
+            <!-- ColombiaCheck 2026 -->
+            <li class="apa-item">
+              <div class="apa-content">
+                <span class="apa-entry">
+                  ColombiaCheck. (2026, 15 de abril). <em>Vieja desinformación sobre el collar bomba se usa para cuestionar campaña de Cepeda</em>.
+                </span>
+                <a href="https://colombiacheck.com/chequeos/vieja-desinformacion-sobre-el-collar-bomba-se-usa-para-cuestionar-campana-de-cepeda" target="_blank" rel="noopener noreferrer" class="apa-link">
+                  https://colombiacheck.com/chequeos/vieja-desinformacion-sobre-el-collar-bomba-se-usa-para-cuestionar-campana-de-cepeda
+                </a>
+              </div>
+            </li>
+
+            <!-- Corte Suprema de Justicia -->
+            <li class="apa-item">
+              <div class="apa-content">
+                <span class="apa-entry">
+                  Corte Suprema de Justicia, Sala de Casación Penal. (2005, 25 de octubre). <em>Providencia, proceso n.º 21285</em>. vLex Colombia.
+                </span>
+                <a href="https://vlex.com.co/vid/providencia-corte-suprema-justicia-874010134" target="_blank" rel="noopener noreferrer" class="apa-link">
+                  https://vlex.com.co/vid/providencia-corte-suprema-justicia-874010134
+                </a>
+              </div>
+            </li>
+
+            <!-- El Tiempo 17 Mayo 2000 -->
+            <li class="apa-item">
+              <div class="apa-content">
+                <span class="apa-entry">
+                  El Tiempo. (2000, 17 de mayo). <em>El collar explosivo, peor que el secuestro</em>. Archivo de El Tiempo.
+                </span>
+                <a href="https://www.eltiempo.com/archivo/documento/mam-1255427" target="_blank" rel="noopener noreferrer" class="apa-link">
+                  https://www.eltiempo.com/archivo/documento/mam-1255427
+                </a>
+              </div>
+            </li>
+
+            <!-- El Tiempo 28 Mayo 2000 -->
+            <li class="apa-item">
+              <div class="apa-content">
+                <span class="apa-entry">
+                  El Tiempo. (2000, 28 de mayo). <em>Collar bomba, acto de bandas</em>. Archivo de El Tiempo.
+                </span>
+                <a href="https://www.eltiempo.com/archivo/documento/mam-1226570" target="_blank" rel="noopener noreferrer" class="apa-link">
+                  https://www.eltiempo.com/archivo/documento/mam-1226570
+                </a>
+              </div>
+            </li>
+
+            <!-- El Tiempo 24 Sep 2002 -->
+            <li class="apa-item">
+              <div class="apa-content">
+                <span class="apa-entry">
+                  El Tiempo. (2002, 24 de septiembre). <em>Collar bomba: un solo condenado</em>. Archivo de El Tiempo.
+                </span>
+                <a href="https://www.eltiempo.com/archivo/documento/mam-1333136" target="_blank" rel="noopener noreferrer" class="apa-link">
+                  https://www.eltiempo.com/archivo/documento/mam-1333136
+                </a>
+              </div>
+            </li>
+
+            <!-- El Tiempo 7 Feb 2003 -->
+            <li class="apa-item">
+              <div class="apa-content">
+                <span class="apa-entry">
+                  El Tiempo. (2003, 7 de febrero). <em>Confirman pena por collar bomba</em>. Archivo de El Tiempo.
+                </span>
+                <a href="https://www.eltiempo.com/archivo/documento/mam-980725" target="_blank" rel="noopener noreferrer" class="apa-link">
+                  https://www.eltiempo.com/archivo/documento/mam-980725
+                </a>
+              </div>
+            </li>
+
+            <!-- El Tiempo 13 Nov 2008 -->
+            <li class="apa-item">
+              <div class="apa-content">
+                <span class="apa-entry">
+                  El Tiempo. (2008, 13 de noviembre). <em>Historia de la tragedia del collar bomba</em>. Archivo de El Tiempo.
+                </span>
+                <a href="https://www.eltiempo.com/archivo/documento/CMS-4664634" target="_blank" rel="noopener noreferrer" class="apa-link">
+                  https://www.eltiempo.com/archivo/documento/CMS-4664634
+                </a>
+              </div>
+            </li>
+
+            <!-- La Silla Vacía 30 Junio 2023 -->
+            <li class="apa-item">
+              <div class="apa-content">
+                <span class="apa-entry">
+                  La Silla Vacía. (2023, 30 de junio). <em>Detector: ninguna guerrilla fue responsable del caso del collar bomba</em>.
+                </span>
+                <a href="https://www.lasillavacia.com/detector-de-mentiras/falso/detector-ninguna-guerrilla-fue-responsable-del-caso-del-collar-bomba/" target="_blank" rel="noopener noreferrer" class="apa-link">
+                  https://www.lasillavacia.com/detector-de-mentiras/falso/detector-ninguna-guerrilla-fue-responsable-del-caso-del-collar-bomba/
+                </a>
+              </div>
+            </li>
+
+            <!-- La Silla Vacía 21 Oct 2026 -->
+            <li class="apa-item">
+              <div class="apa-content">
+                <span class="apa-entry">
+                  La Silla Vacía. (2026, 21 de octubre). <em>Collar bomba: la justicia probó que fueron delincuentes comunes, no las Farc</em>.
+                </span>
+                <a href="https://www.lasillavacia.com/detector-de-mentiras/falso/collar-bomba-la-justicia-probo-que-fueron-delincuentes-comunes-no-las-farc/" target="_blank" rel="noopener noreferrer" class="apa-link">
+                  https://www.lasillavacia.com/detector-de-mentiras/falso/collar-bomba-la-justicia-probo-que-fueron-delincuentes-comunes-no-las-farc/
+                </a>
+              </div>
+            </li>
+
+            <!-- Proimágenes Colombia - PVC-1 -->
+            <li class="apa-item">
+              <div class="apa-content">
+                <span class="apa-entry">
+                  Proimágenes Colombia. (s. f.). <em>PVC-1</em>. Cine colombiano.
+                </span>
+                <a href="https://www.proimagenescolombia.com/secciones/cine_colombiano/peliculas_colombianas/pelicula_plantilla.php?id_pelicula=1796" target="_blank" rel="noopener noreferrer" class="apa-link">
+                  https://www.proimagenescolombia.com/secciones/cine_colombiano/peliculas_colombianas/pelicula_plantilla.php?id_pelicula=1796
+                </a>
+              </div>
+            </li>
+
+            <!-- Proimágenes Colombia - 2007 -->
+            <li class="apa-item">
+              <div class="apa-content">
+                <span class="apa-entry">
+                  Proimágenes Colombia. (2007, 30 de noviembre). <em>El largometraje colombiano PVC-1 gana en el Festival de Cine de Tesalónica (Grecia)</em>. Pantalla Colombia.
+                </span>
+                <a href="https://www.proimagenescolombia.com/secciones/pantalla_colombia/breves_plantilla.php?id_noticia=652" target="_blank" rel="noopener noreferrer" class="apa-link">
+                  https://www.proimagenescolombia.com/secciones/pantalla_colombia/breves_plantilla.php?id_noticia=652
+                </a>
+              </div>
+            </li>
+          </ol>
+        </div>
+
+        <!-- Tabla de Créditos y Atribución de Imágenes -->
+        <div class="credits-table-wrap glass-panel">
+          <h3 class="credits-heading">Créditos de Materiales Visuales y Archivos</h3>
+          <div class="table-responsive">
+            <table class="credits-table">
+              <thead>
+                <tr>
+                  <th scope="col">Archivo / Recurso</th>
+                  <th scope="col">Módulo</th>
+                  <th scope="col">Descripción / Naturaleza</th>
+                  <th scope="col">Fuente / Crédito</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>plaza-chiquinquira.jpg</code></td>
+                  <td>Módulo 1</td>
+                  <td>Fotografía urbana de la Plaza de la Libertad y Basílica de Chiquinquirá</td>
+                  <td>Situr Boyacá / Archivo Regional</td>
+                </tr>
+                <tr>
+                  <td><code>prensa-collar-dinamita-2000.jpg</code></td>
+                  <td>Módulo 1 / 5</td>
+                  <td>Titular de prensa contemporánea «Collar de dinamita» (Mayo 2000)</td>
+                  <td>El Tiempo / Juanita León (2000)</td>
+                </tr>
+                <tr>
+                  <td><code>elvia-cortes-archivo-2000.jpg</code></td>
+                  <td>Módulo 2 / 4</td>
+                  <td>Fotografía histórica de doña Ana Elvia Cortés acompañada en el lugar</td>
+                  <td>Archivo de prensa contemporáneo (Mayo 2000)</td>
+                </tr>
+                <tr>
+                  <td><code>pvc1-pelicula-ficcion.jpg</code></td>
+                  <td>Módulo 5</td>
+                  <td>Fotograma de ficción con la actriz Mérida Urquía (Película PVC-1)</td>
+                  <td>Proimágenes Colombia / Spiros Stathoulopoulos (2007)</td>
+                </tr>
+                <tr>
+                  <td><code>farc-conflicto-contexto.jpg</code></td>
+                  <td>Módulo 3</td>
+                  <td>Imagen de archivo del conflicto armado sobre hipótesis iniciales</td>
+                  <td>Archivo periodístico de Colombia</td>
+                </tr>
+                <tr>
+                  <td><code>farc-brazalete-contexto.jpg</code></td>
+                  <td>Módulo 3 / 5</td>
+                  <td>Registro contextual para ilustrar las verificaciones de desinformación</td>
+                  <td>ColombiaCheck / AFP Factual</td>
+                </tr>
+                <tr>
+                  <td><code>tecnico-antiexplosivos-traje.jpg</code></td>
+                  <td>Módulo 2 / 4</td>
+                  <td>Fotografía contextual de técnico policial portando traje de protección EOD</td>
+                  <td>Policía Nacional de Colombia (Archivo institucional)</td>
+                </tr>
+                <tr>
+                  <td><code>detonacion-controlada-eod.jpg</code></td>
+                  <td>Módulo 2</td>
+                  <td>Registro operativo de detonación controlada de artefactos</td>
+                  <td>Archivo policial y de emergencias</td>
+                </tr>
+                <tr>
+                  <td><code>policia-escuadron-antiexplosivos.jpg</code></td>
+                  <td>Módulo 2 / 4</td>
+                  <td>Integrantes de la unidad antiexplosivos con distintivo oficial</td>
+                  <td>Policía Nacional de Colombia</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Pie de página general del sitio -->
+  <footer class="site-footer">
+    <div class="content-wrapper footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="f-badge">INVESTIGACIÓN Y MEMORIA</span>
+          <h4 class="f-title">El Caso del Collar Bomba</h4>
+          <p class="f-desc">
+            Portal documental desarrollado para la preservación de la memoria histórica, la dignificación de las víctimas y la pedagogía ciudadana contra la desinformación en Colombia.
+          </p>
+        </div>
+
+        <div class="footer-nav-col">
+          <h5 class="f-col-title">Módulos</h5>
+          <ul class="f-nav-links">
+            <li><a href="#modulo-1">1. Portada</a></li>
+            <li><a href="#modulo-2">2. Reconstrucción de Hechos</a></li>
+            <li><a href="#modulo-3">3. Contexto y Autoría</a></li>
+            <li><a href="#modulo-4">4. Víctimas Afectadas</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-nav-col">
+          <h5 class="f-col-title">Investigación</h5>
+          <ul class="f-nav-links">
+            <li><a href="#modulo-5">5. Hemeroteca Digital</a></li>
+            <li><a href="#modulo-6">6. Actuaciones Judiciales</a></li>
+            <li><a href="#modulo-7">7. Preguntas de Reflexión</a></li>
+            <li><a href="#modulo-8">8. Referencias APA 7</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="copyright-text">
+          &copy; 2000 – 2026 Proyecto Documental y de Verdad Histórica. Basado en providencias de la Corte Suprema de Justicia de Colombia y chequeos de verificación periodística independiente.
+        </p>
+        <div class="footer-back-top">
+          <a href="#modulo-1" class="btn-top" title="Volver al inicio">
+            <span>Volver arriba</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal / Lightbox para visualización detallada de imágenes con pie de foto -->
+  <div id="media-modal" class="media-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-backdrop"></div>
+    <div class="modal-dialog">
+      <button id="modal-close-btn" class="modal-close" aria-label="Cerrar vista">&times;</button>
+      <div class="modal-content">
+        <img id="modal-image" src="" alt="" class="modal-img">
+        <div class="modal-caption" id="modal-caption-text"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
