@@ -450,11 +450,11 @@ function initSynchronizedTimelineAndMap() {
       attributionControl: true
     });
 
-    // Tile layer: CartoDB Dark Matter — estilo conmemorativo oscuro
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors © <a href="https://carto.com/">CARTO</a>',
-      subdomains: 'abcd',
-      maxZoom: 16
+    // Tile layer: OpenStreetMap oficial con estilo oscuro conmemorativo (100% libre, sin requerir API key)
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors',
+      maxZoom: 18,
+      className: 'osm-custom-dark-tiles'
     }).addTo(leafletMap);
 
     // Ruta histórica (polilínea entre los 4 puntos)
@@ -775,45 +775,64 @@ function initMemorialSanctuary() {
   }
   updateCounter();
 
-  if (userHasLit) {
-    btnLight.disabled = true;
-    btnLight.classList.add('lit');
-    btnLight.innerHTML = `
-      <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><path d="M12 2c-.5 2-2 3.5-2 5.5 0 1.5 1 2.5 2 2.5s2-1 2-2.5c0-2-1.5-3.5-2-5.5zm-5 9v11h10V11H7z"/></svg>
-      <span>Luz Encendida en tu Navegador ✓</span>
-    `;
-    if (flameEl) flameEl.classList.add('ignited');
+  function updateCandleUI(isLit, animate = false) {
+    if (isLit) {
+      btnLight.classList.add('lit');
+      btnLight.disabled = false;
+      btnLight.innerHTML = `
+        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><path d="M12 2c-.5 2-2 3.5-2 5.5 0 1.5 1 2.5 2 2.5s2-1 2-2.5c0-2-1.5-3.5-2-5.5zm-5 9v11h10V11H7z"/></svg>
+        <span>Luz Encendida · Clic para apagar</span>
+      `;
+      if (flameEl) {
+        flameEl.classList.add('ignited');
+        if (animate) {
+          flameEl.style.transform = 'scale(1.4)';
+          setTimeout(() => { flameEl.style.transform = ''; }, 600);
+        }
+      }
+    } else {
+      btnLight.classList.remove('lit');
+      btnLight.disabled = false;
+      btnLight.innerHTML = `
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20" aria-hidden="true"><path d="M12 2c-.5 2-2 3.5-2 5.5 0 1.5 1 2.5 2 2.5s2-1 2-2.5c0-2-1.5-3.5-2-5.5zm-5 9v11h10V11H7z"/></svg>
+        <span>Encender una Luz en Memoria</span>
+      `;
+      if (flameEl) {
+        flameEl.classList.remove('ignited');
+      }
+    }
+    updateCounter();
   }
 
-  // Encendido de la vela
-  btnLight.addEventListener('click', () => {
-    if (userHasLit) return;
-    userHasLit = true;
-    localStorage.setItem('cb_candle_lit', 'true');
+  // Inicializar estado UI de la vela
+  updateCandleUI(userHasLit, false);
 
-    if (flameEl) {
-      flameEl.classList.add('ignited');
-      flameEl.style.transform = 'scale(1.4)';
-      setTimeout(() => { flameEl.style.transform = ''; }, 600);
+  // Función interactiva de conmutación (Permite encender y apagar cuantas veces desee)
+  function toggleCandle() {
+    userHasLit = !userHasLit;
+    localStorage.setItem('cb_candle_lit', userHasLit ? 'true' : 'false');
+    updateCandleUI(userHasLit, true);
+
+    if (userHasLit) {
+      if (window.triggerEmberBurst) {
+        const rect = btnLight.getBoundingClientRect();
+        window.triggerEmberBurst(rect.left + rect.width / 2, rect.top, 35);
+      }
+      showToast('Has encendido una luz en homenaje a Ana Elvia Cortés y Jairo H. López');
+      inputText?.focus();
+    } else {
+      showToast('Has apagado la llama. Puedes volver a encenderla en cualquier momento.');
     }
+  }
 
-    btnLight.disabled = true;
-    btnLight.classList.add('lit');
-    btnLight.innerHTML = `
-      <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><path d="M12 2c-.5 2-2 3.5-2 5.5 0 1.5 1 2.5 2 2.5s2-1 2-2.5c0-2-1.5-3.5-2-5.5zm-5 9v11h10V11H7z"/></svg>
-      <span>Luz Encendida en tu Navegador ✓</span>
-    `;
+  btnLight.addEventListener('click', toggleCandle);
 
-    updateCounter();
-
-    if (window.triggerEmberBurst) {
-      const rect = btnLight.getBoundingClientRect();
-      window.triggerEmberBurst(rect.left + rect.width / 2, rect.top, 35);
-    }
-
-    showToast('Has encendido una luz en homenaje a Ana Elvia Cortés y Jairo H. López');
-    inputText?.focus();
-  });
+  // También se puede hacer clic directamente sobre la vela para encender/apagar
+  if (flameEl) {
+    flameEl.style.cursor = 'pointer';
+    flameEl.setAttribute('title', 'Haz clic para encender o apagar la llama');
+    flameEl.addEventListener('click', toggleCandle);
+  }
 
   // Renderizar pensamientos combinados
   function renderAllThoughts() {

@@ -1294,10 +1294,35 @@ body.theme-light .site-header.scrolled .header-container {
   color: var(--text-primary);
 }
 
-.part-btn.active {
-  background: var(--gold-dim);
-  border-color: var(--gold-primary);
-  color: var(--gold-bright);
+.part-btn[data-part="explosivo"].active {
+  background: rgba(239, 68, 68, 0.18);
+  border-color: #ef4444;
+  color: #fca5a5;
+  box-shadow: 0 0 16px rgba(239, 68, 68, 0.35);
+  font-weight: 700;
+}
+
+.part-btn[data-part="temporizador"].active {
+  background: rgba(245, 158, 11, 0.18);
+  border-color: #f59e0b;
+  color: #fde047;
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.35);
+  font-weight: 700;
+}
+
+.part-btn[data-part="trampa"].active {
+  background: rgba(0, 229, 255, 0.18);
+  border-color: #00e5ff;
+  color: #7dd3fc;
+  box-shadow: 0 0 16px rgba(0, 229, 255, 0.35);
+  font-weight: 700;
+}
+
+.part-btn[data-part="candado"].active {
+  background: rgba(249, 115, 22, 0.18);
+  border-color: #f97316;
+  color: #fdba74;
+  box-shadow: 0 0 16px rgba(249, 115, 22, 0.35);
   font-weight: 700;
 }
 
@@ -1367,6 +1392,11 @@ body.theme-light .site-header.scrolled .header-container {
   height: 380px;
   border-radius: var(--r-md);
   z-index: 0;
+}
+
+/* OpenStreetMap tiles con estilo oscuro conmemorativo (100% libre, sin API key requerida) */
+.osm-custom-dark-tiles {
+  filter: brightness(0.68) invert(1) contrast(2.1) hue-rotate(200deg) saturate(0.28) !important;
 }
 
 /* Ajuste de z-index para que los popups Leaflet queden sobre el contenido */
@@ -2267,32 +2297,41 @@ body.theme-light .site-header.scrolled .header-container {
 .slider-label-under,
 .slider-label-over {
   position: absolute;
-  top: 10px;
-  padding: 4px 10px;
+  top: 12px;
+  padding: 6px 12px;
   border-radius: var(--r-full);
   font-family: var(--font-mono);
-  font-size: 0.65rem;
-  font-weight: 700;
+  font-size: 0.68rem;
+  font-weight: 800;
   letter-spacing: 0.08em;
   z-index: 5;
+  backdrop-filter: blur(8px);
 }
 
+/* Ficción a la derecha (fondo under) */
 .slider-label-under {
-  left: 10px;
-  background: rgba(220, 38, 38, 0.85);
-  color: #fff;
+  right: 12px;
+  left: auto;
+  background: rgba(220, 38, 38, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 14px rgba(220, 38, 38, 0.45);
+  color: #ffffff;
 }
 
+/* Realidad a la izquierda (capa over) */
 .slider-label-over {
-  left: 10px;
-  background: rgba(34, 197, 94, 0.9);
-  color: #fff;
+  left: 12px;
+  right: auto;
+  background: rgba(16, 185, 129, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.45);
+  color: #ffffff;
 }
 
 .slider-layer-over {
   overflow: hidden;
-  border-right: 2px solid var(--gold-bright);
-  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.6);
+  border-right: 3px solid #00e5ff;
+  box-shadow: 4px 0 24px rgba(0, 229, 255, 0.45);
   z-index: 2;
 }
 
@@ -3154,6 +3193,240 @@ body.theme-light .site-header.scrolled .header-container {
   font-size: 0.88rem;
   color: var(--text-secondary);
   line-height: 1.5;
+}
+
+/* =====================================================================
+   15.5 ESTILOS ADICIONALES: HONORES, GALERÍA CINEMATOGRÁFICA Y JUSTICIA
+   ===================================================================== */
+/* Tarjeta de Honores Fúnebres a Jairo López */
+.tribute-honors-card {
+  margin: 28px 0;
+  padding: 24px;
+  background: linear-gradient(135deg, rgba(8, 14, 28, 0.95), rgba(15, 23, 42, 0.92));
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  border-left: 4px solid #f59e0b;
+  position: relative;
+  overflow: hidden;
+}
+
+.tribute-honors-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 120px;
+  height: 4px;
+  background: linear-gradient(to right, #ffd700 0%, #0033a0 50%, #ce1126 100%);
+}
+
+.tribute-honors-grid {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 24px;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .tribute-honors-grid { grid-template-columns: 1fr; }
+}
+
+.tribute-honors-img-wrap {
+  position: relative;
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tribute-honors-img-wrap img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+
+.tribute-badge-flag {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  background: rgba(2, 6, 23, 0.88);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: #fde047;
+  padding: 3px 8px;
+  border-radius: var(--r-full);
+}
+
+.honors-sub-badge {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--gold-bright);
+  letter-spacing: 0.08em;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.honors-card-title {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.honors-card-desc {
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+
+.honors-quote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.88rem;
+  color: #cbd5e1;
+  border-left: 2px solid rgba(0, 229, 255, 0.5);
+  padding-left: 12px;
+  margin: 0;
+}
+
+/* Galería Contextual del Módulo 3 (4 fotos en grid) */
+.context-imagery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.badge-danger {
+  background: rgba(220, 38, 38, 0.9) !important;
+  color: #fff !important;
+}
+
+.badge-info {
+  background: rgba(2, 132, 199, 0.9) !important;
+  color: #fff !important;
+}
+
+/* Galería Cinematográfica de PVC-1 en Módulo 5 */
+.pvc1-film-archive-row {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(140, 180, 240, 0.12);
+}
+
+.film-archive-title {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  color: #fff;
+  margin-bottom: 6px;
+}
+
+.film-archive-sub {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-bottom: 18px;
+}
+
+.film-archive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 14px;
+}
+
+.film-archive-item {
+  background: rgba(10, 16, 28, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  margin: 0;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
+}
+
+.film-archive-item:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 229, 255, 0.4);
+  box-shadow: 0 8px 24px rgba(0, 229, 255, 0.2);
+}
+
+.film-archive-item img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  display: block;
+}
+
+.film-archive-item figcaption {
+  padding: 8px 10px;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--text-secondary);
+  background: rgba(4, 8, 16, 0.9);
+}
+
+/* Ficha del Condenado en Módulo 6 */
+.judicial-convicted-card {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 18px;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  border-left: 3px solid #ef4444;
+  border-radius: var(--r-sm);
+  padding: 14px;
+  margin: 16px 0;
+  align-items: center;
+}
+
+@media (max-width: 600px) {
+  .judicial-convicted-card { grid-template-columns: 1fr; }
+}
+
+.convicted-photo-wrap {
+  position: relative;
+  border-radius: var(--r-xs);
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.convicted-photo-wrap img {
+  width: 100%;
+  height: 130px;
+  object-fit: cover;
+  display: block;
+}
+
+.badge-convicted {
+  position: absolute;
+  bottom: 4px;
+  left: 4px;
+  right: 4px;
+  background: rgba(185, 28, 28, 0.92);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 800;
+  text-align: center;
+  padding: 2px 4px;
+  border-radius: 2px;
+}
+
+.convicted-text h5 {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  color: #fca5a5;
+  margin: 0 0 6px;
+}
+
+.convicted-text p {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  margin: 0;
 }
 
 /* =====================================================================
