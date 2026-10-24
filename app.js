@@ -484,11 +484,21 @@ function initSynchronizedTimelineAndMap() {
       });
 
       const geoData = GEO_WAYPOINTS[key];
-      const popupContent = `<h4>${geoData.badge}</h4><p>${geoData.desc}</p><p style="margin-top:6px;font-size:10px;color:#64748b;">${geoData.source}</p>`;
+      const popupContent = `<h4>${geoData.badge}</h4><p>${geoData.desc}</p><p style="margin-top:6px;font-size:10px;color:#94a3b8;">${geoData.source}</p>`;
+
+      const popupOptions = {
+        maxWidth: 280,
+        minWidth: 200,
+        autoPan: true,
+        autoPanPaddingTopLeft: L.point(20, 80),
+        autoPanPaddingBottomRight: L.point(20, 30),
+        offset: [0, -14],
+        closeOnClick: true
+      };
 
       const marker = L.marker([wp.lat, wp.lng], { icon, title: wp.label })
         .addTo(leafletMap)
-        .bindPopup(popupContent, { maxWidth: 240, closeOnClick: true });
+        .bindPopup(popupContent, popupOptions);
 
       marker.on('click', () => highlightMapWaypoint(key, true));
       leafletMarkers[key] = marker;
@@ -496,7 +506,7 @@ function initSynchronizedTimelineAndMap() {
 
     // Mostrar popup del punto inicial
     setTimeout(() => {
-      leafletMarkers['simijaca']?.openPopup();
+      highlightLeafletMarker('simijaca');
     }, 800);
   }
 
@@ -512,9 +522,13 @@ function initSynchronizedTimelineAndMap() {
     if (leafletMarkers[key] && leafletMap) {
       const wp = LEAFLET_WAYPOINTS[key];
       if (wp) {
-        leafletMap.flyTo([wp.lat, wp.lng], key === 'bogota' ? 9 : 11, { duration: 1.2, easeLinearity: 0.25 });
+        // Desplazamiento leve hacia el norte para garantizar que el popup tenga espacio superior holgado
+        const offsetLat = key === 'bogota' ? 0.08 : 0.038;
+        leafletMap.flyTo([wp.lat + offsetLat, wp.lng], key === 'bogota' ? 9 : 11, { duration: 1.0, easeLinearity: 0.25 });
       }
-      leafletMarkers[key].openPopup();
+      setTimeout(() => {
+        leafletMarkers[key]?.openPopup();
+      }, 350);
     }
   }
 
@@ -827,10 +841,11 @@ function initMemorialSanctuary() {
 
   btnLight.addEventListener('click', toggleCandle);
 
-  // También se puede hacer clic directamente sobre la vela para encender/apagar
-  if (flameEl) {
-    flameEl.style.cursor = 'pointer';
-    flameEl.setAttribute('title', 'Haz clic para encender o apagar la llama');
+  // También se puede hacer clic directamente sobre la vela completa para encender/apagar
+  const candleVisualEl = document.querySelector('.candle-visual');
+  if (candleVisualEl) {
+    candleVisualEl.addEventListener('click', toggleCandle);
+  } else if (flameEl) {
     flameEl.addEventListener('click', toggleCandle);
   }
 
@@ -951,7 +966,32 @@ function initComparisonSlider() {
     layerOver.style.width = `${clamped}%`;
     handle.style.left = `${clamped}%`;
     handle.setAttribute('aria-valuenow', Math.round(clamped).toString());
+
+    // Control dinámico de las etiquetas: cuando se revela un lado, la otra etiqueta desaparece
+    const labelUnder = container.querySelector('.slider-label-under');
+    const labelOver = container.querySelector('.slider-label-over');
+    if (labelUnder) {
+      const hideUnder = clamped >= 72;
+      labelUnder.style.opacity = hideUnder ? '0' : '1';
+      labelUnder.style.pointerEvents = hideUnder ? 'none' : 'auto';
+      labelUnder.style.transform = hideUnder ? 'translateX(12px)' : 'translateX(0)';
+    }
+    if (labelOver) {
+      const hideOver = clamped <= 28;
+      labelOver.style.opacity = hideOver ? '0' : '1';
+      labelOver.style.pointerEvents = hideOver ? 'none' : 'auto';
+      labelOver.style.transform = hideOver ? 'translateX(-12px)' : 'translateX(0)';
+    }
   }
+
+  // Permitir clic directo en cualquier parte del contenedor para posicionar el deslizador
+  container.addEventListener('click', (e) => {
+    if (e.target.closest('.slider-handle') || e.target.closest('.btn-slider-mode')) return;
+    const rect = container.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const pct = (x / rect.width) * 100;
+    updateSlider(pct);
+  });
 
   function handleMove(e) {
     if (!isDragging) return;
