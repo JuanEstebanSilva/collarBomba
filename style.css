@@ -1875,15 +1875,21 @@ body.theme-light .site-header.scrolled .header-container {
   width: 22px;
   height: 38px;
   border-radius: 50% 50% 20% 20% / 60% 60% 40% 40%;
-  background: linear-gradient(to top, rgba(255, 120, 0, 0.9), rgba(255, 220, 0, 0.95), #fff);
-  box-shadow: 0 0 20px rgba(255, 180, 0, 0.75), 0 0 45px rgba(255, 120, 0, 0.35);
+  /* Estado APAGADO por defecto: gris, sin brillo, sin animación */
+  background: linear-gradient(to top, rgba(100, 100, 100, 0.5), rgba(160, 160, 160, 0.4), rgba(200,200,200,0.3));
+  box-shadow: none;
   transform-origin: 50% 90%;
-  animation: flameOrganic 2.8s ease-in-out infinite;
-  transition: transform 0.5s ease;
+  opacity: 0.4;
+  transition: opacity 0.6s ease, box-shadow 0.6s ease, background 0.6s ease;
 }
 
+/* Estado ENCENDIDO — solo cuando se añade la clase .ignited via JS */
 .candle-flame.ignited {
-  box-shadow: 0 0 35px rgba(255, 200, 0, 0.9), 0 0 70px rgba(255, 140, 0, 0.5);
+  background: linear-gradient(to top, rgba(255, 120, 0, 0.9), rgba(255, 220, 0, 0.95), #fff);
+  box-shadow: 0 0 20px rgba(255, 180, 0, 0.75), 0 0 45px rgba(255, 120, 0, 0.35),
+              0 0 70px rgba(255, 140, 0, 0.5);
+  opacity: 1;
+  animation: flameOrganic 2.8s ease-in-out infinite;
 }
 
 @keyframes flameOrganic {
