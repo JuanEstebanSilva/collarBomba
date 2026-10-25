@@ -713,7 +713,7 @@ body.font-large .bio-body p {
   padding-top: 6px;
   padding-right: 14px;
   padding-bottom: 2px;
-  color: var(--red-primary);
+  color: var(--text-primary);
   font-weight: 800;
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.08);
 }
