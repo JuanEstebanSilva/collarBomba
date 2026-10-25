@@ -350,11 +350,11 @@ const TIMELINE_DATA = [
     geoPoint: 'simijaca',
     geoLabel: 'Finca rural en Simijaca',
     title: 'Fijación coactiva del artefacto explosivo cervical',
-    desc: 'Los asaltantes aseguran tres segmentos curvos de tubo PVC con carga de dinamita e indugel alrededor del cuello de Ana Elvia Cortés. Conectan un reloj despertador calibrado a las 15:00 h y un candado posterior, advirtiendo que detonará si no pagan.',
+    desc: 'Los asaltantes aseguran un collar rectangular de tubos de PVC con carga de dinamita e indugel alrededor del cuello de Ana Elvia Cortés. Sellado con adhesivo para tubería y dotado de un temporizador de 24 horas y sensor de alivio trampa, sin candado mecánico, advierten que detonará si no pagan.',
     source: 'Archivo periodístico El Tiempo — «Collar de dinamita» (Juanita León, 2000)',
     imgSrc: 'images/collar.jpg',
-    imgAlt: 'Reconstrucción forense del collar de tubos PVC y dinamita',
-    caption: 'Morfología del collar explosivo (3 segmentos PVC)'
+    imgAlt: 'Reconstrucción forense del collar rectangular de tubos PVC y dinamita',
+    caption: 'Morfología rectangular del collar de tubos PVC (sin candado)'
   },
   {
     step: 3,
@@ -799,22 +799,22 @@ function initForensicSchematic() {
   const PART_DETAILS = {
     explosivo: {
       title: '1. Sección de Carga Explosiva (Indugel / Dinamita)',
-      text: 'El compartimento lateral izquierdo de PVC alojaba cartuchos de dinamita comercial e indugel. La carga pericialmente calculada estaba confinada dentro del tubo plástico curvado anatómicamente. La pericia balística acreditó que el confinamiento dirigía la onda hacia la zona cervical de la víctima.',
+      text: 'El tubo lateral izquierdo de PVC sanitario (50 mm) alojaba cartuchos de dinamita comercial e Indugel. Confinada rígidamente dentro de la sección rectangular recta, la onda expansiva quedaba orientada de forma letal contra la zona cervical de la víctima.',
       citation: 'Dictamen pericial balístico y forense · Expediente CSJ Proceso n.º 21285.'
     },
     temporizador: {
-      title: '2. Módulo Temporizador Analógico y Batería 9V',
-      text: 'En la sección frontal superior se integraba un reloj despertador modificado electromecánicamente. La aguja de control horario estaba fijada para hacer contacto eléctrico fatal a las 15:00 horas (hora límite de la extorsión de 15 millones de pesos), energizado por una batería prismática alcalina de 9V.',
+      title: '2. Módulo Temporizador de 24 Horas y Batería 9V',
+      text: 'En el tramo superior horizontal se alojaba el circuito temporizador electromecánico calibrado con un ciclo de cuenta regresiva de 24 horas (plazo extorsivo fijado por los criminales), alimentado por una batería prismática alcalina de 9V para energizar el detonador eléctrico.',
       citation: 'Acta de inspección criminalística EOD · Policía Nacional de Colombia (2000).'
     },
     trampa: {
       title: '3. Mecanismo Sensor de Alivio de Tensión (Anti-Corte)',
-      text: 'El compartimento lateral derecho contenía el elemento traicionero: un microinterruptor conectado en lazo trampa ("booby-trap"). Si los técnicos intentaban cortar los conductores o forzar el collar sin neutralizar el circuito cerrado primario, el resorte liberaba la masa disparando la ignición inmediata.',
+      text: 'El tubo lateral derecho integraba el elemento trampa: un sensor de alivio de tensión conectado al conector circular multipin inferior. Si los técnicos intentaban cortar los conductores o forzar el collar sin neutralizar el circuito cerrado primario, el sistema liberaba el contacto disparando la ignición inmediata.',
       citation: 'Providencia CSJ Sala Casación Penal 21285 (M.P. Yesid Ramírez Bastidas).'
     },
     candado: {
-      title: '4. Pletina Cervical Articulada y Candado de Bloqueo',
-      text: 'En la nuca de la víctima, dos pletinas de fijación mecánica aseguraban el cierre anatómico mediante un candado de latón macizo. El pasador impedía que la víctima o su familia pudieran despojarse manualmente del artefacto sin activar el sensor de tensión.',
+      title: '4. Unión Adhesiva con Cemento PVC (Sin Candado Mecánico)',
+      text: 'A diferencia de mitos sobre candados metálicos, el collar no poseía candado cervical ni cerrojos. Los asaltantes ensamblaron el marco rectangular directamente sobre el cuello de la víctima, uniendo los tubos de PVC con soldadura adhesiva para fontanería. El perímetro interno rectangular (≈14.5 × 12 cm) impedía extraer la cabeza sin cortar la tubería.',
       citation: 'Acta de inspección técnica al cadáver · Simijaca, Cundinamarca (15 de mayo de 2000).'
     }
   };
@@ -854,6 +854,17 @@ function initForensicSchematic() {
       const match = (part.getAttribute('data-part') === partKey);
       part.classList.toggle('active', match);
     });
+
+    const colorMap = {
+      explosivo: '#ef4444',
+      temporizador: '#f59e0b',
+      trampa: '#00e5ff',
+      candado: '#a855f7'
+    };
+    const detailBox = document.getElementById('forensic-detail');
+    if (detailBox && colorMap[partKey]) {
+      detailBox.style.borderLeftColor = colorMap[partKey];
+    }
 
     if (titleEl) {
       titleEl.style.opacity = '0';

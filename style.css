@@ -1788,11 +1788,16 @@ body.font-large .bio-body p {
   outline-offset: 4px;
 }
 
-/* Transición Despiece Ilustrativo (Exploded View Suave) */
-.exploded #part-explosivo { transform: translate(-30px, -14px); }
-.exploded #part-temporizador { transform: translate(0, -28px); }
-.exploded #part-trampa { transform: translate(30px, -14px); }
-.exploded #part-candado { transform: translate(0, 28px); }
+/* Transición Despiece Ilustrativo (Exploded View Ortogonal Limpio) */
+.exploded #part-explosivo { transform: translate(-36px, 0); }
+.exploded #part-temporizador { transform: translate(0, -32px); }
+.exploded #part-trampa { transform: translate(36px, 0); }
+.exploded #part-candado { transform: translate(0, 32px); }
+
+#part-explosivo.active, #part-explosivo:hover { filter: drop-shadow(0 0 14px rgba(239, 68, 68, 0.85)) brightness(1.15); }
+#part-temporizador.active, #part-temporizador:hover { filter: drop-shadow(0 0 14px rgba(245, 158, 11, 0.85)) brightness(1.15); }
+#part-trampa.active, #part-trampa:hover { filter: drop-shadow(0 0 14px rgba(0, 229, 255, 0.9)) brightness(1.15); }
+#part-candado.active, #part-candado:hover { filter: drop-shadow(0 0 14px rgba(168, 85, 247, 0.9)) brightness(1.15); }
 
 .forensic-parts-nav {
   display: grid;
@@ -1842,9 +1847,9 @@ body.font-large .bio-body p {
 }
 
 .part-btn[data-part="candado"].active {
-  background: rgba(36, 88, 57, 0.12);
-  border-color: var(--green-primary);
-  color: var(--green-primary);
+  background: rgba(168, 85, 247, 0.14);
+  border-color: #a855f7;
+  color: #c084fc;
   font-weight: 700;
 }
 
