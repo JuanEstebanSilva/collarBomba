@@ -1738,66 +1738,85 @@ body.font-large .bio-body p {
 
 .schematic-interactive-wrap {
   position: relative;
-  background: var(--bg-surface);
+  background: #080d1a;
   border-radius: var(--r-sm);
   padding: 16px;
-  border: 2px solid var(--ink-rule);
+  border: 2px solid rgba(255, 255, 255, 0.16);
   margin-bottom: 16px;
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.75);
 }
 
 .schematic-top-meta {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   font-family: var(--font-mono);
-  font-size: 0.68rem;
-  color: var(--text-dim);
+  font-size: 0.72rem;
+  color: #94a3b8;
   text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.schematic-top-meta .meta-tag {
+  color: #f8fafc;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+}
+
+.schematic-top-meta .meta-code {
+  color: #38bdf8;
+  font-weight: 800;
+  background: rgba(56, 189, 248, 0.14);
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(56, 189, 248, 0.4);
 }
 
 .meta-dot {
   display: inline-block;
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
-  background: var(--red-primary);
-  margin-right: 4px;
+  background: #ef4444;
+  margin-right: 6px;
+  box-shadow: 0 0 8px #ef4444;
 }
 
 .forensic-svg {
   width: 100%;
   height: auto;
   display: block;
+  overflow: visible;
 }
 
 .diagram-interactive-part {
   cursor: pointer;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s ease;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s ease;
   outline: none;
 }
 
 .diagram-interactive-part:hover,
 .diagram-interactive-part.active {
-  filter: drop-shadow(0 0 10px rgba(143, 30, 30, 0.65)) brightness(1.15);
+  filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.35)) brightness(1.2);
 }
 
 .diagram-interactive-part:focus-visible {
-  outline: 2px dashed var(--red-primary);
+  outline: 2px dashed #00e5ff;
   outline-offset: 4px;
 }
 
-/* Transición Despiece Ilustrativo (Exploded View Ortogonal Limpio) */
-.exploded #part-explosivo { transform: translate(-36px, 0); }
-.exploded #part-temporizador { transform: translate(0, -32px); }
-.exploded #part-trampa { transform: translate(36px, 0); }
-.exploded #part-candado { transform: translate(0, 32px); }
+/* Transición Despiece Ilustrativo (Exploded View Ortogonal Limpio y Sin Recortes) */
+.exploded #part-explosivo { transform: translate(-20px, 0); }
+.exploded #part-temporizador { transform: translate(0, -18px); }
+.exploded #part-trampa { transform: translate(20px, 0); }
+.exploded #part-candado { transform: translate(0, 18px); }
 
-#part-explosivo.active, #part-explosivo:hover { filter: drop-shadow(0 0 14px rgba(239, 68, 68, 0.85)) brightness(1.15); }
-#part-temporizador.active, #part-temporizador:hover { filter: drop-shadow(0 0 14px rgba(245, 158, 11, 0.85)) brightness(1.15); }
-#part-trampa.active, #part-trampa:hover { filter: drop-shadow(0 0 14px rgba(0, 229, 255, 0.9)) brightness(1.15); }
-#part-candado.active, #part-candado:hover { filter: drop-shadow(0 0 14px rgba(168, 85, 247, 0.9)) brightness(1.15); }
+#part-explosivo.active, #part-explosivo:hover { filter: drop-shadow(0 0 16px rgba(239, 68, 68, 0.95)) brightness(1.2); }
+#part-temporizador.active, #part-temporizador:hover { filter: drop-shadow(0 0 16px rgba(245, 158, 11, 0.95)) brightness(1.2); }
+#part-trampa.active, #part-trampa:hover { filter: drop-shadow(0 0 16px rgba(0, 229, 255, 0.98)) brightness(1.2); }
+#part-candado.active, #part-candado:hover { filter: drop-shadow(0 0 16px rgba(168, 85, 247, 0.98)) brightness(1.2); }
 
 .forensic-parts-nav {
   display: grid;
@@ -1807,12 +1826,12 @@ body.font-large .bio-body p {
 }
 
 .part-btn {
-  padding: 8px 10px;
+  padding: 10px 12px;
   border-radius: var(--r-sm);
   background: var(--bg-card);
   border: 1px solid var(--border-card);
   color: var(--text-secondary);
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   font-family: var(--font-sans);
   cursor: pointer;
   transition: all 0.2s ease;
@@ -1826,31 +1845,31 @@ body.font-large .bio-body p {
 }
 
 .part-btn[data-part="explosivo"].active {
-  background: rgba(143, 30, 30, 0.12);
-  border-color: var(--red-primary);
-  color: var(--red-primary);
-  font-weight: 700;
+  background: rgba(239, 68, 68, 0.16);
+  border-color: #ef4444;
+  color: #ef4444;
+  font-weight: 800;
 }
 
 .part-btn[data-part="temporizador"].active {
-  background: rgba(133, 95, 31, 0.12);
-  border-color: var(--gold-primary);
-  color: var(--gold-bright);
-  font-weight: 700;
+  background: rgba(245, 158, 11, 0.16);
+  border-color: #f59e0b;
+  color: #f59e0b;
+  font-weight: 800;
 }
 
 .part-btn[data-part="trampa"].active {
-  background: rgba(29, 69, 114, 0.12);
-  border-color: var(--blue-primary);
-  color: var(--blue-primary);
-  font-weight: 700;
+  background: rgba(0, 229, 255, 0.16);
+  border-color: #00e5ff;
+  color: #0284c7;
+  font-weight: 800;
 }
 
 .part-btn[data-part="candado"].active {
-  background: rgba(168, 85, 247, 0.14);
+  background: rgba(168, 85, 247, 0.16);
   border-color: #a855f7;
-  color: #c084fc;
-  font-weight: 700;
+  color: #9333ea;
+  font-weight: 800;
 }
 
 .forensic-detail-box {
