@@ -1694,22 +1694,36 @@ body.font-large .bio-body p {
   cursor: not-allowed;
 }
 
-/* Grilla de Recursos WOW Módulo 2 */
-.mod2-interactive-grid {
+/* Grilla Superior Módulo 2: Mapa Territorial (Izq.) y Reconstrucción Real (Der.) */
+.mod2-top-dual-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 28px;
-  margin-bottom: 48px;
+  gap: 24px;
+  margin-bottom: 24px;
+  align-items: stretch;
 }
 
 @media (min-width: 1024px) {
-  .mod2-interactive-grid {
+  .mod2-top-dual-grid {
     grid-template-columns: 1fr 1fr;
   }
 }
 
+.carto-card,
+.artifact-real-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.forensic-fullwidth-card {
+  width: 100%;
+  margin-bottom: 28px;
+}
+
 .forensic-card .card-badge-header,
-.carto-card .card-badge-header {
+.carto-card .card-badge-header,
+.artifact-real-card .card-badge-header {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -1722,22 +1736,31 @@ body.font-large .bio-body p {
 }
 
 .forensic-card .card-badge-header svg,
-.carto-card .card-badge-header svg {
+.carto-card .card-badge-header svg,
+.artifact-real-card .card-badge-header svg {
   width: 20px;
   height: 20px;
 }
 
 .forensic-intro,
-.carto-intro {
+.carto-intro,
+.artifact-real-intro {
   font-family: var(--font-serif);
   font-size: 0.95rem;
   color: var(--text-secondary);
   line-height: 1.65;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 /* Modos del Esquema Forense */
-.forensic-mode-bar,
+.forensic-mode-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+  justify-content: center;
+}
+
 .geo-nav-pills {
   display: flex;
   flex-wrap: wrap;
@@ -1767,42 +1790,46 @@ body.font-large .bio-body p {
   font-weight: 700;
 }
 
+/* Contenedor del Esquema Forense sobre Papel de Archivo */
 .schematic-interactive-wrap {
   position: relative;
-  background: linear-gradient(150deg, #0d1e38 0%, #071324 100%);
+  background: linear-gradient(160deg, #fdfbf6 0%, #f4ede1 100%);
   border-radius: var(--r-sm);
-  padding: 16px;
-  border: 2px solid rgba(56, 189, 248, 0.25);
-  margin-bottom: 16px;
-  box-shadow: 0 16px 40px -10px rgba(2, 6, 23, 0.85);
+  padding: 20px;
+  border: 2px solid rgba(145, 120, 90, 0.45);
+  margin-bottom: 20px;
+  box-shadow: 0 8px 24px rgba(44, 34, 25, 0.08), inset 0 0 50px rgba(215, 195, 165, 0.18);
+  max-width: 820px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .schematic-top-meta {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   font-family: var(--font-mono);
   font-size: 0.72rem;
-  color: #94a3b8;
+  color: #5c4e40;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
 }
 
 .schematic-top-meta .meta-tag {
-  color: #f8fafc;
+  color: #2b2118;
   font-weight: 800;
   display: flex;
   align-items: center;
 }
 
 .schematic-top-meta .meta-code {
-  color: #38bdf8;
+  color: var(--red-primary);
   font-weight: 800;
-  background: rgba(56, 189, 248, 0.14);
+  background: rgba(143, 30, 30, 0.08);
   padding: 3px 8px;
   border-radius: 4px;
-  border: 1px solid rgba(56, 189, 248, 0.4);
+  border: 1px solid rgba(143, 30, 30, 0.35);
 }
 
 .meta-dot {
@@ -1810,9 +1837,9 @@ body.font-large .bio-body p {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #ef4444;
+  background: var(--red-primary);
   margin-right: 6px;
-  box-shadow: 0 0 8px #ef4444;
+  box-shadow: 0 0 6px rgba(143, 30, 30, 0.5);
 }
 
 .forensic-svg {
@@ -1839,11 +1866,11 @@ body.font-large .bio-body p {
 
 .diagram-interactive-part:hover,
 .diagram-interactive-part.active {
-  filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.35)) brightness(1.2);
+  filter: drop-shadow(0 2px 10px rgba(60, 45, 30, 0.35));
 }
 
 .diagram-interactive-part:focus-visible {
-  outline: 2px dashed #00e5ff;
+  outline: 2px dashed var(--ink-rule);
   outline-offset: 4px;
 }
 
@@ -1853,16 +1880,19 @@ body.font-large .bio-body p {
 .exploded #part-trampa { transform: translate(0, 25px); }
 .exploded #part-candado { transform: translate(-25px, 0); }
 
-#part-explosivo.active, #part-explosivo:hover { filter: drop-shadow(0 0 16px rgba(239, 68, 68, 0.95)) brightness(1.2); }
-#part-temporizador.active, #part-temporizador:hover { filter: drop-shadow(0 0 16px rgba(245, 158, 11, 0.95)) brightness(1.2); }
-#part-trampa.active, #part-trampa:hover { filter: drop-shadow(0 0 16px rgba(0, 229, 255, 0.98)) brightness(1.2); }
-#part-candado.active, #part-candado:hover { filter: drop-shadow(0 0 16px rgba(168, 85, 247, 0.98)) brightness(1.2); }
+#part-explosivo.active, #part-explosivo:hover { filter: drop-shadow(0 2px 10px rgba(143, 30, 30, 0.5)); }
+#part-temporizador.active, #part-temporizador:hover { filter: drop-shadow(0 2px 10px rgba(163, 98, 9, 0.5)); }
+#part-trampa.active, #part-trampa:hover { filter: drop-shadow(0 2px 10px rgba(36, 82, 117, 0.5)); }
+#part-candado.active, #part-candado:hover { filter: drop-shadow(0 2px 10px rgba(82, 54, 92, 0.5)); }
 
 .forensic-parts-nav {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 8px;
   margin-bottom: 16px;
+  max-width: 820px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .part-btn {
@@ -1885,30 +1915,30 @@ body.font-large .bio-body p {
 }
 
 .part-btn[data-part="explosivo"].active {
-  background: rgba(239, 68, 68, 0.16);
-  border-color: #ef4444;
-  color: #ef4444;
+  background: rgba(143, 30, 30, 0.1);
+  border-color: #8f1e1e;
+  color: #8f1e1e;
   font-weight: 800;
 }
 
 .part-btn[data-part="temporizador"].active {
-  background: rgba(245, 158, 11, 0.16);
-  border-color: #f59e0b;
-  color: #f59e0b;
+  background: rgba(163, 98, 9, 0.1);
+  border-color: #a36209;
+  color: #a36209;
   font-weight: 800;
 }
 
 .part-btn[data-part="trampa"].active {
-  background: rgba(0, 229, 255, 0.16);
-  border-color: #00e5ff;
-  color: #0284c7;
+  background: rgba(36, 82, 117, 0.1);
+  border-color: #245275;
+  color: #245275;
   font-weight: 800;
 }
 
 .part-btn[data-part="candado"].active {
-  background: rgba(168, 85, 247, 0.16);
-  border-color: #a855f7;
-  color: #9333ea;
+  background: rgba(82, 54, 92, 0.1);
+  border-color: #52365c;
+  color: #52365c;
   font-weight: 800;
 }
 
@@ -1921,6 +1951,9 @@ body.font-large .bio-body p {
   border-right: 1px solid var(--border-subtle);
   border-bottom: 1px solid var(--border-subtle);
   margin-bottom: 16px;
+  max-width: 820px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .forensic-detail-box h5 {
@@ -1955,6 +1988,9 @@ body.font-large .bio-body p {
   font-size: 0.78rem;
   color: var(--text-muted);
   line-height: 1.5;
+  max-width: 820px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .forensic-disclaimer-card svg {
@@ -1963,6 +1999,93 @@ body.font-large .bio-body p {
   flex-shrink: 0;
   color: var(--red-primary);
   margin-top: 2px;
+}
+
+/* Tarjeta y Reconstrucción Visual Realista del Collar en PVC y Cinta Aislante */
+.artifact-real-card {
+  padding: 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--r-sm);
+  box-shadow: var(--shadow-sm);
+}
+
+.artifact-real-body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1;
+}
+
+.artifact-real-card .real-pvc-img-wrap {
+  position: relative;
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  border: 1px solid var(--border-card);
+  box-shadow: var(--shadow-sm);
+  height: 225px;
+  background: var(--bg-deep);
+}
+
+.artifact-real-card .real-pvc-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.artifact-real-card .real-pvc-img-wrap:hover img {
+  transform: scale(1.02);
+}
+
+.artifact-real-card .real-pvc-caption-tag {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  right: 8px;
+  background: rgba(225, 205, 175, 0.94);
+  padding: 5px 8px;
+  border-radius: 2px;
+  font-size: 0.70rem;
+  color: var(--text-primary);
+  border: 1px solid var(--ink-rule);
+  line-height: 1.3;
+  font-family: var(--font-sans);
+  font-weight: 600;
+}
+
+.artifact-real-card .real-pvc-details-col h5 {
+  font-family: var(--font-headline);
+  font-size: 1.12rem;
+  color: var(--text-primary);
+  margin: 0 0 6px;
+}
+
+.artifact-real-card .real-pvc-details-col p {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin-bottom: 10px;
+}
+
+.artifact-real-card .pvc-materials-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.artifact-real-card .pvc-mat-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.80rem;
+  color: var(--text-secondary);
+  background: var(--bg-surface);
+  padding: 6px 10px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--border-subtle);
+  border-left: 3px solid var(--red-primary);
 }
 
 /* Tarjeta y Reconstrucción Visual Realista del Collar en PVC y Cinta Aislante */
@@ -2103,12 +2226,16 @@ body.font-large .bio-body p {
   margin-bottom: 0;
   overflow: hidden;
   box-shadow: var(--shadow-sm);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Leaflet map container — altura generosa ampliada para visualización completa y despejada */
+/* Leaflet map container — altura generosa y flexible para igualar altura */
 .leaflet-map-container {
   width: 100%;
-  height: 480px;
+  height: 100%;
+  min-height: 470px;
   border-radius: var(--r-sm);
   z-index: 0;
 }
