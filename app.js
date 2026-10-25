@@ -1277,10 +1277,10 @@ function initHemerotecaSearch() {
    ======================================================================== */
 function initJudicialTabs() {
   const tabBtns = document.querySelectorAll('.judicial-tab-bar .j-tab-btn');
-  const panes = document.querySelectorAll('.j-tab-pane');
 
   tabBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
       tabBtns.forEach(b => {
         b.classList.remove('active');
         b.setAttribute('aria-selected', 'false');
@@ -1288,12 +1288,13 @@ function initJudicialTabs() {
       btn.classList.add('active');
       btn.setAttribute('aria-selected', 'true');
 
-      const targetTab = btn.getAttribute('data-tab');
-      panes.forEach(pane => {
-        const isMatch = (pane.id === `pane-${targetTab}`);
-        pane.style.display = isMatch ? 'block' : 'none';
-        pane.classList.toggle('active', isMatch);
-      });
+      const targetHref = btn.getAttribute('href');
+      if (targetHref && targetHref.startsWith('#')) {
+        const targetEl = document.querySelector(targetHref);
+        if (targetEl) {
+          targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
     });
   });
 }
