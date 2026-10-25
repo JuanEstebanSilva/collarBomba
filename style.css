@@ -577,16 +577,31 @@ body.font-large .bio-body p {
 
 .module-section {
   position: relative;
-  padding: 80px 0;
+  padding: 34px 0 36px;
   border-bottom: none;
   overflow: hidden;
 }
 
 @media (min-width: 768px) {
   .module-section {
-    padding: 100px 0;
+    padding: 36px 0 40px;
   }
 }
+
+/* Reducción de espacio muerto entre galerías fotográficas y módulos contiguos */
+#modulo-2 {
+  padding-bottom: 16px !important;
+}
+
+#modulo-3 {
+  padding-top: 18px !important;
+  padding-bottom: 18px !important;
+}
+
+#modulo-4 {
+  padding-top: 18px !important;
+}
+
 
 /* Descartamos la sombra dura entre secciones para garantizar continuidad fluida sin cortes */
 .module-section::after {
@@ -678,13 +693,29 @@ body.font-large .bio-body p {
   width: 100%;
 }
 
-.section-desc.editorial-dropcap {
+.section-desc.editorial-dropcap,
+.editorial-lead {
+  font-family: var(--font-serif);
   font-size: 1.15rem;
   line-height: 1.82;
-  color: var(--text-primary);
+  color: var(--text-secondary);
   max-width: 100%;
   width: 100%;
-  margin-bottom: 24px;
+  margin-top: 14px;
+  margin-bottom: 20px;
+}
+
+.editorial-drop-cap {
+  float: left;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 4.4rem;
+  line-height: 0.76;
+  padding-top: 6px;
+  padding-right: 14px;
+  padding-bottom: 2px;
+  color: var(--red-primary);
+  font-weight: 800;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.08);
 }
 
 .gold-gradient-text {
@@ -2260,6 +2291,7 @@ body.font-large .bio-body p {
 /* Galería de Contexto Institucional */
 .context-media-strip {
   padding: 24px;
+  margin-bottom: 0;
 }
 
 .media-strip-header {
@@ -2354,7 +2386,7 @@ body.font-large .bio-body p {
 .comparative-card {
   display: flex;
   flex-direction: column;
-  padding: 26px 24px 22px;
+  padding: 24px 22px 20px;
   background: var(--bg-card);
   border: 1px solid var(--border-card);
   border-radius: var(--r-sm);
@@ -2367,6 +2399,52 @@ body.font-large .bio-body p {
   transform: translateY(-3px);
   box-shadow: var(--shadow-md);
   border-color: var(--ink-rule);
+}
+
+/* Tarjetas Rediseñadas como Recortes de Prensa Histórica de Época */
+.news-article-card {
+  background: #fbf7ef;
+  background-image: 
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.45), rgba(240, 230, 212, 0.35)),
+    radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.7) 0%, transparent 75%);
+  border: 1px solid rgba(145, 120, 90, 0.4);
+  box-shadow: 0 4px 16px rgba(44, 34, 25, 0.08), 0 1px 3px rgba(44, 34, 25, 0.05);
+}
+
+.news-article-card:hover {
+  border-color: rgba(100, 75, 45, 0.65);
+  box-shadow: 0 8px 24px rgba(44, 34, 25, 0.13);
+}
+
+.news-clipping-masthead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 5px;
+}
+
+.news-paper-name {
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 0.76rem;
+  letter-spacing: 0.09em;
+  color: #2b2118;
+}
+
+.news-date {
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  font-weight: 600;
+  color: #726252;
+  letter-spacing: 0.06em;
+}
+
+.news-rule-double {
+  height: 5px;
+  border-top: 2px solid #2b2118;
+  border-bottom: 1px solid #2b2118;
+  margin: 4px 0 14px;
 }
 
 .card-initial {
@@ -2390,12 +2468,12 @@ body.font-large .bio-body p {
   gap: 6px;
   align-self: flex-start;
   font-family: var(--font-mono);
-  font-size: 0.70rem;
+  font-size: 0.68rem;
   font-weight: 700;
   padding: 4px 10px;
   border-radius: 2px;
-  margin-bottom: 16px;
-  letter-spacing: 0.1em;
+  margin-bottom: 12px;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
 }
 
@@ -2417,47 +2495,64 @@ body.font-large .bio-body p {
   border: 1px solid rgba(29, 79, 50, 0.4);
 }
 
-.card-icon-circle {
-  width: 42px;
-  height: 42px;
-  border-radius: var(--r-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(44, 34, 25, 0.05);
-  border: 1px solid rgba(44, 34, 25, 0.25);
-  margin-bottom: 16px;
+.news-headline {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 800;
+  line-height: 1.28;
+  color: #1a1510;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.01em;
 }
 
-.card-initial .card-icon-circle { color: var(--red-primary); background: rgba(143, 30, 30, 0.06); }
-.card-judicial .card-icon-circle { color: var(--blue-primary); background: rgba(25, 61, 102, 0.06); }
-.card-verification .card-icon-circle { color: var(--green-primary); background: rgba(29, 79, 50, 0.06); }
-
-.card-icon-circle svg {
-  width: 22px;
-  height: 22px;
+.card-initial .news-headline {
+  color: #7f1717;
 }
 
-.comp-title {
-  font-family: var(--font-headline);
-  font-size: 1.32rem;
-  font-weight: 700;
-  color: var(--text-primary);
+.card-judicial .news-headline {
+  color: #113661;
+}
+
+.card-verification .news-headline {
+  color: #18522d;
+}
+
+.news-subhead {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.88rem;
+  line-height: 1.42;
+  color: #4f4235;
   margin-bottom: 12px;
-  line-height: 1.25;
+}
+
+.news-divider-thin {
+  height: 1px;
+  background: rgba(44, 34, 25, 0.22);
+  margin-bottom: 14px;
+}
+
+.news-dateline {
+  font-family: var(--font-headline), 'Playfair Display', Georgia, serif;
+  font-weight: 800;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  color: #1e150f;
+  text-transform: uppercase;
+  margin-right: 4px;
 }
 
 .comp-summary {
-  font-family: var(--font-serif);
+  font-family: 'Newsreader', Georgia, serif;
   font-size: 0.98rem;
-  line-height: 1.68;
-  color: var(--text-secondary);
-  margin-bottom: 18px;
+  line-height: 1.66;
+  color: #2b221a;
+  margin-bottom: 16px;
   flex: 1;
 }
 
 .comp-detail-box {
-  padding: 14px 16px;
+  padding: 13px 15px;
   background: rgba(244, 235, 218, 0.65);
   border-radius: var(--r-sm);
   border: 1px solid rgba(140, 115, 85, 0.35);
@@ -2467,9 +2562,23 @@ body.font-large .bio-body p {
   margin-bottom: 16px;
 }
 
-.card-initial .comp-detail-box { border-left-color: var(--red-primary); }
-.card-judicial .comp-detail-box { border-left-color: var(--blue-primary); }
-.card-verification .comp-detail-box { border-left-color: var(--green-primary); }
+.news-box-initial {
+  background: rgba(143, 30, 30, 0.04);
+  border: 1px solid rgba(143, 30, 30, 0.25);
+  border-left: 3.5px solid var(--red-primary);
+}
+
+.news-box-judicial {
+  background: rgba(25, 61, 102, 0.04);
+  border: 1px solid rgba(25, 61, 102, 0.25);
+  border-left: 3.5px solid var(--blue-primary);
+}
+
+.news-box-verification {
+  background: rgba(22, 101, 52, 0.04);
+  border: 1px solid rgba(22, 101, 52, 0.25);
+  border-left: 3.5px solid var(--green-primary);
+}
 
 .comp-detail-box .detail-label {
   font-family: var(--font-mono);
@@ -2481,12 +2590,23 @@ body.font-large .bio-body p {
   margin-bottom: 6px;
 }
 
-.comp-footer {
-  padding-top: 12px;
-  border-top: 1px dashed rgba(140, 115, 85, 0.35);
+.comp-footer,
+.news-footer-press {
+  padding-top: 11px;
+  border-top: 1px dashed rgba(135, 110, 80, 0.35);
   font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--text-dim);
+  font-size: 0.70rem;
+  color: #6a5a4a;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.news-footer-press .source-stamp {
+  font-style: italic;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .context-imagery-pair {
@@ -2504,6 +2624,48 @@ body.font-large .bio-body p {
 .context-figure {
   margin: 0;
   cursor: zoom-in;
+  position: relative;
+  overflow: visible;
+}
+
+/* Tiras de cinta adhesiva de archivo / Masking tape fijando fotos al papel kraft */
+.context-figure::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  width: 95px;
+  height: 24px;
+  background: rgba(246, 236, 210, 0.85);
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.16),
+    rgba(255, 255, 255, 0.16) 3px,
+    transparent 3px,
+    transparent 6px
+  );
+  border-left: 2px dashed rgba(165, 140, 105, 0.45);
+  border-right: 2px dashed rgba(165, 140, 105, 0.45);
+  box-shadow: 0 2px 5px rgba(60, 45, 30, 0.16), inset 0 1px 1px rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(1.5px);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.tape-card-1::before {
+  transform: translateX(-50%) rotate(-1.8deg);
+}
+
+.tape-card-2::before {
+  transform: translateX(-50%) rotate(1.5deg);
+}
+
+.tape-card-3::before {
+  transform: translateX(-50%) rotate(-1.2deg);
+}
+
+.tape-card-4::before {
+  transform: translateX(-50%) rotate(2.0deg);
 }
 
 .fig-img-container {
@@ -2522,6 +2684,11 @@ body.font-large .bio-body p {
   transition: transform 0.25s ease;
 }
 
+/* Encuadre enfocado al primer soldado caminando hacia la izquierda */
+.fig-img-container img.fig-img-soldados {
+  object-position: 8% center !important;
+}
+
 .context-figure:hover img {
   transform: scale(1.02);
 }
@@ -2530,6 +2697,8 @@ body.font-large .bio-body p {
   position: absolute;
   top: 10px;
   left: 10px;
+  right: 10px;
+  text-align: center;
   padding: 5px 11px;
   border-radius: var(--r-sm);
   font-family: var(--font-mono);
@@ -4376,7 +4545,8 @@ body.font-large .bio-body p {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 16px;
-  margin-top: 24px;
+  margin-top: 20px;
+  margin-bottom: 0;
 }
 
 .badge-danger {
