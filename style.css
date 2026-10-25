@@ -1738,12 +1738,12 @@ body.font-large .bio-body p {
 
 .schematic-interactive-wrap {
   position: relative;
-  background: #080d1a;
+  background: linear-gradient(150deg, #0d1e38 0%, #071324 100%);
   border-radius: var(--r-sm);
   padding: 16px;
-  border: 2px solid rgba(255, 255, 255, 0.16);
+  border: 2px solid rgba(56, 189, 248, 0.25);
   margin-bottom: 16px;
-  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 0 16px 40px -10px rgba(2, 6, 23, 0.85);
 }
 
 .schematic-top-meta {
@@ -1786,9 +1786,18 @@ body.font-large .bio-body p {
 
 .forensic-svg {
   width: 100%;
-  height: auto;
+  height: 480px;
+  min-height: 440px;
   display: block;
   overflow: visible;
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .forensic-svg {
+    height: auto;
+    min-height: 340px;
+  }
 }
 
 .diagram-interactive-part {
@@ -1808,10 +1817,10 @@ body.font-large .bio-body p {
 }
 
 /* Transición Despiece Ilustrativo (Exploded View Ortogonal Limpio y Sin Recortes) */
-.exploded #part-explosivo { transform: translate(-20px, 0); }
-.exploded #part-temporizador { transform: translate(0, -18px); }
-.exploded #part-trampa { transform: translate(20px, 0); }
-.exploded #part-candado { transform: translate(0, 18px); }
+.exploded #part-explosivo { transform: translate(-26px, 0); }
+.exploded #part-temporizador { transform: translate(0, -24px); }
+.exploded #part-trampa { transform: translate(26px, 0); }
+.exploded #part-candado { transform: translate(0, 24px); }
 
 #part-explosivo.active, #part-explosivo:hover { filter: drop-shadow(0 0 16px rgba(239, 68, 68, 0.95)) brightness(1.2); }
 #part-temporizador.active, #part-temporizador:hover { filter: drop-shadow(0 0 16px rgba(245, 158, 11, 0.95)) brightness(1.2); }
