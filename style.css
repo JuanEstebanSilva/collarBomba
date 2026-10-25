@@ -3731,73 +3731,77 @@ body.font-large .bio-body p {
   align-items: center;
 }
 
-.search-input-wrap {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.search-input-wrap svg {
-  position: absolute;
-  left: 12px;
-  width: 16px;
-  height: 16px;
-  color: var(--text-dim);
-}
-
-.search-input-wrap input {
-  padding: 8px 14px 8px 36px;
-  background: var(--bg-surface);
-  border: 1px solid var(--border-card);
-  border-radius: var(--r-sm);
-  color: var(--text-primary);
-  font-family: var(--font-serif);
-  font-size: 0.88rem;
-  outline: none;
-  transition: border-color 0.2s ease;
-  width: 220px;
-}
-
-.search-input-wrap input:focus {
-  border-color: var(--ink-rule);
-}
-
+/* Filtros por Categoría Documental Refinados y Agradables */
 .tag-filter-pills {
   display: flex;
-  gap: 6px;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .h-pill {
-  padding: 6px 12px;
-  border-radius: var(--r-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 999px;
   background: var(--bg-surface);
   border: 1px solid var(--border-card);
   color: var(--text-secondary);
   font-family: var(--font-sans);
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 3px rgba(44, 34, 25, 0.05);
+}
+
+.h-pill svg {
+  width: 14px;
+  height: 14px;
+  color: currentColor;
+  opacity: 0.8;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.h-pill:hover {
+  background: #ede4d5;
+  color: var(--text-primary);
+  border-color: rgba(140, 115, 85, 0.45);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(44, 34, 25, 0.08);
+}
+
+.h-pill:hover svg {
+  transform: scale(1.1);
+  opacity: 1;
 }
 
 .h-pill.active {
-  background: var(--ink-rule);
-  border-color: var(--ink-rule);
-  color: var(--bg-surface);
+  background: #2b2118;
+  border-color: #2b2118;
+  color: #fdfbf7;
   font-weight: 700;
+  box-shadow: 0 4px 12px rgba(43, 33, 24, 0.2);
+  transform: translateY(-1px);
+}
+
+.h-pill.active svg {
+  color: #f59e0b;
+  opacity: 1;
 }
 
 .hemeroteca-results-meta {
   font-family: var(--font-mono);
   font-size: 0.75rem;
   color: var(--text-dim);
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 
+/* Cuadrícula de Crónicas Editoriales de Prensa */
 .hemeroteca-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 16px;
+  gap: 20px;
 }
 
 @media (min-width: 768px) {
@@ -3812,97 +3816,139 @@ body.font-large .bio-body p {
   }
 }
 
+/* Tarjeta Estilo Crónica Periodística */
 .h-card {
-  padding: 22px;
+  padding: 24px;
   background: var(--bg-surface);
   border: 1px solid var(--border-card);
-  border-top: 3px solid var(--ink-rule);
+  border-top: 3px solid var(--red-primary);
   border-radius: var(--r-sm);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 2px 8px rgba(44, 34, 25, 0.04);
+  position: relative;
 }
 
 .h-card:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
   border-color: var(--ink-rule);
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 10px 24px rgba(44, 34, 25, 0.09);
 }
 
-.h-card-top {
+/* Encabezado con Logotipo del Medio y Metadatos */
+.h-card-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 8px;
+  justify-content: space-between;
+  margin-bottom: 14px;
 }
 
-.h-outlet {
-  font-family: var(--font-display);
-  font-size: 0.82rem;
-  color: var(--red-primary);
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+.h-source-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-.h-badge {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  font-weight: 700;
-  padding: 2px 8px;
-  border-radius: var(--r-sm);
-  text-transform: uppercase;
+.h-logo-frame {
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(140, 115, 85, 0.35);
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.badge-warn { background: rgba(143, 30, 30, 0.1); color: var(--red-primary); border: 1px solid var(--red-primary); }
-.badge-primary { background: var(--blue-dim); color: var(--blue-primary); border: 1px solid var(--blue-primary); }
+.h-outlet-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.h-source-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.h-outlet-name {
+  font-family: var(--font-headline);
+  font-size: 0.98rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
 
 .h-date {
   font-family: var(--font-mono);
   font-size: 0.72rem;
   color: var(--text-dim);
-  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0;
   display: block;
 }
 
+/* Titular Tipográfico Clásico de Periódico */
 .h-headline {
   font-family: var(--font-headline);
-  font-size: 1.15rem;
+  font-size: 1.18rem;
   color: var(--text-primary);
   line-height: 1.35;
-  margin-bottom: 8px;
+  margin: 0 0 10px 0;
+  font-weight: 700;
 }
 
+/* Texto de la Crónica */
 .h-excerpt {
   font-family: var(--font-serif);
-  font-size: 0.92rem;
+  font-size: 0.93rem;
   color: var(--text-secondary);
-  line-height: 1.6;
-  margin-bottom: 16px;
+  line-height: 1.65;
+  margin-bottom: 18px;
   flex: 1;
 }
 
+/* Pie de Tarjeta con Enlace de Consulta */
 .h-card-footer {
-  padding-top: 12px;
-  border-top: 1px solid var(--border-subtle);
+  padding-top: 14px;
+  border-top: 1px dashed rgba(140, 115, 85, 0.28);
 }
 
 .h-link {
-  font-family: var(--font-headline);
-  font-size: 0.78rem;
+  font-family: var(--font-sans);
+  font-size: 0.80rem;
   color: var(--red-primary);
   text-decoration: none;
-  font-weight: 700;
-  letter-spacing: 0.04em;
+  font-weight: 800;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   transition: color 0.2s ease;
 }
 
+.h-link .h-arrow {
+  transition: transform 0.2s ease;
+  display: inline-block;
+}
+
 .h-link:hover {
-  color: var(--ink-rule);
-  text-decoration: underline;
+  color: #5c1010;
+  text-decoration: none;
+}
+
+.h-link:hover .h-arrow {
+  transform: translateX(4px);
 }
 
 /* =====================================================================

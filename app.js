@@ -1247,7 +1247,7 @@ function initHemerotecaSearch() {
     });
 
     if (countEl) {
-      countEl.textContent = `Mostrando ${visibleCount} de ${cards.length} artículos indexados`;
+      countEl.textContent = `Mostrando ${visibleCount} de ${cards.length} crónicas y artículos indexados`;
     }
   }
 
