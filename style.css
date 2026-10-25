@@ -599,8 +599,9 @@ body.font-large .bio-body p {
 }
 
 .section-header {
-  margin-bottom: 48px;
-  max-width: 800px;
+  margin-bottom: 40px;
+  max-width: 100%;
+  width: 100%;
 }
 
 .section-header.text-center {
@@ -670,16 +671,19 @@ body.font-large .bio-body p {
 
 .section-desc {
   font-family: var(--font-serif);
-  font-size: 1.08rem;
+  font-size: 1.1rem;
   color: var(--text-secondary);
   line-height: 1.75;
+  max-width: 100%;
+  width: 100%;
 }
 
 .section-desc.editorial-dropcap {
-  font-size: 1.14rem;
+  font-size: 1.15rem;
   line-height: 1.82;
   color: var(--text-primary);
-  max-width: 880px;
+  max-width: 100%;
+  width: 100%;
   margin-bottom: 24px;
 }
 
@@ -1085,7 +1089,6 @@ body.font-large .bio-body p {
 .reading-card p:first-of-type::first-letter,
 .geo-note-card p:first-of-type::first-letter,
 .mod3-context-box p:first-of-type::first-letter,
-.comp-summary::first-letter,
 .j-tab-pane > p:first-of-type::first-letter,
 .real-pvc-details-col > p:first-of-type::first-letter,
 .judicial-findings-lead::first-letter,
@@ -1561,12 +1564,20 @@ body.font-large .bio-body p {
 
 .step-archival-img {
   width: 100%;
-  height: 190px;
+  height: 205px;
   object-fit: cover;
   display: block;
   border: 1px solid rgba(44, 34, 25, 0.3);
-  filter: sepia(0.2) contrast(1.04);
+  filter: sepia(0.12) contrast(1.04);
   transition: filter 0.3s ease, opacity 0.25s ease;
+  background: #fbf7ee;
+}
+
+.step-archival-img.contain-fit,
+.step-archival-img[src*="collar"] {
+  object-fit: contain !important;
+  background: #ffffff !important;
+  padding: 4px;
 }
 
 .step-image-frame:hover .step-archival-img {
@@ -2310,30 +2321,43 @@ body.font-large .bio-body p {
 .comparative-card {
   display: flex;
   flex-direction: column;
-  padding: 24px;
+  padding: 26px 24px 22px;
   background: var(--bg-card);
   border: 1px solid var(--border-card);
   border-radius: var(--r-sm);
   box-shadow: var(--shadow-sm);
+  position: relative;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.comparative-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--ink-rule);
 }
 
 .card-initial {
-  border-left: 4px solid var(--red-primary);
+  border-top: 4px solid var(--red-primary);
+  border-left: 1px solid var(--border-card);
 }
 
 .card-judicial {
-  border-left: 4px solid var(--blue-primary);
+  border-top: 4px solid var(--blue-primary);
+  border-left: 1px solid var(--border-card);
 }
 
 .card-verification {
-  border-left: 4px solid var(--green-primary);
+  border-top: 4px solid var(--green-primary);
+  border-left: 1px solid var(--border-card);
 }
 
 .card-phase-badge {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   align-self: flex-start;
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.70rem;
   font-weight: 700;
   padding: 4px 10px;
   border-radius: 2px;
@@ -2342,88 +2366,91 @@ body.font-large .bio-body p {
   text-transform: uppercase;
 }
 
-.badge-warning {
-  background: rgba(143, 30, 30, 0.08);
+.card-phase-badge.badge-warning {
+  background: rgba(143, 30, 30, 0.12);
   color: var(--red-primary);
   border: 1px solid rgba(143, 30, 30, 0.45);
 }
 
-.badge-info {
-  background: rgba(29, 69, 114, 0.08);
+.card-phase-badge.badge-info {
+  background: rgba(25, 61, 102, 0.12);
   color: var(--blue-primary);
-  border: 1px solid rgba(29, 69, 114, 0.4);
+  border: 1px solid rgba(25, 61, 102, 0.4);
 }
 
-.badge-success {
-  background: rgba(30, 85, 45, 0.08);
-  color: #1e552d;
-  border: 1px solid rgba(30, 85, 45, 0.4);
+.card-phase-badge.badge-success {
+  background: rgba(29, 79, 50, 0.12);
+  color: var(--green-primary);
+  border: 1px solid rgba(29, 79, 50, 0.4);
 }
 
 .card-icon-circle {
-  width: 44px;
-  height: 44px;
-  border-radius: 2px;
+  width: 42px;
+  height: 42px;
+  border-radius: var(--r-sm);
   display: flex;
   align-items: center;
   justify-content: center;
   background: rgba(44, 34, 25, 0.05);
-  border: 1px solid rgba(44, 34, 25, 0.3);
+  border: 1px solid rgba(44, 34, 25, 0.25);
   margin-bottom: 16px;
-  color: var(--ink-rule);
 }
 
-.card-initial .card-icon-circle { color: var(--red-primary); }
-.card-judicial .card-icon-circle { color: var(--blue-primary); }
-.card-verification .card-icon-circle { color: #1e552d; }
+.card-initial .card-icon-circle { color: var(--red-primary); background: rgba(143, 30, 30, 0.06); }
+.card-judicial .card-icon-circle { color: var(--blue-primary); background: rgba(25, 61, 102, 0.06); }
+.card-verification .card-icon-circle { color: var(--green-primary); background: rgba(29, 79, 50, 0.06); }
 
 .card-icon-circle svg {
   width: 22px;
   height: 22px;
 }
 
-.card-initial .card-icon-circle { color: var(--red-primary); }
-.card-judicial .card-icon-circle { color: var(--blue-primary); }
-.card-verification .card-icon-circle { color: var(--green-primary); }
-
 .comp-title {
   font-family: var(--font-headline);
-  font-size: 1.25rem;
+  font-size: 1.32rem;
+  font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  line-height: 1.25;
 }
 
 .comp-summary {
   font-family: var(--font-serif);
-  font-size: 0.95rem;
-  line-height: 1.7;
+  font-size: 0.98rem;
+  line-height: 1.68;
   color: var(--text-secondary);
-  margin-bottom: 16px;
+  margin-bottom: 18px;
   flex: 1;
 }
 
 .comp-detail-box {
-  padding: 12px 14px;
-  background: var(--bg-surface);
+  padding: 14px 16px;
+  background: rgba(244, 235, 218, 0.65);
   border-radius: var(--r-sm);
-  border: 1px solid var(--border-subtle);
-  font-size: 0.88rem;
-  line-height: 1.6;
+  border: 1px solid rgba(140, 115, 85, 0.35);
+  border-left: 3.5px solid var(--ink-rule);
+  font-size: 0.90rem;
+  line-height: 1.58;
   margin-bottom: 16px;
 }
+
+.card-initial .comp-detail-box { border-left-color: var(--red-primary); }
+.card-judicial .comp-detail-box { border-left-color: var(--blue-primary); }
+.card-verification .comp-detail-box { border-left-color: var(--green-primary); }
 
 .comp-detail-box .detail-label {
   font-family: var(--font-mono);
   font-size: 0.72rem;
-  color: var(--text-dim);
+  font-weight: 700;
+  color: var(--text-primary);
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 .comp-footer {
   padding-top: 12px;
-  border-top: 1px solid var(--border-subtle);
+  border-top: 1px dashed rgba(140, 115, 85, 0.35);
   font-family: var(--font-mono);
   font-size: 0.72rem;
   color: var(--text-dim);
@@ -2470,13 +2497,39 @@ body.font-large .bio-body p {
   position: absolute;
   top: 10px;
   left: 10px;
-  padding: 4px 10px;
+  padding: 5px 11px;
   border-radius: var(--r-sm);
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.70rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  z-index: 2;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+}
+
+.img-badge-overlay.badge-warning {
+  background: rgba(143, 30, 30, 0.94) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+.img-badge-overlay.badge-danger {
+  background: rgba(120, 20, 20, 0.94) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+.img-badge-overlay.badge-success {
+  background: rgba(22, 101, 52, 0.94) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+.img-badge-overlay.badge-info {
+  background: rgba(15, 60, 110, 0.94) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
 }
 
 .context-figure figcaption {

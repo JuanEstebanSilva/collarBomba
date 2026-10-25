@@ -646,6 +646,11 @@ function initSynchronizedTimelineAndMap() {
         if (imgEl) {
           imgEl.src = data.imgSrc;
           imgEl.alt = data.imgAlt;
+          if (data.imgSrc && data.imgSrc.includes('collar')) {
+            imgEl.classList.add('contain-fit');
+          } else {
+            imgEl.classList.remove('contain-fit');
+          }
         }
         if (captionEl) captionEl.textContent = data.caption;
         if (titleEl) titleEl.textContent = data.title;
