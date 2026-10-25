@@ -394,12 +394,15 @@
                 <span class="meta-code">EXPEDIENTE CSJ N.º 21285</span>
               </div>
 
-              <!-- SVG REDISEÑADO: COLLAR RECTANGULAR DE PVC — ILUSTRATIVO NO OPERATIVO CON SILUETA ANATÓMICA HORIZONTAL Y FONDO AZUL OSCURO -->
-              <svg viewBox="0 0 800 600" class="forensic-svg" id="collar-diagram" role="img" aria-label="Esquema forense ilustrativo del collar rectangular artesanal de PVC con silueta anatómica orientada hacia el mapa — morfología no operativa">
+              <!-- SVG REDISEÑADO: COLLAR RECTANGULAR DE PVC EN FORMATO VERTICAL (PORTRAIT)
+                   Basado en la maqueta forense: 1. Masa Explosiva (arriba), 2. Temporizador 24h (derecha),
+                   3. Sensor de Alivio (abajo), 4. Unión Adhesiva PVC (izquierda).
+                   Silueta de la cabeza ampliada de forma prominente para evidenciar la imposibilidad física de extracción -->
+              <svg viewBox="0 0 760 800" class="forensic-svg" id="collar-diagram" role="img" aria-label="Esquema forense vertical del collar rectangular artesanal de PVC con silueta cefálica de tamaño real orientada hacia la válvula de alivio — morfología pericial no operativa">
                 <defs>
                   <!-- Fondo azul oscuro pericial táctico -->
                   <radialGradient id="schematicDarkNavy" cx="50%" cy="50%" r="75%">
-                    <stop offset="0%" stop-color="#112745"/>
+                    <stop offset="0%" stop-color="#122b4d"/>
                     <stop offset="55%" stop-color="#0a192f"/>
                     <stop offset="100%" stop-color="#050e1c"/>
                   </radialGradient>
@@ -437,7 +440,7 @@
                     <stop offset="50%" stop-color="#f59e0b"/>
                     <stop offset="100%" stop-color="#fde047"/>
                   </linearGradient>
-                  <linearGradient id="cyanFill" x1="100%" y1="0%" x2="0%" y2="0%">
+                  <linearGradient id="cyanFill" x1="0%" y1="0%" x2="100%" y2="0%">
                     <stop offset="0%" stop-color="#075985"/>
                     <stop offset="50%" stop-color="#0284c7"/>
                     <stop offset="100%" stop-color="#00e5ff"/>
@@ -455,257 +458,258 @@
                 </defs>
 
                 <!-- Dedicated high-contrast forensic deep dark blue background -->
-                <rect width="800" height="600" fill="url(#schematicDarkNavy)" rx="10"/>
-                <rect width="800" height="600" fill="url(#dotBg)" rx="10"/>
+                <rect width="760" height="800" fill="url(#schematicDarkNavy)" rx="10"/>
+                <rect width="760" height="800" fill="url(#dotBg)" rx="10"/>
 
                 <!-- Calibration crosshairs & outer technical border -->
-                <line x1="0" y1="300" x2="800" y2="300" stroke="rgba(56, 189, 248, 0.1)" stroke-width="1" stroke-dasharray="3,6"/>
-                <line x1="400" y1="0" x2="400" y2="600" stroke="rgba(56, 189, 248, 0.1)" stroke-width="1" stroke-dasharray="3,6"/>
-                <rect x="12" y="12" width="776" height="576" rx="8" fill="none" stroke="rgba(56, 189, 248, 0.18)" stroke-width="1" stroke-dasharray="4,8"/>
-                <rect x="150" y="120" width="500" height="360" rx="42" fill="none" stroke="rgba(245, 158, 11, 0.14)" stroke-width="1" stroke-dasharray="4,8"/>
+                <line x1="0" y1="400" x2="760" y2="400" stroke="rgba(56, 189, 248, 0.1)" stroke-width="1" stroke-dasharray="3,6"/>
+                <line x1="370" y1="0" x2="370" y2="800" stroke="rgba(56, 189, 248, 0.1)" stroke-width="1" stroke-dasharray="3,6"/>
+                <rect x="12" y="12" width="736" height="776" rx="8" fill="none" stroke="rgba(56, 189, 248, 0.18)" stroke-width="1" stroke-dasharray="4,8"/>
+                <rect x="180" y="160" width="380" height="480" rx="42" fill="none" stroke="rgba(245, 158, 11, 0.14)" stroke-width="1" stroke-dasharray="4,8"/>
 
                 <!-- ============================================================
-                     DEVICE ASSEMBLY GROUP
+                     DEVICE ASSEMBLY GROUP (Vertical / Portrait Frame)
                      ============================================================ -->
                 <g id="schematic-device-assembly" class="schematic-group">
 
                   <!-- ── CORNER ELBOWS (PVC 90° bends — behind straight parts) ── -->
                   <!-- Top-Left elbow -->
-                  <path d="M 160,200 L 160,170 Q 160,130 200,130 L 230,130 L 230,200 Z" fill="url(#pvcElbow)" stroke="#90a4ae" stroke-width="1.3"/>
-                  <path d="M 178,200 L 178,175 Q 178,148 205,148 L 230,148 L 230,172 Q 205,172 205,195 L 205,200 Z" fill="rgba(10,25,47,0.75)" stroke="none"/>
+                  <path d="M 210,250 L 210,220 Q 210,190 240,190 L 270,190 L 270,250 Z" fill="url(#pvcElbow)" stroke="#90a4ae" stroke-width="1.3"/>
+                  <path d="M 226,250 L 226,225 Q 226,206 245,206 L 270,206 L 270,228 Q 248,228 248,245 L 248,250 Z" fill="rgba(10,25,47,0.75)" stroke="none"/>
                   <!-- Top-Right elbow -->
-                  <path d="M 570,130 L 600,130 Q 640,130 640,170 L 640,200 L 570,200 Z" fill="url(#pvcElbow)" stroke="#90a4ae" stroke-width="1.3"/>
-                  <path d="M 570,148 L 595,148 Q 622,148 622,175 L 622,200 L 595,200 L 595,195 Q 595,172 570,172 Z" fill="rgba(10,25,47,0.75)" stroke="none"/>
+                  <path d="M 470,190 L 500,190 Q 530,190 530,220 L 530,250 L 470,250 Z" fill="url(#pvcElbow)" stroke="#90a4ae" stroke-width="1.3"/>
+                  <path d="M 470,206 L 495,206 Q 514,206 514,225 L 514,250 L 492,250 L 492,245 Q 492,228 470,228 Z" fill="rgba(10,25,47,0.75)" stroke="none"/>
                   <!-- Bottom-Left elbow -->
-                  <path d="M 160,400 L 160,430 Q 160,470 200,470 L 230,470 L 230,400 Z" fill="url(#pvcElbow)" stroke="#90a4ae" stroke-width="1.3"/>
-                  <path d="M 178,400 L 178,425 Q 178,452 205,452 L 230,452 L 230,428 Q 205,428 205,405 L 205,400 Z" fill="rgba(10,25,47,0.75)" stroke="none"/>
+                  <path d="M 210,550 L 210,580 Q 210,610 240,610 L 270,610 L 270,550 Z" fill="url(#pvcElbow)" stroke="#90a4ae" stroke-width="1.3"/>
+                  <path d="M 226,550 L 226,575 Q 226,594 245,594 L 270,594 L 270,572 Q 248,572 248,555 L 248,550 Z" fill="rgba(10,25,47,0.75)" stroke="none"/>
                   <!-- Bottom-Right elbow -->
-                  <path d="M 570,470 L 600,470 Q 640,470 640,430 L 640,400 L 570,400 Z" fill="url(#pvcElbow)" stroke="#90a4ae" stroke-width="1.3"/>
-                  <path d="M 570,452 L 595,452 Q 622,452 622,425 L 622,400 L 595,400 L 595,405 Q 595,428 570,428 Z" fill="rgba(10,25,47,0.75)" stroke="none"/>
+                  <path d="M 470,610 L 500,610 Q 530,610 530,580 L 530,550 L 470,550 Z" fill="url(#pvcElbow)" stroke="#90a4ae" stroke-width="1.3"/>
+                  <path d="M 470,594 L 495,594 Q 514,594 514,575 L 514,550 L 492,550 L 492,555 Q 492,572 470,572 Z" fill="rgba(10,25,47,0.75)" stroke="none"/>
 
 
                   <!-- ════════════════════════════════════════════════════════
-                       PART 1 — MASA EXPLOSIVA (Left Vertical Tube)
+                       PART 1 — MASA EXPLOSIVA (Top Horizontal Tube)
                        ════════════════════════════════════════════════════════ -->
                   <g class="diagram-interactive-part active" id="part-explosivo" data-part="explosivo"
                      tabindex="0" role="button" aria-label="Componente 1: Sección de masa explosiva">
                     <!-- PVC tube body -->
-                    <rect x="160" y="200" width="70" height="200" fill="url(#pvcTubeV)" rx="3"/>
+                    <rect x="270" y="190" width="200" height="60" fill="url(#pvcTubeH)" rx="3"/>
                     <!-- Explosive core fill (crimson/red glow) -->
-                    <rect x="171" y="212" width="48" height="176" fill="url(#crimsonFill)" rx="2" opacity="0.95"/>
+                    <rect x="278" y="198" width="184" height="44" fill="url(#crimsonFill)" rx="2" opacity="0.95"/>
                     <!-- Tube shine / shadow lines -->
-                    <rect x="168" y="200" width="6" height="200" fill="rgba(255,255,255,0.28)" rx="1"/>
-                    <rect x="220" y="200" width="6" height="200" fill="rgba(0,0,0,0.22)" rx="1"/>
-                    <!-- Tape band 1: black at upper joint -->
-                    <rect x="160" y="232" width="70" height="14" fill="#050914" opacity="0.95"/>
-                    <!-- Tape band 2: green vinyl band (mid) -->
-                    <rect x="160" y="294" width="70" height="12" fill="#15803d" opacity="0.92"/>
-                    <!-- Tape band 3: yellow stripe -->
-                    <rect x="160" y="307" width="70" height="7" fill="#eab308" opacity="0.88"/>
-                    <!-- Tape band 4: black lower joint -->
-                    <rect x="160" y="354" width="70" height="14" fill="#050914" opacity="0.95"/>
+                    <rect x="270" y="195" width="200" height="5" fill="rgba(255,255,255,0.28)" rx="1"/>
+                    <rect x="270" y="244" width="200" height="5" fill="rgba(0,0,0,0.22)" rx="1"/>
+                    <!-- Tape bands: black at upper joint, green and yellow mid stripes -->
+                    <rect x="275" y="190" width="14" height="60" fill="#050914" opacity="0.95"/>
+                    <rect x="355" y="190" width="14" height="60" fill="#15803d" opacity="0.92"/>
+                    <rect x="369" y="190" width="8" height="60" fill="#eab308" opacity="0.88"/>
+                    <rect x="451" y="190" width="14" height="60" fill="#050914" opacity="0.95"/>
 
-                    <!-- Numbered marker (left) -->
-                    <circle cx="65" cy="300" r="18" fill="#ef4444" stroke="#ffffff" stroke-width="2.5"/>
-                    <text x="65" y="305" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="900" font-family="'JetBrains Mono', monospace">1</text>
+                    <!-- Numbered marker (top) -->
+                    <circle cx="370" cy="90" r="18" fill="#ef4444" stroke="#ffffff" stroke-width="2.5"/>
+                    <text x="370" y="95" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="900" font-family="'JetBrains Mono', monospace">1</text>
                     <!-- Leader line -->
-                    <line x1="85" y1="300" x2="158" y2="300" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,3"/>
+                    <line x1="370" y1="108" x2="370" y2="188" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,3"/>
                     <!-- High-contrast dark blue label badge -->
-                    <rect x="14" y="332" width="102" height="34" rx="6" fill="rgba(10,24,46,0.95)" stroke="rgba(239,68,68,0.6)" stroke-width="1.2"/>
-                    <text x="65" y="347" text-anchor="middle" fill="#ffffff" font-size="10.5" font-weight="900" font-family="'JetBrains Mono', monospace">1. MASA</text>
-                    <text x="65" y="360" text-anchor="middle" fill="#ff4d6d" font-size="10" font-weight="800" font-family="'JetBrains Mono', monospace">EXPLOSIVA</text>
+                    <rect x="275" y="44" width="190" height="26" rx="5" fill="rgba(10,24,46,0.95)" stroke="rgba(239,68,68,0.6)" stroke-width="1.2"/>
+                    <text x="370" y="61" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="900" font-family="'JetBrains Mono', monospace">1. MASA EXPLOSIVA</text>
                   </g>
 
 
                   <!-- ════════════════════════════════════════════════════════
-                       PART 2 — TEMPORIZADOR 24H (Top Horizontal Tube)
+                       PART 2 — TEMPORIZADOR 24H (Right Vertical Tube)
                        ════════════════════════════════════════════════════════ -->
                   <g class="diagram-interactive-part" id="part-temporizador" data-part="temporizador"
                      tabindex="0" role="button" aria-label="Componente 2: Módulo temporizador de 24 horas y batería">
                     <!-- PVC tube body -->
-                    <rect x="230" y="130" width="340" height="70" fill="url(#pvcTubeH)" rx="3"/>
+                    <rect x="470" y="250" width="60" height="300" fill="url(#pvcTubeV)" rx="3"/>
                     <!-- Timer fill (gold/amber) -->
-                    <rect x="242" y="142" width="316" height="46" fill="url(#goldFill)" rx="2" opacity="0.9"/>
+                    <rect x="478" y="258" width="44" height="284" fill="url(#goldFill)" rx="2" opacity="0.9"/>
                     <!-- Tube shine / shadow -->
-                    <rect x="230" y="136" width="340" height="6" fill="rgba(255,255,255,0.25)" rx="1"/>
-                    <rect x="230" y="192" width="340" height="6" fill="rgba(0,0,0,0.18)" rx="1"/>
+                    <rect x="474" y="250" width="5" height="300" fill="rgba(255,255,255,0.25)" rx="1"/>
+                    <rect x="525" y="250" width="5" height="300" fill="rgba(0,0,0,0.18)" rx="1"/>
                     <!-- Tape bands -->
-                    <rect x="252" y="130" width="14" height="70" fill="#050914" opacity="0.95"/>
-                    <rect x="502" y="130" width="12" height="70" fill="#eab308" opacity="0.88"/>
-                    <rect x="515" y="130" width="10" height="70" fill="#050914" opacity="0.92"/>
+                    <rect x="470" y="275" width="60" height="14" fill="#050914" opacity="0.95"/>
+                    <rect x="470" y="515" width="60" height="10" fill="#eab308" opacity="0.88"/>
+                    <rect x="470" y="527" width="60" height="8" fill="#050914" opacity="0.92"/>
 
-                    <!-- Timer module box (ENLARGED front-facing overlay, prominent & clear) -->
-                    <rect x="295" y="80" width="210" height="96" rx="10" fill="#08172c" stroke="#f59e0b" stroke-width="2.6"/>
-                    <rect x="299" y="84" width="202" height="88" rx="8" fill="none" stroke="rgba(251,191,36,0.3)" stroke-width="1.2" stroke-dasharray="3,4"/>
+                    <!-- Timer module box (ENLARGED front-facing overlay on the right) -->
+                    <rect x="465" y="325" width="175" height="150" rx="10" fill="#08172c" stroke="#f59e0b" stroke-width="2.6"/>
+                    <rect x="469" y="329" width="167" height="142" rx="8" fill="none" stroke="rgba(251,191,36,0.3)" stroke-width="1.2" stroke-dasharray="3,4"/>
 
-                    <!-- Analog clock face (left half of box) -->
-                    <circle cx="350" cy="128" r="28" fill="#0d213d" stroke="#f59e0b" stroke-width="2.2"/>
+                    <!-- Analog clock face -->
+                    <circle cx="515" cy="385" r="28" fill="#0d213d" stroke="#f59e0b" stroke-width="2.2"/>
                     <!-- Clock ticks (12, 3, 6, 9) -->
-                    <line x1="350" y1="104" x2="350" y2="109" stroke="#f59e0b" stroke-width="2.2"/>
-                    <line x1="374" y1="128" x2="369" y2="128" stroke="#f59e0b" stroke-width="2.2"/>
-                    <line x1="350" y1="152" x2="350" y2="147" stroke="#f59e0b" stroke-width="2.2"/>
-                    <line x1="326" y1="128" x2="331" y2="128" stroke="#f59e0b" stroke-width="2.2"/>
-                    <!-- Sub-ticks (intermediate hours) -->
-                    <circle cx="367" cy="111" r="1.2" fill="#fbbf24"/>
-                    <circle cx="367" cy="145" r="1.2" fill="#fbbf24"/>
-                    <circle cx="333" cy="145" r="1.2" fill="#fbbf24"/>
-                    <circle cx="333" cy="111" r="1.2" fill="#fbbf24"/>
+                    <line x1="515" y1="361" x2="515" y2="366" stroke="#f59e0b" stroke-width="2.2"/>
+                    <line x1="539" y1="385" x2="534" y2="385" stroke="#f59e0b" stroke-width="2.2"/>
+                    <line x1="515" y1="409" x2="515" y2="404" stroke="#f59e0b" stroke-width="2.2"/>
+                    <line x1="491" y1="385" x2="496" y2="385" stroke="#f59e0b" stroke-width="2.2"/>
+                    <!-- Sub-ticks -->
+                    <circle cx="532" cy="368" r="1.2" fill="#fbbf24"/>
+                    <circle cx="532" cy="402" r="1.2" fill="#fbbf24"/>
+                    <circle cx="498" cy="402" r="1.2" fill="#fbbf24"/>
+                    <circle cx="498" cy="368" r="1.2" fill="#fbbf24"/>
                     <!-- Clock hands -->
-                    <line x1="350" y1="128" x2="350" y2="110" stroke="#fbbf24" stroke-width="2.8" stroke-linecap="round"/>
-                    <line x1="350" y1="128" x2="368" y2="128" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round"/>
-                    <circle cx="350" cy="128" r="3.5" fill="#fbbf24"/>
+                    <line x1="515" y1="385" x2="515" y2="367" stroke="#fbbf24" stroke-width="2.8" stroke-linecap="round"/>
+                    <line x1="515" y1="385" x2="533" y2="385" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round"/>
+                    <circle cx="515" cy="385" r="3.5" fill="#fbbf24"/>
 
-                    <!-- Digital readouts (right half of box) -->
-                    <text x="424" y="118" text-anchor="middle" fill="#fbbf24" font-size="18" font-weight="900" font-family="'JetBrains Mono', monospace">24H</text>
-                    <text x="424" y="133" text-anchor="middle" fill="#94a3b8" font-size="8.8" font-weight="700" font-family="'JetBrains Mono', monospace">TIMER MECÁNICO</text>
-                    <text x="424" y="147" text-anchor="middle" fill="#38bdf8" font-size="7.8" font-weight="800" font-family="'JetBrains Mono', monospace">CUENTA REGRESIVA</text>
+                    <!-- Digital readouts -->
+                    <text x="585" y="375" text-anchor="middle" fill="#fbbf24" font-size="18" font-weight="900" font-family="'JetBrains Mono', monospace">24H</text>
+                    <text x="585" y="392" text-anchor="middle" fill="#94a3b8" font-size="8.8" font-weight="700" font-family="'JetBrains Mono', monospace">TIMER</text>
+                    <text x="585" y="406" text-anchor="middle" fill="#38bdf8" font-size="7.8" font-weight="800" font-family="'JetBrains Mono', monospace">CUENTA REG.</text>
 
                     <!-- 9V battery symbol -->
-                    <rect x="466" y="93" width="18" height="28" rx="2" fill="#0f294a" stroke="#38bdf8" stroke-width="1.2"/>
-                    <rect x="470" y="89" width="4" height="4" rx="1" fill="#94a3b8"/>
-                    <rect x="476" y="89" width="4" height="4" rx="1" fill="#94a3b8"/>
-                    <text x="475" y="112" text-anchor="middle" fill="#38bdf8" font-size="8.5" font-weight="900" font-family="'JetBrains Mono', monospace">9V</text>
+                    <rect x="575" y="420" width="20" height="30" rx="2" fill="#0f294a" stroke="#38bdf8" stroke-width="1.2"/>
+                    <rect x="579" y="416" width="4" height="4" rx="1" fill="#94a3b8"/>
+                    <rect x="587" y="416" width="4" height="4" rx="1" fill="#94a3b8"/>
+                    <text x="585" y="440" text-anchor="middle" fill="#38bdf8" font-size="8.5" font-weight="900" font-family="'JetBrains Mono', monospace">9V</text>
 
-                    <!-- Numbered marker (top) -->
-                    <circle cx="400" cy="42" r="18" fill="#f59e0b" stroke="#ffffff" stroke-width="2.5"/>
-                    <text x="400" y="47" text-anchor="middle" fill="#0a182c" font-size="14" font-weight="900" font-family="'JetBrains Mono', monospace">2</text>
+                    <!-- Numbered marker (right) -->
+                    <circle cx="695" cy="400" r="18" fill="#f59e0b" stroke="#ffffff" stroke-width="2.5"/>
+                    <text x="695" y="405" text-anchor="middle" fill="#0a182c" font-size="14" font-weight="900" font-family="'JetBrains Mono', monospace">2</text>
                     <!-- Leader line -->
-                    <line x1="400" y1="62" x2="400" y2="78" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4,3"/>
+                    <line x1="640" y1="400" x2="677" y2="400" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4,3"/>
                     <!-- High-contrast dark blue label badge -->
-                    <rect x="295" y="12" width="210" height="22" rx="5" fill="rgba(10,24,46,0.95)" stroke="rgba(245,158,11,0.6)" stroke-width="1.2"/>
-                    <text x="400" y="27" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="900" font-family="'JetBrains Mono', monospace">2. TEMPORIZADOR 24H</text>
+                    <rect x="640" y="432" width="108" height="34" rx="6" fill="rgba(10,24,46,0.95)" stroke="rgba(245,158,11,0.6)" stroke-width="1.2"/>
+                    <text x="694" y="446" text-anchor="middle" fill="#fbbf24" font-size="10.5" font-weight="900" font-family="'JetBrains Mono', monospace">2. TEMPORIZADOR</text>
+                    <text x="694" y="459" text-anchor="middle" fill="#fde047" font-size="9" font-weight="800" font-family="'JetBrains Mono', monospace">24 HORAS</text>
                   </g>
 
 
                   <!-- ════════════════════════════════════════════════════════
-                       PART 3 — SENSOR DE ALIVIO (Right Vertical Tube)
+                       PART 3 — SENSOR DE ALIVIO (Bottom Horizontal Tube)
                        ════════════════════════════════════════════════════════ -->
                   <g class="diagram-interactive-part" id="part-trampa" data-part="trampa"
                      tabindex="0" role="button" aria-label="Componente 3: Sensor de alivio de tensión anti-corte">
                     <!-- PVC tube body -->
-                    <rect x="570" y="200" width="70" height="200" fill="url(#pvcTubeV)" rx="3"/>
+                    <rect x="270" y="550" width="200" height="60" fill="url(#pvcTubeH)" rx="3"/>
                     <!-- Sensor core fill (cyan/blue) -->
-                    <rect x="581" y="212" width="48" height="176" fill="url(#cyanFill)" rx="2" opacity="0.92"/>
+                    <rect x="278" y="558" width="184" height="44" fill="url(#cyanFill)" rx="2" opacity="0.92"/>
                     <!-- Tube shine / shadow -->
-                    <rect x="577" y="200" width="6" height="200" fill="rgba(255,255,255,0.28)" rx="1"/>
-                    <rect x="630" y="200" width="6" height="200" fill="rgba(0,0,0,0.22)" rx="1"/>
-                    <!-- Tape bands: yellow+black (matching photo) -->
-                    <rect x="570" y="232" width="70" height="12" fill="#eab308" opacity="0.88"/>
-                    <rect x="570" y="245" width="70" height="8" fill="#050914" opacity="0.95"/>
-                    <rect x="570" y="300" width="70" height="14" fill="#050914" opacity="0.95"/>
+                    <rect x="270" y="555" width="200" height="5" fill="rgba(255,255,255,0.28)" rx="1"/>
+                    <rect x="270" y="604" width="200" height="5" fill="rgba(0,0,0,0.22)" rx="1"/>
+                    <!-- Tape bands: black + yellow -->
+                    <rect x="275" y="550" width="14" height="60" fill="#050914" opacity="0.95"/>
+                    <rect x="451" y="550" width="14" height="60" fill="#eab308" opacity="0.88"/>
 
-                    <!-- Multi-pin circular connector cap (PERFECTLY MATHEMATICALLY CENTERED: Cx=605, Cy=350) -->
+                    <!-- Multi-pin circular connector cap (PERFECTLY MATHEMATICALLY CENTERED: Cx=370, Cy=580) -->
                     <!-- Outer metallic cap bezel -->
-                    <circle cx="605" cy="350" r="28" fill="#0c1e36" stroke="#cfd8dc" stroke-width="2.5"/>
+                    <circle cx="370" cy="580" r="26" fill="#0c1e36" stroke="#cfd8dc" stroke-width="2.5"/>
                     <!-- Outer knurled guide ring -->
-                    <circle cx="605" cy="350" r="25" fill="none" stroke="#64748b" stroke-width="1" stroke-dasharray="2,3"/>
+                    <circle cx="370" cy="580" r="23" fill="none" stroke="#64748b" stroke-width="1" stroke-dasharray="2,3"/>
                     <!-- Inner sensor chamber -->
-                    <circle cx="605" cy="350" r="21" fill="#05101f" stroke="#00e5ff" stroke-width="1.4"/>
+                    <circle cx="370" cy="580" r="19" fill="#05101f" stroke="#00e5ff" stroke-width="1.4"/>
                     <!-- Center contact pin -->
-                    <circle cx="605" cy="350" r="3.6" fill="#ffffff" stroke="#00e5ff" stroke-width="1"/>
-                    <!-- 8 Concentric pins at exact R=14 (0°, 45°, 90°, 135°, 180°, 225°, 270°, 315°) -->
-                    <circle cx="619" cy="350" r="3.2" fill="#e2e8f0"/>
-                    <circle cx="614.9" cy="359.9" r="3.2" fill="#e2e8f0"/>
-                    <circle cx="605" cy="364" r="3.2" fill="#e2e8f0"/>
-                    <circle cx="595.1" cy="359.9" r="3.2" fill="#e2e8f0"/>
-                    <circle cx="591" cy="350" r="3.2" fill="#e2e8f0"/>
-                    <circle cx="595.1" cy="340.1" r="3.2" fill="#e2e8f0"/>
-                    <circle cx="605" cy="336" r="3.2" fill="#00e5ff" opacity="0.95"/>
-                    <circle cx="614.9" cy="340.1" r="3.2" fill="#e2e8f0"/>
+                    <circle cx="370" cy="580" r="3.6" fill="#ffffff" stroke="#00e5ff" stroke-width="1"/>
+                    <!-- 8 Concentric pins at exact R=12.5 (0°, 45°, 90°, 135°, 180°, 225°, 270°, 315°) -->
+                    <circle cx="382.5" cy="580" r="3" fill="#e2e8f0"/>
+                    <circle cx="378.8" cy="588.8" r="3" fill="#e2e8f0"/>
+                    <circle cx="370" cy="592.5" r="3" fill="#e2e8f0"/>
+                    <circle cx="361.2" cy="588.8" r="3" fill="#e2e8f0"/>
+                    <circle cx="357.5" cy="580" r="3" fill="#e2e8f0"/>
+                    <circle cx="361.2" cy="571.2" r="3" fill="#e2e8f0"/>
+                    <circle cx="370" cy="567.5" r="3" fill="#00e5ff" opacity="0.95"/>
+                    <circle cx="378.8" cy="571.2" r="3" fill="#e2e8f0"/>
 
-                    <!-- Numbered marker (right) -->
-                    <circle cx="735" cy="300" r="18" fill="#00e5ff" stroke="#003c6b" stroke-width="2.5"/>
-                    <text x="735" y="305" text-anchor="middle" fill="#002b4d" font-size="14" font-weight="900" font-family="'JetBrains Mono', monospace">3</text>
+                    <!-- Numbered marker (bottom) -->
+                    <circle cx="370" cy="710" r="18" fill="#00e5ff" stroke="#003c6b" stroke-width="2.5"/>
+                    <text x="370" y="715" text-anchor="middle" fill="#002b4d" font-size="14" font-weight="900" font-family="'JetBrains Mono', monospace">3</text>
                     <!-- Leader line -->
-                    <line x1="715" y1="300" x2="642" y2="300" stroke="#00e5ff" stroke-width="2" stroke-dasharray="4,3"/>
+                    <line x1="370" y1="612" x2="370" y2="692" stroke="#00e5ff" stroke-width="2" stroke-dasharray="4,3"/>
                     <!-- High-contrast dark blue label badge -->
-                    <rect x="684" y="332" width="102" height="34" rx="6" fill="rgba(10,24,46,0.95)" stroke="rgba(0,229,255,0.6)" stroke-width="1.2"/>
-                    <text x="735" y="347" text-anchor="middle" fill="#ffffff" font-size="10.5" font-weight="900" font-family="'JetBrains Mono', monospace">3. SENSOR</text>
-                    <text x="735" y="360" text-anchor="middle" fill="#38bdf8" font-size="10" font-weight="800" font-family="'JetBrains Mono', monospace">DE ALIVIO</text>
+                    <rect x="250" y="740" width="240" height="26" rx="5" fill="rgba(10,24,46,0.95)" stroke="rgba(0,229,255,0.6)" stroke-width="1.2"/>
+                    <text x="370" y="757" text-anchor="middle" fill="#38bdf8" font-size="10.5" font-weight="900" font-family="'JetBrains Mono', monospace">3. SENSOR DE ALIVIO (ANTI-CORTE)</text>
                   </g>
 
 
                   <!-- ════════════════════════════════════════════════════════
-                       PART 4 — UNIÓN ADHESIVA PVC (Bottom Horizontal Tube)
+                       PART 4 — UNIÓN ADHESIVA PVC (Left Vertical Tube)
                        ════════════════════════════════════════════════════════ -->
                   <g class="diagram-interactive-part" id="part-candado" data-part="candado"
                      tabindex="0" role="button" aria-label="Componente 4: Unión adhesiva PVC — sin candado ni cierre mecánico">
                     <!-- PVC tube body -->
-                    <rect x="230" y="400" width="340" height="70" fill="url(#pvcTubeH)" rx="3"/>
+                    <rect x="210" y="250" width="60" height="300" fill="url(#pvcTubeV)" rx="3"/>
                     <!-- Adhesive joint fill (purple) -->
-                    <rect x="242" y="412" width="316" height="46" fill="url(#purpleFill)" rx="2" opacity="0.85"/>
+                    <rect x="218" y="258" width="44" height="284" fill="url(#purpleFill)" rx="2" opacity="0.85"/>
                     <!-- Tube shine / shadow -->
-                    <rect x="230" y="406" width="340" height="6" fill="rgba(255,255,255,0.18)" rx="1"/>
-                    <rect x="230" y="462" width="340" height="6" fill="rgba(0,0,0,0.18)" rx="1"/>
+                    <rect x="214" y="250" width="5" height="300" fill="rgba(255,255,255,0.18)" rx="1"/>
+                    <rect x="265" y="250" width="5" height="300" fill="rgba(0,0,0,0.18)" rx="1"/>
                     <!-- Tape bands: black strips at corner junctions -->
-                    <rect x="252" y="400" width="14" height="70" fill="#050914" opacity="0.95"/>
-                    <rect x="526" y="400" width="14" height="70" fill="#050914" opacity="0.95"/>
+                    <rect x="210" y="275" width="60" height="14" fill="#050914" opacity="0.95"/>
+                    <rect x="210" y="525" width="60" height="14" fill="#050914" opacity="0.95"/>
 
                     <!-- Adhesive seam indicator & central badge -->
-                    <line x1="280" y1="435" x2="520" y2="435" stroke="rgba(255,255,255,0.55)" stroke-width="2" stroke-dasharray="8,4"/>
-                    <rect x="290" y="423" width="220" height="24" rx="5" fill="rgba(49, 15, 80, 0.85)" stroke="#c084fc" stroke-width="1.2"/>
-                    <text x="400" y="439" text-anchor="middle" fill="#f3e8ff" font-size="9.5" font-weight="900" font-family="'JetBrains Mono', monospace">CEMENTO PVC · SIN CANDADO</text>
+                    <line x1="240" y1="290" x2="240" y2="510" stroke="rgba(255,255,255,0.55)" stroke-width="2" stroke-dasharray="8,4"/>
+                    <rect x="215" y="380" width="50" height="40" rx="4" fill="rgba(49, 15, 80, 0.9)" stroke="#c084fc" stroke-width="1.2"/>
+                    <text x="240" y="396" text-anchor="middle" fill="#f3e8ff" font-size="8.5" font-weight="900" font-family="'JetBrains Mono', monospace">CEMENTO</text>
+                    <text x="240" y="410" text-anchor="middle" fill="#c084fc" font-size="8" font-weight="900" font-family="'JetBrains Mono', monospace">PVC</text>
 
-                    <!-- Numbered marker (bottom) -->
-                    <circle cx="400" cy="522" r="18" fill="#a855f7" stroke="#ffffff" stroke-width="2.5"/>
-                    <text x="400" y="527" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="900" font-family="'JetBrains Mono', monospace">4</text>
+                    <!-- Numbered marker (left) -->
+                    <circle cx="75" cy="400" r="18" fill="#a855f7" stroke="#ffffff" stroke-width="2.5"/>
+                    <text x="75" y="405" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="900" font-family="'JetBrains Mono', monospace">4</text>
                     <!-- Leader line -->
-                    <line x1="400" y1="502" x2="400" y2="472" stroke="#a855f7" stroke-width="2" stroke-dasharray="4,3"/>
+                    <line x1="95" y1="400" x2="208" y2="400" stroke="#a855f7" stroke-width="2" stroke-dasharray="4,3"/>
                     <!-- High-contrast dark blue label badge -->
-                    <rect x="260" y="546" width="280" height="34" rx="6" fill="rgba(10,24,46,0.95)" stroke="rgba(168,85,247,0.6)" stroke-width="1.2"/>
-                    <text x="400" y="561" text-anchor="middle" fill="#f3e8ff" font-size="11" font-weight="900" font-family="'JetBrains Mono', monospace">4. UNIÓN ADHESIVA PVC</text>
-                    <text x="400" y="573" text-anchor="middle" fill="#c084fc" font-size="9" font-weight="700" font-family="'JetBrains Mono', monospace">(SIN CIERRE NI CANDADO MECÁNICO)</text>
+                    <rect x="15" y="432" width="120" height="34" rx="6" fill="rgba(10,24,46,0.95)" stroke="rgba(168,85,247,0.6)" stroke-width="1.2"/>
+                    <text x="75" y="446" text-anchor="middle" fill="#f3e8ff" font-size="10.5" font-weight="900" font-family="'JetBrains Mono', monospace">4. UNIÓN PVC</text>
+                    <text x="75" y="459" text-anchor="middle" fill="#c084fc" font-size="9" font-weight="700" font-family="'JetBrains Mono', monospace">(SIN CANDADO)</text>
                   </g>
 
 
                   <!-- ════════════════════════════════════════════════════════
                        CERVICAL APERTURE & ANATOMICAL HEAD/NECK SILHOUETTES
-                       (Reorientada horizontalmente con la nariz hacia el mapa / este)
+                       (La silueta craneal sobresale claramente del marco para demostrar
+                        que era IMPOSIBLE retirar el collar por la cabeza)
                        ════════════════════════════════════════════════════════ -->
                   <!-- Aperture container background in dark navy blue -->
-                  <rect x="230" y="200" width="340" height="200" rx="12" fill="#091c33" stroke="rgba(56, 189, 248, 0.35)" stroke-width="1.5"/>
+                  <rect x="270" y="250" width="200" height="300" rx="12" fill="#091c33" stroke="rgba(56, 189, 248, 0.35)" stroke-width="1.5"/>
 
-                  <!-- ── 1. SILUETA ANATÓMICA DE LA CABEZA / CRÁNEO (ORIENTADA HORIZONTALMENTE: NARIZ AL MAPA) ── -->
-                  <!-- Óvalo horizontal de la cabeza: rx=146, ry=82 (deja espacio completo arriba y abajo) -->
-                  <ellipse cx="388" cy="300" rx="146" ry="82" fill="rgba(245, 158, 11, 0.05)" stroke="#f59e0b" stroke-width="2.2" stroke-dasharray="6,5"/>
+                  <!-- ── 1. SILUETA ANATÓMICA DE LA CABEZA / CRÁNEO (GRANDE, SOBRESALE DEL MARCO) ── -->
+                  <!-- Óvalo craneal ampliado: rx=125, ry=170.
+                       Ancho total = 250 px (más ancho que la apertura de 200 px).
+                       Alto total = 340 px (más alto que la apertura de 300 px).
+                       Demuestra sin lugar a dudas que la cabeza sobrepasa los tubos y no puede salir. -->
+                  <ellipse cx="370" cy="400" rx="125" ry="170" fill="rgba(245, 158, 11, 0.06)" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="7,5"/>
 
-                  <!-- Indicador anatómico de la nariz apuntando hacia la DERECHA / ESTE (hacia la tarjeta del mapa) -->
-                  <path d="M 526,290 L 546,300 L 526,310" fill="none" stroke="#f59e0b" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-                  <text x="496" y="322" text-anchor="middle" fill="#f59e0b" font-size="7.8" font-weight="800" font-family="'JetBrains Mono', monospace">NARIZ &rarr; MAPA</text>
+                  <!-- Indicador de nariz / frente apuntando HACIA ABAJO (hacia la válvula / sensor de alivio) -->
+                  <path d="M 360,565 L 370,580 L 380,565" fill="none" stroke="#f59e0b" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  <text x="370" y="556" text-anchor="middle" fill="#f59e0b" font-size="8" font-weight="800" font-family="'JetBrains Mono', monospace">NARIZ &darr; (HACIA SENSOR DE ALIVIO)</text>
 
-                  <!-- Orejas anatómicas (arriba y abajo, sin interferir con nada) -->
-                  <path d="M 374,218 C 374,208 398,208 398,218" fill="none" stroke="#f59e0b" stroke-width="2.2"/>
-                  <path d="M 374,382 C 374,392 398,392 398,382" fill="none" stroke="#f59e0b" stroke-width="2.2"/>
+                  <!-- Orejas anatómicas (izquierda y derecha sobrepasando los bordes interiores) -->
+                  <path d="M 245,388 C 235,388 235,412 245,412" fill="none" stroke="#f59e0b" stroke-width="2.4"/>
+                  <path d="M 495,388 C 505,388 505,412 495,412" fill="none" stroke="#f59e0b" stroke-width="2.4"/>
 
-                  <!-- Etiqueta de la cabeza (esquina superior izquierda de la apertura, despejada) -->
-                  <rect x="242" y="210" width="180" height="18" rx="4" fill="rgba(8, 22, 42, 0.94)" stroke="rgba(245,158,11,0.6)" stroke-width="1.2"/>
-                  <text x="332" y="223" text-anchor="middle" fill="#fbbf24" font-size="9" font-weight="800" font-family="'JetBrains Mono', monospace">SILUETA CABEZA (≈ 18 × 15 cm)</text>
+                  <!-- Etiqueta de la silueta craneal (superior) -->
+                  <rect x="260" y="260" width="220" height="20" rx="4" fill="rgba(8, 22, 42, 0.94)" stroke="rgba(245,158,11,0.6)" stroke-width="1.2"/>
+                  <text x="370" y="274" text-anchor="middle" fill="#fbbf24" font-size="9" font-weight="800" font-family="'JetBrains Mono', monospace">SILUETA CRANEAL (≈ 18 × 15 cm)</text>
 
 
-                  <!-- ── 2. SECCIÓN DEL CUELLO DE LA VÍCTIMA (AJUSTE INTERNO) ── -->
+                  <!-- ── 2. SECCIÓN DEL CUELLO DE LA VÍCTIMA (AJUSTE INTERNO CEÑIDO) ── -->
                   <!-- Óvalo ceñido del cuello en el orificio -->
-                  <ellipse cx="388" cy="300" rx="76" ry="46" fill="rgba(14, 165, 233, 0.18)" stroke="#00e5ff" stroke-width="2.4"/>
-                  <!-- Indicador de vértebra cervical posterior -->
-                  <circle cx="355" cy="300" r="4.5" fill="#38bdf8" opacity="0.85"/>
-                  <circle cx="355" cy="300" r="1.8" fill="#ffffff"/>
+                  <ellipse cx="370" cy="390" rx="65" ry="85" fill="rgba(14, 165, 233, 0.18)" stroke="#00e5ff" stroke-width="2.4"/>
+                  <!-- Indicador de vértebra cervical posterior (hacia la nuca / arriba) -->
+                  <circle cx="370" cy="330" r="4.5" fill="#38bdf8" opacity="0.85"/>
+                  <circle cx="370" cy="330" r="1.8" fill="#ffffff"/>
                   <!-- Textos del cuello -->
-                  <text x="396" y="288" text-anchor="middle" fill="#ffffff" font-size="11.5" font-weight="900" font-family="'JetBrains Mono', monospace">CUELLO DE LA VÍCTIMA</text>
-                  <text x="396" y="302" text-anchor="middle" fill="#38bdf8" font-size="10" font-weight="800" font-family="'JetBrains Mono', monospace">Apertura ≈ 14.5 × 12 cm</text>
-                  <text x="396" y="315" text-anchor="middle" fill="#94a3b8" font-size="8.5" font-weight="700" font-family="'JetBrains Mono', monospace">Ajuste ceñido directo · Sin holgura</text>
+                  <text x="370" y="375" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="900" font-family="'JetBrains Mono', monospace">CUELLO DE LA</text>
+                  <text x="370" y="390" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="900" font-family="'JetBrains Mono', monospace">VÍCTIMA</text>
+                  <text x="370" y="408" text-anchor="middle" fill="#38bdf8" font-size="9.5" font-weight="800" font-family="'JetBrains Mono', monospace">Apertura ≈ 14.5 × 12 cm</text>
+                  <text x="370" y="422" text-anchor="middle" fill="#94a3b8" font-size="8" font-weight="700" font-family="'JetBrains Mono', monospace">Ajuste ceñido directo · Sin holgura</text>
 
 
                   <!-- ── 3. BANNER PEDAGÓGICO DE SEGURIDAD Y FÍSICA DEL CIERRE ── -->
-                  <rect x="245" y="362" width="286" height="22" rx="4" fill="rgba(220, 38, 38, 0.28)" stroke="#ef4444" stroke-width="1.3"/>
-                  <text x="388" y="377" text-anchor="middle" fill="#ff6b81" font-size="8.8" font-weight="900" font-family="'JetBrains Mono', monospace">CABEZA MÁS ANCHA QUE EL MARCO · IMPOSIBLE EXTRAER</text>
+                  <rect x="245" y="505" width="250" height="24" rx="4" fill="rgba(220, 38, 38, 0.28)" stroke="#ef4444" stroke-width="1.3"/>
+                  <text x="370" y="521" text-anchor="middle" fill="#ff6b81" font-size="8.8" font-weight="900" font-family="'JetBrains Mono', monospace">CABEZA MÁS ANCHA QUE EL MARCO · IMPOSIBLE EXTRAER</text>
 
 
                   <!-- Overall collar outline stroke -->
                   <path fill="none" stroke="rgba(148,163,184,0.6)" stroke-width="2"
-                    d="M 200,130 L 600,130 Q 640,130 640,170 L 640,430 Q 640,470 600,470 L 200,470 Q 160,470 160,430 L 160,170 Q 160,130 200,130 Z"/>
+                    d="M 240,190 L 500,190 Q 530,190 530,220 L 530,580 Q 530,610 500,610 L 240,610 Q 210,610 210,580 L 210,220 Q 210,190 240,190 Z"/>
 
                   <!-- PVC label badge -->
-                  <rect x="168" y="136" width="58" height="16" rx="3" fill="rgba(5,15,30,0.9)" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
-                  <text x="197" y="148" text-anchor="middle" fill="#e2e8f0" font-size="8.5" font-weight="800" font-family="'JetBrains Mono', monospace">Ø 50mm PVC</text>
+                  <rect x="215" y="196" width="52" height="16" rx="3" fill="rgba(5,15,30,0.9)" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+                  <text x="241" y="208" text-anchor="middle" fill="#e2e8f0" font-size="8.5" font-weight="800" font-family="'JetBrains Mono', monospace">Ø 50mm</text>
 
                 </g>
               </svg>

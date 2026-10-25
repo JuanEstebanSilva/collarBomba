@@ -1786,8 +1786,8 @@ body.font-large .bio-body p {
 
 .forensic-svg {
   width: 100%;
-  height: 480px;
-  min-height: 440px;
+  height: auto;
+  max-height: 580px;
   display: block;
   overflow: visible;
   border-radius: 8px;
@@ -1796,7 +1796,7 @@ body.font-large .bio-body p {
 @media (max-width: 768px) {
   .forensic-svg {
     height: auto;
-    min-height: 340px;
+    max-height: none;
   }
 }
 
@@ -1816,11 +1816,11 @@ body.font-large .bio-body p {
   outline-offset: 4px;
 }
 
-/* Transición Despiece Ilustrativo (Exploded View Ortogonal Limpio y Sin Recortes) */
-.exploded #part-explosivo { transform: translate(-26px, 0); }
-.exploded #part-temporizador { transform: translate(0, -24px); }
-.exploded #part-trampa { transform: translate(26px, 0); }
-.exploded #part-candado { transform: translate(0, 24px); }
+/* Transición Despiece Ilustrativo (Exploded View Radial para marco vertical) */
+.exploded #part-explosivo { transform: translate(0, -25px); }
+.exploded #part-temporizador { transform: translate(25px, 0); }
+.exploded #part-trampa { transform: translate(0, 25px); }
+.exploded #part-candado { transform: translate(-25px, 0); }
 
 #part-explosivo.active, #part-explosivo:hover { filter: drop-shadow(0 0 16px rgba(239, 68, 68, 0.95)) brightness(1.2); }
 #part-temporizador.active, #part-temporizador:hover { filter: drop-shadow(0 0 16px rgba(245, 158, 11, 0.95)) brightness(1.2); }
