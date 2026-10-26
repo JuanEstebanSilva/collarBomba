@@ -338,55 +338,32 @@ body.font-large .bio-body p {
   gap: 8px;
 }
 
-/* Distintivo Institucional USTA Tunja */
+/* Logo Institucional 1 USTA (a la extrema derecha del header) */
 .header-usta-brand {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
+  justify-content: center;
   height: 38px;
-  padding: 0 10px 0 6px;
-  border-radius: var(--r-sm);
-  background: rgba(140, 83, 17, 0.08);
-  border: 1px solid rgba(110, 75, 30, 0.28);
-  transition: all 0.2s ease;
+  width: 38px;
+  padding: 0;
+  margin-left: 4px;
+  background: transparent;
+  border: none;
+  transition: transform 0.2s ease;
   user-select: none;
+  flex-shrink: 0;
 }
 
 .header-usta-brand:hover {
-  background: rgba(140, 83, 17, 0.16);
-  border-color: rgba(110, 75, 30, 0.5);
+  transform: scale(1.08);
 }
 
 .header-usta-logo {
-  height: 28px;
-  width: auto;
-  max-width: 32px;
+  height: 36px;
+  width: 36px;
   object-fit: contain;
   display: block;
-  filter: drop-shadow(0 1px 2px rgba(45, 30, 15, 0.2));
-}
-
-.header-usta-text {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  color: #3b2410;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-@media (max-width: 640px) {
-  .header-usta-text {
-    display: none;
-  }
-  .header-usta-brand {
-    padding: 0 4px;
-    height: 34px;
-  }
-  .header-usta-logo {
-    height: 24px;
-  }
+  filter: drop-shadow(0 1px 3px rgba(45, 30, 15, 0.25));
 }
 
 /* Insignia Editorial de Archivo Histórico */
@@ -4565,6 +4542,17 @@ body.font-large .bio-body p {
   text-align: justify;
 }
 
+.j-tab-pane > p::first-letter {
+  float: left;
+  font-family: var(--font-headline), Georgia, serif;
+  font-size: 3.1rem;
+  line-height: 0.76;
+  padding-right: 8px;
+  padding-top: 4px;
+  font-weight: 800;
+  color: #1a140e;
+}
+
 .btn-inline-link {
   display: inline-flex;
   align-items: center;
@@ -5449,85 +5437,22 @@ body.font-large .bio-body p {
   text-decoration: underline;
 }
 
-/* Colofón Institucional al final de la página (Logo 2 USTA) */
-.footer-institutional-colophon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 22px;
-  padding: 26px 28px;
-  margin: 10px 0 32px;
-  background: rgba(140, 83, 17, 0.08);
-  border: 1px solid rgba(110, 75, 30, 0.32);
-  border-radius: var(--r-md);
-  text-align: left;
-  box-shadow: 0 4px 14px rgba(45, 30, 15, 0.06);
+/* Logo 2 USTA en Columna de Marca del Footer */
+.footer-usta-seal-wrap {
+  margin-top: 18px;
+  display: inline-block;
 }
 
-.colophon-seal-wrap {
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.footer-usta-seal {
-  height: 68px;
-  width: auto;
-  max-width: 90px;
-  object-fit: contain;
+.footer-usta-seal-img {
+  max-width: 175px;
+  height: auto;
   display: block;
-  filter: drop-shadow(0 2px 6px rgba(45, 30, 15, 0.22));
+  filter: drop-shadow(0 2px 8px rgba(45, 30, 15, 0.22));
   transition: transform 0.25s ease;
 }
 
-.footer-institutional-colophon:hover .footer-usta-seal {
+.footer-usta-seal-img:hover {
   transform: scale(1.04);
-}
-
-.colophon-seal-text {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-
-.colophon-kicker {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  color: #8c5311;
-  text-transform: uppercase;
-}
-
-.colophon-title {
-  font-family: var(--font-headline);
-  font-size: 1.22rem;
-  font-weight: 800;
-  color: var(--text-primary);
-  margin: 0;
-  line-height: 1.25;
-  letter-spacing: -0.01em;
-}
-
-.colophon-sub {
-  font-family: var(--font-serif);
-  font-size: 0.92rem;
-  font-style: italic;
-  color: var(--text-muted);
-  margin: 0;
-}
-
-@media (max-width: 640px) {
-  .footer-institutional-colophon {
-    flex-direction: column;
-    text-align: center;
-    gap: 14px;
-    padding: 22px 16px;
-  }
-  .footer-usta-seal {
-    height: 56px;
-  }
 }
 
 .footer-bottom {
