@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css?v=20261025_14">
+  <link rel="stylesheet" href="style.css?v=20261025_15">
 
   <!-- Leaflet.js — Mapa interactivo con tiles reales -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
@@ -1799,7 +1799,7 @@
                 </div>
                 <div class="drawer-title-group">
                   <h3 class="drawer-heading">Bibliografía Documental</h3>
-                  <span class="drawer-sub">15 fuentes jurídicas y de prensa (Normas APA 7)</span>
+                  <span class="drawer-sub">15 fuentes catalogadas · Normas APA 7.ª edición</span>
                 </div>
               </div>
               <div class="drawer-toggle-badge">
@@ -1811,6 +1811,26 @@
               </div>
             </summary>
             <div class="drawer-content">
+              <!-- BARRA DE HERRAMIENTAS Y BÚSQUEDA APA -->
+              <div class="apa-toolbar">
+                <div class="apa-search-wrap">
+                  <svg class="apa-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15" aria-hidden="true">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                  <input type="search" id="apa-filter-input" class="apa-search-input" placeholder="Buscar por autor, periódico, año o tema (ej. El Tiempo, CSJ, FARC)..." aria-label="Filtrar referencias bibliográficas">
+                </div>
+                <div class="apa-toolbar-actions">
+                  <button type="button" id="btn-copy-all-apa" class="apa-toolbar-btn" title="Copiar las 15 referencias APA al portapapeles">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                    <span>Copiar Citas (15)</span>
+                  </button>
+                  <button type="button" id="btn-download-bibtex" class="apa-toolbar-btn" title="Descargar fichero académico BibTeX (.bib)">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    <span>Descargar .bib</span>
+                  </button>
+                </div>
+              </div>
               <div class="apa-compact-container" id="apa-references-list" role="feed" aria-label="Lista de referencias bibliográficas APA 7">
           <!-- 15 referencias estructuradas e interactivas -->
           
@@ -2114,7 +2134,7 @@
                 </div>
                 <div class="drawer-title-group">
                   <h3 class="drawer-heading">Materiales Visuales</h3>
-                  <span class="drawer-sub">21 archivos fotográficos, hemerográficos y licencias</span>
+                  <span class="drawer-sub">25 registros visuales · Hemerografía y licencias</span>
                 </div>
               </div>
               <div class="drawer-toggle-badge">
@@ -2126,6 +2146,12 @@
               </div>
             </summary>
             <div class="drawer-content">
+              <div class="visual-catalog-toolbar">
+                <div class="visual-catalog-badge">
+                  <span class="catalog-dot"></span>
+                  <span>Catálogo Curatorial: 25 Archivos Visuales y Licencias de Uso</span>
+                </div>
+              </div>
               <div class="credits-table-wrap">
                 <div class="table-responsive">
                   <table class="credits-table">
@@ -2410,6 +2436,6 @@
     </div>
   </div>
 
-  <script src="app.js?v=20261025_14"></script>
+  <script src="app.js?v=20261025_15"></script>
 </body>
 </html>

@@ -1507,16 +1507,21 @@ function initAcademicBibliography() {
     });
   });
 
-  // Copia individual
+  // Copia individual con retroalimentación visual directa
   copyBtns.forEach(btn => {
     btn.addEventListener('click', async () => {
       const citation = btn.getAttribute('data-citation');
       if (!citation) return;
+      const originalText = btn.textContent;
       try {
         await navigator.clipboard.writeText(citation);
         showToast('Cita APA 7 copiada al portapapeles');
+        btn.textContent = '✓ ¡Copiada!';
+        setTimeout(() => { btn.textContent = originalText; }, 1800);
       } catch (err) {
         fallbackCopy(citation);
+        btn.textContent = '✓ ¡Copiada!';
+        setTimeout(() => { btn.textContent = originalText; }, 1800);
       }
     });
   });
@@ -1525,11 +1530,16 @@ function initAcademicBibliography() {
   if (btnCopyAll) {
     btnCopyAll.addEventListener('click', async () => {
       const allText = ALL_APA_CITATIONS.join('\n\n');
+      const originalHtml = btnCopyAll.innerHTML;
       try {
         await navigator.clipboard.writeText(allText);
         showToast('15 referencias APA 7 copiadas al portapapeles');
+        btnCopyAll.innerHTML = '<span>✓ ¡15 Citas Copiadas!</span>';
+        setTimeout(() => { btnCopyAll.innerHTML = originalHtml; }, 2000);
       } catch (err) {
         fallbackCopy(allText);
+        btnCopyAll.innerHTML = '<span>✓ ¡15 Citas Copiadas!</span>';
+        setTimeout(() => { btnCopyAll.innerHTML = originalHtml; }, 2000);
       }
     });
   }
