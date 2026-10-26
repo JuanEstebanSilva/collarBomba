@@ -3071,6 +3071,11 @@ body.font-large .bio-body p {
   object-position: 8% center !important;
 }
 
+/* Encuadre enfocado al lector y periódico de verificación */
+.fig-img-container img.fig-img-verificacion {
+  object-position: center 22% !important;
+}
+
 .context-figure:hover img {
   transform: scale(1.02);
 }
