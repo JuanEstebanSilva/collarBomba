@@ -1466,37 +1466,46 @@ body.font-large .bio-body p {
 }
 
 .step-pill {
-  padding: 6px 13px;
-  border-radius: 2px;
-  background: rgba(44, 34, 25, 0.04);
-  border: 1px solid rgba(44, 34, 25, 0.35);
-  color: var(--text-primary);
-  font-size: 0.82rem;
-  font-family: var(--font-headline);
-  font-weight: 700;
-  letter-spacing: 0.04em;
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #f2e5d2 0%, #e3d2ba 100%);
+  border: 1px solid rgba(120, 85, 45, 0.35);
+  color: #382718;
+  font-size: 0.83rem;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  letter-spacing: 0.02em;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.24s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 2px 4px rgba(50, 35, 15, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  user-select: none;
 }
 
 .step-pill:hover {
-  background: rgba(44, 34, 25, 0.12);
-  color: var(--ink-rule);
-  border-color: var(--ink-rule);
+  background: linear-gradient(180deg, #ffffff 0%, #f4e8d5 100%);
+  color: #171008;
+  border-color: rgba(140, 95, 40, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(60, 40, 15, 0.15);
 }
 
 .step-pill.active {
-  background: var(--ink-rule);
-  border-color: var(--ink-rule);
-  color: #f5eedb;
+  background: linear-gradient(135deg, #2b1f15 0%, #17100a 100%);
+  border-color: #120c07;
+  color: #faf4e8;
   font-weight: 700;
-  box-shadow: 0 1px 3px rgba(30, 20, 10, 0.2);
+  box-shadow: 0 4px 14px rgba(35, 22, 12, 0.32);
+  transform: translateY(-1px);
 }
 
 .step-pill.alert-pill.active {
-  background: var(--red-primary);
-  border-color: var(--red-primary);
-  color: #ffffff;
+  background: linear-gradient(135deg, #2b1f15 0%, #17100a 100%);
+  border-color: #120c07;
+  color: #faf4e8;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(35, 22, 12, 0.32);
 }
 
 .timeline-dynamic-card {
@@ -1538,22 +1547,25 @@ body.font-large .bio-body p {
   align-items: center;
   gap: 6px;
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.70rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
-  color: var(--ink-rule);
-  background: rgba(44, 34, 25, 0.08);
-  border: 1px solid rgba(44, 34, 25, 0.35);
-  padding: 2.5px 8px;
-  border-radius: 2px;
+  letter-spacing: 0.06em;
+  color: #382718;
+  background: linear-gradient(180deg, #f2e5d2 0%, #e3d2ba 100%);
+  border: 1px solid rgba(120, 85, 45, 0.35);
+  padding: 4px 12px;
+  border-radius: 999px;
   cursor: pointer;
   user-select: none;
-  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(50, 35, 15, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  transition: all 0.24s ease;
 }
 
 .step-autoplay-pill:hover {
-  background: rgba(44, 34, 25, 0.16);
-  border-color: var(--ink-rule);
+  background: linear-gradient(180deg, #ffffff 0%, #f4e8d5 100%);
+  border-color: rgba(140, 95, 40, 0.6);
+  color: #171008;
+  transform: translateY(-1px);
 }
 
 .step-autoplay-pill.is-paused {
@@ -1734,27 +1746,38 @@ body.font-large .bio-body p {
 }
 
 .btn-step-nav {
-  padding: 6px 14px;
-  border-radius: 2px;
-  background: rgba(44, 34, 25, 0.04);
-  border: 1px solid rgba(44, 34, 25, 0.35);
-  color: var(--text-primary);
-  font-family: var(--font-headline);
-  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 16px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #f2e5d2 0%, #e3d2ba 100%);
+  border: 1px solid rgba(120, 85, 45, 0.35);
+  color: #382718;
+  font-family: var(--font-sans);
+  font-weight: 600;
   font-size: 0.82rem;
   cursor: pointer;
-  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(50, 35, 15, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  transition: all 0.24s cubic-bezier(0.2, 0.8, 0.2, 1);
+  user-select: none;
 }
 
 .btn-step-nav:hover:not(:disabled) {
-  background: var(--ink-rule);
-  border-color: var(--ink-rule);
-  color: #f5eedb;
+  background: linear-gradient(180deg, #ffffff 0%, #f4e8d5 100%);
+  color: #171008;
+  border-color: rgba(140, 95, 40, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(60, 40, 15, 0.15);
+}
+
+.btn-step-nav:active:not(:disabled) {
+  transform: translateY(0);
 }
 
 .btn-step-nav:disabled {
-  opacity: 0.35;
+  opacity: 0.38;
   cursor: not-allowed;
+  box-shadow: none;
 }
 
 /* Grilla Superior Módulo 2: Mapa Territorial (Izq.) y Reconstrucción Real (Der.) */
@@ -1833,24 +1856,40 @@ body.font-large .bio-body p {
 
 .mode-toggle-btn,
 .geo-pill-btn {
-  padding: 6px 12px;
-  border-radius: var(--r-sm);
-  background: var(--bg-card);
-  border: 1px solid var(--border-card);
-  color: var(--text-secondary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #f2e5d2 0%, #e3d2ba 100%);
+  border: 1px solid rgba(120, 85, 45, 0.35);
+  color: #382718;
   font-family: var(--font-sans);
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.24s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 2px 4px rgba(50, 35, 15, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  user-select: none;
+}
+
+.mode-toggle-btn:hover,
+.geo-pill-btn:hover {
+  background: linear-gradient(180deg, #ffffff 0%, #f4e8d5 100%);
+  color: #171008;
+  border-color: rgba(140, 95, 40, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(60, 40, 15, 0.15);
 }
 
 .mode-toggle-btn.active,
 .geo-pill-btn.active {
-  background: var(--ink-rule);
-  border-color: var(--ink-rule);
-  color: var(--bg-surface);
+  background: linear-gradient(135deg, #2b1f15 0%, #17100a 100%);
+  border-color: #120c07;
+  color: #faf4e8;
   font-weight: 700;
+  box-shadow: 0 4px 14px rgba(35, 22, 12, 0.32);
+  transform: translateY(-1px);
 }
 
 /* Contenedor del Esquema Forense sobre Papel de Archivo */
@@ -1949,9 +1988,10 @@ body.font-large .bio-body p {
 #part-candado.active, #part-candado:hover { filter: drop-shadow(0 2px 10px rgba(82, 54, 92, 0.5)); }
 
 .forensic-parts-nav {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
   margin-bottom: 16px;
   max-width: 820px;
   margin-left: auto;
@@ -1959,50 +1999,43 @@ body.font-large .bio-body p {
 }
 
 .part-btn {
-  padding: 10px 12px;
-  border-radius: var(--r-sm);
-  background: var(--bg-card);
-  border: 1px solid var(--border-card);
-  color: var(--text-secondary);
-  font-size: 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #f2e5d2 0%, #e3d2ba 100%);
+  border: 1px solid rgba(120, 85, 45, 0.35);
+  color: #382718;
+  font-size: 0.82rem;
   font-family: var(--font-sans);
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
-  text-align: left;
+  transition: all 0.24s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 2px 4px rgba(50, 35, 15, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  user-select: none;
+  text-align: center;
 }
 
 .part-btn:hover {
-  background: var(--bg-elevated);
-  color: var(--text-primary);
-  border-color: var(--ink-rule);
+  background: linear-gradient(180deg, #ffffff 0%, #f4e8d5 100%);
+  color: #171008;
+  border-color: rgba(140, 95, 40, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(60, 40, 15, 0.15);
 }
 
-.part-btn[data-part="explosivo"].active {
-  background: rgba(143, 30, 30, 0.1);
-  border-color: #8f1e1e;
-  color: #8f1e1e;
-  font-weight: 800;
-}
-
-.part-btn[data-part="temporizador"].active {
-  background: rgba(163, 98, 9, 0.1);
-  border-color: #a36209;
-  color: #a36209;
-  font-weight: 800;
-}
-
-.part-btn[data-part="trampa"].active {
-  background: rgba(36, 82, 117, 0.1);
-  border-color: #245275;
-  color: #245275;
-  font-weight: 800;
-}
-
+.part-btn.active,
+.part-btn[data-part="explosivo"].active,
+.part-btn[data-part="temporizador"].active,
+.part-btn[data-part="trampa"].active,
 .part-btn[data-part="candado"].active {
-  background: rgba(82, 54, 92, 0.1);
-  border-color: #52365c;
-  color: #52365c;
-  font-weight: 800;
+  background: linear-gradient(135deg, #2b1f15 0%, #17100a 100%);
+  border-color: #120c07;
+  color: #faf4e8;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(35, 22, 12, 0.32);
+  transform: translateY(-1px);
 }
 
 .forensic-detail-box {
