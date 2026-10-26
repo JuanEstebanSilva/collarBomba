@@ -616,8 +616,13 @@ body.font-large .bio-body p {
   }
 }
 
-/* Reducción de espacio muerto entre galerías fotográficas y módulos contiguos */
+/* Espaciado armónico y continuo entre módulos — Elimina espacios muertos y vacíos antiestéticos */
+#modulo-1 {
+  padding-bottom: 24px !important;
+}
+
 #modulo-2 {
+  padding-top: 20px !important;
   padding-bottom: 16px !important;
 }
 
@@ -628,6 +633,31 @@ body.font-large .bio-body p {
 
 #modulo-4 {
   padding-top: 18px !important;
+  padding-bottom: 16px !important;
+}
+
+#modulo-5 {
+  padding-top: 18px !important;
+  padding-bottom: 18px !important;
+}
+
+#modulo-6 {
+  padding-top: 18px !important;
+  padding-bottom: 14px !important;
+}
+
+#modulo-6 .highlight-banner:last-child {
+  margin-bottom: 0 !important;
+}
+
+#modulo-7 {
+  padding-top: 18px !important;
+  padding-bottom: 16px !important;
+}
+
+#modulo-8 {
+  padding-top: 18px !important;
+  padding-bottom: 28px !important;
 }
 
 
@@ -776,7 +806,7 @@ body.font-large .bio-body p {
   gap: 16px;
   padding: 12px 0 12px 20px;
   border-radius: 0;
-  margin: 24px 0 32px;
+  margin: 20px 0 16px;
   background: transparent;
   border: none;
   border-left: 3.5px solid var(--red-primary);
@@ -823,10 +853,12 @@ body.font-large .bio-body p {
    ===================================================================== */
 .module-hero {
   position: relative;
-  min-height: 100vh;
+  min-height: auto;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  padding: 105px 0 85px;
+  padding: 85px 0 20px;
   border-bottom: none;
 }
 
@@ -1284,8 +1316,8 @@ body.font-large .bio-body p {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
-  margin-top: 24px;
-  margin-bottom: 46px;
+  margin-top: 20px;
+  margin-bottom: 16px;
 }
 
 .btn-primary-action {
@@ -1347,10 +1379,11 @@ body.font-large .bio-body p {
 }
 
 .scroll-hint {
-  position: absolute;
-  bottom: 18px;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
+  bottom: auto;
+  left: auto;
+  transform: none;
+  margin: 12px auto 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -4773,8 +4806,8 @@ body.font-large .bio-body p {
   position: relative;
   width: 100%;
   max-width: 1040px;
-  margin: 48px auto 0;
-  padding: 36px 20px 20px;
+  margin: 28px auto 0;
+  padding: 22px 20px 4px;
   background: transparent;
   border: none;
   box-shadow: none;
