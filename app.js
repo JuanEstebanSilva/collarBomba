@@ -580,19 +580,28 @@ function initSynchronizedTimelineAndMap() {
       leafletMarkers[key] = marker;
     });
 
+    // ResizeObserver para adaptar el mapa en tiempo real si cambia el alto de la tarjeta
+    if (window.ResizeObserver && mapEl) {
+      const ro = new ResizeObserver(() => {
+        if (leafletMap) leafletMap.invalidateSize();
+      });
+      ro.observe(mapEl);
+    }
+
     // Mostrar popup del punto inicial centrado
     setTimeout(() => {
+      if (leafletMap) leafletMap.invalidateSize();
       highlightLeafletMarker('simijaca');
-    }, 500);
+    }, 450);
   }
 
-  // Calcula las coordenadas del mapa para que el CUERPO DEL TEXTO DEL POPUP
-  // quede ubicado exactamente en el centro visual del contenedor del mapa
-  function getPopupCenterLatLng(wpLatLng, zoom, popupPixelOffsetY = 65) {
+  // Calcula las coordenadas del mapa para que TANTO EL POPUP COMO EL MARCADOR
+  // queden simétricamente centrados en el visor del mapa
+  function getPopupCenterLatLng(wpLatLng, zoom, popupPixelOffsetY = 92) {
     if (!leafletMap) return wpLatLng;
     const pt = leafletMap.project(wpLatLng, zoom);
     // En el plano de píxeles, restar a Y traslada el centro hacia el norte,
-    // posicionando el centro del mapa en la mitad exacta del cuadro del popup
+    // equilibrando el centro visual exactamente a mitad del conjunto popup-marcador
     const centeredPt = L.point(pt.x, pt.y - popupPixelOffsetY);
     return leafletMap.unproject(centeredPt, zoom);
   }
@@ -612,10 +621,11 @@ function initSynchronizedTimelineAndMap() {
     });
 
     if (leafletMarkers[key] && leafletMap) {
+      leafletMap.invalidateSize();
       const wp = LEAFLET_WAYPOINTS[key];
       if (wp) {
         const targetZoom = (key === 'bogota') ? 10 : 11;
-        const targetCenter = getPopupCenterLatLng([wp.lat, wp.lng], targetZoom, 65);
+        const targetCenter = getPopupCenterLatLng([wp.lat, wp.lng], targetZoom, 92);
 
         leafletMap.flyTo(targetCenter, targetZoom, {
           duration: 0.75,
@@ -625,7 +635,7 @@ function initSynchronizedTimelineAndMap() {
         // Abre el popup una vez orientado el visor
         setTimeout(() => {
           leafletMarkers[key]?.openPopup();
-        }, 180);
+        }, 220);
       }
     }
   }
