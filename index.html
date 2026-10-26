@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css?v=20261025_08">
+  <link rel="stylesheet" href="style.css?v=20261025_09">
 
   <!-- Leaflet.js — Mapa interactivo con tiles reales -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
@@ -408,8 +408,52 @@
             </p>
 
             <div class="artifact-real-body">
-              <div class="real-pvc-img-wrap">
-                <img src="images/collar-completo-sobrebase.jpg" alt="Reconstrucción fidedigna del collar bomba artesanal elaborado con tubos de PVC sanitario blanco rectangulares unidos con cemento PVC, cinta aislante y sensor de alivio" loading="lazy">
+              <!-- Galería Pericial Multivista del Artefacto (3 perspectivas complementarias sin vacíos) -->
+              <div class="real-pvc-gallery-grid">
+                <!-- Figura 1: Ensamble sobre base -->
+                <figure class="real-pvc-gallery-card curated-thumb" data-caption="Reconstrucción pericial del collar bomba: marco rectangular artesanal de tubos PVC sanitario blanco cerrado con codos plásticos sobre soporte (Expediente CSJ 21285).">
+                  <div class="pvc-card-frame">
+                    <img src="images/collar-completo-sobrebase.jpg" alt="Reconstrucción del collar bomba artesanal de tubos PVC sobre base" loading="lazy">
+                    <span class="pvc-view-chip">Figura 1 · Ensamble</span>
+                    <div class="pvc-card-zoom-hint" title="Ampliar en HD">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                    </div>
+                  </div>
+                  <figcaption>
+                    <strong>Ensamble de Conjunto</strong>
+                    Marco de PVC blanco de 50 mm cerrado con codos y cintas.
+                  </figcaption>
+                </figure>
+
+                <!-- Figura 2: Detalle 3D y cableado -->
+                <figure class="real-pvc-gallery-card curated-thumb" data-caption="Morfología forense tridimensional del artefacto: perspectiva de los tres compartimentos de carga de dinamita e Indugel y válvula trampa de alivio.">
+                  <div class="pvc-card-frame">
+                    <img src="images/collar-sin-fondo.jpg" alt="Perspectiva tridimensional del collar explosivo rectangular de PVC" loading="lazy">
+                    <span class="pvc-view-chip">Figura 2 · Vista 3D</span>
+                    <div class="pvc-card-zoom-hint" title="Ampliar en HD">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                    </div>
+                  </div>
+                  <figcaption>
+                    <strong>Perspectiva Tridimensional</strong>
+                    Detalle de empalmes, cintas de vinilo y válvula de descompresión.
+                  </figcaption>
+                </figure>
+
+                <!-- Figura 3: Esquema de cargas -->
+                <figure class="real-pvc-gallery-card curated-thumb" data-caption="Esquema técnico-forense de la morfología pericial del collar: alojamiento de las tres cargas explosivas y cordón detonante.">
+                  <div class="pvc-card-frame">
+                    <img src="images/collar-pvc-ilustracion-artistica.jpg" alt="Esquema conceptual de la sección de cargas del collar bomba" loading="lazy">
+                    <span class="pvc-view-chip">Figura 3 · Esquema</span>
+                    <div class="pvc-card-zoom-hint" title="Ampliar en HD">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                    </div>
+                  </div>
+                  <figcaption>
+                    <strong>Distribución de Cargas</strong>
+                    Corte pericial de los tres tubos con dinamita, Indugel y detonador.
+                  </figcaption>
+                </figure>
               </div>
 
               <div class="real-pvc-caption-block">
@@ -2311,6 +2355,6 @@
     </div>
   </div>
 
-  <script src="app.js?v=20261025_08"></script>
+  <script src="app.js?v=20261025_09"></script>
 </body>
 </html>
