@@ -5587,7 +5587,7 @@ body.font-large .bio-body p {
    14. SITE FOOTER (PIE DE IMPRENTA EDITORIAL)
    ===================================================================== */
 .site-footer {
-  padding: 60px 0 30px;
+  padding: 55px 0 28px;
   background: var(--bg-deep);
   border-top: 3px double var(--ink-rule);
 }
@@ -5595,47 +5595,92 @@ body.font-large .bio-body p {
 .footer-top {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 32px;
-  margin-bottom: 40px;
+  gap: 28px;
+  margin-bottom: 36px;
+  align-items: start;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 600px) and (max-width: 991px) {
   .footer-top {
-    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    align-items: start;
   }
+  .footer-logo-col {
+    justify-content: flex-start;
+  }
+}
+
+@media (min-width: 992px) {
+  .footer-top {
+    grid-template-columns: 1.35fr 0.95fr 1fr 1.05fr;
+    gap: 36px;
+    align-items: start;
+  }
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
 }
 
 .f-badge {
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 0.68rem;
   color: var(--red-primary);
-  letter-spacing: 0.14em;
-  font-weight: 700;
+  letter-spacing: 0.16em;
+  font-weight: 800;
   text-transform: uppercase;
+  margin-bottom: 4px;
 }
 
 .f-title {
   font-family: var(--font-headline);
-  font-size: 1.35rem;
+  font-size: 1.45rem;
   color: var(--text-primary);
-  margin: 4px 0 10px;
+  margin: 2px 0 8px;
+  font-weight: 700;
+  line-height: 1.25;
 }
 
 .f-desc {
   font-family: var(--font-serif);
-  font-size: 0.92rem;
-  color: var(--text-muted);
-  line-height: 1.65;
-  max-width: 440px;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin: 0;
+  max-width: 320px;
+}
+
+.footer-logo-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  padding: 4px 0;
+}
+
+.footer-usta-seal-img {
+  max-width: 155px;
+  height: auto;
+  display: block;
+  mix-blend-mode: multiply;
+  filter: drop-shadow(0 2px 6px rgba(45, 30, 15, 0.15));
+  transition: transform 0.25s ease;
+}
+
+.footer-usta-seal-img:hover {
+  transform: scale(1.04);
 }
 
 .f-col-title {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.76rem;
   color: var(--text-primary);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 14px;
+  letter-spacing: 0.12em;
+  font-weight: 800;
+  margin: 0 0 14px;
 }
 
 .f-nav-links {
@@ -5643,37 +5688,23 @@ body.font-large .bio-body p {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  padding: 0;
+  margin: 0;
 }
 
 .f-nav-links a {
   color: var(--text-secondary);
   text-decoration: none;
   font-family: var(--font-sans);
-  font-size: 0.85rem;
-  transition: color 0.2s ease;
+  font-size: 0.84rem;
+  transition: color 0.2s ease, transform 0.15s ease;
+  display: inline-block;
 }
 
 .f-nav-links a:hover {
   color: var(--red-primary);
   text-decoration: underline;
-}
-
-/* Logo 2 USTA en Columna de Marca del Footer */
-.footer-usta-seal-wrap {
-  margin-top: 18px;
-  display: inline-block;
-}
-
-.footer-usta-seal-img {
-  max-width: 175px;
-  height: auto;
-  display: block;
-  filter: drop-shadow(0 2px 8px rgba(45, 30, 15, 0.22));
-  transition: transform 0.25s ease;
-}
-
-.footer-usta-seal-img:hover {
-  transform: scale(1.04);
+  transform: translateX(2px);
 }
 
 .footer-bottom {
