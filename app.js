@@ -943,6 +943,7 @@ function initMemorialSanctuary() {
   const btnLight = document.getElementById('btn-light-candle');
   const counterEl = document.getElementById('candle-counter');
   const flameEl = document.getElementById('candle-flame');
+  const formWrap = document.getElementById('dedication-form-wrap');
   const form = document.getElementById('form-memorial-dedication');
   const inputText = document.getElementById('dedication-input-text');
   const inputAuthor = document.getElementById('dedication-input-author');
@@ -970,6 +971,17 @@ function initMemorialSanctuary() {
   updateCounter();
 
   function updateCandleUI(isLit, animate = false) {
+    // El formulario de dedicatorias solo se despliega cuando la vela está encendida
+    if (formWrap) {
+      if (isLit) {
+        formWrap.classList.add('is-unlocked');
+        formWrap.removeAttribute('aria-hidden');
+      } else {
+        formWrap.classList.remove('is-unlocked');
+        formWrap.setAttribute('aria-hidden', 'true');
+      }
+    }
+
     if (isLit) {
       btnLight.classList.add('lit');
       btnLight.disabled = false;
@@ -998,7 +1010,7 @@ function initMemorialSanctuary() {
     updateCounter();
   }
 
-  // Inicializar estado UI de la vela
+  // Inicializar estado UI de la vela y del formulario
   updateCandleUI(userHasLit, false);
 
   // Función interactiva de conmutación (Permite encender y apagar cuantas veces desee)
@@ -1013,7 +1025,9 @@ function initMemorialSanctuary() {
         window.triggerEmberBurst(rect.left + rect.width / 2, rect.top, 35);
       }
       showToast('Has encendido una luz en homenaje a Ana Elvia Cortés y Jairo H. López');
-      inputText?.focus();
+      setTimeout(() => {
+        inputText?.focus();
+      }, 350);
     } else {
       showToast('Has apagado la llama. Puedes volver a encenderla en cualquier momento.');
     }
@@ -1104,6 +1118,10 @@ function initMemorialSanctuary() {
   if (form && inputText) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
+      if (!userHasLit) {
+        showToast('Debes encender la vela de memoria antes de escribir tu dedicatoria');
+        return;
+      }
       const text = inputText.value.trim();
       if (!text || text.length < 5) {
         showToast('Por favor escribe un mensaje de al menos 5 caracteres');
