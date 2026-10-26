@@ -1893,24 +1893,52 @@ body.font-large .bio-body p {
 }
 
 /* Contenedor del Esquema Forense sobre Papel de Archivo */
+.forensic-dual-layout {
+  display: grid;
+  grid-template-columns: 1.08fr 0.92fr;
+  gap: 22px;
+  align-items: start;
+  margin-top: 14px;
+}
+
+@media (max-width: 991px) {
+  .forensic-dual-layout {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}
+
+.forensic-schematic-col {
+  width: 100%;
+}
+
+.forensic-info-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
 .schematic-interactive-wrap {
   position: relative;
   background: linear-gradient(160deg, #fdfbf6 0%, #f4ede1 100%);
   border-radius: var(--r-sm);
-  padding: 20px;
+  padding: 16px;
   border: 2px solid rgba(145, 120, 90, 0.45);
-  margin-bottom: 20px;
+  margin-bottom: 0;
   box-shadow: 0 8px 24px rgba(44, 34, 25, 0.08), inset 0 0 50px rgba(215, 195, 165, 0.18);
-  max-width: 820px;
-  margin-left: auto;
-  margin-right: auto;
+  width: 100%;
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  overflow: hidden;
 }
 
 .schematic-top-meta {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   font-family: var(--font-mono);
   font-size: 0.72rem;
   color: #5c4e40;
@@ -1947,7 +1975,7 @@ body.font-large .bio-body p {
 .forensic-svg {
   width: 100%;
   height: auto;
-  max-height: 580px;
+  max-height: 500px;
   display: block;
   overflow: visible;
   border-radius: 8px;
@@ -1960,9 +1988,21 @@ body.font-large .bio-body p {
   }
 }
 
+#schematic-device-assembly {
+  transform-origin: 370px 400px;
+  transition: transform 0.65s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform;
+}
+
+/* Enfoque focal en componente activo y atenuación de elementos secundarios */
+#collar-diagram.is-focused .diagram-interactive-part:not(.active) {
+  opacity: 0.38;
+  filter: grayscale(45%);
+}
+
 .diagram-interactive-part {
   cursor: pointer;
-  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s ease;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s ease, opacity 0.45s ease;
   outline: none;
 }
 
@@ -1988,33 +2028,38 @@ body.font-large .bio-body p {
 #part-candado.active, #part-candado:hover { filter: drop-shadow(0 2px 10px rgba(82, 54, 92, 0.5)); }
 
 .forensic-parts-nav {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 16px;
-  max-width: 820px;
-  margin-left: auto;
-  margin-right: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-bottom: 0;
+  width: 100%;
+}
+
+@media (max-width: 520px) {
+  .forensic-parts-nav {
+    grid-template-columns: 1fr;
+  }
 }
 
 .part-btn {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 8px 18px;
-  border-radius: 999px;
-  background: linear-gradient(180deg, #f2e5d2 0%, #e3d2ba 100%);
+  justify-content: flex-start;
+  padding: 9px 13px;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #f7ede0 0%, #ecdcc7 100%);
   border: 1px solid rgba(120, 85, 45, 0.35);
   color: #382718;
-  font-size: 0.82rem;
+  font-size: 0.81rem;
   font-family: var(--font-sans);
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.24s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: all 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
   box-shadow: 0 2px 4px rgba(50, 35, 15, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.7);
   user-select: none;
-  text-align: center;
+  text-align: left;
+  line-height: 1.35;
+  width: 100%;
 }
 
 .part-btn:hover {
@@ -2022,7 +2067,7 @@ body.font-large .bio-body p {
   color: #171008;
   border-color: rgba(140, 95, 40, 0.6);
   transform: translateY(-2px);
-  box-shadow: 0 5px 12px rgba(60, 40, 15, 0.15);
+  box-shadow: 0 4px 10px rgba(60, 40, 15, 0.14);
 }
 
 .part-btn.active,
@@ -2034,34 +2079,38 @@ body.font-large .bio-body p {
   border-color: #120c07;
   color: #faf4e8;
   font-weight: 700;
-  box-shadow: 0 4px 14px rgba(35, 22, 12, 0.32);
+  box-shadow: 0 4px 12px rgba(35, 22, 12, 0.28);
   transform: translateY(-1px);
 }
 
 .forensic-detail-box {
-  padding: 16px;
+  padding: 18px 20px;
   background: var(--bg-elevated);
   border-radius: var(--r-sm);
-  border-left: 3px solid var(--red-primary);
+  border-left: 4px solid var(--red-primary);
   border-top: 1px solid var(--border-subtle);
   border-right: 1px solid var(--border-subtle);
   border-bottom: 1px solid var(--border-subtle);
-  margin-bottom: 16px;
-  max-width: 820px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-bottom: 0;
+  width: 100%;
+  min-height: 165px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: border-color 0.3s ease;
+  box-shadow: 0 4px 14px rgba(30, 20, 10, 0.04);
 }
 
 .forensic-detail-box h5 {
   font-family: var(--font-headline);
-  font-size: 1.08rem;
+  font-size: 1.05rem;
   color: var(--text-primary);
   margin-bottom: 8px;
 }
 
 .forensic-detail-box p {
-  font-size: 0.92rem;
-  line-height: 1.65;
+  font-size: 0.90rem;
+  line-height: 1.62;
   color: var(--text-secondary);
   margin-bottom: 8px;
 }
@@ -2077,16 +2126,15 @@ body.font-large .bio-body p {
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  padding: 12px 14px;
+  padding: 11px 13px;
   background: var(--bg-card);
   border-radius: var(--r-sm);
   border: 1px dashed var(--border-card);
-  font-size: 0.78rem;
+  font-size: 0.77rem;
   color: var(--text-muted);
-  line-height: 1.5;
-  max-width: 820px;
-  margin-left: auto;
-  margin-right: auto;
+  line-height: 1.48;
+  width: 100%;
+  margin-bottom: 0;
 }
 
 .forensic-disclaimer-card svg {

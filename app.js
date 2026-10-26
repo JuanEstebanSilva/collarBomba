@@ -801,10 +801,20 @@ function initForensicSchematic() {
   const btnAssembled = document.getElementById('btn-schematic-assembled');
   const btnExploded = document.getElementById('btn-schematic-exploded');
   const svgDiagram = document.getElementById('collar-diagram');
+  const assemblyGroup = document.getElementById('schematic-device-assembly');
   const partBtns = document.querySelectorAll('.forensic-parts-nav .part-btn');
   const svgParts = document.querySelectorAll('.diagram-interactive-part');
   const titleEl = document.getElementById('detail-title');
   const textEl = document.getElementById('detail-text');
+
+  let restoreFocusTimer = null;
+
+  const FOCUS_COORDS = {
+    explosivo: { x: 370, y: 190, scale: 1.25 },
+    temporizador: { x: 550, y: 400, scale: 1.25 },
+    trampa: { x: 370, y: 600, scale: 1.25 },
+    candado: { x: 190, y: 400, scale: 1.25 }
+  };
 
   const PART_DETAILS = {
     explosivo: {
@@ -829,9 +839,41 @@ function initForensicSchematic() {
     }
   };
 
+  function resetFocus() {
+    if (assemblyGroup) {
+      assemblyGroup.style.transformOrigin = '370px 400px';
+      assemblyGroup.style.transform = 'scale(1)';
+    }
+    svgDiagram?.classList.remove('is-focused');
+    if (restoreFocusTimer) {
+      clearTimeout(restoreFocusTimer);
+      restoreFocusTimer = null;
+    }
+  }
+
+  function applyFocus(partKey) {
+    if (restoreFocusTimer) {
+      clearTimeout(restoreFocusTimer);
+      restoreFocusTimer = null;
+    }
+
+    const target = FOCUS_COORDS[partKey];
+    if (target && assemblyGroup) {
+      assemblyGroup.style.transformOrigin = `${target.x}px ${target.y}px`;
+      assemblyGroup.style.transform = `scale(${target.scale})`;
+      svgDiagram?.classList.add('is-focused');
+
+      // Restaurar automáticamente la vista general tras cinco segundos sin interacción
+      restoreFocusTimer = setTimeout(() => {
+        resetFocus();
+      }, 5000);
+    }
+  }
+
   // Toggle de vistas
   if (btnExploded) {
     btnExploded.addEventListener('click', () => {
+      resetFocus();
       svgDiagram?.classList.add('exploded');
       btnExploded.classList.add('active');
       btnExploded.setAttribute('aria-pressed', 'true');
@@ -842,6 +884,7 @@ function initForensicSchematic() {
 
   if (btnAssembled) {
     btnAssembled.addEventListener('click', () => {
+      resetFocus();
       svgDiagram?.classList.remove('exploded');
       btnAssembled.classList.add('active');
       btnAssembled.setAttribute('aria-pressed', 'true');
@@ -850,7 +893,7 @@ function initForensicSchematic() {
     });
   }
 
-  function highlightPart(partKey) {
+  function highlightPart(partKey, userTriggered = false) {
     const detail = PART_DETAILS[partKey];
     if (!detail) return;
 
@@ -895,24 +938,36 @@ function initForensicSchematic() {
         textEl.style.opacity = '1';
       }, 120);
     }
+
+    // Efecto de enfoque temporal solo si fue accionado por el usuario
+    if (userTriggered) {
+      applyFocus(partKey);
+    }
   }
 
   partBtns.forEach(btn => {
-    btn.addEventListener('click', () => highlightPart(btn.getAttribute('data-part')));
+    btn.addEventListener('click', () => {
+      const partKey = btn.getAttribute('data-part');
+      highlightPart(partKey, true);
+    });
   });
 
   svgParts.forEach(svg => {
-    svg.addEventListener('click', () => highlightPart(svg.getAttribute('data-part')));
+    svg.addEventListener('click', () => {
+      const partKey = svg.getAttribute('data-part');
+      highlightPart(partKey, true);
+    });
     svg.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        highlightPart(svg.getAttribute('data-part'));
+        const partKey = svg.getAttribute('data-part');
+        highlightPart(partKey, true);
       }
     });
   });
 
-  // Selección por defecto
-  highlightPart('explosivo');
+  // Selección por defecto (vista general sin zoom inicial forzado)
+  highlightPart('explosivo', false);
 }
 
 /* ========================================================================
