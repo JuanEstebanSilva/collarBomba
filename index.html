@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=20261025_08">
 
   <!-- Leaflet.js — Mapa interactivo con tiles reales -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
@@ -1125,9 +1125,21 @@
 
           <!-- MURO INTERACTIVO DE PENSAMIENTOS (PERSISTENTE EN LOCALSTORAGE) -->
           <div class="tribute-wall-box">
-            <h4 class="tribute-wall-title">Cuaderno de Pensamientos y Respeto</h4>
-            <div class="tribute-cards-masonry" id="tribute-cards-stream" aria-live="polite">
-              <!-- Se hidratará automáticamente desde localStorage y pensamientos base -->
+            <div class="tribute-wall-header" id="tribute-wall-header" role="button" tabindex="0" aria-expanded="false" aria-controls="tribute-cards-wrapper" title="Clic para desplegar u ocultar los pensamientos">
+              <div class="tribute-title-group">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" class="tribute-header-icon" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                <h4 class="tribute-wall-title">Cuaderno de Pensamientos y Respeto</h4>
+              </div>
+              <button id="btn-toggle-tributes" class="btn-toggle-tributes" type="button" aria-expanded="false" aria-controls="tribute-cards-wrapper">
+                <span id="toggle-tributes-text">Ver pensamientos</span>
+                <span class="toggle-tributes-count" id="toggle-tributes-count">3</span>
+                <svg class="toggle-tributes-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+            </div>
+            <div class="tribute-collapsible-wrapper is-collapsed" id="tribute-cards-wrapper">
+              <div class="tribute-cards-masonry" id="tribute-cards-stream" aria-live="polite">
+                <!-- Se hidratará automáticamente desde localStorage y pensamientos base -->
+              </div>
             </div>
           </div>
         </div>
@@ -1154,91 +1166,144 @@
         <!-- WIDGET WOW: COMPARADOR DESLIZANTE ANTES/DESPUÉS (FICCIÓN PVC-1 VS REALIDAD) -->
         <div class="pvc1-investigation-card modern-card">
           <div class="pvc1-badge-row">
-            <span class="badge-debunk">CASO DE VERIFICACIÓN VISUAL FORENSE</span>
-            <span class="badge-source">AFP Factual · ColombiaCheck · La Silla Vacía</span>
+            <span class="badge-debunk">VERIFICACIÓN VISUAL DOCUMENTAL</span>
+            <span class="badge-source">Expediente CSJ · AFP Factual · ColombiaCheck · La Silla Vacía</span>
           </div>
 
           <div class="pvc1-grid">
             <div class="pvc1-text-col">
-              <h3 class="pvc1-title">La Foto Viral de la Película <em>PVC-1</em> vs. La Realidad</h3>
+              <h3 class="pvc1-title">La Foto Viral de la Película <em>PVC-1</em> frente a la Realidad Histórica</h3>
               <p>
-                Durante años circuló en redes sociales una fotografía de una mujer con el artefacto adherido afirmando engañosamente que era el registro auténtico de doña Ana Elvia Cortés antes de morir.
+                Durante años circuló en redes sociales y medios digitales la captura fotográfica de una mujer en plano dramático afirmando de forma engañosa que se trataba del registro auténtico de doña Ana Elvia Cortés antes de morir.
               </p>
               <div class="factcheck-box-alert">
-                <strong>Desmentido oficial de los verificadores:</strong>
+                <strong>Dictamen pericial y periodístico:</strong>
                 <p>
-                  Agencias internacionales (<strong>AFP Factual</strong>) y verificadores colombianos demostraron que la imagen corresponde a la actriz <strong>Mérida Urquía</strong> en una escena de la película de ficción <em>PVC-1</em> (2007) <span class="citation">(AFP Factual, 2026; Proimágenes Colombia, 2007)</span>.
+                  Chequeadores internacionales y la verificación documental certificaron que la foto viral corresponde en realidad a la actriz <strong>Mérida Urquía</strong> en una escena de utilería de la película de ficción <em>PVC-1</em> (2007, Spiros Stathoulopoulos) <span class="citation">(AFP Factual, 2026; Proimágenes Colombia, 2007)</span>.
                 </p>
               </div>
               <p class="caption-debunk-lead">
-                <strong>Lección ética:</strong> Las obras cinematográficas no deben difundirse como pruebas documentales de una tragedia real.
+                <strong>Rigor documental:</strong> El material de ficción cinematográfica no debe sustituir la memoria jurídica de las víctimas ni presentarse como prueba histórica de los hechos reales.
               </p>
-
-              <!-- Controles del Slider Comparador -->
-              <div class="slider-control-buttons" role="group" aria-label="Controles de comparación visual">
-                <button class="btn-slider-mode active" id="btn-show-comparison">Deslizador Interactivo</button>
-                <button class="btn-slider-mode" id="btn-show-fiction">Ver Ficción (100%)</button>
-                <button class="btn-slider-mode" id="btn-show-debunk">Ver Desmentido (100%)</button>
-              </div>
             </div>
 
             <!-- COMPARADOR VISUAL DESLIZANTE INTERACTIVO -->
             <div class="pvc1-visual-col">
-              <div class="split-slider-container" id="pvc1-slider-container">
-                <!-- Capa 1: Ficción (Fondo) — Fotograma de la película PVC-1 (2007) -->
+              <div class="split-slider-container" id="pvc1-slider-container" style="--slider-pct: 50%;">
+                <!-- Capa 1: Ficción (Fondo) — Fotograma cinematográfico de la actriz Mérida Urquía en PVC-1 (2007) -->
                 <div class="slider-layer-under">
-                  <img src="images/pvc1-captura-pelicula.jpg" alt="Fotograma de ficción con actriz Mérida Urquía en PVC-1 (2007)" class="slider-img">
-                  <div class="slider-label-under">FOTOGRAMA DE FICCIÓN — PVC-1 (película, 2007)</div>
+                  <img src="images/pvc1-actriz-primer-plano.jpg" alt="Fotograma de ficción: Mérida Urquía caracterizada con utilería en PVC-1 (2007)" class="slider-img" loading="eager" onerror="if(!this.dataset.tried){this.dataset.tried=1; this.src='images/pvc1-captura-pelicula.jpg';}">
+                  <span class="slider-tag-badge slider-tag-fiction">Ficción (PVC-1, 2007)</span>
                 </div>
 
-                <!-- Capa 2: Realidad / Desmentido (Capa Superior Recortada) -->
-                <div class="slider-layer-over" id="slider-layer-over" style="width: 50%;">
-                  <img src="images/ana-elvia-collar-real-2000.jpg" alt="Fotografía histórica auténtica en color — doña Ana Elvia Cortés con el artefacto colocado (Simijaca, 15 de mayo de 2000)" class="slider-img">
-                  <div class="slider-label-over">FOTOGRAFÍA AUTÉNTICA — 15 de mayo de 2000</div>
-                  <div class="debunk-watermark-stamp">
-                    <span class="stamp-title">REGISTRO REAL DEL CRIMEN</span>
-                    <span class="stamp-sub">Foto original de doña Ana Elvia Cortés · Simijaca, mayo 2000</span>
-                  </div>
+                <!-- Capa 2: Realidad Documental Auténtica (Capa Superior Recortada mediante clip-path) -->
+                <div class="slider-layer-over" id="slider-layer-over">
+                  <img src="images/ana-elvia-collar-real-2000.jpg" alt="Fotografía histórica auténtica: doña Ana Elvia Cortés en Simijaca, 15 de mayo de 2000" class="slider-img" loading="eager" onerror="if(!this.dataset.tried){this.dataset.tried=1; this.src='images/ana-elvia-collar-real.jpg';}">
+                  <span class="slider-tag-badge slider-tag-real">Realidad (Simijaca, 2000)</span>
                 </div>
 
                 <!-- Barra Deslizadora Táctil / Teclado -->
-                <div class="slider-handle" id="slider-handle" style="left: 50%;" tabindex="0" role="slider" aria-label="Deslizador de comparación entre ficción y realidad documental" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                <div class="slider-handle" id="slider-handle" tabindex="0" role="slider" aria-label="Deslizador de comparación entre ficción y realidad documental" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
                   <div class="handle-line"></div>
-                  <div class="handle-knob">
+                  <div class="handle-knob" title="Arrastra para contrastar la realidad frente a la ficción">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
                   </div>
                 </div>
               </div>
-              <p class="slider-hint-text">Arrastra el control para contrastar la ficción cinematográfica (der.) con la fotografía documental auténtica (izq.).</p>
+              <p class="slider-hint-text"><strong>Comparación forense interactiva:</strong> Arrastra la barra central para contrastar la fotografía documental real de doña Ana Elvia Cortés (izq., Simijaca, mayo 2000) con la recreación cinematográfica de utilería de Mérida Urquía en <em>PVC-1</em> (der., 2007).</p>
             </div>
           </div>
 
-          <!-- Galería Documental del Caso de la Película PVC-1 -->
+          <!-- Archivo Cinematográfico de PVC-1 -->
           <div class="pvc1-film-archive-row">
-            <h4 class="film-archive-title">Archivo Cinematográfico de <em>PVC-1</em> (Spiros Stathoulopoulos, 2007)</h4>
-            <p class="film-archive-sub">Fotogramas oficiales y material gráfico que confirman que la imagen viral era parte de un largometraje de ficción:</p>
-            <div class="film-archive-grid">
-              <figure class="film-archive-item" data-caption="Póster oficial de la película PVC-1 premiada en la Quincena de Realizadores del Festival de Cannes 2007.">
-                <img src="images/pvc1-afiche-cannes-2007.jpg" alt="Póster oficial de la película PVC-1 en Cannes 2007" loading="lazy">
-                <figcaption><strong>Afiche Cannes 2007:</strong> Selección oficial Quincena de Realizadores.</figcaption>
-              </figure>
-              <figure class="film-archive-item" data-caption="Mérida Urquía interpretando a la víctima en PVC-1 de perfil junto a extras vestidos de soldados.">
-                <img src="images/pvc1-merida-perfil-soldados.jpg" alt="Actriz Mérida Urquía en escena de la película PVC-1" loading="lazy">
-                <figcaption><strong>Escena con actores:</strong> Mérida Urquía con el collar de utilería.</figcaption>
-              </figure>
-              <figure class="film-archive-item" data-caption="Fotograma del actor personificando al técnico antiexplosivos interviniendo el dispositivo en el filme.">
-                <img src="images/pvc1-desactivador-actor-escena.jpg" alt="Escena de la intervención técnica en la película PVC-1" loading="lazy">
-                <figcaption><strong>Recreación dramática:</strong> Actor en el papel de técnico antiexplosivos.</figcaption>
-              </figure>
-              <figure class="film-archive-item" data-caption="Fotograma del dolor familiar dramatizado en la película PVC-1.">
-                <img src="images/pvc1-escena-familia-llanto.jpg" alt="Escena del drama familiar en la película PVC-1" loading="lazy">
-                <figcaption><strong>Ficción cinematográfica:</strong> Recreación en plano secuencia de 85 minutos.</figcaption>
-              </figure>
-              <figure class="film-archive-item" data-caption="Primer plano de la actriz Mérida Urquía caracterizada con el artefacto de utilería en PVC-1.">
-                <img src="images/pvc1-actriz-primer-plano.jpg" alt="Primer plano de la actriz Mérida Urquía en PVC-1" loading="lazy">
-                <figcaption><strong>Actuación profesional:</strong> Mérida Urquía en el rodaje de PVC-1.</figcaption>
-              </figure>
+            <div class="film-archive-header">
+              <span class="film-archive-tag">REGISTRO CINEMATOGRÁFICO DE FICCIÓN</span>
+              <h4 class="film-archive-title">Archivo Cinematográfico de <em>PVC-1</em> (Spiros Stathoulopoulos, 2007)</h4>
+              <p class="film-archive-sub">
+                Material gráfico oficial que certifica el origen del largometraje dramático estrenado en la Quincena de Realizadores del <strong>Festival de Cannes 2007</strong>:
+              </p>
+            </div>
+
+            <div class="pvc1-cinematic-showcase">
+              <!-- PORTADA DESTACADA (IZQUIERDA) -->
+              <div class="pvc1-poster-feature-card curated-thumb" data-caption="Póster oficial del largometraje de ficción PVC-1 (Spiros Stathoulopoulos, 2007) estrenado en la Quincena de Realizadores del Festival de Cannes.">
+                <div class="poster-frame">
+                  <img src="images/pvc1-afiche-cannes-2007.jpg" alt="Afiche oficial de la película PVC-1 en Cannes 2007" class="poster-featured-img" onerror="if(!this.dataset.tried){this.dataset.tried=1; this.src='images/pvc1-portada.jpg';}">
+                  <div class="poster-laurel-badge">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <span>CANNES 2007</span>
+                  </div>
+                  <div class="poster-zoom-hint" title="Clic para ampliar póster en HD">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                  </div>
+                </div>
+                <div class="poster-meta-content">
+                  <h5 class="poster-film-title">Afiche Oficial: <em>PVC-1</em></h5>
+                  <p class="poster-film-spec">
+                    <strong>Dirección:</strong> Spiros Stathoulopoulos<br>
+                    <strong>Protagonista:</strong> Mérida Urquía<br>
+                    <strong>Formato:</strong> Plano secuencia continuo (85 min)<br>
+                    <strong>Estreno:</strong> Quinzaine des Réalisateurs, Cannes 2007
+                  </p>
+                  <span class="poster-verified-chip">Largometraje de ficción</span>
+                </div>
+              </div>
+
+              <!-- 4 ESCENAS DEL LARGOMETRAJE (DERECHA EN CUADRÍCULA 2x2 EN RATIO 16:9) -->
+              <div class="pvc1-scenes-grid">
+                <figure class="film-scene-item curated-thumb" data-caption="Primer plano de la actriz Mérida Urquía con el collar curvo de utilería de fontanería en el filme PVC-1.">
+                  <div class="scene-img-wrap">
+                    <img src="images/pvc1-actriz-primer-plano.jpg" alt="Primer plano de la actriz Mérida Urquía en PVC-1" loading="lazy" onerror="if(!this.dataset.tried){this.dataset.tried=1; this.src='images/pvc1-captura-pelicula.jpg';}">
+                    <div class="scene-zoom-icon" title="Ampliar fotograma">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                    </div>
+                  </div>
+                  <figcaption>
+                    <span class="scene-num">Escena 1 · Utilería</span>
+                    <strong>Caracterización dramática:</strong> Mérida Urquía con collar de fontanería curvo de utilería teatral.
+                  </figcaption>
+                </figure>
+
+                <figure class="film-scene-item curated-thumb" data-caption="Actor personificando al desactivador policial en la dramatización de PVC-1.">
+                  <div class="scene-img-wrap">
+                    <img src="images/pvc1-desactivador-actor-escena.jpg" alt="Actor interpretando al técnico antiexplosivos en PVC-1" loading="lazy">
+                    <div class="scene-zoom-icon" title="Ampliar fotograma">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                    </div>
+                  </div>
+                  <figcaption>
+                    <span class="scene-num">Escena 2 · Elenco</span>
+                    <strong>Técnico de ficción:</strong> Recreación actoral ficticia de las maniobras de auxilio técnico en locación rural.
+                  </figcaption>
+                </figure>
+
+                <figure class="film-scene-item curated-thumb" data-caption="Dramatización del traslado en camión filmada en un único plano secuencia de 85 minutos.">
+                  <div class="scene-img-wrap">
+                    <img src="images/pvc1-escena-familia-llanto.jpg" alt="Escena de la familia en la película PVC-1" loading="lazy">
+                    <div class="scene-zoom-icon" title="Ampliar fotograma">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                    </div>
+                  </div>
+                  <figcaption>
+                    <span class="scene-num">Escena 3 · Rodaje</span>
+                    <strong>Dramatización familiar:</strong> Plano secuencia continuo de 85 minutos rodado en carreteras de Cundinamarca.
+                  </figcaption>
+                </figure>
+
+                <figure class="film-scene-item curated-thumb" data-caption="Mérida Urquía de perfil junto a extras caracterizados como miembros de la fuerza pública.">
+                  <div class="scene-img-wrap">
+                    <img src="images/pvc1-merida-perfil-soldados.jpg" alt="Mérida Urquía de perfil con extras en el set de PVC-1" loading="lazy" onerror="if(!this.dataset.tried){this.dataset.tried=1; this.src='images/pvc1-captura-pelicula.jpg';}">
+                    <div class="scene-zoom-icon" title="Ampliar fotograma">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                    </div>
+                  </div>
+                  <figcaption>
+                    <span class="scene-num">Escena 4 · Set de Filmación</span>
+                    <strong>Figuración cinematográfica:</strong> La protagonista junto a actores secundarios en el rodaje de 2007.
+                  </figcaption>
+                </figure>
+              </div>
             </div>
           </div>
         </div>
@@ -2246,6 +2311,6 @@
     </div>
   </div>
 
-  <script src="app.js"></script>
+  <script src="app.js?v=20261025_08"></script>
 </body>
 </html>

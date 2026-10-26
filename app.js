@@ -352,7 +352,7 @@ const TIMELINE_DATA = [
     title: 'Fijación coactiva del artefacto explosivo cervical',
     desc: 'Los asaltantes aseguran un collar rectangular de tubos de PVC con carga de dinamita e indugel alrededor del cuello de Ana Elvia Cortés. Sellado con adhesivo para tubería y dotado de un temporizador de 24 horas y sensor de alivio trampa, sin candado mecánico, advierten que detonará si no pagan.',
     source: 'Archivo periodístico El Tiempo — «Collar de dinamita» (Juanita León, 2000)',
-    imgSrc: 'images/collar.jpg',
+    imgSrc: 'images/collar-sin-fondo.jpg',
     imgAlt: 'Reconstrucción forense del collar rectangular de tubos PVC y dinamita',
     caption: 'Morfología rectangular del collar de tubos PVC (sin candado)'
   },
@@ -588,7 +588,7 @@ function initSynchronizedTimelineAndMap() {
 
   // Calcula las coordenadas del mapa para que el CUERPO DEL TEXTO DEL POPUP
   // quede ubicado exactamente en el centro visual del contenedor del mapa
-  function getPopupCenterLatLng(wpLatLng, zoom, popupPixelOffsetY = 100) {
+  function getPopupCenterLatLng(wpLatLng, zoom, popupPixelOffsetY = 65) {
     if (!leafletMap) return wpLatLng;
     const pt = leafletMap.project(wpLatLng, zoom);
     // En el plano de píxeles, restar a Y traslada el centro hacia el norte,
@@ -615,7 +615,7 @@ function initSynchronizedTimelineAndMap() {
       const wp = LEAFLET_WAYPOINTS[key];
       if (wp) {
         const targetZoom = (key === 'bogota') ? 10 : 11;
-        const targetCenter = getPopupCenterLatLng([wp.lat, wp.lng], targetZoom, 100);
+        const targetCenter = getPopupCenterLatLng([wp.lat, wp.lng], targetZoom, 65);
 
         leafletMap.flyTo(targetCenter, targetZoom, {
           duration: 0.75,
@@ -1019,6 +1019,44 @@ function initMemorialSanctuary() {
     flameEl.addEventListener('click', toggleCandle);
   }
 
+  // Desplegable del Cuaderno de Pensamientos
+  const btnToggleTributes = document.getElementById('btn-toggle-tributes');
+  const tributesWrapper = document.getElementById('tribute-cards-wrapper');
+  const toggleText = document.getElementById('toggle-tributes-text');
+  const toggleCount = document.getElementById('toggle-tributes-count');
+  const tributeHeader = document.getElementById('tribute-wall-header');
+
+  function updateTributesCount() {
+    const total = savedThoughts.length + BASE_MEMORIAL_THOUGHTS.length;
+    if (toggleCount) toggleCount.textContent = total.toString();
+  }
+
+  function setTributesOpen(isOpen) {
+    if (!tributesWrapper || !btnToggleTributes) return;
+    tributesWrapper.classList.toggle('is-open', isOpen);
+    tributesWrapper.classList.toggle('is-collapsed', !isOpen);
+    btnToggleTributes.setAttribute('aria-expanded', isOpen.toString());
+    if (tributeHeader) tributeHeader.setAttribute('aria-expanded', isOpen.toString());
+    if (toggleText) {
+      toggleText.textContent = isOpen ? 'Ocultar pensamientos' : 'Ver pensamientos';
+    }
+  }
+
+  if (btnToggleTributes) {
+    btnToggleTributes.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = tributesWrapper ? tributesWrapper.classList.contains('is-open') : false;
+      setTributesOpen(!isOpen);
+    });
+  }
+
+  if (tributeHeader) {
+    tributeHeader.addEventListener('click', () => {
+      const isOpen = tributesWrapper ? tributesWrapper.classList.contains('is-open') : false;
+      setTributesOpen(!isOpen);
+    });
+  }
+
   // Renderizar pensamientos combinados
   function renderAllThoughts() {
     stream.innerHTML = '';
@@ -1038,6 +1076,7 @@ function initMemorialSanctuary() {
       `;
       stream.appendChild(card);
     });
+    updateTributesCount();
   }
 
   renderAllThoughts();
@@ -1085,6 +1124,7 @@ function initMemorialSanctuary() {
 
       renderAllThoughts();
       updateCounter();
+      setTributesOpen(true);
 
       if (window.triggerEmberBurst) {
         const rect = form.getBoundingClientRect();
@@ -1133,43 +1173,42 @@ function initComparisonSlider() {
 
   function updateSlider(pct) {
     const clamped = Math.max(0, Math.min(100, pct));
-    layerOver.style.width = `${clamped}%`;
+    container.style.setProperty('--slider-pct', `${clamped}%`);
+    layerOver.style.clipPath = `inset(0 calc(100% - ${clamped}%) 0 0)`;
+    layerOver.style.webkitClipPath = `inset(0 calc(100% - ${clamped}%) 0 0)`;
     handle.style.left = `${clamped}%`;
     handle.setAttribute('aria-valuenow', Math.round(clamped).toString());
 
-    // Control dinámico de las etiquetas: cuando se revela un lado, la otra etiqueta desaparece
-    const labelUnder = container.querySelector('.slider-label-under');
-    const labelOver = container.querySelector('.slider-label-over');
-    if (labelUnder) {
-      const hideUnder = clamped >= 72;
-      labelUnder.style.opacity = hideUnder ? '0' : '1';
-      labelUnder.style.pointerEvents = hideUnder ? 'none' : 'auto';
-      labelUnder.style.transform = hideUnder ? 'translateX(12px)' : 'translateX(0)';
+    // Badges opacidades si el slider se acerca a los bordes
+    const tagReal = container.querySelector('.slider-tag-real');
+    const tagFiction = container.querySelector('.slider-tag-fiction');
+    if (tagReal) {
+      tagReal.style.opacity = clamped <= 10 ? '0' : '1';
     }
-    if (labelOver) {
-      const hideOver = clamped <= 28;
-      labelOver.style.opacity = hideOver ? '0' : '1';
-      labelOver.style.pointerEvents = hideOver ? 'none' : 'auto';
-      labelOver.style.transform = hideOver ? 'translateX(-12px)' : 'translateX(0)';
+    if (tagFiction) {
+      tagFiction.style.opacity = clamped >= 90 ? '0' : '1';
     }
+  }
+
+  // Inicializar al 50%
+  updateSlider(50);
+
+  function getPercentFromEvent(e) {
+    const rect = container.getBoundingClientRect();
+    const clientX = e.touches && e.touches.length > 0 ? e.touches[0].clientX : e.clientX;
+    const x = clientX - rect.left;
+    return (x / rect.width) * 100;
   }
 
   // Permitir clic directo en cualquier parte del contenedor para posicionar el deslizador
   container.addEventListener('click', (e) => {
     if (e.target.closest('.slider-handle') || e.target.closest('.btn-slider-mode')) return;
-    const rect = container.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const pct = (x / rect.width) * 100;
-    updateSlider(pct);
+    updateSlider(getPercentFromEvent(e));
   });
 
   function handleMove(e) {
     if (!isDragging) return;
-    const rect = container.getBoundingClientRect();
-    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-    const x = clientX - rect.left;
-    const pct = (x / rect.width) * 100;
-    updateSlider(pct);
+    updateSlider(getPercentFromEvent(e));
   }
 
   handle.addEventListener('mousedown', () => { isDragging = true; });
