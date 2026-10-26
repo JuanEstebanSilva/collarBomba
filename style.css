@@ -1119,7 +1119,6 @@ body.font-large .bio-body p {
 .reading-card p:first-of-type::first-letter,
 .geo-note-card p:first-of-type::first-letter,
 .mod3-context-box p:first-of-type::first-letter,
-.j-tab-pane > p:first-of-type::first-letter,
 .real-pvc-details-col > p:first-of-type::first-letter,
 .judicial-findings-lead::first-letter,
 .case-resolution-box p:first-of-type::first-letter,
@@ -1141,8 +1140,7 @@ body.font-large .bio-body p {
   .editorial-dropcap::first-letter,
   .step-main-desc::first-letter,
   .bio-body p:first-of-type::first-letter,
-  .accordion-body p:first-of-type::first-letter,
-  .j-tab-pane > p:first-of-type::first-letter {
+  .accordion-body p:first-of-type::first-letter {
     font-size: 2.7rem;
     line-height: 0.82;
     padding-right: 7px;
@@ -4500,17 +4498,6 @@ body.font-large .bio-body p {
   .pane-title {
     font-size: 1.48rem;
   }
-}
-
-.j-tab-pane .chronicle-drop-cap {
-  float: left;
-  font-family: var(--font-headline), Georgia, serif;
-  font-size: 2.9rem;
-  line-height: 0.82;
-  padding-right: 9px;
-  padding-top: 4px;
-  font-weight: 800;
-  color: #1a140e;
 }
 
 .j-tab-pane p {
