@@ -1322,14 +1322,22 @@ function initHemerotecaSearch() {
 }
 
 /* ========================================================================
-   14. MÓDULO 6: PESTAÑAS JUDICIALES ACCESIBLES
+   14. MÓDULO 6: PESTAÑAS JUDICIALES ACCESIBLES (CONMUTACIÓN DE PANELES)
    ======================================================================== */
 function initJudicialTabs() {
   const tabBtns = document.querySelectorAll('.judicial-tab-bar .j-tab-btn');
+  const tabPanes = document.querySelectorAll('.judicial-dossier-flow .j-tab-pane');
+
+  if (!tabBtns.length || !tabPanes.length) return;
 
   tabBtns.forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
+      const targetId = btn.getAttribute('data-tab');
+      const targetHref = btn.getAttribute('href') || `#dossier-${targetId}`;
+      const cleanTargetId = targetHref.replace('#', '');
+
+      // Actualizar estado de los botones de pestaña
       tabBtns.forEach(b => {
         b.classList.remove('active');
         b.setAttribute('aria-selected', 'false');
@@ -1337,11 +1345,23 @@ function initJudicialTabs() {
       btn.classList.add('active');
       btn.setAttribute('aria-selected', 'true');
 
-      const targetHref = btn.getAttribute('href');
-      if (targetHref && targetHref.startsWith('#')) {
-        const targetEl = document.querySelector(targetHref);
-        if (targetEl) {
-          targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Conmutar visibilidad: solo se muestra el panel activo en el mismo espacio
+      tabPanes.forEach(pane => {
+        if (pane.id === cleanTargetId) {
+          pane.classList.add('active');
+          pane.removeAttribute('hidden');
+        } else {
+          pane.classList.remove('active');
+          pane.setAttribute('hidden', '');
+        }
+      });
+
+      // Asegurar visibilidad suave del encabezado de la ficha
+      const tabsWrap = document.querySelector('.judicial-perspective-tabs');
+      if (tabsWrap) {
+        const rect = tabsWrap.getBoundingClientRect();
+        if (rect.top < 60 || rect.top > window.innerHeight / 2) {
+          tabsWrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       }
     });
