@@ -5334,89 +5334,71 @@ body.font-large .bio-body p {
 
 /* Portada Destacada Cannes */
 .pvc1-poster-feature-card {
-  background: #fbf7ef;
-  border: 1px solid rgba(135, 95, 45, 0.32);
+  background: #dec8a4;
+  background: linear-gradient(165deg, rgba(230, 212, 184, 0.95) 0%, rgba(218, 196, 162, 0.95) 100%);
+  border: 1px solid rgba(110, 75, 30, 0.35);
   border-radius: var(--r-sm);
   padding: 16px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  box-shadow: 0 4px 16px rgba(45, 30, 15, 0.09);
+  box-shadow: 0 4px 16px rgba(45, 30, 15, 0.12);
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-  cursor: zoom-in;
+  cursor: default;
 }
 
 .pvc1-poster-feature-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(135, 95, 45, 0.6);
-  box-shadow: 0 8px 24px rgba(45, 30, 15, 0.16);
+  transform: translateY(-2px);
+  border-color: rgba(110, 75, 30, 0.55);
+  box-shadow: 0 6px 20px rgba(45, 30, 15, 0.16);
 }
 
 .poster-frame {
   position: relative;
-  border-radius: 3px;
+  width: 100%;
+  aspect-ratio: 378 / 529;
+  border-radius: var(--r-sm);
   overflow: hidden;
-  background: #140e0a;
-  border: 1px solid rgba(135, 95, 45, 0.35);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-  aspect-ratio: 378/529;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: #ebd8be;
+  border: 1px solid rgba(110, 75, 30, 0.35);
+  box-shadow: 0 3px 12px rgba(45, 28, 10, 0.15);
 }
 
 .poster-featured-img {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.4s ease;
+  transition: transform 0.35s ease;
 }
 
 .pvc1-poster-feature-card:hover .poster-featured-img {
-  transform: scale(1.04);
+  transform: scale(1.02);
 }
 
 .poster-laurel-badge {
   position: absolute;
-  top: 8px;
-  right: 8px;
-  background: rgba(18, 14, 10, 0.90);
+  top: 10px;
+  right: 10px;
+  background: rgba(18, 14, 10, 0.88);
   color: #e5b95f;
   border: 1px solid rgba(229, 185, 95, 0.5);
-  padding: 3px 8px;
+  padding: 4px 10px;
   border-radius: 20px;
   font-family: var(--font-mono);
-  font-size: 0.64rem;
+  font-size: 0.66rem;
   font-weight: 800;
   letter-spacing: 0.08em;
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
   backdrop-filter: blur(4px);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
-}
-
-.poster-zoom-hint {
-  position: absolute;
-  bottom: 8px;
-  right: 8px;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: rgba(20, 14, 10, 0.85);
-  color: #f6eedc;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transform: scale(0.85);
-  transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.pvc1-poster-feature-card:hover .poster-zoom-hint {
-  opacity: 1;
-  transform: scale(1);
+  z-index: 2;
+  pointer-events: none;
 }
 
 .poster-meta-content {
