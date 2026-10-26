@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css?v=20261025_25">
+  <link rel="stylesheet" href="style.css?v=20261025_26">
 
   <!-- Leaflet.js — Mapa interactivo con tiles reales -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
@@ -1619,10 +1619,24 @@
                 </div>
               </div>
 
-              <a href="https://vlex.com.co/vid/providencia-corte-suprema-justicia-874010134" target="_blank" rel="noopener noreferrer" class="btn-inline-link">
-                <span>Consultar providencia judicial completa en vLex Colombia</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              </a>
+              <!-- Botón de consulta judicial a la providencia completa en vLex (Centrado y en rojo solemne) -->
+              <div class="vlex-cta-wrapper">
+                <a href="https://vlex.com.co/vid/providencia-corte-suprema-justicia-874010134" target="_blank" rel="noopener noreferrer" class="btn-judicial-vlex" id="btn-vlex-sentencia" title="Abrir y consultar la providencia judicial completa en vLex Colombia">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="vlex-icon-scale" aria-hidden="true" width="18" height="18">
+                    <path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/>
+                    <path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/>
+                    <path d="M7 21h10"/>
+                    <path d="M12 3v18"/>
+                    <path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/>
+                  </svg>
+                  <span>Consultar providencia judicial completa en vLex Colombia</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="vlex-icon-external" aria-hidden="true" width="16" height="16">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                    <polyline points="15 3 21 3 21 9"/>
+                    <line x1="10" y1="14" x2="21" y2="3"/>
+                  </svg>
+                </a>
+              </div>
             </article>
 
             <!-- Bloque 2: Cobertura de Prensa -->

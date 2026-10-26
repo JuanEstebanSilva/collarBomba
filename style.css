@@ -4625,27 +4625,95 @@ body.font-large .bio-body p {
   color: #1a140e;
 }
 
+/* Botón de Consulta Judicial a Providencia vLex (Centrado y en rojo/café solemne) */
+.vlex-cta-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 26px auto 10px;
+  text-align: center;
+}
+
+.btn-judicial-vlex,
 .btn-inline-link {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
+  justify-content: center;
+  gap: 12px;
+  padding: 13px 26px;
   border-radius: var(--r-sm);
-  background: var(--bg-surface);
-  border: 1px solid var(--blue-primary);
-  color: var(--blue-primary);
+  background: linear-gradient(135deg, #7c1a1a 0%, #5a1111 50%, #420a0a 100%);
+  border: 1px solid #480909;
+  color: #fcf8ee;
   font-family: var(--font-headline);
-  font-size: 0.82rem;
+  font-size: 0.86rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   text-decoration: none;
-  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(74, 13, 13, 0.28), 
+              inset 0 1px 0 rgba(255, 255, 255, 0.15),
+              inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  max-width: 100%;
 }
 
+.btn-judicial-vlex::before,
+.btn-inline-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.65s ease;
+  pointer-events: none;
+}
+
+.btn-judicial-vlex:hover,
 .btn-inline-link:hover {
-  background: var(--blue-primary);
-  color: #fff;
+  background: linear-gradient(135deg, #962222 0%, #6e1616 50%, #4f0e0e 100%);
+  border-color: #631010;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(94, 17, 17, 0.42), 
+              inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.btn-judicial-vlex:hover::before,
+.btn-inline-link:hover::before {
+  left: 140%;
+}
+
+.btn-judicial-vlex:active,
+.btn-inline-link:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(74, 13, 13, 0.3);
+}
+
+.btn-judicial-vlex svg,
+.btn-inline-link svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: #f7d999;
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.btn-judicial-vlex:hover svg,
+.btn-inline-link:hover svg {
+  color: #ffffff;
+}
+
+.btn-judicial-vlex:hover .vlex-icon-external,
+.btn-inline-link:hover .vlex-icon-external {
+  transform: translate(2px, -2px);
 }
 
 /* =====================================================================
