@@ -3255,19 +3255,35 @@ body.font-large .bio-body p {
 
 /* Santuario Virtual de Memoria */
 .memorial-sanctuary-wrap {
-  padding: 28px 24px;
-  background: rgba(246, 238, 222, 0.7);
-  border: 1px solid rgba(135, 95, 45, 0.22);
-  border-top: 3px solid var(--gold-primary);
+  padding: 30px 26px;
+  background: #dec8a4;
+  background: linear-gradient(165deg, rgba(230, 212, 184, 0.95) 0%, rgba(218, 196, 162, 0.95) 100%);
+  border: 1px solid rgba(110, 75, 30, 0.38);
+  border-top: 4px solid var(--gold-bright);
   border-radius: var(--r-sm);
-  box-shadow: 0 4px 18px rgba(50, 35, 15, 0.06);
+  box-shadow: 0 6px 22px rgba(45, 28, 10, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.memorial-sanctuary-wrap:hover {
+  border-color: rgba(110, 75, 30, 0.55);
 }
 
 .sanctuary-header {
   display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.sanctuary-header-top {
+  display: flex;
   align-items: center;
-  gap: 24px;
-  margin-bottom: 28px;
+  gap: 22px;
+}
+
+.sanctuary-title-block {
+  flex: 1;
 }
 
 .candle-visual {
@@ -3449,10 +3465,24 @@ body.font-large .bio-body p {
 
 .candle-sub {
   font-family: var(--font-serif);
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   color: var(--text-secondary);
-  line-height: 1.65;
-  max-width: 650px;
+  line-height: 1.82;
+  max-width: 100%;
+  width: 100%;
+  text-align: justify;
+  margin: 0;
+}
+
+.candle-sub .chronicle-drop-cap {
+  float: left;
+  font-family: var(--font-headline), Georgia, serif;
+  font-size: 3.1rem;
+  line-height: 0.8;
+  padding-right: 10px;
+  padding-top: 4px;
+  font-weight: 800;
+  color: #1a140e;
 }
 
 .sanctuary-controls-row {
@@ -3521,27 +3551,28 @@ body.font-large .bio-body p {
   text-transform: uppercase;
 }
 
-/* Formulario de Dedicatorias — Integrado orgánicamente sin marcos negros pesados */
+/* Formulario de Dedicatorias — Integrado orgánicamente en papel kraft caqui */
 .dedication-form-box {
-  background: rgba(238, 226, 206, 0.45);
+  background: rgba(206, 182, 146, 0.45);
   border-radius: var(--r-sm);
-  padding: 18px 20px;
-  border: 1px solid rgba(135, 95, 45, 0.18);
-  border-left: 3px solid rgba(184, 134, 11, 0.5);
-  margin-bottom: 22px;
-  box-shadow: none;
+  padding: 22px 24px;
+  border: 1px solid rgba(110, 75, 30, 0.28);
+  border-left: 3px solid #8c5311;
+  margin-bottom: 24px;
+  box-shadow: inset 0 1px 3px rgba(45, 28, 10, 0.05);
 }
 
 .form-title {
   font-family: var(--font-headline);
-  font-size: 1.10rem;
+  font-size: 1.15rem;
   color: var(--text-primary);
   margin-bottom: 4px;
+  font-weight: 700;
 }
 
 .form-desc {
   font-family: var(--font-serif);
-  font-size: 0.86rem;
+  font-size: 0.90rem;
   color: var(--text-muted);
   margin-bottom: 14px;
 }
@@ -3549,20 +3580,21 @@ body.font-large .bio-body p {
 .dedication-form-box textarea,
 .dedication-form-box input[type="text"] {
   width: 100%;
-  padding: 10px 14px;
-  background: #fcf8ee;
-  border: 1px solid rgba(135, 95, 45, 0.28);
+  padding: 12px 16px;
+  background: rgba(246, 237, 222, 0.95);
+  border: 1px solid rgba(115, 80, 35, 0.35);
   border-radius: var(--r-sm);
-  color: #271f16;
+  color: #1e160e;
   font-family: var(--font-serif);
-  font-size: 0.92rem;
+  font-size: 0.96rem;
+  line-height: 1.6;
   resize: vertical;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
 .dedication-form-box textarea::placeholder,
 .dedication-form-box input[type="text"]::placeholder {
-  color: #8c6742;
+  color: #7b5936;
   opacity: 0.85;
   font-style: italic;
 }
@@ -3570,8 +3602,9 @@ body.font-large .bio-body p {
 .dedication-form-box textarea:focus,
 .dedication-form-box input[type="text"]:focus {
   outline: none;
+  background: #fdfaf2;
   border-color: #8c5311;
-  box-shadow: 0 0 0 3px rgba(140, 83, 17, 0.12);
+  box-shadow: 0 0 0 3px rgba(140, 83, 17, 0.16);
 }
 
 .form-meta-row {
@@ -3598,17 +3631,42 @@ body.font-large .bio-body p {
   min-width: 200px;
 }
 
-.dedication-form-box .btn-primary-action {
+#btn-submit-dedication,
+.dedication-form-box #btn-submit-dedication {
   background: linear-gradient(135deg, #7c4b1b, #5a3310);
   border: 1px solid #5a3310;
   color: #fcf8ee;
   box-shadow: 0 2px 6px rgba(90, 51, 16, 0.2);
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-family: var(--font-headline);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
-.dedication-form-box .btn-primary-action:hover {
-  background: linear-gradient(135deg, #962222, #751414);
-  border-color: #751414;
-  color: #ffffff;
+/* Hover en verde solemne y elegante solicitado expresamente por el usuario */
+#btn-submit-dedication:hover,
+.dedication-form-box #btn-submit-dedication:hover {
+  background: linear-gradient(135deg, #1b6338, #114224) !important;
+  border-color: #0e381f !important;
+  color: #ffffff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(27, 99, 56, 0.45) !important;
+}
+
+#btn-submit-dedication:hover svg {
+  color: #a7f3d0;
+  transform: translateX(2px) scale(1.08);
+}
+
+#btn-submit-dedication:active,
+.dedication-form-box #btn-submit-dedication:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(27, 99, 56, 0.3) !important;
 }
 
 .btn-sm {
@@ -3616,11 +3674,11 @@ body.font-large .bio-body p {
   font-size: 0.84rem;
 }
 
-/* Muro Desplegable de Pensamientos */
+/* Muro Desplegable de Pensamientos — Estilo Cuaderno de Archivo Histórico */
 .tribute-wall-box {
-  margin-top: 20px;
-  padding-top: 16px;
-  border-top: 1px dashed rgba(135, 95, 45, 0.28);
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px dashed rgba(135, 95, 45, 0.35);
 }
 
 .tribute-wall-header {
@@ -3629,11 +3687,19 @@ body.font-large .bio-body p {
   justify-content: space-between;
   gap: 16px;
   flex-wrap: wrap;
-  padding: 6px 4px;
+  padding: 10px 16px;
   cursor: pointer;
   user-select: none;
   border-radius: var(--r-sm);
-  transition: background 0.2s ease;
+  background: rgba(140, 83, 17, 0.08);
+  border: 1px solid rgba(135, 95, 45, 0.24);
+  transition: all 0.25s ease;
+}
+
+.tribute-wall-header:hover {
+  background: rgba(140, 83, 17, 0.15);
+  border-color: rgba(135, 95, 45, 0.45);
+  box-shadow: 0 2px 8px rgba(60, 40, 15, 0.08);
 }
 
 .tribute-wall-header:hover .tribute-wall-title {
@@ -3653,44 +3719,53 @@ body.font-large .bio-body p {
 
 .tribute-wall-title {
   font-family: var(--font-headline);
-  font-size: 1.10rem;
+  font-size: 1.12rem;
   color: var(--text-primary);
   margin: 0;
   letter-spacing: 0.02em;
+  font-weight: 700;
   transition: color 0.2s ease;
 }
 
 .btn-toggle-tributes {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 14px;
+  gap: 10px;
+  padding: 7px 16px;
   border-radius: var(--r-full);
-  background: rgba(140, 83, 17, 0.1);
-  border: 1px solid rgba(140, 83, 17, 0.32);
-  color: #633908;
+  background: linear-gradient(135deg, rgba(238, 220, 192, 0.95), rgba(218, 194, 158, 0.95));
+  border: 1px solid rgba(120, 75, 25, 0.42);
+  color: #4a2906;
   font-family: var(--font-mono);
-  font-size: 0.76rem;
-  font-weight: 700;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
   cursor: pointer;
-  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(60, 35, 10, 0.1);
+  transition: all 0.25s ease;
 }
 
 .btn-toggle-tributes:hover {
-  background: rgba(140, 83, 17, 0.2);
-  border-color: #8c5311;
-  color: #3d2203;
+  background: linear-gradient(135deg, #8c5311, #693c09);
+  border-color: #552f05;
+  color: #ffffff;
   transform: translateY(-1px);
-  box-shadow: 0 2px 6px rgba(140, 83, 17, 0.12);
+  box-shadow: 0 4px 12px rgba(105, 60, 9, 0.32);
 }
 
 .toggle-tributes-count {
   background: #8c5311;
   color: #ffffff;
-  border-radius: 10px;
-  padding: 1px 7px;
-  font-size: 0.70rem;
+  border-radius: 12px;
+  padding: 2px 8px;
+  font-size: 0.72rem;
   font-weight: 800;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.btn-toggle-tributes:hover .toggle-tributes-count {
+  background: #ffffff;
+  color: #693c09;
 }
 
 .toggle-tributes-chevron {
@@ -3714,13 +3789,13 @@ body.font-large .bio-body p {
 .tribute-collapsible-wrapper.is-open {
   max-height: 1400px;
   opacity: 1;
-  margin-top: 16px;
+  margin-top: 18px;
 }
 
 .tribute-cards-masonry {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 14px;
+  gap: 16px;
 }
 
 @media (min-width: 768px) {
@@ -3730,42 +3805,54 @@ body.font-large .bio-body p {
 }
 
 .t-stream-card {
-  padding: 16px 18px;
-  background: #fbf7ef;
-  border: 1px solid rgba(140, 100, 50, 0.2);
-  border-left: 3px solid #c9933b;
+  padding: 18px 20px;
+  background: linear-gradient(160deg, rgba(246, 236, 218, 0.95) 0%, rgba(234, 218, 192, 0.95) 100%);
+  border: 1px solid rgba(135, 95, 45, 0.32);
+  border-left: 4px solid #8c5311;
   border-radius: var(--r-sm);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  box-shadow: 0 2px 8px rgba(40, 25, 10, 0.05);
+  box-shadow: 0 3px 10px rgba(45, 28, 10, 0.08);
   animation: fadeInDown 0.35s ease;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  position: relative;
 }
 
 .t-stream-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(40, 25, 10, 0.1);
-  border-color: rgba(140, 100, 50, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(45, 28, 10, 0.16);
+  border-color: rgba(135, 95, 45, 0.55);
+  background: linear-gradient(160deg, rgba(250, 242, 228, 0.98) 0%, rgba(238, 224, 200, 0.98) 100%);
 }
 
 .t-stream-date {
   font-family: var(--font-mono);
-  font-size: 0.70rem;
+  font-size: 0.72rem;
   color: #8c5311;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  margin-bottom: 8px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  margin-bottom: 10px;
   text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.t-stream-date::before {
+  content: "•";
+  color: var(--red-primary);
+  font-size: 1.1rem;
+  line-height: 1;
 }
 
 .t-stream-card p {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 0.92rem;
-  line-height: 1.62;
-  color: #271f16;
-  margin-bottom: 12px;
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: #1e160e;
+  margin-bottom: 14px;
 }
 
 .t-stream-card p::first-letter {
@@ -3777,9 +3864,13 @@ body.font-large .bio-body p {
 
 .t-stream-author {
   font-family: var(--font-mono);
-  font-size: 0.70rem;
-  color: var(--text-muted);
-  font-weight: 600;
+  font-size: 0.74rem;
+  color: #5d452a;
+  font-weight: 700;
+  text-align: right;
+  letter-spacing: 0.04em;
+  border-top: 1px dashed rgba(135, 95, 45, 0.25);
+  padding-top: 8px;
 }
 
 /* =====================================================================
