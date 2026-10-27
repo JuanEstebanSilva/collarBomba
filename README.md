@@ -39,24 +39,36 @@ Su objetivo fundamental es reconstruir los hechos con rigor documental, reivindi
   - Barra de progreso de lectura en tiempo real.
   - Línea de tiempo interactiva con filtros por etapas.
   - Esquema forense interactivo con selección de componentes del artefacto.
-  - Mapa cartográfico vectorial interactivo (Boyacá / Cundinamarca).
+  - Mapa cartográfico interactivo (Leaflet.js) centrado en Simijaca y Chiquinquirá.
   - Hemeroteca digital interactiva con búsqueda en vivo y filtros por categoría.
   - Widget interactivo de vela conmemorativa con persistencia en `localStorage`.
   - Acordeón pedagógico de preguntas reflexivas.
   - Modal / *Lightbox* de alta definición para el examen de fotos y archivos de prensa.
-  - **Sintetizador Acústico Solemne (Web Audio API)**: Generación procedural en tiempo real de tono meditativo y visualizador de ondas en `<canvas>` (sin necesidad de archivos de audio externos).
 
 ---
 
-## 🌐 Despliegue en Netlify / Render / GitHub Pages
+## 🌐 Despliegue en Producción (Netlify)
+
+El sitio web se encuentra publicado y disponible públicamente en:
+👉 **[https://funny-clafoutis-22f43b.netlify.app](https://funny-clafoutis-22f43b.netlify.app)**
 
 El proyecto está diseñado como una aplicación web estática pura de alto rendimiento, **sin dependencias externas de compilación**:
+- Conecta este repositorio en [Netlify](https://www.netlify.com/).
+- El archivo `netlify.toml` incluido aplica automáticamente las cabeceras de seguridad y optimización de caché.
 
-### Despliegue en Netlify:
-1. Conecta este repositorio en [Netlify](https://www.netlify.com/).
-2. Deja el campo *Build command* vacío.
-3. Define el directorio de publicación (*Publish directory*) como `.` o la raíz del repositorio.
-4. ¡El archivo `netlify.toml` incluido aplicará automáticamente las cabeceras de seguridad y optimización de caché!
+---
+
+## 👥 Equipo de Trabajo y Autoría
+
+- **Juan Esteban Silva Espejo**
+- **Mateo Casas Bello**
+- **Juan Felipe Buitrago Espitia**
+- **Nicolas Esteban Arenas Murcia**
+
+* **Espacio Académico:** Filosofía Política (Sección 2)
+* **Programas:** Ingeniería de Sistemas y Negocios Internacionales
+* **Institución:** Universidad Santo Tomás · Seccional Tunja
+* **Documentación y Escaleta Técnica:** Ver carpeta [`escaletas/`](file:///d:/Varios/Varios/GitHub/collarBomba/escaletas)
 
 ---
 
@@ -67,3 +79,4 @@ Este portal se adhiere a un riguroso compromiso ético:
 - **No presentar escenas cinematográficas** como fotografías de la realidad.
 - **No difundir afirmaciones carentes de sustento judicial**.
 - **Reconocer la dignidad de las víctimas** más allá de las circunstancias de su fallecimiento.
+

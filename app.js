@@ -60,12 +60,6 @@ function initPaperScrollDynamics() {
     localStorage.removeItem('cb_theme');
   } catch (e) {}
 
-  // Si existe algún botón residual de cambio de tema, retirarlo
-  const oldThemeBtn = document.getElementById('btn-theme-toggle');
-  if (oldThemeBtn) {
-    oldThemeBtn.remove();
-  }
-
   // Desplazamiento dinámico de iluminación y sombras de arrugas
   let ticking = false;
   const root = document.documentElement;
@@ -1246,9 +1240,6 @@ function initComparisonSlider() {
   const container = document.getElementById('pvc1-slider-container');
   const layerOver = document.getElementById('slider-layer-over');
   const handle = document.getElementById('slider-handle');
-  const btnComp = document.getElementById('btn-show-comparison');
-  const btnFict = document.getElementById('btn-show-fiction');
-  const btnDebunk = document.getElementById('btn-show-debunk');
 
   if (!container || !layerOver || !handle) return;
 
@@ -1709,122 +1700,7 @@ function initMediaModal() {
 }
 
 /* ========================================================================
-   18. AUDIO AMBIENTAL SOLEMNE (Web Audio API - Cero Archivos Externos)
-   ======================================================================== */
-function initAmbientAudio() {
-  const btnToggle = document.getElementById('btn-ambient-audio');
-  const waveBar = document.getElementById('audio-wave-bar');
-  const muteBtn = document.getElementById('btn-audio-mute');
-  const canvas = document.getElementById('soundwave-canvas');
-  if (!btnToggle) return;
-
-  let audioCtx = null, isPlaying = false, masterGain = null;
-  let oscs = [], animId = null;
-
-  function startAudio() {
-    const AudioContext = window.AudioContext || window.webkitAudioContext;
-    if (!audioCtx) audioCtx = new AudioContext();
-    if (audioCtx.state === 'suspended') audioCtx.resume();
-
-    masterGain = audioCtx.createGain();
-    masterGain.gain.setValueAtTime(0.001, audioCtx.currentTime);
-    masterGain.gain.exponentialRampToValueAtTime(0.06, audioCtx.currentTime + 3);
-
-    const filter = audioCtx.createBiquadFilter();
-    filter.type = 'lowpass';
-    filter.frequency.setValueAtTime(300, audioCtx.currentTime);
-    filter.Q.setValueAtTime(0.7, audioCtx.currentTime);
-
-    // Acorde solemne y sereno de fondo
-    const freqs = [110, 138.6, 164.8, 220];
-    oscs = freqs.map(freq => {
-      const osc = audioCtx.createOscillator();
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-      const gain = audioCtx.createGain();
-      gain.gain.setValueAtTime(0.4 / freqs.length, audioCtx.currentTime);
-      osc.connect(gain);
-      gain.connect(filter);
-      osc.start();
-      return osc;
-    });
-
-    filter.connect(masterGain);
-    masterGain.connect(audioCtx.destination);
-    isPlaying = true;
-
-    btnToggle.classList.add('playing');
-    updateBtn(true);
-    waveBar?.classList.add('visible');
-    drawWave();
-    showToast('Atmósfera sonora solemne activada');
-  }
-
-  function stopAudio() {
-    if (!isPlaying) return;
-    if (masterGain && audioCtx) {
-      masterGain.gain.setValueAtTime(masterGain.gain.value, audioCtx.currentTime);
-      masterGain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 1.5);
-    }
-    setTimeout(() => {
-      oscs.forEach(osc => { try { osc.stop(); osc.disconnect(); } catch(e) {} });
-      oscs = [];
-      isPlaying = false;
-    }, 1600);
-
-    btnToggle.classList.remove('playing');
-    updateBtn(false);
-    waveBar?.classList.remove('visible');
-    if (animId) cancelAnimationFrame(animId);
-  }
-
-  function updateBtn(playing) {
-    const iconOn = btnToggle.querySelector('.icon-sound.on');
-    const iconOff = btnToggle.querySelector('.icon-sound.off');
-    const txt = btnToggle.querySelector('.btn-sound-text');
-    if (iconOn) iconOn.style.display = playing ? 'none' : 'inline';
-    if (iconOff) iconOff.style.display = playing ? 'inline' : 'none';
-    if (txt) txt.textContent = playing ? 'Silenciar' : 'Atmósfera';
-  }
-
-  function drawWave() {
-    if (!canvas || !isPlaying) return;
-    const ctx2d = canvas.getContext('2d');
-    const w = canvas.width;
-    const h = canvas.height;
-    let t = 0;
-
-    function render() {
-      if (!isPlaying) return;
-      ctx2d.clearRect(0, 0, w, h);
-      ctx2d.lineWidth = 1.8;
-      ctx2d.strokeStyle = '#d4a820';
-      ctx2d.beginPath();
-      for (let x = 0; x < w; x++) {
-        const y = (h / 2) + Math.sin(x * 0.08 + t) * 6 * Math.sin(x * 0.02 + t * 0.3);
-        if (x === 0) ctx2d.moveTo(x, y);
-        else ctx2d.lineTo(x, y);
-      }
-      ctx2d.stroke();
-      t += 0.05;
-      animId = requestAnimationFrame(render);
-    }
-    render();
-  }
-
-  btnToggle.addEventListener('click', () => isPlaying ? stopAudio() : startAudio());
-  muteBtn?.addEventListener('click', stopAudio);
-
-  // Silenciar automáticamente si el usuario minimiza o cambia de pestaña
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden && isPlaying) {
-      stopAudio();
-    }
-  });
-}
-
-/* ========================================================================
-   19. EFECTO RIPPLE EN BOTONES PRINCIPALES
+   18. EFECTO RIPPLE EN BOTONES PRINCIPALES
    ======================================================================== */
 function initRippleEffect() {
   const rippleEls = document.querySelectorAll('.btn-primary-action, .btn-secondary-action, .btn-candle-light');
@@ -1853,9 +1729,3 @@ function initRippleEffect() {
   });
 }
 
-/* ========================================================================
-   20. EFECTO 3D TILT DESACTIVADO POR PREFERENCIA EDITORIAL
-   ======================================================================== */
-function initCardTiltEffect() {
-  // Desactivado: las tarjetas se mantienen firmes y planas como pliego de prensa histórica sin balanceo hacia atrás
-}
