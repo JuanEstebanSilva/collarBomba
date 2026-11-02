@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css?v=20261101_05">
+  <link rel="stylesheet" href="style.css?v=20261101_07">
 
   <!-- Leaflet.js — Mapa interactivo con tiles reales -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
@@ -579,17 +579,18 @@
               <div class="schematic-interactive-wrap">
                 <div class="schematic-top-meta">
                   <span class="meta-tag"><span class="meta-dot"></span> MORFOLOGÍA FORENSE NO OPERATIVA</span>
+                  <span class="schematic-click-cue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m10 15 5-3-5-3v6Z"/></svg> Toca cada componente para inspección pericial</span>
                   <span class="meta-code">EXPEDIENTE CSJ N.º 21285</span>
                 </div>
 
                 <!-- SVG DE DIBUJO TÉCNICO PERICIAL SOBRE PAPEL DE ARCHIVO -->
-                <svg viewBox="0 0 760 800" class="forensic-svg" id="collar-diagram" role="img" aria-label="Esquema forense vertical del collar rectangular artesanal de PVC con silueta cefálica de tamaño real orientada hacia la válvula de alivio — morfología pericial no operativa">
+                <svg viewBox="-50 -40 860 880" class="forensic-svg" id="collar-diagram" role="img" aria-label="Esquema forense vertical del collar rectangular artesanal de PVC con silueta cefálica de tamaño real orientada hacia la válvula de alivio — morfología pericial no operativa">
                   <defs>
                     <!-- Fondo de papel pergamino técnico pericial -->
                     <linearGradient id="schematicArchivalPaper" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stop-color="#faf5ec"/>
-                      <stop offset="50%" stop-color="#f5ede0"/>
-                      <stop offset="100%" stop-color="#ede3d1"/>
+                      <stop offset="0%" stop-color="#ebd8be"/>
+                      <stop offset="50%" stop-color="#e2cfaa"/>
+                      <stop offset="100%" stop-color="#d6be95"/>
                     </linearGradient>
 
                     <!-- Cuadrícula técnica en tinta sepia suave -->
@@ -622,7 +623,7 @@
                   </defs>
 
                   <!-- Fondo en papel de archivo con trama técnica -->
-                  <rect width="760" height="800" fill="url(#schematicArchivalPaper)" rx="10"/>
+                  <rect x="-50" y="-40" width="860" height="880" fill="url(#schematicArchivalPaper)" rx="12"/>
                   <rect width="760" height="800" fill="url(#draftingGrid)" rx="10"/>
 
                   <!-- Líneas de calibración y encuadre pericial en tinta de planimetría -->
@@ -899,7 +900,7 @@
                   </svg>
                 </div>
                 <div class="disclaimer-text">
-                  <strong>Aviso ético y de seguridad:</strong> Representación gráfica estilizada con fines exclusivamente pedagógicos y de memoria histórica. Se omiten intencionalmente especificaciones operativas, circuitos de encendido o secuencias de ensamblaje en estricto cumplimiento de principios de seguridad pública y respeto a las víctimas.
+                  <strong>Aviso ético y de seguridad pericial:</strong> Reconstrucción gráfica documental orientada exclusivamente a la memoria histórica, la dignificación de las víctimas y el análisis criminalístico judicial. En estricto cumplimiento de los protocolos de seguridad ciudadana y de no proliferación, se omiten deliberadamente especificaciones funcionales de detonación, mezclas químicas de iniciadores y procedimientos técnicos de armado. Los elementos documentados corresponden al material incautado y analizado por el CTI de la Fiscalía y la Policía Nacional en el proceso penal n.º 21285 de la Corte Suprema de Justicia, como evidencia irrepetible del accionar de la delincuencia común y testimonio contra la barbarie extorsiva.
                 </div>
               </div>
             </div>
@@ -1884,22 +1885,20 @@
 
         </div>
 
-        <!-- Cierre de Reflexión: Manifiesto Monumental de Memoria y Dignidad -->
-        <aside class="grand-final-banner" aria-label="Compromiso editorial y ciudadano con la memoria">
-          <div class="final-banner-inner">
-            <h3 class="final-manifesto-title">
-              «Memoria con verdad, información con responsabilidad y dignidad para las víctimas»
-            </h3>
-            <p class="final-manifesto-sub">
-              Archivo de memoria histórica, rigor documental y pedagogía ética
-            </p>
-            <div class="final-manifesto-institution-wrap">
-              <span class="final-manifesto-institution">
-                Filosofía política · Universidad Santo Tomás seccional Tunja
-              </span>
-            </div>
+        <!-- Cierre de Reflexión: Colofón Editorial de Memoria y Dignidad (Estilo Pliego de Periódico) -->
+        <div class="newspaper-editorial-colophon" role="region" aria-label="Compromiso editorial con la memoria">
+          <div class="colophon-ink-rule-top" aria-hidden="true"></div>
+          <h3 class="colophon-manifesto-title">
+            «Memoria con verdad, información con responsabilidad y dignidad para las víctimas»
+          </h3>
+          <p class="colophon-manifesto-sub">
+            Archivo de memoria histórica, rigor documental y pedagogía ética
+          </p>
+          <div class="colophon-institution-line">
+            <span>Filosofía política · Universidad Santo Tomás seccional Tunja</span>
           </div>
-        </aside>
+          <div class="colophon-ink-rule-bottom" aria-hidden="true"></div>
+        </div>
       </div>
     </section>
 
@@ -1973,9 +1972,9 @@
                 <span class="apa-author-year">AFP Factual (2026)</span>
               </div>
               <div class="apa-actions">
-                <button class="btn-copy-citation" data-citation="AFP Factual. (2026, 7 de abril). El caso del “collar bomba” en Colombia no fue atribuido a las FARC; y la foto viral es de una actriz. https://factual.afp.com/doc.afp.com.A6ZK7ZQ" title="Copiar cita APA al portapapeles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copiar</span></button>
+                <button class="btn-copy-citation" data-citation="AFP Factual. (2026, 7 de abril). El caso del “collar bomba” en Colombia no fue atribuido a las FARC; y la foto viral es de una actriz. https://factual.afp.com/doc.afp.com.A6ZK7ZQ" title="Copiar cita APA al portapapeles" aria-label="Copiar cita APA"><svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
                 <a href="https://factual.afp.com/doc.afp.com.A6ZK7ZQ" target="_blank" rel="noopener noreferrer" class="btn-open-source" title="Abrir fuente original en nueva pestaña" aria-label="Abrir enlace externo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="13" height="13" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
-                <button class="btn-toggle-apa" aria-expanded="false" title="Ver ficha pericial completa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span>Detalles</span></button>
+                <button class="btn-toggle-apa" aria-expanded="false" title="Ver ficha pericial completa" aria-label="Ver detalles"><svg class="btn-icon-svg apa-chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="14" height="14" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
               </div>
             </div>
             <h4 class="apa-work-title">El caso del “collar bomba” en Colombia no fue atribuido a las FARC; y la foto viral es de una actriz</h4>
@@ -1992,9 +1991,9 @@
                 <span class="apa-author-year">Carranza Muñoz, D. L. (2016)</span>
               </div>
               <div class="apa-actions">
-                <button class="btn-copy-citation" data-citation="Carranza Muñoz, D. L. (2016, 14 de mayo). El otro muerto del collar bomba. El Espectador. https://www.elespectador.com/colombia/mas-regiones/el-otro-muerto-del-collar-bomba-article-632293/" title="Copiar cita APA al portapapeles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copiar</span></button>
+                <button class="btn-copy-citation" data-citation="Carranza Muñoz, D. L. (2016, 14 de mayo). El otro muerto del collar bomba. El Espectador. https://www.elespectador.com/colombia/mas-regiones/el-otro-muerto-del-collar-bomba-article-632293/" title="Copiar cita APA al portapapeles" aria-label="Copiar cita APA"><svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
                 <a href="https://www.elespectador.com/colombia/mas-regiones/el-otro-muerto-del-collar-bomba-article-632293/" target="_blank" rel="noopener noreferrer" class="btn-open-source" title="Abrir fuente original en nueva pestaña" aria-label="Abrir enlace externo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="13" height="13" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
-                <button class="btn-toggle-apa" aria-expanded="false" title="Ver ficha pericial completa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span>Detalles</span></button>
+                <button class="btn-toggle-apa" aria-expanded="false" title="Ver ficha pericial completa" aria-label="Ver detalles"><svg class="btn-icon-svg apa-chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="14" height="14" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
               </div>
             </div>
             <h4 class="apa-work-title">El otro muerto del collar bomba (El Espectador)</h4>
@@ -2011,9 +2010,9 @@
                 <span class="apa-author-year">ColombiaCheck (2016)</span>
               </div>
               <div class="apa-actions">
-                <button class="btn-copy-citation" data-citation="ColombiaCheck. (2016, 27 de septiembre). Lo del collar bomba, otra explosiva mentira. https://colombiacheck.com/chequeos/lo-del-collar-bomba-otra-explosiva-mentira" title="Copiar cita APA al portapapeles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copiar</span></button>
+                <button class="btn-copy-citation" data-citation="ColombiaCheck. (2016, 27 de septiembre). Lo del collar bomba, otra explosiva mentira. https://colombiacheck.com/chequeos/lo-del-collar-bomba-otra-explosiva-mentira" title="Copiar cita APA al portapapeles" aria-label="Copiar cita APA"><svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
                 <a href="https://colombiacheck.com/chequeos/lo-del-collar-bomba-otra-explosiva-mentira" target="_blank" rel="noopener noreferrer" class="btn-open-source" title="Abrir fuente original en nueva pestaña" aria-label="Abrir enlace externo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="13" height="13" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
-                <button class="btn-toggle-apa" aria-expanded="false" title="Ver ficha pericial completa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span>Detalles</span></button>
+                <button class="btn-toggle-apa" aria-expanded="false" title="Ver ficha pericial completa" aria-label="Ver detalles"><svg class="btn-icon-svg apa-chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="14" height="14" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
               </div>
             </div>
             <h4 class="apa-work-title">Lo del collar bomba, otra explosiva mentira</h4>
@@ -2030,9 +2029,9 @@
                 <span class="apa-author-year">ColombiaCheck (2022)</span>
               </div>
               <div class="apa-actions">
-                <button class="btn-copy-citation" data-citation="ColombiaCheck. (2022, 27 de enero). Collar bomba fue un acto de la delincuencia común, pero aún se lo atribuyen falsamente a las FARC. https://colombiacheck.com/chequeos/collar-bomba-fue-un-acto-de-la-delincuencia-comun-pero-aun-se-lo-atribuyen-falsamente-las" title="Copiar cita APA al portapapeles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copiar</span></button>
+                <button class="btn-copy-citation" data-citation="ColombiaCheck. (2022, 27 de enero). Collar bomba fue un acto de la delincuencia común, pero aún se lo atribuyen falsamente a las FARC. https://colombiacheck.com/chequeos/collar-bomba-fue-un-acto-de-la-delincuencia-comun-pero-aun-se-lo-atribuyen-falsamente-las" title="Copiar cita APA al portapapeles" aria-label="Copiar cita APA"><svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
                 <a href="https://colombiacheck.com/chequeos/collar-bomba-fue-un-acto-de-la-delincuencia-comun-pero-aun-se-lo-atribuyen-falsamente-las" target="_blank" rel="noopener noreferrer" class="btn-open-source" title="Abrir fuente original en nueva pestaña" aria-label="Abrir enlace externo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="13" height="13" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
-                <button class="btn-toggle-apa" aria-expanded="false" title="Ver ficha pericial completa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span>Detalles</span></button>
+                <button class="btn-toggle-apa" aria-expanded="false" title="Ver ficha pericial completa" aria-label="Ver detalles"><svg class="btn-icon-svg apa-chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="14" height="14" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
               </div>
             </div>
             <h4 class="apa-work-title">Collar bomba fue un acto de la delincuencia común, pero aún se lo atribuyen falsamente a las FARC</h4>
@@ -2049,9 +2048,9 @@
                 <span class="apa-author-year">ColombiaCheck (2026)</span>
               </div>
               <div class="apa-actions">
-                <button class="btn-copy-citation" data-citation="ColombiaCheck. (2026, 15 de abril). Vieja desinformación sobre el collar bomba se usa para cuestionar campaña de Cepeda. https://colombiacheck.com/chequeos/vieja-desinformacion-sobre-el-collar-bomba-se-usa-para-cuestionar-campana-de-cepeda" title="Copiar cita APA al portapapeles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copiar</span></button>
+                <button class="btn-copy-citation" data-citation="ColombiaCheck. (2026, 15 de abril). Vieja desinformación sobre el collar bomba se usa para cuestionar campaña de Cepeda. https://colombiacheck.com/chequeos/vieja-desinformacion-sobre-el-collar-bomba-se-usa-para-cuestionar-campana-de-cepeda" title="Copiar cita APA al portapapeles" aria-label="Copiar cita APA"><svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
                 <a href="https://colombiacheck.com/chequeos/vieja-desinformacion-sobre-el-collar-bomba-se-usa-para-cuestionar-campana-de-cepeda" target="_blank" rel="noopener noreferrer" class="btn-open-source" title="Abrir fuente original en nueva pestaña" aria-label="Abrir enlace externo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="13" height="13" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
-                <button class="btn-toggle-apa" aria-expanded="false" title="Ver ficha pericial completa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span>Detalles</span></button>
+                <button class="btn-toggle-apa" aria-expanded="false" title="Ver ficha pericial completa" aria-label="Ver detalles"><svg class="btn-icon-svg apa-chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="14" height="14" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
               </div>
             </div>
             <h4 class="apa-work-title">Vieja desinformación sobre el collar bomba se usa para cuestionar campaña de Cepeda</h4>
@@ -2068,9 +2067,9 @@
                 <span class="apa-author-year">Corte Suprema de Justicia (2005)</span>
               </div>
               <div class="apa-actions">
-                <button class="btn-copy-citation" data-citation="Corte Suprema de Justicia, Sala de Casación Penal. (2005, 25 de octubre). Providencia, proceso n.º 21285 (M.P. Yesid Ramírez Bastidas). vLex Colombia. https://vlex.com.co/vid/providencia-corte-suprema-justicia-874010134" title="Copiar cita APA al portapapeles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copiar</span></button>
+                <button class="btn-copy-citation" data-citation="Corte Suprema de Justicia, Sala de Casación Penal. (2005, 25 de octubre). Providencia, proceso n.º 21285 (M.P. Yesid Ramírez Bastidas). vLex Colombia. https://vlex.com.co/vid/providencia-corte-suprema-justicia-874010134" title="Copiar cita APA al portapapeles" aria-label="Copiar cita APA"><svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
                 <a href="https://vlex.com.co/vid/providencia-corte-suprema-justicia-874010134" target="_blank" rel="noopener noreferrer" class="btn-open-source" title="Abrir fuente original en nueva pestaña" aria-label="Abrir enlace externo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="13" height="13" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
-                <button class="btn-toggle-apa" aria-expanded="false" title="Ver ficha pericial completa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span>Detalles</span></button>
+                <button class="btn-toggle-apa" aria-expanded="false" title="Ver ficha pericial completa" aria-label="Ver detalles"><svg class="btn-icon-svg apa-chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="14" height="14" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
               </div>
             </div>
             <h4 class="apa-work-title">Providencia judicial de Casación, Proceso n.º 21285 (Sala Penal)</h4>
@@ -2087,9 +2086,9 @@
                 <span class="apa-author-year">El Tiempo (17 de mayo de 2000)</span>
               </div>
               <div class="apa-actions">
-                <button class="btn-copy-citation" data-citation="El Tiempo. (2000, 17 de mayo). El collar explosivo, peor que el secuestro. Archivo de El Tiempo. https://www.eltiempo.com/archivo/documento/mam-1255427" title="Copiar cita APA al portapapeles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copiar</span></button>
+                <button class="btn-copy-citation" data-citation="El Tiempo. (2000, 17 de mayo). El collar explosivo, peor que el secuestro. Archivo de El Tiempo. https://www.eltiempo.com/archivo/documento/mam-1255427" title="Copiar cita APA al portapapeles" aria-label="Copiar cita APA"><svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
                 <a href="https://www.eltiempo.com/archivo/documento/mam-1255427" target="_blank" rel="noopener noreferrer" class="btn-open-source" title="Abrir fuente original en nueva pestaña" aria-label="Abrir enlace externo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="13" height="13" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
-                <button class="btn-toggle-apa" aria-expanded="false" title="Ver ficha pericial completa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span>Detalles</span></button>
+                <button class="btn-toggle-apa" aria-expanded="false" title="Ver ficha pericial completa" aria-label="Ver detalles"><svg class="btn-icon-svg apa-chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="14" height="14" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
               </div>
             </div>
             <h4 class="apa-work-title">El collar explosivo, peor que el secuestro (Crónica inicial)</h4>
@@ -2106,9 +2105,9 @@
                 <span class="apa-author-year">El Tiempo (28 de mayo de 2000)</span>
               </div>
               <div class="apa-actions">
-                <button class="btn-copy-citation" data-citation="El Tiempo. (2000, 28 de mayo). Collar bomba, acto de bandas. Archivo de El Tiempo. https://www.eltiempo.com/archivo/documento/mam-1226570" title="Copiar cita APA al portapapeles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copiar</span></button>
+                <button class="btn-copy-citation" data-citation="El Tiempo. (2000, 28 de mayo). Collar bomba, acto de bandas. Archivo de El Tiempo. https://www.eltiempo.com/archivo/documento/mam-1226570" title="Copiar cita APA al portapapeles" aria-label="Copiar cita APA"><svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
                 <a href="https://www.eltiempo.com/archivo/documento/mam-1226570" target="_blank" rel="noopener noreferrer" class="btn-open-source" title="Abrir fuente original en nueva pestaña" aria-label="Abrir enlace externo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="13" height="13" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
-                <button class="btn-toggle-apa" aria-expanded="false" title="Ver ficha pericial completa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span>Detalles</span></button>
+                <button class="btn-toggle-apa" aria-expanded="false" title="Ver ficha pericial completa" aria-label="Ver detalles"><svg class="btn-icon-svg apa-chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="14" height="14" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
               </div>
             </div>
             <h4 class="apa-work-title">Collar bomba, acto de bandas (Rectificación temprana)</h4>
@@ -2125,9 +2124,9 @@
                 <span class="apa-author-year">El Tiempo (2002)</span>
               </div>
               <div class="apa-actions">
-                <button class="btn-copy-citation" data-citation="El Tiempo. (2002, 24 de septiembre). Collar bomba: un solo condenado. Archivo de El Tiempo. https://www.eltiempo.com/archivo/documento/mam-1333136" title="Copiar cita APA al portapapeles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copiar</span></button>
+                <button class="btn-copy-citation" data-citation="El Tiempo. (2002, 24 de septiembre). Collar bomba: un solo condenado. Archivo de El Tiempo. https://www.eltiempo.com/archivo/documento/mam-1333136" title="Copiar cita APA al portapapeles" aria-label="Copiar cita APA"><svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
                 <a href="https://www.eltiempo.com/archivo/documento/mam-1333136" target="_blank" rel="noopener noreferrer" class="btn-open-source" title="Abrir fuente original en nueva pestaña" aria-label="Abrir enlace externo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="13" height="13" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
-                <button class="btn-toggle-apa" aria-expanded="false" title="Ver ficha pericial completa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span>Detalles</span></button>
+                <button class="btn-toggle-apa" aria-expanded="false" title="Ver ficha pericial completa" aria-label="Ver detalles"><svg class="btn-icon-svg apa-chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="14" height="14" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
               </div>
             </div>
             <h4 class="apa-work-title">Collar bomba: un solo condenado</h4>
@@ -2144,9 +2143,9 @@
                 <span class="apa-author-year">El Tiempo (2003)</span>
               </div>
               <div class="apa-actions">
-                <button class="btn-copy-citation" data-citation="El Tiempo. (2003, 7 de febrero). Confirman pena por collar bomba. Archivo de El Tiempo. https://www.eltiempo.com/archivo/documento/mam-980725" title="Copiar cita APA al portapapeles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copiar</span></button>
+                <button class="btn-copy-citation" data-citation="El Tiempo. (2003, 7 de febrero). Confirman pena por collar bomba. Archivo de El Tiempo. https://www.eltiempo.com/archivo/documento/mam-980725" title="Copiar cita APA al portapapeles" aria-label="Copiar cita APA"><svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
                 <a href="https://www.eltiempo.com/archivo/documento/mam-980725" target="_blank" rel="noopener noreferrer" class="btn-open-source" title="Abrir fuente original en nueva pestaña" aria-label="Abrir enlace externo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="13" height="13" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
-                <button class="btn-toggle-apa" aria-expanded="false" title="Ver ficha pericial completa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span>Detalles</span></button>
+                <button class="btn-toggle-apa" aria-expanded="false" title="Ver ficha pericial completa" aria-label="Ver detalles"><svg class="btn-icon-svg apa-chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="14" height="14" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
               </div>
             </div>
             <h4 class="apa-work-title">Confirman pena por collar bomba (Tribunal Superior)</h4>
@@ -2163,9 +2162,9 @@
                 <span class="apa-author-year">El Tiempo (2008)</span>
               </div>
               <div class="apa-actions">
-                <button class="btn-copy-citation" data-citation="El Tiempo. (2008, 13 de noviembre). Historia de la tragedia del collar bomba. Archivo de El Tiempo. https://www.eltiempo.com/archivo/documento/CMS-4664634" title="Copiar cita APA al portapapeles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copiar</span></button>
+                <button class="btn-copy-citation" data-citation="El Tiempo. (2008, 13 de noviembre). Historia de la tragedia del collar bomba. Archivo de El Tiempo. https://www.eltiempo.com/archivo/documento/CMS-4664634" title="Copiar cita APA al portapapeles" aria-label="Copiar cita APA"><svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
                 <a href="https://www.eltiempo.com/archivo/documento/CMS-4664634" target="_blank" rel="noopener noreferrer" class="btn-open-source" title="Abrir fuente original en nueva pestaña" aria-label="Abrir enlace externo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="13" height="13" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
-                <button class="btn-toggle-apa" aria-expanded="false" title="Ver ficha pericial completa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span>Detalles</span></button>
+                <button class="btn-toggle-apa" aria-expanded="false" title="Ver ficha pericial completa" aria-label="Ver detalles"><svg class="btn-icon-svg apa-chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="14" height="14" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
               </div>
             </div>
             <h4 class="apa-work-title">Historia de la tragedia del collar bomba</h4>
@@ -2182,9 +2181,9 @@
                 <span class="apa-author-year">La Silla Vacía (2023)</span>
               </div>
               <div class="apa-actions">
-                <button class="btn-copy-citation" data-citation="La Silla Vacía. (2023, 30 de junio). Detector: ninguna guerrilla fue responsable del caso del collar bomba. https://www.lasillavacia.com/detector-de-mentiras/falso/detector-ninguna-guerrilla-fue-responsable-del-caso-del-collar-bomba/" title="Copiar cita APA al portapapeles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copiar</span></button>
+                <button class="btn-copy-citation" data-citation="La Silla Vacía. (2023, 30 de junio). Detector: ninguna guerrilla fue responsable del caso del collar bomba. https://www.lasillavacia.com/detector-de-mentiras/falso/detector-ninguna-guerrilla-fue-responsable-del-caso-del-collar-bomba/" title="Copiar cita APA al portapapeles" aria-label="Copiar cita APA"><svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
                 <a href="https://www.lasillavacia.com/detector-de-mentiras/falso/detector-ninguna-guerrilla-fue-responsable-del-caso-del-collar-bomba/" target="_blank" rel="noopener noreferrer" class="btn-open-source" title="Abrir fuente original en nueva pestaña" aria-label="Abrir enlace externo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="13" height="13" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
-                <button class="btn-toggle-apa" aria-expanded="false" title="Ver ficha pericial completa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span>Detalles</span></button>
+                <button class="btn-toggle-apa" aria-expanded="false" title="Ver ficha pericial completa" aria-label="Ver detalles"><svg class="btn-icon-svg apa-chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="14" height="14" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
               </div>
             </div>
             <h4 class="apa-work-title">Detector: ninguna guerrilla fue responsable del caso del collar bomba</h4>
@@ -2201,9 +2200,9 @@
                 <span class="apa-author-year">La Silla Vacía (2026)</span>
               </div>
               <div class="apa-actions">
-                <button class="btn-copy-citation" data-citation="La Silla Vacía. (2026, 21 de octubre). Collar bomba: la justicia probó que fueron delincuentes comunes, no las Farc. https://www.lasillavacia.com/detector-de-mentiras/falso/collar-bomba-la-justicia-probo-que-fueron-delincuentes-comunes-no-las-farc/" title="Copiar cita APA al portapapeles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copiar</span></button>
+                <button class="btn-copy-citation" data-citation="La Silla Vacía. (2026, 21 de octubre). Collar bomba: la justicia probó que fueron delincuentes comunes, no las Farc. https://www.lasillavacia.com/detector-de-mentiras/falso/collar-bomba-la-justicia-probo-que-fueron-delincuentes-comunes-no-las-farc/" title="Copiar cita APA al portapapeles" aria-label="Copiar cita APA"><svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
                 <a href="https://www.lasillavacia.com/detector-de-mentiras/falso/collar-bomba-la-justicia-probo-que-fueron-delincuentes-comunes-no-las-farc/" target="_blank" rel="noopener noreferrer" class="btn-open-source" title="Abrir fuente original en nueva pestaña" aria-label="Abrir enlace externo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="13" height="13" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
-                <button class="btn-toggle-apa" aria-expanded="false" title="Ver ficha pericial completa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span>Detalles</span></button>
+                <button class="btn-toggle-apa" aria-expanded="false" title="Ver ficha pericial completa" aria-label="Ver detalles"><svg class="btn-icon-svg apa-chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="14" height="14" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
               </div>
             </div>
             <h4 class="apa-work-title">Collar bomba: la justicia probó que fueron delincuentes comunes, no las Farc</h4>
@@ -2220,9 +2219,9 @@
                 <span class="apa-author-year">Proimágenes Colombia (s. f.)</span>
               </div>
               <div class="apa-actions">
-                <button class="btn-copy-citation" data-citation="Proimágenes Colombia. (s. f.). PVC-1. Cine colombiano. https://www.proimagenescolombia.com/secciones/cine_colombiano/peliculas_colombianas/pelicula_plantilla.php?id_pelicula=1796" title="Copiar cita APA al portapapeles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copiar</span></button>
+                <button class="btn-copy-citation" data-citation="Proimágenes Colombia. (s. f.). PVC-1. Cine colombiano. https://www.proimagenescolombia.com/secciones/cine_colombiano/peliculas_colombianas/pelicula_plantilla.php?id_pelicula=1796" title="Copiar cita APA al portapapeles" aria-label="Copiar cita APA"><svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
                 <a href="https://www.proimagenescolombia.com/secciones/cine_colombiano/peliculas_colombianas/pelicula_plantilla.php?id_pelicula=1796" target="_blank" rel="noopener noreferrer" class="btn-open-source" title="Abrir fuente original en nueva pestaña" aria-label="Abrir enlace externo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="13" height="13" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
-                <button class="btn-toggle-apa" aria-expanded="false" title="Ver ficha pericial completa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span>Detalles</span></button>
+                <button class="btn-toggle-apa" aria-expanded="false" title="Ver ficha pericial completa" aria-label="Ver detalles"><svg class="btn-icon-svg apa-chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="14" height="14" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
               </div>
             </div>
             <h4 class="apa-work-title">Ficha técnica institucional de la película PVC-1 (Dir. Spiros Stathoulopoulos)</h4>
@@ -2239,9 +2238,9 @@
                 <span class="apa-author-year">Proimágenes Colombia (2007)</span>
               </div>
               <div class="apa-actions">
-                <button class="btn-copy-citation" data-citation="Proimágenes Colombia. (2007, 30 de noviembre). El largometraje colombiano PVC-1 gana en el Festival de Cine de Tesalónica. Pantalla Colombia. https://www.proimagenescolombia.com/secciones/pantalla_colombia/breves_plantilla.php?id_noticia=652" title="Copiar cita APA al portapapeles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copiar</span></button>
+                <button class="btn-copy-citation" data-citation="Proimágenes Colombia. (2007, 30 de noviembre). El largometraje colombiano PVC-1 gana en el Festival de Cine de Tesalónica. Pantalla Colombia. https://www.proimagenescolombia.com/secciones/pantalla_colombia/breves_plantilla.php?id_noticia=652" title="Copiar cita APA al portapapeles" aria-label="Copiar cita APA"><svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
                 <a href="https://www.proimagenescolombia.com/secciones/pantalla_colombia/breves_plantilla.php?id_noticia=652" target="_blank" rel="noopener noreferrer" class="btn-open-source" title="Abrir fuente original en nueva pestaña" aria-label="Abrir enlace externo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="13" height="13" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
-                <button class="btn-toggle-apa" aria-expanded="false" title="Ver ficha pericial completa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span>Detalles</span></button>
+                <button class="btn-toggle-apa" aria-expanded="false" title="Ver ficha pericial completa" aria-label="Ver detalles"><svg class="btn-icon-svg apa-chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="14" height="14" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
               </div>
             </div>
             <h4 class="apa-work-title">El largometraje colombiano PVC-1 gana en el Festival de Cine de Tesalónica (Grecia)</h4>
@@ -2572,6 +2571,6 @@
     </div>
   </div>
 
-  <script src="app.js?v=20261101_05"></script>
+  <script src="app.js?v=20261101_07"></script>
 </body>
 </html>

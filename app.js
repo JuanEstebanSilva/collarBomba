@@ -460,14 +460,14 @@ function initSynchronizedTimelineAndMap() {
   let autoplayInterval = null;
   let isAutoplayPaused = false;
   let manualPause = false;
-  const AUTOPLAY_DELAY_MS = 5000;
+  const AUTOPLAY_DELAY_MS = 10000;
 
   function updateAutoplayUI() {
     if (!autoplayBtn) return;
     const isPaused = isAutoplayPaused || manualPause;
     autoplayBtn.classList.toggle('is-paused', isPaused);
     if (autoplayLabel) {
-      autoplayLabel.textContent = isPaused ? 'PAUSA' : '5s AUTO';
+      autoplayLabel.textContent = isPaused ? 'PAUSA' : '10s AUTO';
     }
   }
 
@@ -814,10 +814,10 @@ function initForensicSchematic() {
   let restoreFocusTimer = null;
 
   const FOCUS_COORDS = {
-    explosivo: { x: 370, y: 190, scale: 1.25 },
-    temporizador: { x: 550, y: 400, scale: 1.25 },
-    trampa: { x: 370, y: 600, scale: 1.25 },
-    candado: { x: 190, y: 400, scale: 1.25 }
+    explosivo: { x: 370, y: 240, scale: 1.18 },
+    temporizador: { x: 460, y: 390, scale: 1.18 },
+    trampa: { x: 370, y: 550, scale: 1.18 },
+    candado: { x: 280, y: 390, scale: 1.18 }
   };
 
   const PART_DETAILS = {
@@ -870,7 +870,7 @@ function initForensicSchematic() {
       // Restaurar automáticamente la vista general tras cinco segundos sin interacción
       restoreFocusTimer = setTimeout(() => {
         resetFocus();
-      }, 5000);
+      }, 10000);
     }
   }
 
@@ -1598,32 +1598,36 @@ function initAcademicBibliography() {
       const expanded = card.querySelector('.apa-card-expanded');
       const isOpen = card.classList.toggle('expanded');
       btn.setAttribute('aria-expanded', isOpen.toString());
-      const labelSpan = btn.querySelector('span');
-      if (labelSpan) {
-        labelSpan.textContent = isOpen ? 'Ocultar' : 'Detalles';
-      }
+      btn.setAttribute('title', isOpen ? 'Ocultar ficha pericial' : 'Ver ficha pericial completa');
       if (expanded) {
-        expanded.style.maxHeight = isOpen ? `${expanded.scrollHeight + 30}px` : '0px';
+        expanded.style.maxHeight = isOpen ? `${expanded.scrollHeight + 35}px` : '0px';
       }
     });
   });
 
-  // Copia individual con retroalimentación visual directa (preservando SVG)
+  // Copia individual con retroalimentación en ícono (preservando SVG funcional)
   copyBtns.forEach(btn => {
     btn.addEventListener('click', async () => {
       const citation = btn.getAttribute('data-citation');
       if (!citation) return;
-      const labelSpan = btn.querySelector('span');
-      const originalLabel = labelSpan ? labelSpan.textContent : 'Copiar';
+      const originalSvg = btn.innerHTML;
       try {
         await navigator.clipboard.writeText(citation);
         showToast('Cita APA 7 copiada al portapapeles');
-        if (labelSpan) labelSpan.textContent = '¡Copiada!';
-        setTimeout(() => { if (labelSpan) labelSpan.textContent = originalLabel; }, 1800);
+        btn.innerHTML = '<svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.innerHTML = originalSvg;
+          btn.classList.remove('copied');
+        }, 1800);
       } catch (err) {
         fallbackCopy(citation);
-        if (labelSpan) labelSpan.textContent = '¡Copiada!';
-        setTimeout(() => { if (labelSpan) labelSpan.textContent = originalLabel; }, 1800);
+        btn.innerHTML = '<svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.innerHTML = originalSvg;
+          btn.classList.remove('copied');
+        }, 1800);
       }
     });
   });
