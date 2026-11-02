@@ -814,31 +814,31 @@ function initForensicSchematic() {
   let restoreFocusTimer = null;
 
   const FOCUS_COORDS = {
-    explosivo: { x: 370, y: 240, scale: 1.18 },
-    temporizador: { x: 460, y: 390, scale: 1.18 },
-    trampa: { x: 370, y: 550, scale: 1.18 },
-    candado: { x: 280, y: 390, scale: 1.18 }
+    explosivo: { x: 370, y: 220, scale: 2.25 },
+    temporizador: { x: 500, y: 400, scale: 2.25 },
+    trampa: { x: 370, y: 580, scale: 2.25 },
+    candado: { x: 240, y: 400, scale: 2.25 }
   };
 
   const PART_DETAILS = {
     explosivo: {
-      title: '1. Sección de Carga Explosiva (Indugel / Dinamita)',
-      text: 'El tubo lateral izquierdo de PVC sanitario (50 mm) alojaba cartuchos de dinamita comercial e Indugel. Confinada rígidamente dentro de la sección rectangular recta, la onda expansiva quedaba orientada de forma letal contra la zona cervical de la víctima.',
+      title: '1. Dinamita e Indugel Comercial (Carga Primaria)',
+      text: 'El compartimento lateral izquierdo de tubería PVC sanitaria de 2 pulgadas (50 mm de diámetro) alojaba una carga letal compuesta por cartuchos de dinamita comercial e Indugel 500/600 de fabricación industrial. Confinada herméticamente dentro de la sección rectangular recta, la energía expansiva no contaba con espacio para disiparse, orientando la totalidad de la onda de choque y metralla directamente hacia la región cervical y carotídea de doña Ana Elvia Cortés. Los peritajes balísticos y químicos del CTI y la Policía determinaron que la detonación generaría presiones superiores a 4.000 m/s, imposibilitando cualquier probabilidad de supervivencia biológica.',
       citation: 'Dictamen pericial balístico y forense · Expediente CSJ Proceso n.º 21285.'
     },
     temporizador: {
-      title: '2. Módulo Temporizador de 24 Horas y Batería 9V',
-      text: 'En el tramo superior horizontal se alojaba el circuito temporizador electromecánico calibrado con un ciclo de cuenta regresiva de 24 horas (plazo extorsivo fijado por los criminales), alimentado por una batería prismática alcalina de 9V para energizar el detonador eléctrico.',
+      title: '2. Circuito Temporizador Electromecánico y Pila 9V',
+      text: 'Ubicado en el tramo horizontal superior del collar, este módulo integraba un circuito de temporización con cuenta regresiva mecánica ajustada a 24 horas, coincidente con el perentorio plazo extorsivo de 15 millones de pesos exigido a la familia Cortés. El dispositivo estaba energizado por una batería prismática alcalina estándar de 9 voltios conectada a un puente de encendido con detonador eléctrico comercial. Este mecanismo aseguraba que el artefacto detonaría indefectiblemente al expirar el tiempo establecido, sometiendo a la víctima a una tortura psicológica continua mientras los expertos antiexplosivos libraban una carrera contrarreloj.',
       citation: 'Acta de inspección criminalística EOD · Policía Nacional de Colombia (2000).'
     },
     trampa: {
-      title: '3. Mecanismo Sensor de Alivio de Tensión (Anti-Corte)',
-      text: 'El tubo lateral derecho integraba el elemento trampa: un sensor de alivio de tensión conectado al conector circular multipin inferior. Si los técnicos intentaban cortar los conductores o forzar el collar sin neutralizar el circuito cerrado primario, el sistema liberaba el contacto disparando la ignición inmediata.',
+      title: '3. Sensor de Alivio de Presión (Trampa Antimanipulación)',
+      text: 'Alojado en el tubo horizontal inferior y acoplado al conector circular multipin, este mecanismo constituía la trampa mortal del artefacto. Diseñado como un interruptor de descompresión o alivio de tensión, el circuito se mantenía en reposo mientras existiera una presión física sostenida. Cualquier intento de cortar la tubería, desoldar los empalmes, reducir la tensión mecánica o separar los segmentos cerraba instantáneamente el circuito eléctrico secundario hacia el detonador. Fue precisamente esta pérfida trampa de alivio la que cobró la vida del subintendente Jairo Hernando López mientras arriesgaba su integridad para salvar a la rehén.',
       citation: 'Providencia CSJ Sala Casación Penal 21285 (M.P. Yesid Ramírez Bastidas).'
     },
     candado: {
-      title: '4. Unión Adhesiva con Cemento y Soldadura para PVC',
-      text: 'Los asaltantes ensamblaron el marco rectangular de tubería directamente sobre el cuello de la víctima, uniendo los tubos de PVC con soldadura química adhesiva para fontanería. El perímetro interno rectangular (≈14.5 × 12 cm) impedía extraer la cabeza sin cortar la tubería.',
+      title: '4. Unión Adhesiva con Soldadura Química para PVC',
+      text: 'El segmento lateral derecho completaba el marco rectangular de tubería plástica, ensamblado directamente alrededor del cuello de la víctima en su vivienda rural de Simijaca. Los criminales sellaron las uniones y codos terminales empleando soldadura química adhesiva de fontanería (pegante para PVC de secado rápido). Los peritajes forenses judiciales certificaron de manera categórica que el collar no poseía cerradura, llave ni candado mecánico alguno: la víctima no podía ser liberada sin una intervención física sobre el artefacto, confirmando la sevicia y la premeditación con la que fue ejecutada la extorsión.',
       citation: 'Acta de inspección técnica al cadáver · Simijaca, Cundinamarca (15 de mayo de 2000).'
     }
   };
@@ -870,7 +870,7 @@ function initForensicSchematic() {
       // Restaurar automáticamente la vista general tras cinco segundos sin interacción
       restoreFocusTimer = setTimeout(() => {
         resetFocus();
-      }, 10000);
+      }, 15000);
     }
   }
 
