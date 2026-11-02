@@ -7727,3 +7727,193 @@ body.font-large .bio-body p {
   60% { opacity: 0.3; transform: translate(-60%, -40px) scale(1.5); }
   100% { opacity: 0; transform: translate(-40%, -68px) scale(2.4); filter: blur(6px); }
 }
+
+
+/* =====================================================================
+   NÚMEROS GRANDES, CLAROS Y PERFECTAMENTE CENTRADOS (.step-pill Y .geo-pill-btn)
+   ===================================================================== */
+/* 1. LÍNEA DE TIEMPO */
+.step-pill {
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  border-radius: 999px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  background: rgba(255, 255, 255, 0.85) !important;
+  border: 1.5px solid rgba(140, 35, 35, 0.35) !important;
+  box-shadow: 0 1px 4px rgba(60, 40, 20, 0.1) !important;
+  box-sizing: border-box !important;
+  cursor: pointer !important;
+  flex-shrink: 0 !important;
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.step-pill .step-pill-num {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 1.15rem !important;
+  font-weight: 800 !important;
+  font-variant-numeric: lining-nums tabular-nums !important;
+  color: #8c2323 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  width: 100% !important;
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  text-align: center !important;
+}
+
+.step-pill .step-pill-label {
+  max-width: 0 !important;
+  opacity: 0 !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  pointer-events: none !important;
+  color: #ffffff !important;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 0.88rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.015em !important;
+  transition: max-width 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.22s ease, margin 0.28s ease !important;
+}
+
+.step-pill:hover {
+  background: #ffffff !important;
+  border-color: rgba(140, 35, 35, 0.7) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 3px 10px rgba(60, 40, 20, 0.16) !important;
+}
+
+.step-pill.active {
+  width: auto !important;
+  min-width: 40px !important;
+  height: 40px !important;
+  padding: 0 16px 0 6px !important;
+  background: linear-gradient(135deg, #24160d 0%, #150d08 100%) !important;
+  border-color: #0e0704 !important;
+  box-shadow: 0 4px 14px rgba(25, 14, 8, 0.38) !important;
+  transform: translateY(-1px) !important;
+}
+
+.step-pill.active .step-pill-num {
+  width: 28px !important;
+  height: 28px !important;
+  min-width: 28px !important;
+  border-radius: 50% !important;
+  background: #8c2323 !important;
+  color: #ffffff !important;
+  font-size: 0.96rem !important;
+  font-weight: 800 !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4) !important;
+}
+
+.step-pill.active .step-pill-label {
+  max-width: 180px !important;
+  opacity: 1 !important;
+  margin-left: 8px !important;
+  color: #ffffff !important;
+}
+
+/* 2. MAPA DE NAVEGACIÓN (.geo-pill-btn) */
+.geo-pill-btn {
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  border-radius: 999px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  background: rgba(255, 255, 255, 0.85) !important;
+  border: 1.5px solid rgba(140, 35, 35, 0.35) !important;
+  box-shadow: 0 1px 4px rgba(60, 40, 20, 0.1) !important;
+  box-sizing: border-box !important;
+  cursor: pointer !important;
+  flex-shrink: 0 !important;
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.geo-pill-btn .geo-pill-num {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 1.15rem !important;
+  font-weight: 800 !important;
+  font-variant-numeric: lining-nums tabular-nums !important;
+  color: #8c2323 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  width: 100% !important;
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  text-align: center !important;
+}
+
+.geo-pill-btn .geo-pill-text {
+  max-width: 0 !important;
+  opacity: 0 !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  pointer-events: none !important;
+  color: #ffffff !important;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 0.88rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.015em !important;
+  transition: max-width 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.22s ease, margin 0.28s ease !important;
+}
+
+.geo-pill-btn:hover {
+  background: #ffffff !important;
+  border-color: rgba(140, 35, 35, 0.7) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 3px 10px rgba(60, 40, 20, 0.16) !important;
+}
+
+.geo-pill-btn.active {
+  width: auto !important;
+  min-width: 40px !important;
+  height: 40px !important;
+  padding: 0 16px 0 6px !important;
+  background: linear-gradient(135deg, #24160d 0%, #150d08 100%) !important;
+  border-color: #0e0704 !important;
+  box-shadow: 0 4px 14px rgba(25, 14, 8, 0.38) !important;
+  transform: translateY(-1px) !important;
+}
+
+.geo-pill-btn.active .geo-pill-num {
+  width: 28px !important;
+  height: 28px !important;
+  min-width: 28px !important;
+  border-radius: 50% !important;
+  background: #8c2323 !important;
+  color: #ffffff !important;
+  font-size: 0.96rem !important;
+  font-weight: 800 !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4) !important;
+}
+
+.geo-pill-btn.active .geo-pill-text {
+  max-width: 180px !important;
+  opacity: 1 !important;
+  margin-left: 8px !important;
+  color: #ffffff !important;
+}
