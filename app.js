@@ -1072,7 +1072,7 @@ function initMemorialSanctuary() {
         flameEl.classList.add('ignited');
         if (animate) {
           flameEl.classList.add('igniting');
-          setTimeout(() => { flameEl.classList.remove('igniting'); }, 750);
+          setTimeout(() => { flameEl.classList.remove('igniting'); }, 650);
         }
       }
     } else {

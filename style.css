@@ -7551,54 +7551,89 @@ body.font-large .bio-body p {
 }
 
 /* =====================================================================
-   VELA CONMEMORATIVA: ENCENDIDO LATERAL (DERECHO), APAGADO Y HUMO DENSO VISIBLE
+   VELA CONMEMORATIVA: LLAMA PERFECTAMENTE CENTRADA SOBRE EL PABILO,
+   ENCENDIDO NATURAL, APAGADO Y HUMO DENSO VISIBLE
    ===================================================================== */
 .candle-flame-wrapper {
   position: relative;
 }
 
-/* Llama encendiéndose: comienza visiblemente desde el lado derecho como si un fósforo la tocara por la derecha */
-.candle-flame.ignited.igniting {
-  animation: flameIgniteRight 0.7s cubic-bezier(0.2, 0.8, 0.25, 1) forwards, flameFlicker 3s infinite 0.7s !important;
+/* Pabilo (mecha) centrado perfectamente vertical sobre la vela */
+.candle-wick {
+  transform: none !important;
+  margin: 0 auto;
 }
 
-@keyframes flameIgniteRight {
+/* Fuego apagado por defecto: siempre centrado en el eje del pabilo */
+.candle-flame {
+  left: 50% !important;
+  bottom: 8px !important;
+  transform: translateX(-50%) scale(0.05) !important;
+  transform-origin: 50% 95% !important;
+}
+
+/* Llama encendida: perfectamente alineada y centrada con el pabilo */
+.candle-flame.ignited {
+  left: 50% !important;
+  transform: translateX(-50%) scale(1) !important;
+  animation: flameOrganicDancing 2.4s ease-in-out infinite !important;
+}
+
+/* Llama encendiéndose: nace exactamente sobre la punta del pabilo y crece orgánicamente */
+.candle-flame.ignited.igniting {
+  left: 50% !important;
+  animation: flameIgniteOrganic 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}
+
+@keyframes flameIgniteOrganic {
   0% {
-    transform: translate(16px, 8px) scale(0.2, 0.3) rotate(25deg);
+    transform: translateX(-50%) scale(0.1, 0.15);
     opacity: 0.25;
-    filter: drop-shadow(0 0 10px rgba(251, 146, 60, 0.95)) blur(1px);
+    filter: drop-shadow(0 0 6px rgba(251, 146, 60, 0.95)) blur(2px);
   }
-  25% {
-    transform: translate(12px, 3px) scale(0.6, 0.8) rotate(18deg);
+  30% {
+    transform: translateX(-50%) scale(0.55, 0.75) rotate(-1.5deg);
     opacity: 0.85;
-    filter: drop-shadow(0 0 16px rgba(251, 191, 36, 1));
+    filter: drop-shadow(0 0 14px rgba(251, 191, 36, 1));
   }
-  50% {
-    transform: translate(6px, -2px) scale(0.9, 1.25) rotate(10deg);
-    opacity: 0.95;
-    filter: drop-shadow(0 0 20px rgba(251, 191, 36, 1));
-  }
-  75% {
-    transform: translate(1px, -4px) scale(1.18, 1.15) rotate(-3deg);
+  65% {
+    transform: translateX(-50%) scale(1.15, 1.25) rotate(1.5deg);
     opacity: 1;
-    filter: drop-shadow(0 0 18px rgba(251, 191, 36, 0.95));
+    filter: drop-shadow(0 0 24px rgba(251, 191, 36, 1)) drop-shadow(0 0 45px rgba(251, 146, 60, 0.6));
+  }
+  85% {
+    transform: translateX(-50%) scale(0.96, 1.05) rotate(-0.5deg);
+    opacity: 1;
+    filter: drop-shadow(0 0 16px rgba(251, 191, 36, 0.95));
   }
   100% {
-    transform: translate(0, 0) scale(1) rotate(0deg);
+    transform: translateX(-50%) scale(1) rotate(0deg);
     opacity: 1;
     filter: drop-shadow(0 0 14px rgba(251, 191, 36, 0.8));
   }
 }
 
-/* Llama apagándose */
+/* Llama apagándose: se encoge hacia la punta del pabilo */
 .candle-flame.extinguishing {
-  animation: flameExtinguish 0.32s cubic-bezier(0.4, 0, 0.8, 1) forwards !important;
+  left: 50% !important;
+  animation: flameExtinguishOrganic 0.32s cubic-bezier(0.4, 0, 0.8, 1) forwards !important;
 }
 
-@keyframes flameExtinguish {
-  0% { transform: scale(1); opacity: 1; filter: blur(0px); }
-  40% { transform: scale(1.2, 0.6) skewX(-14deg); opacity: 0.85; }
-  100% { transform: scale(0.05, 0.05) translateY(6px); opacity: 0; filter: blur(4px); }
+@keyframes flameExtinguishOrganic {
+  0% {
+    transform: translateX(-50%) scale(1) rotate(0deg);
+    opacity: 1;
+    filter: blur(0px);
+  }
+  40% {
+    transform: translateX(-50%) scale(1.15, 0.55) skewX(-10deg);
+    opacity: 0.85;
+  }
+  100% {
+    transform: translateX(-50%) scale(0.05, 0.05) translateY(4px);
+    opacity: 0;
+    filter: blur(4px);
+  }
 }
 
 /* Pabilo con brasa incandescente roja al apagarse */
