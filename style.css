@@ -2094,12 +2094,14 @@ body.font-large .bio-body p {
 }
 
 .schematic-top-meta .meta-code {
-  color: var(--red-primary);
-  font-weight: 800;
-  background: rgba(143, 30, 30, 0.08);
-  padding: 3px 8px;
-  border-radius: 4px;
-  border: 1px solid rgba(143, 30, 30, 0.35);
+  color: #6d5b4b;
+  font-weight: 700;
+  background: transparent;
+  padding: 0;
+  border: none;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  opacity: 0.85;
 }
 
 .meta-dot {
@@ -2115,17 +2117,17 @@ body.font-large .bio-body p {
 .schematic-click-cue {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  font-weight: 700;
-  color: #8c5311;
-  background: rgba(140, 83, 17, 0.12);
-  border: 1px dashed rgba(140, 83, 17, 0.35);
-  padding: 2px 9px;
+  gap: 6px;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #7a4610;
+  background: rgba(140, 83, 17, 0.08);
+  border: 1px solid rgba(140, 83, 17, 0.22);
+  padding: 2px 10px;
   border-radius: 999px;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  text-transform: none;
+  letter-spacing: 0.01em;
 }
 
 .forensic-svg {
@@ -7539,7 +7541,7 @@ body.font-large .bio-body p {
 /* Ocultar la silueta anatómica de cráneo/cuello cuando se hace zoom en una pieza */
 #collar-diagram.is-focused #schematic-anatomical-neck,
 #collar-diagram.is-focused .schematic-neck-group {
-  opacity: 0.04 !important;
+  opacity: 0.35 !important;
   pointer-events: none !important;
   transition: opacity 0.35s ease !important;
 }
@@ -7548,91 +7550,44 @@ body.font-large .bio-body p {
   transition: opacity 0.35s ease !important;
 }
 
-/* HUD flotante con número, título y mini explicación */
-.schematic-zoom-hud {
-  position: absolute;
-  top: 14px;
-  left: 50%;
-  transform: translateX(-50%) translateY(-15px);
-  background: linear-gradient(135deg, rgba(32, 20, 12, 0.94) 0%, rgba(18, 10, 6, 0.96) 100%);
-  border: 1px solid rgba(247, 213, 156, 0.35);
-  box-shadow: 0 8px 24px rgba(20, 10, 5, 0.45);
-  border-radius: 999px;
-  padding: 6px 18px 6px 10px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  z-index: 10;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  max-width: 90%;
-  box-sizing: border-box;
-}
-
-.schematic-zoom-hud.active {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateX(-50%) translateY(0);
-}
-
-.hud-num {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: #8c2323;
-  color: #ffffff;
-  font-family: var(--font-headline);
-  font-size: 0.85rem;
-  font-weight: 800;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  box-shadow: 0 0 8px rgba(140, 35, 35, 0.6);
-}
-
-.hud-content {
-  display: flex;
-  flex-direction: column;
-}
-
-.hud-title {
-  margin: 0;
-  font-family: var(--font-headline);
-  font-size: 0.82rem;
-  font-weight: 800;
-  color: #f7d59c;
-  line-height: 1.2;
-  letter-spacing: 0.02em;
-}
-
-.hud-mini-desc {
-  margin: 0;
-  font-family: var(--font-sans);
-  font-size: 0.70rem;
-  color: #e2d2ba;
-  line-height: 1.25;
-}
-
-
 /* =====================================================================
-   VELA CONMEMORATIVA: ANIMACIÓN DE ENCENDIDO, APAGADO Y HUMITO DEL PABILO
+   VELA CONMEMORATIVA: ENCENDIDO LATERAL (DERECHO), APAGADO Y HUMO DENSO VISIBLE
    ===================================================================== */
 .candle-flame-wrapper {
   position: relative;
 }
 
-/* Llama encendiéndose con llamarada suave */
+/* Llama encendiéndose: comienza visiblemente desde el lado derecho como si un fósforo la tocara por la derecha */
 .candle-flame.ignited.igniting {
-  animation: flameIgnite 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards, flameFlicker 3s infinite 0.55s !important;
+  animation: flameIgniteRight 0.7s cubic-bezier(0.2, 0.8, 0.25, 1) forwards, flameFlicker 3s infinite 0.7s !important;
 }
 
-@keyframes flameIgnite {
-  0% { transform: scale(0.1); opacity: 0; filter: blur(4px); }
-  40% { transform: scale(0.6, 1.4); opacity: 0.8; filter: blur(1px); }
-  75% { transform: scale(1.3, 1.15); opacity: 1; filter: drop-shadow(0 0 16px rgba(251, 191, 36, 0.95)); }
-  100% { transform: scale(1); opacity: 1; }
+@keyframes flameIgniteRight {
+  0% {
+    transform: translate(16px, 8px) scale(0.2, 0.3) rotate(25deg);
+    opacity: 0.25;
+    filter: drop-shadow(0 0 10px rgba(251, 146, 60, 0.95)) blur(1px);
+  }
+  25% {
+    transform: translate(12px, 3px) scale(0.6, 0.8) rotate(18deg);
+    opacity: 0.85;
+    filter: drop-shadow(0 0 16px rgba(251, 191, 36, 1));
+  }
+  50% {
+    transform: translate(6px, -2px) scale(0.9, 1.25) rotate(10deg);
+    opacity: 0.95;
+    filter: drop-shadow(0 0 20px rgba(251, 191, 36, 1));
+  }
+  75% {
+    transform: translate(1px, -4px) scale(1.18, 1.15) rotate(-3deg);
+    opacity: 1;
+    filter: drop-shadow(0 0 18px rgba(251, 191, 36, 0.95));
+  }
+  100% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+    opacity: 1;
+    filter: drop-shadow(0 0 14px rgba(251, 191, 36, 0.8));
+  }
 }
 
 /* Llama apagándose */
@@ -7646,38 +7601,40 @@ body.font-large .bio-body p {
   100% { transform: scale(0.05, 0.05) translateY(6px); opacity: 0; filter: blur(4px); }
 }
 
-/* Pabilo con brasa incandescente al apagarse */
+/* Pabilo con brasa incandescente roja al apagarse */
 .candle-wick.has-ember::before {
   content: '';
   position: absolute;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 3px;
-  height: 3px;
+  width: 4px;
+  height: 4px;
   border-radius: 50%;
-  background: #ff3300;
-  box-shadow: 0 0 6px #ef4444, 0 0 12px #f97316;
-  animation: emberCooldown 3s forwards;
+  background: #ff3b00;
+  box-shadow: 0 0 8px #ef4444, 0 0 14px #f97316;
+  animation: emberCooldown 3.8s forwards;
 }
 
 @keyframes emberCooldown {
-  0% { opacity: 1; background: #ff4400; box-shadow: 0 0 6px #ef4444, 0 0 10px #f97316; }
-  60% { opacity: 0.7; background: #b91c1c; box-shadow: 0 0 4px #dc2626; }
+  0% { opacity: 1; background: #ff4400; box-shadow: 0 0 8px #ef4444, 0 0 14px #f97316; }
+  50% { opacity: 0.85; background: #dc2626; box-shadow: 0 0 6px #dc2626, 0 0 10px #ea580c; }
+  75% { opacity: 0.5; background: #991b1b; box-shadow: 0 0 3px #991b1b; }
   100% { opacity: 0; background: #451a03; box-shadow: none; }
 }
 
-/* Humito delicado subiendo del pabilo */
+/* Humo denso y visible subiendo del pabilo cuando se apaga */
 .candle-smoke {
   position: absolute;
-  bottom: 12px;
+  bottom: 14px;
   left: 50%;
   transform: translateX(-50%);
-  width: 10px;
-  height: 40px;
+  width: 60px;
+  height: 120px;
   pointer-events: none;
   opacity: 0;
-  z-index: 5;
+  z-index: 10;
+  overflow: visible;
 }
 
 .candle-smoke.active {
@@ -7688,44 +7645,63 @@ body.font-large .bio-body p {
   position: absolute;
   bottom: 0;
   left: 50%;
-  width: 6px;
-  height: 6px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(210, 200, 190, 0.75) 0%, rgba(180, 170, 160, 0.35) 60%, transparent 100%);
+  background: radial-gradient(circle at 45% 45%, rgba(130, 118, 105, 0.95) 0%, rgba(175, 162, 150, 0.75) 45%, rgba(200, 190, 180, 0.25) 75%, transparent 100%);
   opacity: 0;
 }
 
 .candle-smoke.active .wisp-1 {
-  animation: smokeRiseLeft 2.8s cubic-bezier(0.2, 0.8, 0.4, 1) forwards;
+  width: 14px;
+  height: 14px;
+  animation: smokeRiseLeft 3.6s cubic-bezier(0.2, 0.8, 0.4, 1) forwards;
 }
 
 .candle-smoke.active .wisp-2 {
-  animation: smokeRiseRight 3.1s cubic-bezier(0.2, 0.8, 0.4, 1) 0.25s forwards;
+  width: 16px;
+  height: 16px;
+  animation: smokeRiseRight 3.8s cubic-bezier(0.2, 0.8, 0.4, 1) 0.15s forwards;
 }
 
 .candle-smoke.active .wisp-3 {
-  animation: smokeRiseCenter 3.3s cubic-bezier(0.2, 0.8, 0.4, 1) 0.5s forwards;
+  width: 18px;
+  height: 18px;
+  animation: smokeRiseCenter 4.0s cubic-bezier(0.2, 0.8, 0.4, 1) 0.3s forwards;
+}
+
+.candle-smoke.active .wisp-4 {
+  width: 12px;
+  height: 12px;
+  animation: smokeRiseLeft 3.4s cubic-bezier(0.2, 0.8, 0.4, 1) 0.5s forwards;
+}
+
+.candle-smoke.active .wisp-5 {
+  width: 15px;
+  height: 15px;
+  animation: smokeRiseRight 3.7s cubic-bezier(0.2, 0.8, 0.4, 1) 0.65s forwards;
 }
 
 @keyframes smokeRiseLeft {
-  0% { opacity: 0; transform: translate(-50%, 0) scale(0.4); }
-  20% { opacity: 0.75; transform: translate(-70%, -15px) scale(0.9); }
-  55% { opacity: 0.4; transform: translate(-130%, -38px) scale(1.6) rotate(-18deg); }
-  100% { opacity: 0; transform: translate(-200%, -65px) scale(2.5) rotate(-35deg); filter: blur(5px); }
+  0% { opacity: 0; transform: translate(-50%, 0) scale(0.35); filter: blur(0px); }
+  15% { opacity: 0.92; transform: translate(-65%, -18px) scale(0.85); filter: blur(1px); }
+  45% { opacity: 0.78; transform: translate(-110%, -46px) scale(1.65) rotate(-22deg); filter: blur(2.5px); }
+  75% { opacity: 0.4; transform: translate(-170%, -82px) scale(2.4) rotate(-42deg); filter: blur(4.5px); }
+  100% { opacity: 0; transform: translate(-230%, -115px) scale(3.2) rotate(-60deg); filter: blur(7px); }
 }
 
 @keyframes smokeRiseRight {
-  0% { opacity: 0; transform: translate(-50%, 0) scale(0.4); }
-  25% { opacity: 0.7; transform: translate(-30%, -18px) scale(1.1); }
-  60% { opacity: 0.35; transform: translate(30%, -44px) scale(1.8) rotate(20deg); }
-  100% { opacity: 0; transform: translate(80%, -75px) scale(2.8) rotate(40deg); filter: blur(6px); }
+  0% { opacity: 0; transform: translate(-50%, 0) scale(0.35); filter: blur(0px); }
+  18% { opacity: 0.95; transform: translate(-30%, -22px) scale(0.95); filter: blur(1px); }
+  50% { opacity: 0.75; transform: translate(45%, -52px) scale(1.8) rotate(26deg); filter: blur(2.5px); }
+  80% { opacity: 0.35; transform: translate(115%, -88px) scale(2.7) rotate(50deg); filter: blur(4.8px); }
+  100% { opacity: 0; transform: translate(175%, -120px) scale(3.4) rotate(70deg); filter: blur(7.5px); }
 }
 
 @keyframes smokeRiseCenter {
-  0% { opacity: 0; transform: translate(-50%, 0) scale(0.3); }
-  20% { opacity: 0.8; transform: translate(-50%, -12px) scale(0.8); }
-  60% { opacity: 0.3; transform: translate(-60%, -40px) scale(1.5); }
-  100% { opacity: 0; transform: translate(-40%, -68px) scale(2.4); filter: blur(6px); }
+  0% { opacity: 0; transform: translate(-50%, 0) scale(0.4); filter: blur(0px); }
+  15% { opacity: 0.95; transform: translate(-50%, -16px) scale(0.9); filter: blur(0.8px); }
+  45% { opacity: 0.82; transform: translate(-40%, -48px) scale(1.85) rotate(-10deg); filter: blur(2px); }
+  75% { opacity: 0.4; transform: translate(-25%, -86px) scale(2.8) rotate(16deg); filter: blur(4px); }
+  100% { opacity: 0; transform: translate(-10%, -125px) scale(3.5) rotate(24deg); filter: blur(7px); }
 }
 
 

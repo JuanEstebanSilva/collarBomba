@@ -814,10 +814,10 @@ function initForensicSchematic() {
   let restoreFocusTimer = null;
 
   const FOCUS_COORDS = {
-    explosivo: { x: 370, y: 220, scale: 2.3 },
-    temporizador: { x: 500, y: 390, scale: 2.3 },
-    trampa: { x: 370, y: 590, scale: 2.3 },
-    candado: { x: 240, y: 390, scale: 2.3 }
+    explosivo: { x: 370, y: 145, scale: 1.85 },
+    temporizador: { x: 580, y: 400, scale: 1.75 },
+    trampa: { x: 370, y: 660, scale: 1.85 },
+    candado: { x: 155, y: 400, scale: 1.75 }
   };
 
   const PART_DETAILS = {
@@ -843,17 +843,7 @@ function initForensicSchematic() {
     }
   };
 
-  const HUD_DATA = {
-    explosivo: { num: '1', title: '1. Masa Explosiva', desc: 'Dinamita comercial e Indugel en tubo de PVC sanitario' },
-    temporizador: { num: '2', title: '2. Reloj Temporizador', desc: 'Circuito electromecánico de 24h y pila alcalina de 9V' },
-    trampa: { num: '3', title: '3. Sensor de Alivio', desc: 'Trampa antimanipulación de descompresión con conector multipin' },
-    candado: { num: '4', title: '4. Unión Adhesiva de PVC', desc: 'Soldadura química para fontanería · Cero cerraduras' }
-  };
-
-  const zoomHudEl = document.getElementById('schematic-zoom-hud');
-  const hudNumEl = document.getElementById('hud-num');
-  const hudTitleEl = document.getElementById('hud-title');
-  const hudDescEl = document.getElementById('hud-desc');
+  // HUD data removed in favor of native archival diagram annotations
 
   function resetFocus() {
     if (assemblyGroup) {
@@ -861,9 +851,7 @@ function initForensicSchematic() {
       assemblyGroup.style.transform = 'scale(1)';
     }
     svgDiagram?.classList.remove('is-focused');
-    if (zoomHudEl) {
-      zoomHudEl.classList.remove('active');
-    }
+    
     if (restoreFocusTimer) {
       clearTimeout(restoreFocusTimer);
       restoreFocusTimer = null;
@@ -882,13 +870,7 @@ function initForensicSchematic() {
       assemblyGroup.style.transform = `scale(${target.scale})`;
       svgDiagram?.classList.add('is-focused');
 
-      // Actualizar y desplegar el HUD de primer plano pericial
-      if (zoomHudEl && HUD_DATA[partKey]) {
-        if (hudNumEl) hudNumEl.textContent = HUD_DATA[partKey].num;
-        if (hudTitleEl) hudTitleEl.textContent = HUD_DATA[partKey].title;
-        if (hudDescEl) hudDescEl.textContent = HUD_DATA[partKey].desc;
-        zoomHudEl.classList.add('active');
-      }
+      // Enfoque directo con calibración pericial en el componente y su rótulo
 
       // Regresar suavemente a la vista general tras 8 segundos
       restoreFocusTimer = setTimeout(() => {
@@ -1090,7 +1072,7 @@ function initMemorialSanctuary() {
         flameEl.classList.add('ignited');
         if (animate) {
           flameEl.classList.add('igniting');
-          setTimeout(() => { flameEl.classList.remove('igniting'); }, 600);
+          setTimeout(() => { flameEl.classList.remove('igniting'); }, 750);
         }
       }
     } else {
@@ -1118,13 +1100,11 @@ function initMemorialSanctuary() {
       if (animate) {
         if (wickEl) {
           wickEl.classList.add('has-ember');
-          setTimeout(() => { wickEl.classList.remove('has-ember'); }, 3000);
+          setTimeout(() => { wickEl.classList.remove('has-ember'); }, 3800);
         }
         if (smokeEl) {
           smokeEl.classList.add('active');
-          smokeTimer = setTimeout(() => {
-            smokeEl.classList.remove('active');
-          }, 3200);
+          smokeTimer = setTimeout(() => { smokeEl.classList.remove('active'); }, 4000);
         }
       }
     }
