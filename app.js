@@ -814,10 +814,10 @@ function initForensicSchematic() {
   let restoreFocusTimer = null;
 
   const FOCUS_COORDS = {
-    explosivo: { x: 370, y: 220, scale: 2.25 },
-    temporizador: { x: 500, y: 400, scale: 2.25 },
-    trampa: { x: 370, y: 580, scale: 2.25 },
-    candado: { x: 240, y: 400, scale: 2.25 }
+    explosivo: { x: 370, y: 220, scale: 2.3 },
+    temporizador: { x: 500, y: 390, scale: 2.3 },
+    trampa: { x: 370, y: 590, scale: 2.3 },
+    candado: { x: 240, y: 390, scale: 2.3 }
   };
 
   const PART_DETAILS = {
@@ -843,12 +843,27 @@ function initForensicSchematic() {
     }
   };
 
+  const HUD_DATA = {
+    explosivo: { num: '1', title: '1. Masa Explosiva', desc: 'Dinamita comercial e Indugel en tubo de PVC sanitario' },
+    temporizador: { num: '2', title: '2. Reloj Temporizador', desc: 'Circuito electromecánico de 24h y pila alcalina de 9V' },
+    trampa: { num: '3', title: '3. Sensor de Alivio', desc: 'Trampa antimanipulación de descompresión con conector multipin' },
+    candado: { num: '4', title: '4. Unión Adhesiva de PVC', desc: 'Soldadura química para fontanería · Cero cerraduras' }
+  };
+
+  const zoomHudEl = document.getElementById('schematic-zoom-hud');
+  const hudNumEl = document.getElementById('hud-num');
+  const hudTitleEl = document.getElementById('hud-title');
+  const hudDescEl = document.getElementById('hud-desc');
+
   function resetFocus() {
     if (assemblyGroup) {
       assemblyGroup.style.transformOrigin = '370px 400px';
       assemblyGroup.style.transform = 'scale(1)';
     }
     svgDiagram?.classList.remove('is-focused');
+    if (zoomHudEl) {
+      zoomHudEl.classList.remove('active');
+    }
     if (restoreFocusTimer) {
       clearTimeout(restoreFocusTimer);
       restoreFocusTimer = null;
@@ -867,10 +882,18 @@ function initForensicSchematic() {
       assemblyGroup.style.transform = `scale(${target.scale})`;
       svgDiagram?.classList.add('is-focused');
 
-      // Restaurar automáticamente la vista general tras cinco segundos sin interacción
+      // Actualizar y desplegar el HUD de primer plano pericial
+      if (zoomHudEl && HUD_DATA[partKey]) {
+        if (hudNumEl) hudNumEl.textContent = HUD_DATA[partKey].num;
+        if (hudTitleEl) hudTitleEl.textContent = HUD_DATA[partKey].title;
+        if (hudDescEl) hudDescEl.textContent = HUD_DATA[partKey].desc;
+        zoomHudEl.classList.add('active');
+      }
+
+      // Regresar suavemente a la vista general tras 8 segundos
       restoreFocusTimer = setTimeout(() => {
         resetFocus();
-      }, 15000);
+      }, 8000);
     }
   }
 
@@ -1029,6 +1052,10 @@ function initMemorialSanctuary() {
   }
   updateCounter();
 
+  const smokeEl = document.getElementById('candle-smoke');
+  const wickEl = document.getElementById('candle-wick');
+  let smokeTimer = null;
+
   function updateCandleUI(isLit, animate = false) {
     // El formulario de dedicatorias solo se despliega cuando la vela está encendida
     if (formWrap) {
@@ -1041,6 +1068,11 @@ function initMemorialSanctuary() {
       }
     }
 
+    if (smokeTimer) {
+      clearTimeout(smokeTimer);
+      smokeTimer = null;
+    }
+
     if (isLit) {
       btnLight.classList.add('lit');
       btnLight.disabled = false;
@@ -1048,11 +1080,17 @@ function initMemorialSanctuary() {
         <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><path d="M12 2c-.5 2-2 3.5-2 5.5 0 1.5 1 2.5 2 2.5s2-1 2-2.5c0-2-1.5-3.5-2-5.5zm-5 9v11h10V11H7z"/></svg>
         <span>Luz Encendida · Clic para apagar</span>
       `;
+      
+      // Detener cualquier humo previo
+      if (smokeEl) smokeEl.classList.remove('active');
+      if (wickEl) wickEl.classList.remove('has-ember');
+
       if (flameEl) {
+        flameEl.classList.remove('extinguishing');
         flameEl.classList.add('ignited');
         if (animate) {
-          flameEl.style.transform = 'scale(1.4)';
-          setTimeout(() => { flameEl.style.transform = ''; }, 600);
+          flameEl.classList.add('igniting');
+          setTimeout(() => { flameEl.classList.remove('igniting'); }, 600);
         }
       }
     } else {
@@ -1062,8 +1100,32 @@ function initMemorialSanctuary() {
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20" aria-hidden="true"><path d="M12 2c-.5 2-2 3.5-2 5.5 0 1.5 1 2.5 2 2.5s2-1 2-2.5c0-2-1.5-3.5-2-5.5zm-5 9v11h10V11H7z"/></svg>
         <span>Encender una Luz en Memoria</span>
       `;
+
       if (flameEl) {
-        flameEl.classList.remove('ignited');
+        if (animate && flameEl.classList.contains('ignited')) {
+          flameEl.classList.add('extinguishing');
+          setTimeout(() => {
+            flameEl.classList.remove('ignited');
+            flameEl.classList.remove('extinguishing');
+          }, 320);
+        } else {
+          flameEl.classList.remove('ignited');
+          flameEl.classList.remove('extinguishing');
+        }
+      }
+
+      // Animación de humito subiendo del pabilo cuando se apaga
+      if (animate) {
+        if (wickEl) {
+          wickEl.classList.add('has-ember');
+          setTimeout(() => { wickEl.classList.remove('has-ember'); }, 3000);
+        }
+        if (smokeEl) {
+          smokeEl.classList.add('active');
+          smokeTimer = setTimeout(() => {
+            smokeEl.classList.remove('active');
+          }, 3200);
+        }
       }
     }
     updateCounter();
@@ -1072,7 +1134,7 @@ function initMemorialSanctuary() {
   // Inicializar estado UI de la vela y del formulario
   updateCandleUI(userHasLit, false);
 
-  // Función interactiva de conmutación (Permite encender y apagar cuantas veces desee)
+  // Función interactiva de conmutación
   function toggleCandle() {
     userHasLit = !userHasLit;
     localStorage.setItem('cb_candle_lit', userHasLit ? 'true' : 'false');

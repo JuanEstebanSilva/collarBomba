@@ -21,9 +21,9 @@
   <!-- Google Fonts: Cinzel, Playfair Display, Newsreader, Plus Jakarta Sans, JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Cinzel:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css?v=20261101_08">
+  <link rel="stylesheet" href="style.css?v=20261101_09">
 
   <!-- Leaflet.js — Mapa interactivo con tiles reales -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
@@ -256,19 +256,35 @@
             <div class="media-thumb-pair">
               <figure class="curated-thumb" data-caption="Cartografía topográfica oficial del municipio de Chiquinquirá y corredores viales límitrofes con Simijaca y Boyacá.">
                 <img src="images/chiquinquira-mapa-topografico.jpg" alt="Mapa topográfico oficial de Chiquinquirá" loading="lazy">
-                <figcaption><strong>Cartografía oficial:</strong> Delimitación municipal y corredor vial 45A.</figcaption>
+                <figcaption><strong>Cartografía oficial:</strong> Delimitación municipal y corredor vial 45A.  <div class="scene-film-footer">
+                      <span class="scene-film-tag">LARGOMETRAJE PVC-1 (2007)</span>
+                      <span class="scene-film-note">Ficción dramática · Dirección: Spiros Stathoulopoulos</span>
+                    </div>
+                  </figcaption>
               </figure>
               <figure class="curated-thumb" data-caption="Plaza de la Libertad de Chiquinquirá (Boyacá), epicentro de atención periodística regional en mayo de 2000.">
                 <img src="images/plaza-chiquinquira.jpg" alt="Plaza de Chiquinquirá y Basílica" loading="lazy">
-                <figcaption><strong>Chiquinquirá (Boyacá):</strong> Base de prensa y rescate hospitalario.</figcaption>
+                <figcaption><strong>Chiquinquirá (Boyacá):</strong> Base de prensa y rescate hospitalario.  <div class="scene-film-footer">
+                      <span class="scene-film-tag">FICCIÓN CINEMATOGRÁFICA</span>
+                      <span class="scene-film-note">Recreación libre inspirada en los hechos de mayo de 2000</span>
+                    </div>
+                  </figcaption>
               </figure>
               <figure class="curated-thumb" data-caption="Página de archivo de El Tiempo (17 de mayo de 2000): 'Collar de dinamita' por Juanita León.">
                 <img src="images/prensa-collar-dinamita-2000.jpg" alt="Titular de prensa contemporáneo de mayo de 2000" loading="lazy">
-                <figcaption><strong>Archivo de prensa:</strong> «Collar de dinamita» (El Tiempo, 2000).</figcaption>
+                <figcaption><strong>Archivo de prensa:</strong> «Collar de dinamita» (El Tiempo, 2000).  <div class="scene-film-footer">
+                      <span class="scene-film-tag">RODAJE EN PLANO SECUENCIA</span>
+                      <span class="scene-film-note">85 minutos continuos sin cortes de cámara</span>
+                    </div>
+                  </figcaption>
               </figure>
               <figure class="curated-thumb" data-caption="Plaza principal de Simijaca (Cundinamarca), jurisdicción acreditada por la Corte Suprema de Justicia en el proceso penal.">
                 <img src="images/Simijaca.jpg" alt="Plaza y entorno de Simijaca (Cundinamarca)" loading="lazy">
-                <figcaption><strong>Simijaca (Cundinamarca):</strong> Jurisdicción acreditada judicialmente.</figcaption>
+                <figcaption><strong>Simijaca (Cundinamarca):</strong> Jurisdicción acreditada judicialmente.  <div class="scene-film-footer">
+                      <span class="scene-film-tag">UTILICERÍA TEATRAL DE FICCIÓN</span>
+                      <span class="scene-film-note">Tubería y perillas ficticias para dramatización</span>
+                    </div>
+                  </figcaption>
               </figure>
             </div>
           </div>
@@ -577,6 +593,14 @@
             <!-- COLUMNA IZQUIERDA: ESQUEMA TÉCNICO PERICIAL -->
             <div class="forensic-schematic-col">
               <div class="schematic-interactive-wrap">
+                <!-- HUD Flotante de Primer Plano Pericial -->
+                <div class="schematic-zoom-hud" id="schematic-zoom-hud" aria-hidden="true">
+                  <span class="hud-num" id="hud-num">1</span>
+                  <div class="hud-content">
+                    <h6 class="hud-title" id="hud-title">Masa Explosiva</h6>
+                    <p class="hud-mini-desc" id="hud-desc">Dinamita comercial e Indugel 500/600 en tubo PVC sanitario</p>
+                  </div>
+                </div>
                 <div class="schematic-top-meta">
                   <span class="meta-tag"><span class="meta-dot"></span> MORFOLOGÍA FORENSE NO OPERATIVA</span>
                   <span class="schematic-click-cue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m10 15 5-3-5-3v6Z"/></svg> Toca cada componente para inspección pericial</span>
@@ -813,6 +837,7 @@
                     <!-- ════════════════════════════════════════════════════════
                          APERTURA CERVICAL, SILUETA DE CABEZA Y CUELLO
                          ════════════════════════════════════════════════════════ -->
+                    <g id="schematic-anatomical-neck" class="schematic-neck-group">
                     <!-- Marco interior de apertura cervical en tono papel neutro -->
                     <rect x="270" y="250" width="200" height="300" rx="8" fill="#efe8dc" stroke="#c2b6a3" stroke-width="1.5"/>
 
@@ -845,6 +870,9 @@
                     <!-- ── 3. BANNER PEDAGÓGICO DE SEGURIDAD Y FÍSICA DEL CIERRE ── -->
                     <rect x="245" y="505" width="250" height="24" rx="4" fill="rgba(143, 30, 30, 0.12)" stroke="#8f1e1e" stroke-width="1.3"/>
                     <text x="370" y="521" text-anchor="middle" fill="#8f1e1e" font-size="8.8" font-weight="900" font-family="'JetBrains Mono', monospace">CABEZA MÁS ANCHA QUE EL MARCO · IMPOSIBLE EXTRAER</text>
+
+                    
+                    </g>
 
                     <!-- Contorno perimetral del marco rectangular -->
                     <path fill="none" stroke="rgba(140, 125, 110, 0.6)" stroke-width="2"
@@ -1219,7 +1247,12 @@
             <div class="sanctuary-header-top">
               <div class="candle-visual" id="candle-visual-container" role="button" tabindex="0" title="Haz clic sobre la vela para encender o apagar la llama" aria-label="Vela conmemorativa interactiva">
                 <div class="candle-flame-wrapper">
-                  <div class="candle-flame" id="candle-flame">
+                  <div class="candle-smoke" id="candle-smoke" aria-hidden="true">
+                      <span class="smoke-wisp wisp-1"></span>
+                      <span class="smoke-wisp wisp-2"></span>
+                      <span class="smoke-wisp wisp-3"></span>
+                    </div>
+                    <div class="candle-flame" id="candle-flame">
                     <div class="flame-outer"></div>
                     <div class="flame-inner"></div>
                     <div class="flame-blue-base"></div>
@@ -2571,6 +2604,6 @@
     </div>
   </div>
 
-  <script src="app.js?v=20261101_08"></script>
+  <script src="app.js?v=20261101_09"></script>
 </body>
 </html>
