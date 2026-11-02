@@ -5,25 +5,35 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Inicialización de subsistemas
-  initPaperScrollDynamics();
-  initPremiumParticles();
-  initReadingProgressBar();
-  initHeaderScrollSpy();
-  initScrollReveal();
-  initMobileDrawer();
-  initFontSizeToggle();
-  initSynchronizedTimelineAndMap();
-  initForensicSchematic();
-  initMemorialSanctuary();
-  initComparisonSlider();
-  initHemerotecaSearch();
-  initJudicialTabs();
-  initAccordion();
-  initAcademicBibliography();
-  initMediaModal();
-  initRippleEffect();
-  initToastSystem();
+  // Inicialización de subsistemas protegidos contra fallos en cascada
+  const subsystems = [
+    ['initPaperScrollDynamics', initPaperScrollDynamics],
+    ['initPremiumParticles', initPremiumParticles],
+    ['initReadingProgressBar', initReadingProgressBar],
+    ['initHeaderScrollSpy', initHeaderScrollSpy],
+    ['initScrollReveal', initScrollReveal],
+    ['initMobileDrawer', initMobileDrawer],
+    ['initFontSizeToggle', initFontSizeToggle],
+    ['initSynchronizedTimelineAndMap', initSynchronizedTimelineAndMap],
+    ['initForensicSchematic', initForensicSchematic],
+    ['initMemorialSanctuary', initMemorialSanctuary],
+    ['initComparisonSlider', initComparisonSlider],
+    ['initHemerotecaSearch', initHemerotecaSearch],
+    ['initJudicialTabs', initJudicialTabs],
+    ['initAccordion', initAccordion],
+    ['initAcademicBibliography', initAcademicBibliography],
+    ['initMediaModal', initMediaModal],
+    ['initRippleEffect', initRippleEffect],
+    ['initToastSystem', initToastSystem]
+  ];
+
+  subsystems.forEach(([name, fn]) => {
+    try {
+      fn();
+    } catch (err) {
+      console.error(`[Error inicializando ${name}]:`, err);
+    }
+  });
 });
 
 /* ========================================================================
@@ -332,7 +342,7 @@ const TIMELINE_DATA = [
     geoPoint: 'simijaca',
     geoLabel: 'Finca rural en Simijaca',
     title: 'Invasión armada e intimidación en vivienda rural',
-    desc: 'Hombres armados irrumpen por la fuerza en la vivienda rural de Ana Elvia Cortés de Pachón y su esposo en Simijaca, Cundinamarca. Intimidan violentamente a la pareja exigiendo 15 millones de pesos en efectivo, amenazando con segarles la vida.',
+    desc: 'En las primeras horas de la madrugada, un grupo de hombres armados irrumpe con violencia extrema en el predio rural de doña Ana Elvia Cortés y su esposo en Simijaca, Cundinamarca. Los asaltantes reducen y amenazan de muerte a la pareja, exigiéndoles la entrega perentoria de 15 millones de pesos en efectivo. Ante la imposibilidad de reunir dicha suma de inmediato, los delincuentes ponen en marcha un macabro plan de coacción premeditada para forzar la extorsión mediante terror psicológico y físico, sometiendo a la víctima a una indefensión total mientras preparan la instalación del artefacto.',
     source: 'Corte Suprema de Justicia, Sala de Casación Penal (Proceso 21285 · 2005)',
     imgSrc: 'images/finca.jpg',
     imgAlt: 'Vivienda rural en Simijaca, Cundinamarca',
@@ -344,11 +354,11 @@ const TIMELINE_DATA = [
     geoPoint: 'simijaca',
     geoLabel: 'Finca rural en Simijaca',
     title: 'Fijación coactiva del artefacto explosivo cervical',
-    desc: 'Los asaltantes aseguran un collar rectangular de tubos de PVC con carga de dinamita e indugel alrededor del cuello de Ana Elvia Cortés. Sellado con adhesivo para tubería y dotado de un temporizador de 24 horas y sensor de alivio trampa, sin candado mecánico, advierten que detonará si no pagan.',
+    desc: 'Los criminales inmovilizan a Ana Elvia Cortés y ensamblan alrededor de su cuello una estructura rectangular de tubos de PVC cargados con dinamita comercial e Indugel. El collarín queda sellado herméticamente con soldadura química para fontanería, integrando un reloj temporizador programado para una cuenta regresiva de 24 horas y una trampa con sensor de alivio de presión que impedía forzar o cortar la estructura. Tras colgarle una grabadora con un casete que dictaba las instrucciones de pago, los agresores huyen advirtiendo que cualquier intento de rescate detonaría el artefacto.',
     source: 'Archivo periodístico El Tiempo — «Collar de dinamita» (Juanita León, 2000)',
     imgSrc: 'images/collar-sin-fondo.jpg',
     imgAlt: 'Reconstrucción forense del collar rectangular de tubos PVC y dinamita',
-    caption: 'Morfología rectangular del collar de tubos PVC (sin candado)'
+    caption: 'Morfología rectangular del collar de tubos PVC'
   },
   {
     step: 3,
@@ -356,7 +366,7 @@ const TIMELINE_DATA = [
     geoPoint: 'chiquinquira',
     geoLabel: 'Corredor Chiquinquirá – Simijaca',
     title: 'Intervención heroica del Subintendente Jairo H. López',
-    desc: 'El esposo da aviso en Chiquinquirá. El técnico antiexplosivos Jairo Hernando López arriba con traje EOD de protección. Conociendo el riesgo del lazo trampa anti-corte, asume la maniobra directa cuerpo a cuerpo junto a doña Ana Elvia para salvarle la vida.',
+    desc: 'Tras lograr trasladarse a Chiquinquirá en busca de ayuda, el esposo activa la movilización de la Policía Nacional. El intendente Jairo Hernando López, técnico antiexplosivos de vasta experiencia en operaciones de alto riesgo, asume con abnegación el procedimiento con traje de protección EOD. Al advertir la complejidad del circuito doble y la trampa anti-corte, López decide permanecer cuerpo a cuerpo durante horas junto a doña Ana Elvia, hablándole con calidez, brindándole apoyo emocional y serenidad mientras realiza minuciosas maniobras periciales para desarmar el sistema.',
     source: 'Crónica El Espectador (Carranza Muñoz, 2016) · Policía Nacional',
     imgSrc: 'images/jairo-lopez.jpg',
     imgAlt: 'Subintendente Jairo Hernando López con traje de protección EOD',
@@ -368,7 +378,7 @@ const TIMELINE_DATA = [
     geoPoint: 'bogota',
     geoLabel: 'Evacuación aérea hacia Bogotá D.C.',
     title: 'La explosión cobra la vida de Ana Elvia y hiere de muerte a López',
-    desc: 'El mecanismo de alivio de tensión se activa durante la intervención. Ana Elvia Cortés fallece de forma instantánea. El subintendente López queda herido críticamente y fallece valerosamente durante su evacuación en helicóptero hacia Bogotá.',
+    desc: 'Hacia el mediodía, en medio de maniobras de extrema tensión y máxima precisión técnica, el sensor interno de alivio de presión o circuito secundario se activa súbitamente. La detonación de la carga confinada en el PVC ocurre a escasos centímetros de la región cervical, provocando la muerte instantánea de doña Ana Elvia Cortés. La violenta onda expansiva hiere de muerte al intendente Jairo Hernando López y lesiona a otros uniformados; López es estabilizado y trasladado por aire, falleciendo con honor durante el vuelo en helicóptero hacia el Hospital Central en Bogotá.',
     source: 'Providencia CSJ, Sala Penal (Proceso 21285 · 2005)',
     imgSrc: 'images/explosion.jpg',
     imgAlt: 'Detonación del artefacto explosivo',
@@ -380,11 +390,11 @@ const TIMELINE_DATA = [
     geoPoint: 'simijaca',
     geoLabel: 'Tribunales y Corte Suprema de Justicia',
     title: 'Condena judicial por delincuencia común y verdad histórica',
-    desc: 'La justicia descarta la autoría de las FARC y condena a José Miguel Suárez a 32 años de prisión por delincuencia común extorsiva. La Corte Suprema ratifica en casación la sentencia. Verificadores confirman que atribuir el collar a la guerrilla es una falsedad electoral.',
+    desc: 'Aunque en las horas posteriores al crimen diversos sectores políticos y medios atribuyeron precipitadamente la autoría a las FARC, la investigación científica de la Fiscalía y la sentencia de la Corte Suprema descartaron toda participación guerrillera. La justicia probó que el hecho fue ejecutado por una banda de delincuencia común encabezada por José Miguel Aguilar, condenado a más de 30 años de prisión por extorsión y homicidio agravado. Décadas después, equipos de verificación documental (Fast-Check) desmienten periódicamente la manipulación electoral de esta tragedia.',
     source: 'CSJ Proceso 21285 · ColombiaCheck · La Silla Vacía · AFP Factual',
     imgSrc: 'images/Juicio.jpg',
     imgAlt: 'Audiencia judicial y condena penal',
-    caption: 'Juicio penal · Condena a 32 años por delincuencia común'
+    caption: 'Juicio penal · Condena por delincuencia común'
   }
 ];
 
@@ -827,8 +837,8 @@ function initForensicSchematic() {
       citation: 'Providencia CSJ Sala Casación Penal 21285 (M.P. Yesid Ramírez Bastidas).'
     },
     candado: {
-      title: '4. Unión Adhesiva con Cemento PVC (Sin Candado Mecánico)',
-      text: 'A diferencia de mitos sobre candados metálicos, el collar no poseía candado cervical ni cerrojos. Los asaltantes ensamblaron el marco rectangular directamente sobre el cuello de la víctima, uniendo los tubos de PVC con soldadura adhesiva para fontanería. El perímetro interno rectangular (≈14.5 × 12 cm) impedía extraer la cabeza sin cortar la tubería.',
+      title: '4. Unión Adhesiva con Cemento y Soldadura para PVC',
+      text: 'Los asaltantes ensamblaron el marco rectangular de tubería directamente sobre el cuello de la víctima, uniendo los tubos de PVC con soldadura química adhesiva para fontanería. El perímetro interno rectangular (≈14.5 × 12 cm) impedía extraer la cabeza sin cortar la tubería.',
       citation: 'Acta de inspección técnica al cadáver · Simijaca, Cundinamarca (15 de mayo de 2000).'
     }
   };
@@ -903,10 +913,10 @@ function initForensicSchematic() {
     });
 
     const colorMap = {
-      explosivo: '#ef4444',
-      temporizador: '#f59e0b',
-      trampa: '#00e5ff',
-      candado: '#a855f7'
+      explosivo: '#8f1e1e',     // Carmesí oscuro pericial (Marcador 1 en SVG)
+      temporizador: '#a36209',  // Ámbar oscuro / latón (Marcador 2 en SVG)
+      trampa: '#245275',        // Azul acero oscuro (Marcador 3 en SVG)
+      candado: '#52365c'        // Púrpura sepia oscuro (Marcador 4 en SVG)
     };
     const detailBox = document.getElementById('forensic-detail');
     if (detailBox && colorMap[partKey]) {
@@ -1306,7 +1316,11 @@ function initComparisonSlider() {
     }
   });
 
-  // Botones de modo
+  // Botones de modo (opcionales)
+  const btnComp = document.getElementById('btn-slider-compare');
+  const btnFict = document.getElementById('btn-slider-fict');
+  const btnDebunk = document.getElementById('btn-slider-real');
+
   if (btnComp) {
     btnComp.addEventListener('click', () => {
       updateSlider(50);
@@ -1329,7 +1343,7 @@ function initComparisonSlider() {
   }
 
   function setActiveButton(activeBtn) {
-    [btnComp, btnFict, btnDebunk].forEach(b => b?.classList.remove('active'));
+    [btnComp, btnFict, btnDebunk].filter(Boolean).forEach(b => b.classList.remove('active'));
     activeBtn?.classList.add('active');
   }
 }
@@ -1398,8 +1412,7 @@ function initJudicialTabs() {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       const targetId = btn.getAttribute('data-tab');
-      const targetHref = btn.getAttribute('href') || `#dossier-${targetId}`;
-      const cleanTargetId = targetHref.replace('#', '');
+      const cleanTargetId = targetId ? `dossier-${targetId}` : (btn.getAttribute('href') || '').replace('#', '');
 
       // Actualizar estado de los botones de pestaña
       tabBtns.forEach(b => {
@@ -1429,6 +1442,13 @@ function initJudicialTabs() {
         }
       }
     });
+
+    btn.addEventListener('keydown', (e) => {
+      if (e.key === ' ' || e.key === 'Spacebar') {
+        e.preventDefault();
+        btn.click();
+      }
+    });
   });
 }
 
@@ -1439,12 +1459,14 @@ function initAccordion() {
   const headers = document.querySelectorAll('.accordion-header');
 
   headers.forEach(header => {
-    header.addEventListener('click', () => {
-      const item = header.parentElement;
+    header.addEventListener('click', (e) => {
+      e.preventDefault();
+      const item = header.closest('.accordion-item') || header.parentElement;
+      if (!item) return;
       const isOpen = item.classList.contains('active');
       const collapse = item.querySelector('.accordion-collapse');
 
-      // Cerrar otros
+      // Cerrar otros acordeones
       document.querySelectorAll('.accordion-item').forEach(other => {
         if (other !== item && other.classList.contains('active')) {
           other.classList.remove('active');
@@ -1457,14 +1479,26 @@ function initAccordion() {
       if (!isOpen) {
         item.classList.add('active');
         header.setAttribute('aria-expanded', 'true');
-        if (collapse) collapse.style.maxHeight = `${collapse.scrollHeight + 32}px`;
+        if (collapse) {
+          const contentH = collapse.scrollHeight;
+          collapse.style.maxHeight = Math.max(contentH + 80, 500) + 'px';
+        }
       } else {
         item.classList.remove('active');
         header.setAttribute('aria-expanded', 'false');
-        if (collapse) collapse.style.maxHeight = '0px';
+        if (collapse) {
+          collapse.style.maxHeight = '0px';
+        }
       }
     });
   });
+
+  // Reajustar altura dinámica en resize para que el contenido nunca quede truncado
+  window.addEventListener('resize', () => {
+    document.querySelectorAll('.accordion-item.active .accordion-collapse').forEach(collapse => {
+      collapse.style.maxHeight = Math.max(collapse.scrollHeight + 80, 500) + 'px';
+    });
+  }, { passive: true });
 }
 
 /* ========================================================================
@@ -1564,28 +1598,32 @@ function initAcademicBibliography() {
       const expanded = card.querySelector('.apa-card-expanded');
       const isOpen = card.classList.toggle('expanded');
       btn.setAttribute('aria-expanded', isOpen.toString());
-      btn.textContent = isOpen ? 'Ocultar' : 'Detalles';
+      const labelSpan = btn.querySelector('span');
+      if (labelSpan) {
+        labelSpan.textContent = isOpen ? 'Ocultar' : 'Detalles';
+      }
       if (expanded) {
-        expanded.style.maxHeight = isOpen ? `${expanded.scrollHeight + 20}px` : '0px';
+        expanded.style.maxHeight = isOpen ? `${expanded.scrollHeight + 30}px` : '0px';
       }
     });
   });
 
-  // Copia individual con retroalimentación visual directa
+  // Copia individual con retroalimentación visual directa (preservando SVG)
   copyBtns.forEach(btn => {
     btn.addEventListener('click', async () => {
       const citation = btn.getAttribute('data-citation');
       if (!citation) return;
-      const originalText = btn.textContent;
+      const labelSpan = btn.querySelector('span');
+      const originalLabel = labelSpan ? labelSpan.textContent : 'Copiar';
       try {
         await navigator.clipboard.writeText(citation);
         showToast('Cita APA 7 copiada al portapapeles');
-        btn.textContent = '✓ ¡Copiada!';
-        setTimeout(() => { btn.textContent = originalText; }, 1800);
+        if (labelSpan) labelSpan.textContent = '¡Copiada!';
+        setTimeout(() => { if (labelSpan) labelSpan.textContent = originalLabel; }, 1800);
       } catch (err) {
         fallbackCopy(citation);
-        btn.textContent = '✓ ¡Copiada!';
-        setTimeout(() => { btn.textContent = originalText; }, 1800);
+        if (labelSpan) labelSpan.textContent = '¡Copiada!';
+        setTimeout(() => { if (labelSpan) labelSpan.textContent = originalLabel; }, 1800);
       }
     });
   });
