@@ -2076,21 +2076,31 @@ body.font-large .bio-body p {
 
 .schematic-top-meta {
   display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 14px;
+  width: 100%;
+}
+
+.schematic-meta-row {
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  width: 100%;
+  padding-bottom: 6px;
+  border-bottom: 1px dashed rgba(140, 110, 80, 0.25);
   font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: #5c4e40;
-  text-transform: uppercase;
+  font-size: 0.70rem;
   letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .schematic-top-meta .meta-tag {
   color: #2b2118;
   font-weight: 800;
-  display: flex;
+  display: inline-flex;
   align-items: center;
+  white-space: nowrap;
 }
 
 .schematic-top-meta .meta-code {
@@ -2099,9 +2109,10 @@ body.font-large .bio-body p {
   background: transparent;
   padding: 0;
   border: none;
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   letter-spacing: 0.08em;
-  opacity: 0.85;
+  opacity: 0.9;
+  white-space: nowrap;
 }
 
 .meta-dot {
@@ -2112,22 +2123,55 @@ body.font-large .bio-body p {
   background: var(--red-primary);
   margin-right: 6px;
   box-shadow: 0 0 6px rgba(143, 30, 30, 0.5);
+  flex-shrink: 0;
+}
+
+.schematic-cue-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 .schematic-click-cue {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  font-family: var(--font-body);
-  font-size: 0.72rem;
+  gap: 7px;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
   font-weight: 600;
-  color: #7a4610;
-  background: rgba(140, 83, 17, 0.08);
-  border: 1px solid rgba(140, 83, 17, 0.22);
-  padding: 2px 10px;
+  color: #5c3818;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(245, 235, 218, 0.9) 100%);
+  border: 1px solid rgba(140, 90, 40, 0.28);
+  box-shadow: 0 2px 5px rgba(60, 40, 20, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  padding: 4px 14px;
   border-radius: 999px;
   text-transform: none;
   letter-spacing: 0.01em;
+  white-space: nowrap;
+  transition: all 0.25s ease;
+  user-select: none;
+}
+
+.schematic-click-cue svg {
+  color: #8c2323;
+  flex-shrink: 0;
+}
+
+.schematic-click-cue:hover {
+  background: #ffffff;
+  border-color: rgba(140, 90, 40, 0.45);
+  box-shadow: 0 3px 8px rgba(60, 40, 20, 0.12);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 480px) {
+  .schematic-meta-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding-bottom: 8px;
+  }
 }
 
 .forensic-svg {
