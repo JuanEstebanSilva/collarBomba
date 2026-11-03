@@ -1880,15 +1880,15 @@ body.font-large .bio-body p {
 }
 
 .schematic-headline-header .schematic-header-svg {
-  width: 24px;
-  height: 24px;
-  color: #8c5311;
+  width: 26px;
+  height: 26px;
+  color: var(--red-primary);
   flex-shrink: 0;
 }
 
 .schematic-main-title {
   font-family: var(--font-headline);
-  font-size: 1.75rem;
+  font-size: 2.05rem;
   font-weight: 800;
   color: #24160c;
   line-height: 1.25;
@@ -1898,7 +1898,7 @@ body.font-large .bio-body p {
 
 @media (max-width: 640px) {
   .schematic-main-title {
-    font-size: 1.4rem;
+    font-size: 1.55rem;
   }
 }
 
@@ -1912,20 +1912,32 @@ body.font-large .bio-body p {
 .artifact-real-card .card-badge-header {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   color: var(--red-primary);
   margin-bottom: 12px;
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  font-family: var(--font-headline);
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.carto-card .card-badge-header h4,
+.artifact-real-card .card-badge-header h4 {
+  font-family: var(--font-headline);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+  margin: 0;
 }
 
 .forensic-card .card-badge-header svg,
 .carto-card .card-badge-header svg,
 .artifact-real-card .card-badge-header svg {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
+  color: var(--red-primary);
+  flex-shrink: 0;
 }
 
 .forensic-intro,
