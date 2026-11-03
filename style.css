@@ -2175,13 +2175,12 @@ body.font-large .bio-body p {
 }
 
 .forensic-svg {
-  overflow: visible !important;
+  overflow: hidden !important;
   width: 100%;
   height: auto;
-  max-height: 500px;
   display: block;
-  overflow: visible;
   border-radius: 8px;
+  box-shadow: inset 0 0 30px rgba(120, 90, 60, 0.12);
 }
 
 @media (max-width: 768px) {
@@ -2199,8 +2198,19 @@ body.font-large .bio-body p {
 
 /* Enfoque focal en componente activo y atenuación de elementos secundarios */
 #collar-diagram.is-focused .diagram-interactive-part:not(.active) {
-  opacity: 0.38;
-  filter: grayscale(45%);
+  opacity: 0.12 !important;
+  filter: grayscale(85%) !important;
+  pointer-events: none !important;
+  transition: opacity 0.4s ease, filter 0.4s ease !important;
+}
+
+#collar-diagram.is-focused .schematic-elbow {
+  opacity: 0.12 !important;
+  transition: opacity 0.4s ease !important;
+}
+
+.schematic-elbow {
+  transition: opacity 0.4s ease;
 }
 
 .diagram-interactive-part {
@@ -7585,7 +7595,7 @@ body.font-large .bio-body p {
 /* Ocultar la silueta anatómica de cráneo/cuello cuando se hace zoom en una pieza */
 #collar-diagram.is-focused #schematic-anatomical-neck,
 #collar-diagram.is-focused .schematic-neck-group {
-  opacity: 0.35 !important;
+  opacity: 0 !important;
   pointer-events: none !important;
   transition: opacity 0.35s ease !important;
 }

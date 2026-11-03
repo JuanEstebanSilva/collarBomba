@@ -813,11 +813,18 @@ function initForensicSchematic() {
 
   let restoreFocusTimer = null;
 
-  const FOCUS_COORDS = {
-    explosivo: { x: 370, y: 145, scale: 1.85 },
-    temporizador: { x: 580, y: 400, scale: 1.75 },
-    trampa: { x: 370, y: 660, scale: 1.85 },
-    candado: { x: 155, y: 400, scale: 1.75 }
+  const FOCUS_COORDS_ASSEMBLED = {
+    explosivo: { x: 370, y: 160, scale: 1.50 },
+    temporizador: { x: 620, y: 400, scale: 1.45 },
+    trampa: { x: 370, y: 640, scale: 1.50 },
+    candado: { x: 110, y: 400, scale: 1.45 }
+  };
+
+  const FOCUS_COORDS_EXPLODED = {
+    explosivo: { x: 370, y: 140, scale: 1.25 },
+    temporizador: { x: 660, y: 400, scale: 1.20 },
+    trampa: { x: 370, y: 690, scale: 1.25 },
+    candado: { x: 70, y: 400, scale: 1.20 }
   };
 
   const PART_DETAILS = {
@@ -864,7 +871,9 @@ function initForensicSchematic() {
       restoreFocusTimer = null;
     }
 
-    const target = FOCUS_COORDS[partKey];
+    const isExploded = svgDiagram?.classList.contains('exploded');
+    const coordsMap = isExploded ? FOCUS_COORDS_EXPLODED : FOCUS_COORDS_ASSEMBLED;
+    const target = coordsMap[partKey];
     if (target && assemblyGroup) {
       assemblyGroup.style.transformOrigin = `${target.x}px ${target.y}px`;
       assemblyGroup.style.transform = `scale(${target.scale})`;
@@ -973,6 +982,13 @@ function initForensicSchematic() {
         highlightPart(partKey, true);
       }
     });
+  });
+
+  // Clic en el fondo del esquema para des-enfocar y restaurar vista general
+  svgDiagram?.addEventListener('click', (e) => {
+    if (!e.target.closest('.diagram-interactive-part')) {
+      resetFocus();
+    }
   });
 
   // Selección por defecto (vista general sin zoom inicial forzado)
