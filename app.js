@@ -356,9 +356,9 @@ const TIMELINE_DATA = [
     title: 'Fijación coactiva del artefacto explosivo cervical',
     desc: 'Los criminales inmovilizan a Ana Elvia Cortés y ensamblan alrededor de su cuello una estructura rectangular de tubos de PVC cargados con dinamita comercial e Indugel. El collarín queda sellado herméticamente con soldadura química para fontanería, integrando un reloj temporizador programado para una cuenta regresiva de 24 horas y una trampa con sensor de alivio de presión que impedía forzar o cortar la estructura. Tras colgarle una grabadora con un casete que dictaba las instrucciones de pago, los agresores huyen advirtiendo que cualquier intento de rescate detonaría el artefacto.',
     source: 'Archivo periodístico El Tiempo — «Collar de dinamita» (Juanita León, 2000)',
-    imgSrc: 'images/collar-sin-fondo.jpg',
-    imgAlt: 'Reconstrucción forense del collar rectangular de tubos PVC y dinamita',
-    caption: 'Morfología rectangular del collar de tubos PVC'
+    imgSrc: 'images/collar-completo-sobrebase.jpg',
+    imgAlt: 'Reconstrucción forense del collar rectangular de tubos PVC y dinamita sobre soporte',
+    caption: 'Reconstrucción del artefacto de PVC cerrado con codos y cintas (Expediente CSJ 21285)'
   },
   {
     step: 3,
@@ -660,7 +660,7 @@ function initSynchronizedTimelineAndMap() {
         if (imgEl) {
           imgEl.src = data.imgSrc;
           imgEl.alt = data.imgAlt;
-          if (data.imgSrc && data.imgSrc.includes('collar')) {
+          if (data.imgSrc && data.imgSrc.includes('collar-sin-fondo')) {
             imgEl.classList.add('contain-fit');
           } else {
             imgEl.classList.remove('contain-fit');

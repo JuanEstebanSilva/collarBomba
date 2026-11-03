@@ -1722,7 +1722,7 @@ body.font-large .bio-body p {
 }
 
 .step-archival-img.contain-fit,
-.step-archival-img[src*="collar"] {
+.step-archival-img[src*="collar-sin-fondo"] {
   object-fit: contain !important;
   background: #f6f7f9 !important;
   padding: 8px;
@@ -2479,7 +2479,7 @@ body.font-large .bio-body p {
   width: 100%;
   aspect-ratio: 4/3;
   overflow: hidden;
-  background: #1a130d;
+  background: #fbf7ee;
 }
 
 .pvc-card-frame img {
